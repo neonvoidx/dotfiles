@@ -85,6 +85,7 @@
                     "visualizerType": "mirrored"
                 },
                 {
+                    "colorName": "primary",
                     "hideWhenIdle": true,
                     "id": "AudioVisualizer",
                     "width": 200
@@ -225,6 +226,7 @@
         "backgroundOpacity": 1,
         "colorizeIcons": false,
         "displayMode": "auto_hide",
+        "enabled": false,
         "floatingRatio": 1,
         "monitors": [
         ],
@@ -238,7 +240,6 @@
         "animationSpeed": 1,
         "avatarImage": "/home/neonvoid/.face",
         "compactLockScreen": false,
-        "dimDesktop": false,
         "forceBlackScreenCorners": false,
         "language": "",
         "lockOnSuspend": true,
@@ -254,8 +255,10 @@
     },
     "location": {
         "analogClockInCalendar": false,
+        "firstDayOfWeek": -1,
         "name": "Hooksett, NH",
         "showCalendarEvents": true,
+        "showCalendarWeather": true,
         "showWeekNumberInCalendar": false,
         "use12hourFormat": false,
         "useFahrenheit": true,
@@ -275,13 +278,13 @@
     },
     "notifications": {
         "backgroundOpacity": 1,
-        "criticalUrgencyDuration": 15,
-        "doNotDisturb": false,
+        "criticalUrgencyDuration": 30,
+        "doNotDisturb": true,
         "location": "top_right",
-        "lowUrgencyDuration": 3,
+        "lowUrgencyDuration": 7,
         "monitors": [
         ],
-        "normalUrgencyDuration": 8,
+        "normalUrgencyDuration": 14,
         "overlayLayer": true,
         "respectExpireTimeout": true
     },
@@ -307,6 +310,8 @@
     "settingsVersion": 16,
     "setupCompleted": true,
     "templates": {
+        "alacritty": false,
+        "code": false,
         "discord": false,
         "discord_armcord": false,
         "discord_dorion": false,
@@ -331,6 +336,7 @@
         "fontDefaultScale": 1.04,
         "fontFixed": "JetBrains Mono",
         "fontFixedScale": 1.15,
+        "panelsAttachedToBar": true,
         "panelsOverlayLayer": true,
         "tooltipsEnabled": true
     },
@@ -345,17 +351,17 @@
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/catbiker.jpg"
+                "wallpaper": "/home/neonvoid/pics/vertical/abstractacid.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-2",
-                "wallpaper": "/home/neonvoid/pics/cyberpunk-edgerunners.jpg"
+                "wallpaper": "/home/neonvoid/pics/princess.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/facinggod.jpg"
+                "wallpaper": "/home/neonvoid/pics/redsunskull.png"
             },
             {
                 "directory": "/home/neonvoid/pics",

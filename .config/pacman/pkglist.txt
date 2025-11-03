@@ -17,6 +17,7 @@ btop
 btrfs-progs
 burpsuite
 calf
+calibre
 celluloid
 chafa
 chaotic-keyring
@@ -25,6 +26,8 @@ clapper-enhancers
 cliphist
 cmatrix
 cpio
+cups
+cups-pdf
 deno
 dhcpcd
 dialog
@@ -39,7 +42,6 @@ egl-wayland
 evtest
 eza
 fastfetch
-faugus-launcher
 fbset
 fd
 ffmpegthumbnailer
@@ -56,7 +58,6 @@ fzf
 game-devices-udev
 gamemode
 gamescope
-ghostty
 gi-docgen
 gimp
 git
@@ -83,7 +84,7 @@ gtk-doc
 gvfs
 gvfs-smb
 hashcat
-heroic-games-launcher-git
+hplip
 htop
 hwinfo
 hyprgraphics-git
@@ -97,9 +98,7 @@ inter-font
 iwd
 joyutils
 jq
-kate
 kitty
-konsole
 kvantum
 labwc
 lazygit
@@ -131,7 +130,6 @@ matugen-git
 mbuffer
 mda.lv2
 mkinitcpio-firmware
-mousepad
 mpv
 nano
 neovim
@@ -155,6 +153,7 @@ opensc
 openssh
 os-prober
 pacman-contrib
+pamac
 paru
 pascube
 pavucontrol
@@ -199,6 +198,7 @@ steam
 steamcmd
 streamdeck-ui-git
 swappy
+system-config-printer
 tela-circle-icon-theme-dracula
 terminus-font
 termshark
@@ -255,7 +255,6 @@ yadm
 yarn
 yazi
 yubico-authenticator-bin
-zed
 zig
 zoxide
 zram-generator
