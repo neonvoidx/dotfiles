@@ -23,11 +23,13 @@
     "bar": {
         "backgroundOpacity": 1,
         "density": "comfortable",
+        "exclusive": true,
         "floating": true,
         "marginHorizontal": 0.25,
         "marginVertical": 0.25,
         "monitors": [
         ],
+        "outerCorners": true,
         "position": "top",
         "showCapsule": true,
         "widgets": {
@@ -158,6 +160,7 @@
     },
     "brightness": {
         "brightnessStep": 5,
+        "enableDdcSupport": false,
         "enforceMinimum": true
     },
     "colorSchemes": {
@@ -240,6 +243,8 @@
         "animationSpeed": 1,
         "avatarImage": "/home/neonvoid/.face",
         "compactLockScreen": false,
+        "dimDesktop": true,
+        "enableShadows": true,
         "forceBlackScreenCorners": false,
         "language": "",
         "lockOnSuspend": true,
@@ -307,7 +312,7 @@
         "videoCodec": "hevc",
         "videoSource": "portal"
     },
-    "settingsVersion": 16,
+    "settingsVersion": 18,
     "setupCompleted": true,
     "templates": {
         "alacritty": false,
@@ -329,7 +334,8 @@
         "pywalfox": false,
         "qt": true,
         "vicinae": false,
-        "walker": false
+        "walker": false,
+        "wezterm": false
     },
     "ui": {
         "fontDefault": "Roboto",
@@ -351,17 +357,17 @@
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/yuti.jpg"
+                "wallpaper": "/home/neonvoid/pics/vertical/f2ozw9v341j31.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-2",
-                "wallpaper": "/home/neonvoid/pics/evil-anime-girl.png"
+                "wallpaper": "/home/neonvoid/pics/anime-astronaut.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/satoru.png"
+                "wallpaper": "/home/neonvoid/pics/cyberskull.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
@@ -369,6 +375,7 @@
                 "wallpaper": "/home/neonvoid/pics/anime-orange-eye.png"
             }
         ],
+        "panelPosition": "folow_bar",
         "randomEnabled": true,
         "randomIntervalSec": 300,
         "recursiveSearch": false,
