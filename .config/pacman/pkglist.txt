@@ -1,5 +1,6 @@
 amd-ucode
 amdgpu_top
+ananicy-cpp
 aquamarine-git
 ark
 base
@@ -18,7 +19,6 @@ btrfs-progs
 burpsuite
 calf
 calibre
-celluloid
 chafa
 chaotic-keyring
 chaotic-mirrorlist
@@ -181,6 +181,7 @@ qt5-wayland
 qt5ct
 qt6ct
 quickshell-git
+reflector
 rsync
 rust-analyzer
 rustup
@@ -229,6 +230,7 @@ uv
 ventoy-bin
 vesktop-git
 vim
+vkbasalt
 vulkan-radeon
 waybar
 webkit2gtk

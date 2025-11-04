@@ -279,7 +279,7 @@
     "notifications": {
         "backgroundOpacity": 1,
         "criticalUrgencyDuration": 30,
-        "doNotDisturb": true,
+        "doNotDisturb": false,
         "location": "top_right",
         "lowUrgencyDuration": 7,
         "monitors": [
@@ -299,12 +299,12 @@
     "screenRecorder": {
         "audioCodec": "opus",
         "audioSource": "both",
-        "colorRange": "limited",
+        "colorRange": "full",
         "directory": "/home/neonvoid/Videos",
         "frameRate": 144,
         "quality": "very_high",
         "showCursor": true,
-        "videoCodec": "h264",
+        "videoCodec": "hevc",
         "videoSource": "portal"
     },
     "settingsVersion": 16,
@@ -337,7 +337,7 @@
         "fontFixed": "JetBrains Mono",
         "fontFixedScale": 1.15,
         "panelsAttachedToBar": true,
-        "panelsOverlayLayer": true,
+        "panelsOverlayLayer": false,
         "tooltipsEnabled": true
     },
     "wallpaper": {
@@ -351,17 +351,17 @@
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/abstractacid.png"
+                "wallpaper": "/home/neonvoid/pics/vertical/yuti.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-2",
-                "wallpaper": "/home/neonvoid/pics/princess.png"
+                "wallpaper": "/home/neonvoid/pics/evil-anime-girl.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/redsunskull.png"
+                "wallpaper": "/home/neonvoid/pics/satoru.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
