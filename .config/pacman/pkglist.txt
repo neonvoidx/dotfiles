@@ -268,7 +268,17 @@ cliphist-debug
 discord-debug
 dmenu-bluetooth
 dracula-gtk-theme
-elephant-all-bin
+elephant
+elephant-bluetooth
+elephant-calc
+elephant-clipboard
+elephant-desktopapplications
+elephant-files
+elephant-providerlist
+elephant-runner
+elephant-symbols
+elephant-websearch
+elephant-windows
 exercism
 gconf
 gconf-debug
@@ -298,6 +308,6 @@ sysc-greet-hyprland
 ttf-font-awesome-5
 vencord-hook
 vesktop-git-debug
-walker
+walker-git
 wg-systray-git-debug
 xorg-xwayland-git
