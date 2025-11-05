@@ -269,6 +269,7 @@ discord-debug
 dmenu-bluetooth
 dracula-gtk-theme
 elephant
+elephant-archlinuxpkgs
 elephant-bluetooth
 elephant-calc
 elephant-clipboard

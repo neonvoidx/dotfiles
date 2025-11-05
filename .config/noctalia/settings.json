@@ -25,7 +25,7 @@
         "density": "comfortable",
         "exclusive": true,
         "floating": true,
-        "marginHorizontal": 0.25,
+        "marginHorizontal": 0.51,
         "marginVertical": 0.25,
         "monitors": [
         ],
@@ -96,6 +96,9 @@
             ],
             "right": [
                 {
+                    "id": "WallpaperSelector"
+                },
+                {
                     "id": "ScreenRecorder"
                 },
                 {
@@ -105,18 +108,6 @@
                     "favorites": [
                     ],
                     "id": "Tray"
-                },
-                {
-                    "icon": "screen-share",
-                    "id": "CustomButton",
-                    "leftClickExec": "~/.config/hypr/screen-toggle.sh on",
-                    "middleClickExec": "",
-                    "parseJson": false,
-                    "rightClickExec": "~/.config/hypr/screen-toggle.sh off",
-                    "textCollapse": "",
-                    "textCommand": "hyprctl monitors | grep -q 'DP-2' && echo \"Triple \" || echo \"Double \"",
-                    "textIntervalMs": 3000,
-                    "textStream": false
                 },
                 {
                     "displayMode": "onhover",
@@ -357,23 +348,23 @@
         "directory": "/home/neonvoid/pics",
         "enableMultiMonitorDirectories": true,
         "enabled": true,
-        "fillColor": "#000000",
+        "fillColor": "#212337",
         "fillMode": "crop",
         "monitors": [
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/yhi2zdknv6741.png"
+                "wallpaper": "/home/neonvoid/pics/vertical/darklust.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-2",
-                "wallpaper": "/home/neonvoid/pics/awakening.png"
+                "wallpaper": "/home/neonvoid/pics/junglegirl.jpeg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/courage.jpg"
+                "wallpaper": "/home/neonvoid/pics/floating.jpeg"
             },
             {
                 "directory": "/home/neonvoid/pics",
@@ -382,7 +373,7 @@
             }
         ],
         "overviewEnabled": true,
-        "panelPosition": "folow_bar",
+        "panelPosition": "center",
         "randomEnabled": true,
         "randomIntervalSec": 300,
         "recursiveSearch": false,

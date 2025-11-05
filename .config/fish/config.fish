@@ -1,22 +1,6 @@
 if status is-interactive
-    #                               
-    #  _   ___      _____ _ __ ___  
-    # | | | \ \ /\ / / __| '_ ` _ \ 
-    # | |_| |\ V  V /\__ \ | | | | |
-    #  \__,_| \_/\_/ |___/_| |_| |_|
-    #                               
-    # For a DE/WM selector instead use below
-    set -l os (uname)
-    if test "$os" = Linux
-        if type -q uwsm
-            set -l tty (tty)
-            if test "$tty" = /dev/tty1
-                set -l may-start (uwsm check may-start)
-                if test "$may-start"
-                    exec uwsm start hyprland.desktop
-                end
-            end
-        end
+    if not type -q fisher
+        curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
     end
     #  ____   _  _____ _   _ 
     # |  _ \ / \|_   _| | | |
@@ -60,8 +44,18 @@ if status is-interactive
     abbr --add dev "cd ~/dev"
     abbr --add findsyms "find . -type l -ls"
     abbr --add findhere "find . -name"
-    abbr --add cd z
     abbr --add ys "yarn start"
+    abbr --add lg lazygit
+    abbr --add ly 'lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
+    abbr --add cat bat
+    abbr --add ls lsd
+    abbr --add l "lsd -Al"
+    abbr --add lt "lsd --tree"
+    abbr --add pacq "~/pacrm.sh"
+    abbr --add htop btop
+    abbr --add top btop
+    abbr --add brewup "brew upgrade && cd ~/.config/brew && ./brewbackup.sh"
+    abbr --add eup "nvim --headless '+Lazy! sync' +qa && cd ~/.config/nvim && git add . && git commit -m 'upd' && git push"
 
     #  _____      
     # |  ___| __  
@@ -69,31 +63,18 @@ if status is-interactive
     # |  _|| | | |
     # |_|  |_| |_|
     #             
-    # delete all recursively
     function deleteall
-        find . -name $1 -exec rm -rf {} \;
+        find . -name $argv[1] -exec rm -rf {} \;
     end
-    # Lazygit
-    if type -q lazygit
-        abbr --add lg lazygit
-    end
-    # YADM
-    if type -q yadm
-        abbr --add ly 'lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
-    end
-    # Fastfetch
-    if type -q fastfetch
-        abbr --add ff fastfetch
-    end
-    # FFMPEG
-    if type -q ffmpeg
-        # Convert high res .mov files to smaller file size to retain quality
-        function movconvert
-            set output (string replace -r '\.mov$' '' $argv[1])
-            ffmpeg -i "$argv[1]" -c:v libx264 -c:a copy -crf 20 "$output-small.mov"
+
+    function reload-ssh
+        ssh-add -e /usr/local/lib/opensc-pkcs11.so >>/dev/null
+        if test $status -gt 0
+            echo "Failed to remove previous card"
         end
+        ssh-add -s /usr/local/lib/opensc-pkcs11.so
     end
-    # Yazi
+
     function y
         set -l tmp (mktemp -t "yazi-cwd.XXXXXX")
         yazi $argv --cwd-file="$tmp"
@@ -101,6 +82,28 @@ if status is-interactive
             builtin cd -- "$cwd"
         end
         rm -f -- "$tmp"
+    end
+
+    function ffmpeg-downsize
+        if test (count $argv) -eq 0
+            echo "Usage: movconvert <inputfile.mov>"
+            return 1
+        end
+        set output (string replace -r '\.mov$' '' $argv[1])
+        ffmpeg -i "$argv[1]" -c:v libx264 -c:a copy -crf 20 "$output-small.mov"
+    end
+
+    function ffmpeg-togif
+        if test (count $argv) -ne 3
+            echo "Usage: togif <input.mp4> <start_time> <duration>"
+            echo "Example: togif movie.mp4 6 8.8"
+            return 1
+        end
+        set input $argv[1]
+        set start $argv[2]
+        set duration $argv[3]
+        set base (string replace -r '\.mp4$' '' $input)
+        ffmpeg -ss "$start" -t "$duration" -i "$input" -vf "fps=30,scale=400:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 "$base.gif"
     end
     # Kitty
     if test "$TERM" = xterm-kitty
@@ -139,18 +142,6 @@ if status is-interactive
     # Update neovim lazy packages headless
     if type -q nvim
         abbr --add eup "nvim --headless '+Lazy! sync' +qa && cd ~/.config/nvim && git add . && git commit -m 'upd' && git push"
-    end
-    # Yubikey handler, use if SSH isn't accepting yubikey automatically
-    function reload-ssh
-        ssh-add -e /usr/local/lib/opensc-pkcs11.so >>/dev/null
-        if test $status -gt 0
-            echo "Failed to remove previous card"
-        end
-        ssh-add -s /usr/local/lib/opensc-pkcs11.so
-    end
-    # WSL Browser
-    if type -q wslu
-        set BROWSER wslview
     end
     # GH CLI Copilot Chat
     set -l COPILOT_CLI ~/.local/share/gh/extensions/gh-copilot/gh-copilot
@@ -244,4 +235,70 @@ if status is-interactive
     # |_|/___|_|   | .__/|_|\__,_|\__, |_|_| |_|
     #              |_|            |___/         
     fzf_configure_bindings --directory=\cf --git_log=\cg --history=\cr --processes=\cp$pure_shorten_window_title_current_directory_length
+end
+
+set -gx ZSH_DISABLE_COMPFIX true
+set -gx NODE_OPTIONS --max-old-space-size=8192
+set -gx PATH $PATH /opt/cuda/bin
+set -gx PATH $PATH $HOME/.yarn/bin
+set -gx PATH $PATH $HOME/.cargo/bin
+set -gx PATH $PATH $HOME/.rd/bin
+set -gx PATH $PATH $HOME/dev/bin
+set -gx PATH $PATH $HOME/.local/bin
+set -gx PATH $PATH $HOME/go/bin
+set -gx PATH $PATH /Applications/flameshot.app/
+set -gx DISABLE_AUTO_TITLE true
+set -gx ZSH_TAB_TITLE_DISABLE_AUTO_TITLE false
+set -gx ZSH_TAB_TITLE_ONLY_FOLDER true
+set -gx ZSH_TAB_TITLE_CONCAT_FOLDER_PROCESS true
+set -gx FZF_PREVIEW_ADVANCED bat
+set -gx FZF_DEFAULT_OPTS '--color=fg:#ebfafa,bg:#282a36,hl:#37f499 --color=fg+:#ebfafa,bg+:#212337,hl+:#37f499 --color=info:#f7c67f,prompt:#04d1f9,pointer:#7081d0 --color=marker:#7081d0,spinner:#f7c67f,header:#323449 --height 80% --layout reverse --border'
+set -gx FZF_PATH "$HOME/.config/fzf"
+set -gx _ZO_EXCLUDE_DIRS "/Applications/**:**/node_modules"
+set -gx _ZO_RESOLVE_SYMLINKS 1
+set -gx FZF_CTRL_T_COMMAND ""
+set -gx PATH "$HOME/.local/share/fnm" $PATH
+set -gx FNM_DIR "$HOME/.cache/fnm"
+set -gx COPILOT_CLI "$HOME/.local/share/gh/extensions/gh-copilot/gh-copilot"
+set -gx CLONE_ORG "$HOME/.local/share/gh/extensions/gh-clone-org/gh-clone-org"
+set -gx PYENV_ROOT "$HOME/.pyenv"
+if test -d "$PYENV_ROOT/bin"
+    set -gx PATH "$PYENV_ROOT/bin" $PATH
+end
+set -gx PATH "/home/neonvoid/.opencode/bin" $PATH
+
+abbr --add hypr "e ~/.config/hypr/hyprland.conf"
+abbr --add yay paru
+abbr --add dev "cd ~/dev"
+abbr --add findhere "find . -name"
+abbr --add e nvim
+abbr --add lg lazygit
+abbr --add ly 'lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
+abbr --add cat bat
+abbr --add ls lsd
+abbr --add l "lsd -Al"
+abbr --add lt "lsd --tree --ignore-glob=node_modules"
+abbr --add pacq "~/pacrm.sh"
+abbr --add htop btop
+abbr --add top btop
+abbr --add brewup "brew upgrade && cd ~/.config/brew && ./brewbackup.sh"
+abbr --add eup "nvim --headless '+Lazy! sync' +qa && cd ~/.config/nvim && git add . && git commit -m 'upd' && git push"
+
+if test $SSH_CONNECTION
+    set -gx EDITOR nvim
+    set -gx VISUAL nvim
+else
+    set -gx EDITOR vim
+    set -gx VISUAL vim
+end
+
+function findsyms
+    set search_path (count $argv) >/dev/null; and set search_path $argv[1]; or set search_path .
+    find $search_path -type l -ls
+end
+
+set -g fish_key_bindings fish_vi_key_bindings
+
+function fish_title
+    echo (basename $PWD)
 end
