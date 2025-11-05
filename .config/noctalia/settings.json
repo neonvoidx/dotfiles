@@ -78,6 +78,7 @@
                 },
                 {
                     "hideMode": "hidden",
+                    "hideWhenIdle": false,
                     "id": "MediaMini",
                     "maxWidth": 145,
                     "scrollingMode": "always",
@@ -101,6 +102,8 @@
                     "blacklist": [
                     ],
                     "colorizeIcons": false,
+                    "favorites": [
+                    ],
                     "id": "Tray"
                 },
                 {
@@ -243,7 +246,7 @@
         "animationSpeed": 1,
         "avatarImage": "/home/neonvoid/.face",
         "compactLockScreen": false,
-        "dimDesktop": true,
+        "dimDesktop": false,
         "enableShadows": true,
         "forceBlackScreenCorners": false,
         "language": "",
@@ -251,6 +254,9 @@
         "radiusRatio": 1,
         "scaleRatio": 1,
         "screenRadiusRatio": 1,
+        "shadowDirection": "bottom_right",
+        "shadowOffsetX": 2,
+        "shadowOffsetY": 3,
         "showScreenCorners": false
     },
     "hooks": {
@@ -357,17 +363,17 @@
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/hearteyegirl.jpg"
+                "wallpaper": "/home/neonvoid/pics/vertical/ggdfdxps514c1.jpeg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-2",
-                "wallpaper": "/home/neonvoid/pics/anime-girl-eye.jpg"
+                "wallpaper": "/home/neonvoid/pics/redsunskull.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/mima.png"
+                "wallpaper": "/home/neonvoid/pics/anime-orange-eye.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
@@ -375,6 +381,7 @@
                 "wallpaper": "/home/neonvoid/pics/anime-orange-eye.png"
             }
         ],
+        "overviewEnabled": true,
         "panelPosition": "folow_bar",
         "randomEnabled": true,
         "randomIntervalSec": 300,

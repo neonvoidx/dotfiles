@@ -255,6 +255,7 @@ xdg-utils
 xf86-video-amdgpu
 xf86-video-ati
 xfce4-artwork
+xwayland-satellite
 yadm
 yarn
 yazi
@@ -267,6 +268,7 @@ cliphist-debug
 discord-debug
 dmenu-bluetooth
 dracula-gtk-theme
+elephant-all-bin
 exercism
 gconf
 gconf-debug
@@ -296,5 +298,6 @@ sysc-greet-hyprland
 ttf-font-awesome-5
 vencord-hook
 vesktop-git-debug
+walker
 wg-systray-git-debug
 xorg-xwayland-git

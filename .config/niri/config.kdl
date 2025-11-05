@@ -40,16 +40,18 @@ input {
 }
 spawn-sh-at-startup "easyeffects --gapplication-service"
 spawn-sh-at-startup "wl-clipboard-history -t"
-spawn-sh-at-startup "wl-paste --watch cliphist store"
-spawn-sh-at-startup "rm \"$HOME/.cache/cliphist/db\""
+// spawn-sh-at-startup "wl-paste --watch cliphist store"
+// spawn-sh-at-startup "rm \"$HOME/.cache/cliphist/db\""
 spawn-sh-at-startup "~/.config/hypr/gtksettings.sh"
+spawn-sh-at-startup "~/.config/startupscripts/launch_thunderbird.py"
+spawn-sh-at-startup "qs -c noctalia-shell"
 spawn-at-startup "nm-applet"
 spawn-at-startup "import-gsettings"
 spawn-at-startup "steam"
+spawn-at-startup "firefox-developer-edition"
 spawn-at-startup "spotify"
 spawn-at-startup "vesktop"
-spawn-at-startup "firefox-developer-edition"
-spawn-at-startup "thunderbird"
+spawn-sh-at-startup "~/.config/niri/discord-spotify-start.sh"
 hotkey-overlay {
     hide-not-bound
     skip-at-startup
@@ -57,7 +59,39 @@ hotkey-overlay {
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
-
+    workspace-switch {
+        spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+    }
+    window-open {
+        duration-ms 150
+        curve "ease-out-expo"
+    }
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+    horizontal-view-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+    window-movement {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+    window-resize {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
+    config-notification-open-close {
+        spring damping-ratio=0.6 stiffness=1000 epsilon=0.001
+    }
+    exit-confirmation-open-close {
+        spring damping-ratio=0.6 stiffness=500 epsilon=0.01
+    }
+    screenshot-ui-open {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
+    overview-open-close {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+    }
 }
 overview {
     zoom 0.8
@@ -103,6 +137,18 @@ output "HDMI-A-1" {
     position x=3440 y=727
     background-color "#212337"
     backdrop-color "#212337"
+    layout {
+        preset-column-widths {
+            proportion 1.0
+        }
+        default-column-width {
+            proportion 1.0
+        }
+    }
+}
+layer-rule {
+    match namespace="^noctalia-overview*"
+    place-within-backdrop true
 }
 layout {
     gaps 8
@@ -117,13 +163,13 @@ layout {
     }
     focus-ring {
         off
-        width 2
+        width 2.5
         active-gradient from="#37f499" to="#04d1f9" angle=45
         inactive-gradient from="#a48cf2" to="#7081d0" angle=45 relative-to="workspace-view"
     }
     border {
         on
-        width 2
+        width 2.5
         urgent-color "#f16c75"
         active-gradient from="#37f499" to="#04d1f9" angle=45
         inactive-gradient from="#a48cf2" to="#7081d0" angle=45 relative-to="workspace-view"
@@ -136,8 +182,43 @@ layout {
         color "#0007"
     }
 }
-workspace "chat" {
+workspace "media" {
     open-on-output "HDMI-A-1"
+}
+workspace "browser" {
+    open-on-output "DP-3"
+    layout {
+        default-column-width {
+            proportion 1.0
+        }
+    }
+}
+workspace "main" {
+    open-on-output "DP-2"
+}
+workspace "steam" {
+    open-on-output "DP-2"
+    layout {
+        default-column-width {
+            proportion 1.0
+        }
+    }
+}
+workspace "games" {
+    open-on-output "DP-2"
+    layout {
+        default-column-width {
+            proportion 1.0
+        }
+    }
+}
+workspace "email" {
+    open-on-output "DP-3"
+    layout {
+        default-column-width {
+            proportion 1.0
+        }
+    }
 }
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
@@ -149,11 +230,35 @@ window-rule {
 }
 window-rule {
     match app-id="vesktop"
-    open-on-workspace "chat"
+    open-on-workspace "media"
 }
 window-rule {
-    match app-id="spotify"
-    open-on-workspace "chat"
+    match app-id="Spotify"
+    open-on-workspace "media"
+}
+window-rule {
+    match app-id="^firefox.*$"
+    open-on-workspace "browser"
+}
+window-rule {
+    match app-id="steam$"
+    open-on-workspace "steam"
+}
+window-rule {
+    match app-id="gamescope$"
+    open-on-workspace "games"
+}
+window-rule {
+    match app-id="bitwarden$"
+    block-out-from "screencast"
+}
+window-rule {
+    match app-id="thunderbird"
+    open-on-workspace "email"
+}
+window-rule {
+    match app-id="thunderbird" title="^.*Reminder$"
+    open-floating true
 }
 // Enable rounded corners for all windows
 window-rule {
@@ -168,7 +273,7 @@ binds {
         spawn "kitty"
     }
     Mod+Space hotkey-overlay-title="Run an Application" {
-        spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"
+        spawn "walker"
     }
     Mod+Delete hotkey-overlay-title="Session menu" {
         spawn "qs" "-c" "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"
@@ -180,16 +285,22 @@ binds {
         spawn "firefox-developer-edition"
     }
     XF86AudioRaiseVolume allow-when-locked=true {
-        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1"
     }
     XF86AudioLowerVolume allow-when-locked=true {
-        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
     }
     XF86AudioMute allow-when-locked=true {
         spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     }
-    XF86AudioMicMute allow-when-locked=true {
+    Ctrl+XF86AudioMute allow-when-locked=true {
         spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+    }
+    Ctrl+XF86AudioRaiseVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+ -l 1"
+    }
+    Ctrl+XF86AudioLowerVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"
     }
     XF86AudioPlay allow-when-locked=true {
         spawn-sh "playerctl play-pause"
@@ -212,6 +323,12 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true {
         spawn "brightnessctl" "--class=backlight" "set" "10%-"
     }
+    Mod+S {
+        focus-workspace "steam"
+    }
+    Mod+G {
+        focus-workspace "games"
+    }
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
     // or do a four-finger swipe up on a touchpad.
@@ -225,16 +342,16 @@ binds {
         toggle-window-floating
     }
     Mod+H {
-        focus-column-left
+        focus-column-or-monitor-left
     }
     Mod+J {
-        focus-window-down
+        focus-window-or-monitor-down
     }
     Mod+K {
-        focus-window-up
+        focus-window-or-monitor-up
     }
     Mod+L {
-        focus-column-right
+        focus-column-or-monitor-right
     }
     Mod+Shift+J {
         move-window-down-or-to-workspace-down
@@ -248,17 +365,20 @@ binds {
     Mod+Shift+H {
         move-column-left
     }
-    Mod+Shift+Ctrl+J {
-        move-window-down-or-to-workspace-down
+    Mod+Down {
+        move-workspace-to-monitor-down
     }
-    Mod+Shift+Ctrl+K {
-        move-window-up-or-to-workspace-up
+    Mod+Up {
+        move-workspace-to-monitor-up
     }
-    Mod+Shift+Ctrl+L {
-        move-column-right-or-to-monitor-right
+    Mod+Right {
+        move-workspace-to-monitor-right
     }
-    Mod+Shift+Ctrl+H {
-        move-column-left-or-to-monitor-left
+    Mod+Left {
+        move-workspace-to-monitor-left
+    }
+    Mod+V {
+        spawn-sh "walker -m clipboard"
     }
     // You can bind mouse wheel scroll ticks using the following syntax.
     // These binds will change direction based on the natural-scroll setting.
@@ -414,13 +534,6 @@ binds {
     Mod+Shift+Equal {
         set-window-height "+10%"
     }
-    // Move the focused window between the floating and the tiling layout.
-    Mod+V {
-        toggle-window-floating
-    }
-    Mod+Shift+V {
-        switch-focus-between-floating-and-tiling
-    }
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
     // rather than stacked on top of each other.
@@ -466,5 +579,8 @@ binds {
     Mod+Shift+P {
         power-off-monitors
     }
+}
+debug {
+    honor-xdg-activation-with-invalid-serial
 }
 
