@@ -29,7 +29,7 @@
         "marginVertical": 0.25,
         "monitors": [
         ],
-        "outerCorners": true,
+        "outerCorners": false,
         "position": "top",
         "showCapsule": true,
         "widgets": {
@@ -357,17 +357,17 @@
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/f2ozw9v341j31.png"
+                "wallpaper": "/home/neonvoid/pics/vertical/yhi2zdknv6741.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-2",
-                "wallpaper": "/home/neonvoid/pics/anime-astronaut.jpg"
+                "wallpaper": "/home/neonvoid/pics/hyprdragon.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/cyberskull.png"
+                "wallpaper": "/home/neonvoid/pics/eye.png"
             },
             {
                 "directory": "/home/neonvoid/pics",

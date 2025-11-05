@@ -168,6 +168,7 @@ plymouth
 plymouth-theme-dark-planet-git
 polkit-gnome
 proton-ge-custom-bin
+protonmail-bridge
 protontricks-git
 protonup-qt
 pulse-native-provider
@@ -249,6 +250,7 @@ wlsunset
 wowup-cf-bin
 wpa_supplicant
 xarchiver
+xdg-desktop-portal-gnome
 xdg-utils
 xf86-video-amdgpu
 xf86-video-ati
