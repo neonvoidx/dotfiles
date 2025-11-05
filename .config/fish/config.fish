@@ -63,11 +63,12 @@ if status is-interactive
     # |  _|| | | |
     # |_|  |_| |_|
     #             
-    function deleteall
+    function deleteall -d "Delete all files/folders with a given name in the current directory"
         find . -name $argv[1] -exec rm -rf {} \;
     end
+    complete -c deleteall -a "(ls)" -d "File/folder name to delete"
 
-    function reload-ssh
+    function reload-ssh -d "Reload SSH smartcard agent"
         ssh-add -e /usr/local/lib/opensc-pkcs11.so >>/dev/null
         if test $status -gt 0
             echo "Failed to remove previous card"
@@ -75,7 +76,7 @@ if status is-interactive
         ssh-add -s /usr/local/lib/opensc-pkcs11.so
     end
 
-    function y
+    function y -d "Open yazi file manager and cd to selected directory"
         set -l tmp (mktemp -t "yazi-cwd.XXXXXX")
         yazi $argv --cwd-file="$tmp"
         if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
@@ -83,8 +84,9 @@ if status is-interactive
         end
         rm -f -- "$tmp"
     end
+    complete -c y -a "(ls)" -d "Directory or file to open with yazi"
 
-    function ffmpeg-downsize
+    function ffmpeg-downsize -d "Downsize .mov file using ffmpeg"
         if test (count $argv) -eq 0
             echo "Usage: movconvert <inputfile.mov>"
             return 1
@@ -92,8 +94,9 @@ if status is-interactive
         set output (string replace -r '\.mov$' '' $argv[1])
         ffmpeg -i "$argv[1]" -c:v libx264 -c:a copy -crf 20 "$output-small.mov"
     end
+    complete -c ffmpeg-downsize -a "*.mov" -d "Input .mov file"
 
-    function ffmpeg-togif
+    function ffmpeg-togif -d "Convert mp4 to gif using ffmpeg"
         if test (count $argv) -ne 3
             echo "Usage: togif <input.mp4> <start_time> <duration>"
             echo "Example: togif movie.mp4 6 8.8"
@@ -105,6 +108,9 @@ if status is-interactive
         set base (string replace -r '\.mp4$' '' $input)
         ffmpeg -ss "$start" -t "$duration" -i "$input" -vf "fps=30,scale=400:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 "$base.gif"
     end
+    complete -c ffmpeg-togif -a "*.mp4" -d "Input .mp4 file"
+    complete -c ffmpeg-togif -n "not __fish_seen_subcommand_from ffmpeg-togif" -a "" -d "Start time (seconds)"
+    complete -c ffmpeg-togif -n "not __fish_seen_subcommand_from ffmpeg-togif" -a "" -d "Duration (seconds)"
     # Kitty
     if test "$TERM" = xterm-kitty
         abbr --add cat "kitten icat"
@@ -112,7 +118,7 @@ if status is-interactive
         abbr --add icat "kitten icat"
         abbr --add ssh "kitten ssh"
         abbr --add d "kitten diff"
-        function kk
+        function kk -d "Send text and Enter key to focused Kitty tab"
             kitten @ send-text --match-tab state:focused $1 && kitten @ send-key --match-tab state:focused Enter
         end
     end
@@ -208,12 +214,12 @@ if status is-interactive
     # |  _|| |_| | | | | (__| |_| | (_) | | | \__ \
     # |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
     #                                              
-    function last_history_item
+    function last_history_item -d "Print the last item from shell history"
         echo $history[1]
     end
     abbr -a !! --position anywhere --function last_history_item
     # Git squash master to one commit, pass true as first param to use yadm instead of git
-    function squashdown -a use_yadm
+    function squashdown -a use_yadm -d "Squash master branch to one commit using git or yadm"
         # Default to git if parameter not provided
         set -q use_yadm; or set use_yadm false
 
@@ -227,6 +233,7 @@ if status is-interactive
         $cmd commit -m "Squashed down 🎉️"
         $cmd branch -M squashed master
     end
+    complete -c squashdown -a "true false" -d "Use yadm (true) or git (false)"
 
     #   __     __         _             _       
     #  / _|___/ _|  _ __ | |_   _  __ _(_)_ __  
@@ -292,13 +299,14 @@ else
     set -gx VISUAL vim
 end
 
-function findsyms
+function findsyms -d "Find and list symlinks in a directory"
     set search_path (count $argv) >/dev/null; and set search_path $argv[1]; or set search_path .
     find $search_path -type l -ls
 end
+complete -c findsyms -a "(ls -d */)" -d "Directory to search for symlinks"
 
 set -g fish_key_bindings fish_vi_key_bindings
 
-function fish_title
+function fish_title -d "Show current directory name in terminal title"
     echo (basename $PWD)
 end
