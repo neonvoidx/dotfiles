@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# This script will randomly go through the files of a directory, setting it
-# up as the wallpaper at regular intervals
-#
-# NOTE: this script is in bash (not posix shell), because the RANDOM variable
-# we use is not defined in posix
-
 if [[ $# -lt 1 ]] || [[ ! -d $1 ]]; then
   echo "Usage:
 	$0 <dir containing images> <monitor>"
@@ -27,7 +21,7 @@ while true; do
     done |
     sort -n | cut -d':' -f2- |
     while read -r img; do
-      swww img -o "$2" "$img" --transition-type center
+      swww img -o "$2" "$img" --transition-type wipe --transition-angle 45
       sleep $INTERVAL
     done
 done

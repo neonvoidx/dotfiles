@@ -233,7 +233,6 @@ vesktop-git
 vim
 vkbasalt
 vulkan-radeon
-waybar
 webkit2gtk
 wev
 wget
@@ -298,12 +297,14 @@ morewaita-icon-theme
 noctalia-shell-git
 noisetorch-debug
 paru-debug
+paruse
 python-proton-client
 rate-mirrors-bin
 scopebuddy-git
 selectdefaultapplication-git
 sgdboop
 soil2-git
+swww-git
 sysc-greet-debug
 sysc-greet-hyprland
 ttf-font-awesome-5
