@@ -52,7 +52,7 @@
                     "useDistroLogo": false
                 },
                 {
-                    "characterCount": 2,
+                    "characterCount": 8,
                     "hideUnoccupied": true,
                     "id": "Workspace",
                     "labelMode": "index"
@@ -338,7 +338,7 @@
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/subway.jpg"
+                "wallpaper": "/home/neonvoid/pics/vertical/prkcx9wxclz31.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
@@ -348,7 +348,7 @@
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/eye.png"
+                "wallpaper": "/home/neonvoid/pics/rocketship.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
