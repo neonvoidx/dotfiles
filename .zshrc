@@ -18,6 +18,10 @@ znap source jeffreytse/zsh-vi-mode
 znap source trystan2k/zsh-tab-title 
 znap source zdharma-continuum/fast-syntax-highlighting 
 znap source zsh-users/zsh-completions
+znap source MenkeTechnologies/zsh-cargo-completion
+znap source zap-zsh/fnm
+# TODO
+# https://github.com/unixorn/awesome-zsh-plugins?tab=readme-ov-file#completions
 () {
   local -a plugins=(
     fancy-ctrl-z colored-man-pages
