@@ -147,6 +147,7 @@ nwg-look
 obs-studio
 obsidian
 oculante
+okular
 openal
 openresolv
 opensc
