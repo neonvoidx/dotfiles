@@ -7,65 +7,65 @@
 #  / /_ ___) | |\  |/ ___ \|  __/ 
 # /____|____/|_| \_/_/   \_\_|    
 #                                 
-# [[ -r ~/.local/share/znap/znap.zsh ]] ||
-#     git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git ~/.local/share/znap
-# source ~/.local/share/znap/znap.zsh
-# znap prompt sindresorhus/pure
-# znap source zsh-users/zsh-autosuggestions 
-# znap source Aloxaf/fzf-tab 
-# znap source jeffreytse/zsh-vi-mode 
-# znap source trystan2k/zsh-tab-title 
-# znap source zdharma-continuum/fast-syntax-highlighting 
-# znap source zsh-users/zsh-completions
-# () {
-#   local -a plugins=(
-#     fancy-ctrl-z colored-man-pages
-#     command-not-found copyfile
-#     copypath rsync systemd web-search
-#     )
-#     znap source ohmyzsh/ohmyzsh plugins/$^plugins
-# }
-# () {
-#   local -a libs=(
-#     functions.zsh clipboard.zsh
-#     )
-#     znap source ohmyzsh/ohmyzsh lib/$^libs
-# }
+[[ -r ~/.local/share/znap/znap.zsh ]] ||
+    git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git ~/.local/share/znap
+source ~/.local/share/znap/znap.zsh
+znap prompt sindresorhus/pure
+znap source zsh-users/zsh-autosuggestions 
+znap source Aloxaf/fzf-tab 
+znap source jeffreytse/zsh-vi-mode 
+znap source trystan2k/zsh-tab-title 
+znap source zdharma-continuum/fast-syntax-highlighting 
+znap source zsh-users/zsh-completions
+() {
+  local -a plugins=(
+    fancy-ctrl-z colored-man-pages
+    command-not-found copyfile
+    copypath rsync systemd web-search
+    )
+    znap source ohmyzsh/ohmyzsh plugins/$^plugins
+}
+() {
+  local -a libs=(
+    functions.zsh clipboard.zsh
+    )
+    znap source ohmyzsh/ohmyzsh lib/$^libs
+}
 #      _       _ _   
 #  ___(_)_ __ (_) |_ 
 # |_  / | '_ \| | __|
 #  / /| | | | | | |_ 
 # /___|_|_| |_|_|\__|
 #                    
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
-autoload -Uz _zinit
-autoload -Uz compinit
-compinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-setopt promptsubst
-
-# Zinit Packages
-# zinit ice lucid
-zinit wait lucid light-mode for \
-  pick"async.sh" src"pure.zsh" wait"!0" sindresorhus/pure \
-    sindresorhus/pure \
-    zsh-users/zsh-autosuggestions \
-    Aloxaf/fzf-tab \
-    jeffreytse/zsh-vi-mode \
-    trystan2k/zsh-tab-title \
-  atinit"zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
-    OMZP::colored-man-pages \
-    OMZP::fancy-ctrl-z \
-  atload"_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions \
-  blockf atpull'zinit creinstall -q .' \
-    zsh-users/zsh-completions
-
-zinit ice wait lucid light-mode
+# ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+# [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+# [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+# source "${ZINIT_HOME}/zinit.zsh"
+# autoload -Uz _zinit
+# autoload -Uz compinit
+# compinit
+# (( ${+_comps} )) && _comps[zinit]=_zinit
+# setopt promptsubst
+#
+# # Zinit Packages
+# # zinit ice lucid
+# zinit wait lucid light-mode for \
+#   pick"async.sh" src"pure.zsh" wait"!0" sindresorhus/pure \
+#     sindresorhus/pure \
+#     zsh-users/zsh-autosuggestions \
+#     Aloxaf/fzf-tab \
+#     jeffreytse/zsh-vi-mode \
+#     trystan2k/zsh-tab-title \
+#   atinit"zicompinit; zicdreplay" \
+#     zdharma-continuum/fast-syntax-highlighting \
+#     OMZP::colored-man-pages \
+#     OMZP::fancy-ctrl-z \
+#   atload"_zsh_autosuggest_start" \
+#     zsh-users/zsh-autosuggestions \
+#   blockf atpull'zinit creinstall -q .' \
+#     zsh-users/zsh-completions
+#
+# zinit ice wait lucid light-mode
 
 #  _                          _                       
 # | |__   ___  _ __ ___   ___| |__  _ __ _____      __
@@ -335,9 +335,9 @@ if [ ! -f "$CLONE_ORG" ]; then
   gh extension install matt-bartel/gh-clone-org
 fi
 # fast fetch 
-if command -v fastfetch &> /dev/null; then
-  fastfetch
-fi
+# if command -v fastfetch &> /dev/null; then
+#   fastfetch
+# fi
 if command -v cmake &> /dev/null && command -v ninja &> /dev/null; then
   alias cmakeninja='cmake -S . -B build -G Ninja'
 fi
