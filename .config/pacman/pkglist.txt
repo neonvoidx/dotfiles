@@ -142,6 +142,7 @@ nomacs
 noto-fonts-cjk
 nss-mdns
 ntfs-3g
+nushell
 nwg-displays
 nwg-look
 obs-studio
