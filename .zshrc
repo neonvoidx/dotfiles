@@ -13,6 +13,7 @@ source ~/.local/share/znap/znap.zsh
 znap prompt sindresorhus/pure
 znap source zsh-users/zsh-autosuggestions 
 znap source Aloxaf/fzf-tab 
+znap source hlissner/zsh-autopair
 znap source jeffreytse/zsh-vi-mode 
 znap source trystan2k/zsh-tab-title 
 znap source zdharma-continuum/fast-syntax-highlighting 
@@ -31,6 +32,8 @@ znap source zsh-users/zsh-completions
     )
     znap source ohmyzsh/ohmyzsh lib/$^libs
 }
+export AUTOPAIR_INIT_INHIBIT=1
+zvm_after_init_commands=(autopair-init)
 #      _       _ _   
 #  ___(_)_ __ (_) |_ 
 # |_  / | '_ \| | __|
