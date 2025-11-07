@@ -15,7 +15,7 @@
         "cavaFrameRate": 60,
         "mprisBlacklist": [
         ],
-        "preferredPlayer": "spotify,clapper,vlc,firefox-developer-edition",
+        "preferredPlayer": "spotify,clapper,vlc,firefox-developer-edition,mpv",
         "visualizerType": "mirrored",
         "volumeOverdrive": false,
         "volumeStep": 5
@@ -93,6 +93,7 @@
                     "blacklist": [
                     ],
                     "colorizeIcons": false,
+                    "drawerEnabled": false,
                     "favorites": [
                         "Proton Mail Bridge"
                     ],
@@ -266,6 +267,7 @@
         "backgroundOpacity": 1,
         "criticalUrgencyDuration": 30,
         "doNotDisturb": false,
+        "enabled": true,
         "location": "top_right",
         "lowUrgencyDuration": 7,
         "monitors": [
@@ -293,7 +295,7 @@
         "videoCodec": "hevc",
         "videoSource": "portal"
     },
-    "settingsVersion": 18,
+    "settingsVersion": 19,
     "setupCompleted": true,
     "templates": {
         "alacritty": false,
@@ -324,7 +326,6 @@
         "fontFixed": "JetBrains Mono",
         "fontFixedScale": 1.15,
         "panelsAttachedToBar": true,
-        "panelsOverlayLayer": false,
         "tooltipsEnabled": true
     },
     "wallpaper": {
@@ -338,7 +339,7 @@
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/prkcx9wxclz31.jpg"
+                "wallpaper": "/home/neonvoid/pics/vertical/f2ozw9v341j31.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
@@ -348,7 +349,7 @@
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/wallhaven-l851ll.jpg"
+                "wallpaper": "/home/neonvoid/pics/wallhaven-ml92v1.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",

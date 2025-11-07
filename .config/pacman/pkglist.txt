@@ -304,6 +304,7 @@ soil2-git
 swww-git
 sysc-greet-debug
 sysc-greet-hyprland
+thorium-browser-bin
 ttf-font-awesome-5
 vencord-hook
 vesktop-git-debug
