@@ -10,18 +10,28 @@
 [[ -r ~/.local/share/znap/znap.zsh ]] ||
     git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git ~/.local/share/znap
 source ~/.local/share/znap/znap.zsh
+# Prompt
 znap prompt sindresorhus/pure
-znap source zsh-users/zsh-autosuggestions 
+# Plugins
 znap source Aloxaf/fzf-tab 
 znap source hlissner/zsh-autopair
 znap source jeffreytse/zsh-vi-mode 
 znap source trystan2k/zsh-tab-title 
-znap source zdharma-continuum/fast-syntax-highlighting 
+znap source hlissner/zsh-autopair
+znap source Junker/zsh-archlinux
+ZSH_AUTOSUGGEST_STRATEGY=( history )
+znap source zsh-users/zsh-autosuggestions
+ZSH_HIGHLIGHT_HIGHLIGHTERS=( main brackets )
+znap source zsh-users/zsh-syntax-highlighting
+# Completions
 znap source zsh-users/zsh-completions
+znap source pkulev/zsh-rustup-completion
 znap source MenkeTechnologies/zsh-cargo-completion
 znap source zap-zsh/fnm
-# TODO
-# https://github.com/unixorn/awesome-zsh-plugins?tab=readme-ov-file#completions
+znap source ppcamp/zsh-fzf-rg
+znap source sudosubin/zsh-github-cli
+znap source redxtech/zsh-kitty
+znap source g-plane/zsh-yarn-autocompletions
 () {
   local -a plugins=(
     fancy-ctrl-z colored-man-pages
@@ -38,6 +48,8 @@ znap source zap-zsh/fnm
 }
 export AUTOPAIR_INIT_INHIBIT=1
 zvm_after_init_commands=(autopair-init)
+znap function _pyenv pyenv "znap eval pyenv 'pyenv init - --no-rehash'"
+compctl -K    _pyenv pyenv
 #      _       _ _   
 #  ___(_)_ __ (_) |_ 
 # |_  / | '_ \| | __|
