@@ -167,6 +167,7 @@ proton-ge-custom-bin
 protonmail-bridge
 protontricks-git
 protonup-qt
+prusa-slicer
 pulse-native-provider
 pwvucontrol
 pyenv
@@ -199,6 +200,7 @@ streamdeck-ui-git
 swappy
 system-config-printer
 tela-circle-icon-theme-dracula
+television
 terminus-font
 termshark
 thefuck

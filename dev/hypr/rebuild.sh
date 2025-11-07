@@ -108,12 +108,21 @@ for i in "${!folders[@]}"; do
   folder="${folders[$i]}"
   printf "\033[0;36m\n===== Preparing $folder =====\033[0m\n"
   if [ ! -d "$folder" ]; then
-    printf "\033[0;36m$folder not found, cloning...\033[0m\n"
-    git clone "${repos[$i]}" || {
-      failures+=("$folder: clone failed")
-      printf "\033[0;31mClone failed for $folder\033[0m\n"
-      continue
-    }
+      printf "\033[0;36m$folder not found, cloning...\033[0m\n"
+      # specifically for hyprland, it has submodules, so clone with submodules recursive
+      if [ "$folder" = "hyprland" ]; then
+        git clone --recursive "${repos[$i]}" || {
+          failures+=("$folder: clone failed")
+          printf "\033[0;31mClone failed for $folder\033[0m\n"
+          continue
+        }
+      else
+        git clone "${repos[$i]}" || {
+          failures+=("$folder: clone failed")
+          printf "\033[0;31mClone failed for $folder\033[0m\n"
+          continue
+        }
+      fi
   fi
   cd "$folder"
   git fetch origin || {
@@ -129,14 +138,24 @@ for i in "${!folders[@]}"; do
     cd ..
     continue
   }
-  git pull origin "$branch" || {
-    failures+=("$folder: git pull failed")
-    printf "\033[0;31mGit pull failed for $folder\033[0m\n"
-    cd ..
-    continue
-  }
+    git pull origin "$branch" || {
+      failures+=("$folder: git pull failed")
+      printf "\033[0;31mGit pull failed for $folder\033[0m\n"
+      cd ..
+      continue
+    }
+  # when pulling, update all submodules
+    if [ "$folder" = "hyprland" ]; then
+      git submodule update --init --recursive || {
+        failures+=("$folder: submodule update failed")
+        printf "\033[0;31mSubmodule update failed for $folder\033[0m\n"
+        cd ..
+        continue
+      }
+    fi
   cd ..
 done
+
 
 if [ "${#failures[@]}" -ne 0 ]; then
   printf "\033[0;36m\n===== Repo Preparation Failures =====\033[0m\n"
