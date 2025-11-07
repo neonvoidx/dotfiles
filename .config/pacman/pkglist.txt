@@ -1,7 +1,6 @@
 amd-ucode
 amdgpu_top
 ananicy-cpp
-aquamarine-git
 ark
 base
 base-devel
@@ -87,11 +86,6 @@ hashcat
 hplip
 htop
 hwinfo
-hyprgraphics-git
-hyprlang-git
-hyprlock-git
-hyprshot
-hyprutils-git
 imagemagick
 inotify-tools
 inter-font
@@ -184,6 +178,7 @@ qt5-wayland
 qt5ct
 qt6ct
 quickshell-git
+rebuild-detector
 reflector
 rsync
 rust-analyzer
@@ -289,8 +284,6 @@ gstreamer-svt-av1
 gstreamer0.10-base-plugins
 hyprcursor-dracula-kde-git
 hyprland-meta-git
-hyprlock-git-debug
-hyprutils-git-debug
 layer-shell-qt5
 libdeep_filter_ladspa-git
 lua-language-server-git
