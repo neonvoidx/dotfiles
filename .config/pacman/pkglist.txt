@@ -230,6 +230,7 @@ uv
 ventoy-bin
 vesktop-git
 vim
+vivaldi
 vkbasalt
 vulkan-radeon
 webkit2gtk

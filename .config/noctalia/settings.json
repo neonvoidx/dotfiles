@@ -295,7 +295,7 @@
         "videoCodec": "hevc",
         "videoSource": "portal"
     },
-    "settingsVersion": 19,
+    "settingsVersion": 20,
     "setupCompleted": true,
     "templates": {
         "alacritty": false,
@@ -326,6 +326,7 @@
         "fontFixed": "JetBrains Mono",
         "fontFixedScale": 1.15,
         "panelsAttachedToBar": true,
+        "settingsPanelAttachToBar": false,
         "tooltipsEnabled": true
     },
     "wallpaper": {
@@ -339,7 +340,7 @@
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/f2ozw9v341j31.png"
+                "wallpaper": "/home/neonvoid/pics/vertical/vr.jpeg"
             },
             {
                 "directory": "/home/neonvoid/pics",
@@ -349,7 +350,7 @@
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/wallhaven-ml92v1.jpg"
+                "wallpaper": "/home/neonvoid/pics/wallhaven-1q83qg.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
