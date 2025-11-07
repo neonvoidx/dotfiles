@@ -10,7 +10,7 @@ fi
 
 # Ensure we are in ~/dev/hypr
 cd ~/dev/hypr || {
-  echo -e "\033[0;36mFailed to cd to ~/dev/hypr\033[0m"
+  printf "\033[0;31mFailed to cd to ~/dev/hypr\033[0m\n"
   exit 1
 }
 
@@ -63,18 +63,18 @@ build_commands=(
 # Check and install missing dependencies
 hyprland_deps="ninja gcc cmake meson libxcb xcb-proto xcb-util xcb-util-keysyms libxfixes libx11 libxcomposite libxrender libxcursor pixman wayland-protocols cairo pango libxkbcommon xcb-util-wm xorg-xwayland libinput libliftoff libdisplay-info cpio tomlplusplus hyprlang-git hyprcursor-git hyprwayland-scanner-git xcb-util-errors hyprutils-git glaze hyprgraphics-git aquamarine-git re2 hyprland-qtutils-git"
 missing_pkgs=()
-echo -e "\033[0;36mChecking for Hyprland dependency packages\033[0m"
+printf "\033[0;36mChecking for Hyprland dependency packages\033[0m\n"
 for pkg in $hyprland_deps; do
   if ! pacman -Q $pkg &>/dev/null; then
     missing_pkgs+=("$pkg")
   fi
 done
 if [ ${#missing_pkgs[@]} -ne 0 ]; then
-  echo -e "\033[0;36mMissing packages: ${missing_pkgs[*]}\033[0m"
-  echo -e "\033[0;36mRunning paru to install missing dependencies...\033[0m"
+  printf "\033[0;36mMissing packages: ${missing_pkgs[*]}\033[0m\n"
+  printf "\033[0;36mRunning paru to install missing dependencies...\033[0m\n"
   paru -S "${missing_pkgs[@]}"
 else
-  echo -e "\033[0;36mAll dependencies are installed.\033[0m"
+  printf "\033[0;36mAll dependencies are installed.\033[0m\n"
 fi
 
 install_commands=(
@@ -106,28 +106,32 @@ build_status=()
 # Step 1: Ensure folders exist and are up to date
 for i in "${!folders[@]}"; do
   folder="${folders[$i]}"
-  echo -e "\033[0;36m\n===== Preparing $folder =====\033[0m"
+  printf "\033[0;36m\n===== Preparing $folder =====\033[0m\n"
   if [ ! -d "$folder" ]; then
-    echo -e "\033[0;36m$folder not found, cloning...\033[0m"
+    printf "\033[0;36m$folder not found, cloning...\033[0m\n"
     git clone "${repos[$i]}" || {
       failures+=("$folder: clone failed")
+      printf "\033[0;31mClone failed for $folder\033[0m\n"
       continue
     }
   fi
   cd "$folder"
   git fetch origin || {
     failures+=("$folder: git fetch failed")
+    printf "\033[0;31mGit fetch failed for $folder\033[0m\n"
     cd ..
     continue
   }
   branch=$(git symbolic-ref --short HEAD)
   git checkout "$branch" || {
     failures+=("$folder: git checkout failed")
+    printf "\033[0;31mGit checkout failed for $folder\033[0m\n"
     cd ..
     continue
   }
   git pull origin "$branch" || {
     failures+=("$folder: git pull failed")
+    printf "\033[0;31mGit pull failed for $folder\033[0m\n"
     cd ..
     continue
   }
@@ -135,9 +139,9 @@ for i in "${!folders[@]}"; do
 done
 
 if [ "${#failures[@]}" -ne 0 ]; then
-  echo -e "\033[0;36m\n===== Repo Preparation Failures =====\033[0m"
+  printf "\033[0;36m\n===== Repo Preparation Failures =====\033[0m\n"
   for f in "${failures[@]}"; do
-    echo -e "\033[0;36mFAIL: $f\033[0m"
+    printf "\033[0;31mFAIL: $f\033[0m\n"
   done
   exit 1
 fi
@@ -160,31 +164,44 @@ for i in "${!folders[@]}"; do
     build_status[$i]=0
   else
     build_progress+=("$folder: build failed")
+    printf "\033[0;31mBuild failed for $folder\033[0m\n"
     build_status[$i]=1
     failures+=("$folder: build failed")
+    printf "\033[0;31mBuild failed for $folder\033[0m\n"
   fi
   cd ..
 done
 
-# Step 4: Print build results and ask for confirmation before install
+# Step 4: Print build results and exit if any failures
 success_count=0
 fail_count=0
-echo -e "\033[0;36m\n===== Build Results =====\033[0m"
+printf "\033[0;36m\n===== Build Results =====\033[0m\n"
 for i in "${!folders[@]}"; do
   folder="${folders[$i]}"
   if [ "${build_status[$i]}" = "0" ]; then
-    echo -e "\033[0;36m✔ $folder\033[0m"
+    printf "\033[0;32m✔\033[0m \033[0;36m$folder\033[0m\n"
     success_count=$((success_count + 1))
   else
-    echo -e "\033[0;36m✗ $folder\033[0m"
+    printf "\033[0;31m✗\033[0m \033[0;36m$folder\033[0m\n"
     fail_count=$((fail_count + 1))
   fi
 done
-echo -e "\033[0;36m\nTotal success: $success_count\033[0m"
-echo -e "\033[0;36mTotal failed: $fail_count\033[0m"
-echo -ne "\033[0;36mContinue with install? [Y/n]: \033[0m"
-read -r confirm
-if [ -z "$confirm" ] || [[ "$confirm" =~ ^[Yy]$ ]]; then
+printf "\033[0;36m\nTotal success: $success_count\033[0m\n"
+printf "\033[0;36mTotal failed: $fail_count\033[0m\n"
+if [ "${#failures[@]}" -ne 0 ]; then
+  printf "\033[0;31mFailures detected during build. Exiting.\033[0m\n"
+  # Print summary
+  printf "\033[0;36m\n===== Build Summary =====\033[0m\n"
+  for p in "${build_progress[@]}"; do
+    printf "\033[0;36mBUILD: $p\033[0m\n"
+  done
+  for f in "${failures[@]}"; do
+    printf "\033[0;31mFAIL: $f\033[0m\n"
+  done
+  exit 1
+fi
+# Proceed with install if no failures
+
   for i in "${!folders[@]}"; do
     folder="${folders[$i]}"
     install_cmd="${install_commands[$i]}"
@@ -200,7 +217,9 @@ if [ -z "$confirm" ] || [[ "$confirm" =~ ^[Yy]$ ]]; then
           install_progress+=("$folder: install success")
         else
           install_progress+=("$folder: install failed")
+          printf "\033[0;31mInstall failed for $folder\033[0m\n"
           failures+=("$folder: install failed")
+          printf "\033[0;31mInstall failed for $folder\033[0m\n"
         fi
         cd ..
       else
@@ -211,25 +230,25 @@ if [ -z "$confirm" ] || [[ "$confirm" =~ ^[Yy]$ ]]; then
     fi
   done
 else
-  echo -e "\033[0;36mInstall step skipped by user.\033[0m"
+  printf "\033[0;36mInstall step skipped by user.\033[0m\n"
 fi
 
 # Step 5: Print summary
 
-echo -e "\033[0;36m\n===== Build Summary =====\033[0m"
+printf "\033[0;36m\n===== Build Summary =====\033[0m\n"
 for p in "${build_progress[@]}"; do
-  echo -e "\033[0;36mBUILD: $p\033[0m"
+  printf "\033[0;36mBUILD: $p\033[0m\n"
 done
 for p in "${install_progress[@]}"; do
-  echo -e "\033[0;36mINSTALL: $p\033[0m"
+  printf "\033[0;36mINSTALL: $p\033[0m\n"
 done
 for f in "${failures[@]}"; do
-  echo -e "\033[0;36mFAIL: $f\033[0m"
+  printf "\033[0;31mFAIL: $f\033[0m\n"
 done
 
 if [ "${#failures[@]}" -ne 0 ]; then
-  echo -e "\033[0;36m\nSome builds or installs failed. See above for details.\033[0m"
+  printf "\033[0;31m\nSome builds or installs failed. See above for details.\033[0m\n"
   exit 1
 else
-  echo -e "\033[0;36m\nAll builds and installs completed successfully.\033[0m"
+  printf "\033[0;36m\nAll builds and installs completed successfully.\033[0m\n"
 fi
