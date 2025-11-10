@@ -1,12 +1,12 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
-    "type": "auto",
-    "source": "~/.config/fastfetch/eldritch.txt",
+    "type": "file",
+    "source": "~/.config/fastfetch/neonvoid.txt",
     "padding": {
-      "top": 0,
-      "right": 2,
-      "left": 2
+      "top": 3,
+      "right": 10,
+      "left": 3
     }
   },
   "display": {

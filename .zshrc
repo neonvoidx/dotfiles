@@ -27,7 +27,6 @@ znap source zsh-users/zsh-syntax-highlighting
 znap source zsh-users/zsh-completions
 znap source pkulev/zsh-rustup-completion
 znap source MenkeTechnologies/zsh-cargo-completion
-znap source zap-zsh/fnm
 znap source ppcamp/zsh-fzf-rg
 znap source sudosubin/zsh-github-cli
 znap source redxtech/zsh-kitty
