@@ -6,7 +6,6 @@ base
 base-devel
 bat
 bind
-bitwarden
 blender
 blueman
 bluetui
@@ -254,6 +253,7 @@ xdg-utils
 xf86-video-amdgpu
 xf86-video-ati
 xfce4-artwork
+xpadneo-dkms-git
 xwayland-satellite
 yadm
 yarn
@@ -291,11 +291,13 @@ layer-shell-qt5
 libdeep_filter_ladspa-git
 lua-language-server-git
 lua-language-server-git-debug
+mangowc-git
 morewaita-icon-theme
 noctalia-shell-git
 noisetorch-debug
 paru-debug
 paruse
+proton-pass-bin
 python-proton-client
 rate-mirrors-bin
 scopebuddy-git
