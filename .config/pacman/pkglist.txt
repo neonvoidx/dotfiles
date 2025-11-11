@@ -2,6 +2,7 @@ amd-ucode
 amdgpu_top
 ananicy-cpp
 ark
+asciinema
 base
 base-devel
 bat
@@ -171,13 +172,13 @@ pulse-native-provider
 pwvucontrol
 pyenv
 python-dnspython
+python-faker
 python-pyqt5
 python-pywal
 python-systemd
 qt5-wayland
 qt5ct
 qt6ct
-quickshell-git
 rebuild-detector
 reflector
 rsync
@@ -299,6 +300,7 @@ paru-debug
 paruse
 proton-pass-bin
 python-proton-client
+quickshell-git
 rate-mirrors-bin
 scopebuddy-git
 selectdefaultapplication-git
