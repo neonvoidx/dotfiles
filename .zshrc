@@ -352,10 +352,6 @@ CLONE_ORG=~/.local/share/gh/extensions/gh-clone-org/gh-clone-org
 if [ ! -f "$CLONE_ORG" ]; then
   gh extension install matt-bartel/gh-clone-org
 fi
-# fast fetch 
-# if command -v fastfetch &> /dev/null; then
-#   fastfetch
-# fi
 if command -v cmake &> /dev/null && command -v ninja &> /dev/null; then
   alias cmakeninja='cmake -S . -B build -G Ninja'
 fi
@@ -402,3 +398,8 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
 eval "$(zoxide init zsh --cmd cd --hook pwd)"
+
+# fast fetch 
+if command -v fastfetch &> /dev/null; then
+  fastfetch
+fi
