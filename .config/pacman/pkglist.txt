@@ -96,7 +96,6 @@ joyutils
 jq
 kitty
 kvantum
-labwc
 lazygit
 lib32-glu
 lib32-gnutls
@@ -245,6 +244,7 @@ wireguard-tools
 wireless_tools
 wireplumber
 wireshark-qt
+wl-clip-persist
 wlogout
 wlr-randr-git
 wlrobs-hg
@@ -295,6 +295,7 @@ layer-shell-qt5
 libdeep_filter_ladspa-git
 lua-language-server-git
 lua-language-server-git-debug
+mangowc-git
 morewaita-icon-theme
 noctalia-shell-git
 noisetorch-debug
@@ -304,6 +305,7 @@ proton-pass-bin
 python-proton-client
 quickshell-git
 rate-mirrors-bin
+rose-pine-cursor
 rose-pine-hyprcursor
 scopebuddy-git
 selectdefaultapplication-git
@@ -318,4 +320,5 @@ vencord-hook
 vesktop-git-debug
 walker-git
 wg-systray-git-debug
+xfce-polkit
 xorg-xwayland-git

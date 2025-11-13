@@ -54,7 +54,7 @@
                 },
                 {
                     "characterCount": 2,
-                    "hideUnoccupied": true,
+                    "hideUnoccupied": false,
                     "id": "Workspace",
                     "labelMode": "index"
                 },
@@ -280,6 +280,7 @@
     },
     "osd": {
         "autoHideMs": 2000,
+        "backgroundOpacity": 1,
         "enabled": true,
         "location": "top",
         "monitors": [
@@ -368,21 +369,22 @@
         "enabled": true,
         "fillColor": "#212337",
         "fillMode": "crop",
+        "hideWallpaperFilenames": false,
         "monitors": [
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/yuti.jpg"
+                "wallpaper": "/home/neonvoid/pics/vertical/catbiker.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-2",
-                "wallpaper": "/home/neonvoid/pics/wallhaven-w5edpq.jpg"
+                "wallpaper": "/home/neonvoid/pics/wallhaven-6ldyzl.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/junglegirl.jpeg"
+                "wallpaper": "/home/neonvoid/pics/wallhaven-211gzg.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
