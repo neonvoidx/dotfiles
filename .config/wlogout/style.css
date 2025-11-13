@@ -6,7 +6,7 @@
 }
 
 window {
-    background:  rgba(33, 35, 55, 0.7);
+    background:  rgba(33, 35, 55, 0.9);
     background-size: cover;
     background-position: center;
 }
@@ -19,7 +19,7 @@ button {
     font-size: 24px;
     font-weight: bold;
     border-radius: 20px;
-    margin: 10px;
+    margin: 5px;
     color: #a48cf2 ;
     background-color: rgba(33, 35, 55, 0.7);
     border: #04d1f9  5px solid;

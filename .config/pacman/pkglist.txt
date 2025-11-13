@@ -1,3 +1,5 @@
+adw-gtk-theme
+adwaita-qt6-git
 amd-ucode
 amdgpu_top
 ananicy-cpp
@@ -132,6 +134,7 @@ nfs-utils
 nikto
 niri-git
 nmap
+noise-suppression-for-voice
 nomacs
 noto-fonts-cjk
 nss-mdns
@@ -292,7 +295,6 @@ layer-shell-qt5
 libdeep_filter_ladspa-git
 lua-language-server-git
 lua-language-server-git-debug
-mangowc-git
 morewaita-icon-theme
 noctalia-shell-git
 noisetorch-debug
@@ -302,6 +304,7 @@ proton-pass-bin
 python-proton-client
 quickshell-git
 rate-mirrors-bin
+rose-pine-hyprcursor
 scopebuddy-git
 selectdefaultapplication-git
 sgdboop

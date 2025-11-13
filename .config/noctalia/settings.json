@@ -1,6 +1,5 @@
 {
     "appLauncher": {
-        "backgroundOpacity": 1,
         "customLaunchPrefix": "",
         "customLaunchPrefixEnabled": false,
         "enableClipboardHistory": true,
@@ -98,10 +97,9 @@
                     ],
                     "colorizeIcons": false,
                     "drawerEnabled": false,
-                    "favorites": [
-                        "Proton Mail Bridge"
-                    ],
-                    "id": "Tray"
+                    "id": "Tray",
+                    "pinned": [
+                    ]
                 },
                 {
                     "displayMode": "onhover",
@@ -270,6 +268,7 @@
     "notifications": {
         "backgroundOpacity": 1,
         "criticalUrgencyDuration": 30,
+        "enableKeyboardLayoutToast": true,
         "enabled": true,
         "location": "top_right",
         "lowUrgencyDuration": 7,
@@ -298,7 +297,35 @@
         "videoCodec": "hevc",
         "videoSource": "portal"
     },
-    "settingsVersion": 21,
+    "sessionMenu": {
+        "countdownDuration": 10000,
+        "enableCountdown": true,
+        "position": "center",
+        "powerOptions": [
+            {
+                "action": "lock",
+                "enabled": true
+            },
+            {
+                "action": "suspend",
+                "enabled": true
+            },
+            {
+                "action": "reboot",
+                "enabled": true
+            },
+            {
+                "action": "logout",
+                "enabled": true
+            },
+            {
+                "action": "shutdown",
+                "enabled": true
+            }
+        ],
+        "showHeader": true
+    },
+    "settingsVersion": 22,
     "setupCompleted": true,
     "templates": {
         "alacritty": false,
@@ -329,6 +356,7 @@
         "fontDefaultScale": 1.04,
         "fontFixed": "JetBrains Mono",
         "fontFixedScale": 1.15,
+        "panelBackgroundOpacity": 1,
         "panelsAttachedToBar": true,
         "settingsPanelAttachToBar": false,
         "tooltipsEnabled": true
@@ -344,17 +372,17 @@
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/darklust.jpg"
+                "wallpaper": "/home/neonvoid/pics/vertical/yuti.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-2",
-                "wallpaper": "/home/neonvoid/pics/vk1et87trlif1.jpeg"
+                "wallpaper": "/home/neonvoid/pics/wallhaven-w5edpq.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/wallhaven-1q83qg.jpg"
+                "wallpaper": "/home/neonvoid/pics/junglegirl.jpeg"
             },
             {
                 "directory": "/home/neonvoid/pics",
