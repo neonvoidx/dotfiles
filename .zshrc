@@ -7,83 +7,83 @@
 #  / /_ ___) | |\  |/ ___ \|  __/ 
 # /____|____/|_| \_/_/   \_\_|    
 #                                 
-[[ -r ~/.local/share/znap/znap.zsh ]] ||
-    git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git ~/.local/share/znap
-source ~/.local/share/znap/znap.zsh
-# Prompt
-znap prompt sindresorhus/pure
-# Plugins
-znap source Aloxaf/fzf-tab 
-znap source hlissner/zsh-autopair
-znap source jeffreytse/zsh-vi-mode 
-znap source trystan2k/zsh-tab-title 
-znap source hlissner/zsh-autopair
-znap source Junker/zsh-archlinux
-ZSH_AUTOSUGGEST_STRATEGY=( history )
-znap source zsh-users/zsh-autosuggestions
-ZSH_HIGHLIGHT_HIGHLIGHTERS=( main brackets )
-znap source zsh-users/zsh-syntax-highlighting
-# Completions
-znap source zsh-users/zsh-completions
-znap source pkulev/zsh-rustup-completion
-znap source MenkeTechnologies/zsh-cargo-completion
-znap source ppcamp/zsh-fzf-rg
-znap source sudosubin/zsh-github-cli
-znap source redxtech/zsh-kitty
-znap source g-plane/zsh-yarn-autocompletions
-() {
-  local -a plugins=(
-    fancy-ctrl-z colored-man-pages
-    command-not-found copyfile
-    copypath rsync systemd web-search
-    )
-    znap source ohmyzsh/ohmyzsh plugins/$^plugins
-}
-() {
-  local -a libs=(
-    functions.zsh clipboard.zsh
-    )
-    znap source ohmyzsh/ohmyzsh lib/$^libs
-}
-export AUTOPAIR_INIT_INHIBIT=1
-zvm_after_init_commands=(autopair-init)
-znap function _pyenv pyenv "znap eval pyenv 'pyenv init - --no-rehash'"
-compctl -K    _pyenv pyenv
+# [[ -r ~/.local/share/znap/znap.zsh ]] ||
+#     git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git ~/.local/share/znap
+# source ~/.local/share/znap/znap.zsh
+# # Prompt
+# znap prompt sindresorhus/pure
+# # Plugins
+# znap source Aloxaf/fzf-tab 
+# znap source hlissner/zsh-autopair
+# znap source jeffreytse/zsh-vi-mode 
+# znap source trystan2k/zsh-tab-title 
+# znap source hlissner/zsh-autopair
+# znap source Junker/zsh-archlinux
+# ZSH_AUTOSUGGEST_STRATEGY=( history )
+# znap source zsh-users/zsh-autosuggestions
+# ZSH_HIGHLIGHT_HIGHLIGHTERS=( main brackets )
+# znap source zsh-users/zsh-syntax-highlighting
+# # Completions
+# znap source zsh-users/zsh-completions
+# znap source pkulev/zsh-rustup-completion
+# znap source MenkeTechnologies/zsh-cargo-completion
+# znap source ppcamp/zsh-fzf-rg
+# znap source sudosubin/zsh-github-cli
+# znap source redxtech/zsh-kitty
+# znap source g-plane/zsh-yarn-autocompletions
+# () {
+#   local -a plugins=(
+#     fancy-ctrl-z colored-man-pages
+#     command-not-found copyfile
+#     copypath rsync systemd web-search
+#     )
+#     znap source ohmyzsh/ohmyzsh plugins/$^plugins
+# }
+# () {
+#   local -a libs=(
+#     functions.zsh clipboard.zsh
+#     )
+#     znap source ohmyzsh/ohmyzsh lib/$^libs
+# }
+# export AUTOPAIR_INIT_INHIBIT=1
+# zvm_after_init_commands=(autopair-init)
+# znap function _pyenv pyenv "znap eval pyenv 'pyenv init - --no-rehash'"
+# compctl -K    _pyenv pyenv
 #      _       _ _   
 #  ___(_)_ __ (_) |_ 
 # |_  / | '_ \| | __|
 #  / /| | | | | | |_ 
 # /___|_|_| |_|_|\__|
 #                    
-# ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-# [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-# [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-# source "${ZINIT_HOME}/zinit.zsh"
-# autoload -Uz _zinit
-# autoload -Uz compinit
-# compinit
-# (( ${+_comps} )) && _comps[zinit]=_zinit
-# setopt promptsubst
-#
-# # Zinit Packages
-# # zinit ice lucid
-# zinit wait lucid light-mode for \
-#   pick"async.sh" src"pure.zsh" wait"!0" sindresorhus/pure \
-#     sindresorhus/pure \
-#     zsh-users/zsh-autosuggestions \
-#     Aloxaf/fzf-tab \
-#     jeffreytse/zsh-vi-mode \
-#     trystan2k/zsh-tab-title \
-#   atinit"zicompinit; zicdreplay" \
-#     zdharma-continuum/fast-syntax-highlighting \
-#     OMZP::colored-man-pages \
-#     OMZP::fancy-ctrl-z \
-#   atload"_zsh_autosuggest_start" \
-#     zsh-users/zsh-autosuggestions \
-#   blockf atpull'zinit creinstall -q .' \
-#     zsh-users/zsh-completions
-#
-# zinit ice wait lucid light-mode
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+autoload -Uz _zinit
+autoload -Uz compinit
+compinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+setopt promptsubst
+
+# Zinit Packages
+# zinit ice lucid
+zinit wait lucid light-mode for \
+  pick"async.sh" src"pure.zsh" wait"!0" sindresorhus/pure \
+    sindresorhus/pure \
+    zsh-users/zsh-autosuggestions \
+    Aloxaf/fzf-tab \
+    jeffreytse/zsh-vi-mode \
+    trystan2k/zsh-tab-title \
+  atinit"zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+    OMZP::colored-man-pages \
+    OMZP::fancy-ctrl-z \
+  atload"_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+    zsh-users/zsh-completions
+
+zinit ice wait lucid light-mode
 
 #  _                          _                       
 # | |__   ___  _ __ ___   ___| |__  _ __ _____      __
@@ -373,7 +373,6 @@ eval $(thefuck --alias fk)
 # Zoxide
 export _ZO_EXCLUDE_DIRS="/Applications/**:**/node_modules"
 export _ZO_RESOLVE_SYMLINKS=1
-eval "$(zoxide init zsh --cmd cd --hook pwd)"
 # FZF
 # Define fzf-file-widget just in case
 export FZF_CTRL_T_COMMAND=""
@@ -402,4 +401,4 @@ export PATH=/home/neonvoid/.opencode/bin:$PATH
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
-# eval "$(starship init zsh)"
+eval "$(zoxide init zsh --cmd cd --hook pwd)"

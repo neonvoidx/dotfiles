@@ -183,6 +183,7 @@ qt5ct
 qt6ct
 rebuild-detector
 reflector
+rofi
 rsync
 rust-analyzer
 rustup
@@ -253,12 +254,12 @@ wowup-cf-bin
 wpa_supplicant
 xarchiver
 xdg-desktop-portal-gnome
+xdg-desktop-portal-wlr-git
 xdg-utils
 xf86-video-amdgpu
 xf86-video-ati
 xfce4-artwork
 xpadneo-dkms-git
-xwayland-satellite
 yadm
 yarn
 yazi
@@ -311,6 +312,7 @@ scopebuddy-git
 selectdefaultapplication-git
 sgdboop
 soil2-git
+stasis-git
 swww-git
 sysc-greet-debug
 sysc-greet-hyprland
@@ -320,5 +322,5 @@ vencord-hook
 vesktop-git-debug
 walker-git
 wg-systray-git-debug
-xfce-polkit
 xorg-xwayland-git
+xwayland-satellite-git

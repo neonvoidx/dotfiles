@@ -54,7 +54,7 @@
                 },
                 {
                     "characterCount": 2,
-                    "hideUnoccupied": false,
+                    "hideUnoccupied": true,
                     "id": "Workspace",
                     "labelMode": "index"
                 },
@@ -299,8 +299,8 @@
         "videoSource": "portal"
     },
     "sessionMenu": {
-        "countdownDuration": 10000,
-        "enableCountdown": true,
+        "countdownDuration": 3000,
+        "enableCountdown": false,
         "position": "center",
         "powerOptions": [
             {
@@ -321,6 +321,10 @@
             },
             {
                 "action": "shutdown",
+                "enabled": true
+            },
+            {
+                "action": "hibernate",
                 "enabled": true
             }
         ],
@@ -374,17 +378,17 @@
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/catbiker.jpg"
+                "wallpaper": "/home/neonvoid/pics/vertical/prkcx9wxclz31.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-2",
-                "wallpaper": "/home/neonvoid/pics/wallhaven-6ldyzl.png"
+                "wallpaper": "/home/neonvoid/pics/wallhaven-1qpeo1.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/wallhaven-211gzg.png"
+                "wallpaper": "/home/neonvoid/pics/wallhaven-zpxjjo.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
