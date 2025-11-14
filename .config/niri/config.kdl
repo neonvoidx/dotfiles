@@ -39,7 +39,7 @@ input {
         dwt
     }
     warp-mouse-to-focus
-    focus-follows-mouse max-scroll-amount="0%"
+    focus-follows-mouse
 }
 //  _______  _______ ____
 // | ____\ \/ / ____/ ___|
@@ -54,7 +54,6 @@ spawn-at-startup "import-gsettings"
 spawn-sh-at-startup "~/.config/startupscripts/launch_thunderbird.py"
 spawn-sh-at-startup "qs -c noctalia-shell"
 spawn-at-startup "hypridle -c ~/.config/niri/hypridle.conf"
-spawn-at-startup "walker --gapplication-service"
 spawn-at-startup "nm-applet"
 spawn-at-startup "steam"
 spawn-at-startup "firefox-developer-edition"
@@ -111,7 +110,7 @@ animations {
     }
 }
 overview {
-    zoom 0.3
+    zoom 0.5
     backdrop-color "#212337"
 }
 output "eDP-1" {
@@ -251,6 +250,7 @@ window-rule {
 window-rule {
     match app-id="gamescope$"
     open-on-workspace "games"
+ // TODO fullscreen, no decorations etc
 }
 window-rule {
     match app-id="bitwarden$"
@@ -330,8 +330,11 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true {
         spawn "brightnessctl" "--class=backlight" "set" "10%-"
     }
-    Mod+G hotkey-overlay-title="Focus Games Workspace" {
-        focus-workspace "games"
+    Mod+s hotkey-overlay-title="Focus steam" {
+        spawn-sh "~/.config/niri/focus_by_id.sh steam"
+    }
+    Mod+g hotkey-overlay-title="Focus gamescope" {
+        spawn-sh "~/.config/niri/focus_by_id.sh gamescope"
     }
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,

@@ -246,7 +246,6 @@ wireless_tools
 wireplumber
 wireshark-qt
 wl-clip-persist
-wlogout
 wlr-randr-git
 wlrobs-hg
 wlsunset
@@ -272,18 +271,6 @@ cliphist-debug
 discord-debug
 dmenu-bluetooth
 dracula-gtk-theme
-elephant
-elephant-archlinuxpkgs
-elephant-bluetooth
-elephant-calc
-elephant-clipboard
-elephant-desktopapplications
-elephant-files
-elephant-providerlist
-elephant-runner
-elephant-symbols
-elephant-websearch
-elephant-windows
 exercism
 gconf
 gconf-debug
@@ -312,7 +299,6 @@ scopebuddy-git
 selectdefaultapplication-git
 sgdboop
 soil2-git
-stasis-git
 swww-git
 sysc-greet-debug
 sysc-greet-hyprland
@@ -320,7 +306,6 @@ thorium-browser-bin
 ttf-font-awesome-5
 vencord-hook
 vesktop-git-debug
-walker-git
 wg-systray-git-debug
 xorg-xwayland-git
 xwayland-satellite-git

@@ -59,7 +59,11 @@
                     "labelMode": "index"
                 },
                 {
+                    "characterCount": 2,
+                    "colorizeIcons": false,
+                    "hideUnoccupied": false,
                     "id": "TaskbarGrouped",
+                    "labelMode": "index",
                     "showNumbersOnlyWhenOccupied": true,
                     "showWorkspaceNumbers": false
                 },
@@ -378,17 +382,17 @@
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/hearteyegirl.jpg"
+                "wallpaper": "/home/neonvoid/pics/vertical/wallhaven-1p7kxg.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-2",
-                "wallpaper": "/home/neonvoid/pics/wallhaven-zpxjjo.jpg"
+                "wallpaper": "/home/neonvoid/pics/cyberskull.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/wallhaven-211gzg.png"
+                "wallpaper": "/home/neonvoid/pics/cosmonaut-in-open-space-art-desktop-wallpaper.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",

@@ -1,4 +1,3 @@
-#!/usr/sbin/python
 import imaplib  # Added for a more robust IMAP server check
 import socket
 import subprocess
@@ -26,10 +25,10 @@ BRIDGE_PROCESS_NAME = "protonmail-bridge"
 # macOS:
 # THUNDERBIRD_COMMAND = '/Applications/Thunderbird.app/Contents/MacOS/thunderbird'
 # Linux (often in PATH):
-THUNDERBIRD_COMMAND = "/usr/sbin/thunderbird"
+THUNDERBIRD_COMMAND = "thunderbird"
 
 # How many seconds to wait between checks.
-CHECK_INTERVAL_SECONDS = 2
+CHECK_INTERVAL_SECONDS = 1
 
 # How long to wait after a successful check before launching, to let the service settle.
 FINAL_SETTLE_SECONDS = 5
