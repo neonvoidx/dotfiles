@@ -58,7 +58,7 @@ fwupd
 fzf
 game-devices-udev
 gamemode
-gamescope
+gamescope-git
 gi-docgen
 gimp
 git
