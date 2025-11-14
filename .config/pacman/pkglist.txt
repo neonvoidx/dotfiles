@@ -133,7 +133,6 @@ nfs-utils
 nikto
 niri-git
 nmap
-noise-suppression-for-voice
 nomacs
 noto-fonts-cjk
 nss-mdns

@@ -340,12 +340,6 @@
         "alacritty": false,
         "code": false,
         "discord": false,
-        "discord_armcord": false,
-        "discord_dorion": false,
-        "discord_equibop": false,
-        "discord_lightcord": false,
-        "discord_vesktop": false,
-        "discord_webcord": false,
         "enableUserTemplates": false,
         "foot": false,
         "fuzzel": false,
@@ -382,17 +376,17 @@
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/wallhaven-1p7kxg.jpg"
+                "wallpaper": "/home/neonvoid/pics/vertical/ggdfdxps514c1.jpeg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-2",
-                "wallpaper": "/home/neonvoid/pics/cyberskull.png"
+                "wallpaper": "/home/neonvoid/pics/cyberpunk-edgerunners.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/cosmonaut-in-open-space-art-desktop-wallpaper.jpg"
+                "wallpaper": "/home/neonvoid/pics/kanji.png"
             },
             {
                 "directory": "/home/neonvoid/pics",

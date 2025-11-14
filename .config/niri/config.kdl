@@ -51,7 +51,6 @@ spawn-sh-at-startup "wl-clip-persist --clipboard regular --reconnect-tries 0 &"
 spawn-sh-at-startup "wl-paste --watch cliphist store &"
 spawn-sh-at-startup "~/.config/gtk-3.0/gtksettings.sh"
 spawn-at-startup "import-gsettings"
-spawn-sh-at-startup "~/.config/startupscripts/launch_thunderbird.py"
 spawn-sh-at-startup "qs -c noctalia-shell"
 spawn-at-startup "hypridle -c ~/.config/niri/hypridle.conf"
 spawn-at-startup "nm-applet"
@@ -60,7 +59,7 @@ spawn-at-startup "firefox-developer-edition"
 spawn-at-startup "spotify"
 spawn-at-startup "vesktop"
 spawn-sh-at-startup "protonmail-bridge --no-window"
-spawn-sh-at-startup "~/.config/startupscripts/launch_thunderbird.py"
+spawn-sh-at-startup "python3 ~/.config/startupscripts/launch_thunderbird.py"
 spawn-sh-at-startup "~/.config/niri/discord-spotify-start.sh"
 spawn-sh-at-startup "~/.config/easyeffects/easyeffects.sh"
 spawn-sh-at-startup "wpctl set-volume @DEFAULT_AUDIO_SINK@ 100%"
@@ -243,15 +242,14 @@ window-rule {
     match app-id="^firefox.*$"
     open-on-workspace "browser"
 }
-window-rule {
-    match app-id="steam$"
-    open-on-workspace "games"
-}
-window-rule {
-    match app-id="gamescope$"
-    open-on-workspace "games"
- // TODO fullscreen, no decorations etc
-}
+// window-rule {
+//     match app-id="steam$"
+//     open-on-workspace "games"
+// }
+// window-rule {
+//     match app-id="gamescope$"
+//     open-on-workspace "games"
+// }
 window-rule {
     match app-id="bitwarden$"
     block-out-from "screencast"
