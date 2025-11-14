@@ -58,7 +58,7 @@ fwupd
 fzf
 game-devices-udev
 gamemode
-gamescope-git
+gamescope
 gi-docgen
 gimp
 git
@@ -133,6 +133,7 @@ nfs-utils
 nikto
 niri-git
 nmap
+noisetorch-git
 nomacs
 noto-fonts-cjk
 nss-mdns

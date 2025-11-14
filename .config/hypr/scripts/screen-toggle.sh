@@ -26,6 +26,7 @@ if [ "$1" = "on" ]; then
   enable_monitor
   move_all_workspaces_to_monitor "$INTERNAL_MONITOR"
   hyprctl dispatch moveworkspacetomonitor 2 "$EXTERNAL_MONITOR"
+  hyprctl dispatch moveworkspacetomonitor 4 "$EXTERNAL_MONITOR"
   hyprctl dispatch moveworkspacetomonitor 5 "$INTERNAL_MONITOR"
   exit
 else

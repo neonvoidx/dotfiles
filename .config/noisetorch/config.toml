@@ -1,5 +1,5 @@
-Threshold = 80
-DisplayMonitorSources = true
+Threshold = 37
+DisplayMonitorSources = false
 EnableUpdates = true
 FilterInput = true
 FilterOutput = false
