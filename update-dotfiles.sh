@@ -6,19 +6,17 @@
 set -e  # Exit on error
 
 echo "Updating git submodules..."
-if git submodule update --init --recursive --remote; then
-    echo "✓ Successfully updated git submodules"
-    
-    echo "Running GNU Stow..."
-    if stow .; then
-        echo "✓ Successfully ran stow"
-        echo ""
-        echo "Dotfiles updated successfully!"
-    else
-        echo "✗ Error: Failed to run stow" >&2
-        exit 1
-    fi
-else
+if ! git submodule update --init --recursive --remote; then
     echo "✗ Error: Failed to update git submodules" >&2
     exit 1
 fi
+echo "✓ Successfully updated git submodules"
+
+echo "Running GNU Stow..."
+if ! stow .; then
+    echo "✗ Error: Failed to run stow" >&2
+    exit 1
+fi
+echo "✓ Successfully ran stow"
+echo
+echo "Dotfiles updated successfully!"
