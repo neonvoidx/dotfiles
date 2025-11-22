@@ -18,5 +18,12 @@ if ! stow --adopt .; then
     exit 1
 fi
 echo "✓ Successfully ran stow"
+
+echo "Resetting adopted changes..."
+if ! git reset --hard; then
+    echo "✗ Error: Failed to reset git changes" >&2
+    exit 1
+fi
+echo "✓ Successfully reset adopted changes"
 echo
 echo "Dotfiles updated successfully!"
