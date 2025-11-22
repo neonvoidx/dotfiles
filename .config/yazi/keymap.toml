@@ -1,0 +1,6 @@
+[mgr]
+prepend_keymap = [
+  { on = "<C-q>",run= "quit"},
+  { on = "u",run= "undo"},
+  { on = ["d","d"], run="remove --force --hovered"}
+]

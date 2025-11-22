@@ -1,0 +1,6 @@
+[user]
+  name = "neonvoidx"
+  email = "me@neonvoid.dev"
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

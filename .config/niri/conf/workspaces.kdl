@@ -1,0 +1,30 @@
+workspace "media" {
+    open-on-output "HDMI-A-1"
+}
+workspace "browser" {
+    open-on-output "DP-3"
+    layout {
+        default-column-width {
+            proportion 1.0
+        }
+    }
+}
+workspace "communication" {
+    open-on-output "DP-3"
+    layout {
+        default-column-width {
+            proportion 0.5
+        }
+    }
+}
+workspace "main" {
+    open-on-output "DP-2"
+}
+workspace "games" {
+    open-on-output "DP-2"
+    layout {
+        default-column-width {
+            proportion 1.0
+        }
+    }
+}

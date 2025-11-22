@@ -1,0 +1,11 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Target = *
+
+[Action]
+Description = Create backup list of packages installed (including AUR)
+When = PreTransaction
+Exec = /bin/sh -c 'pacman -Qqen > "/home/neonvoid/.config/pacman/pkglist.txt"; pacman -Qqem >> "/home/neonvoid/.config/pacman/pkglist.txt" 2> /dev/null; exit'

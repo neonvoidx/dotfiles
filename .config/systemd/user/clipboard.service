@@ -1,0 +1,9 @@
+[Unit]
+Description=Auto-sync clipboard between Wayland and X11
+
+[Service]
+ExecStart=%h/clipboard-autosync.sh
+Restart=always
+
+[Install]
+WantedBy=default.target

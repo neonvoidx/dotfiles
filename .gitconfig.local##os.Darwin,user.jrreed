@@ -1,0 +1,6 @@
+[user]
+	email = jacob.reed@oracle.com
+	name = jrreed
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

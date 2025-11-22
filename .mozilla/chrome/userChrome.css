@@ -1,0 +1,73 @@
+/* hide icons for bookmark folders */
+#personal-bookmarks .bookmark-item[container="true"] .toolbarbutton-icon {
+  display: none !important;
+}
+
+.tab-background {
+  background-color: rgba(50, 52, 73, 0.6) !important;
+}
+
+#vertical-pinned-tabs-container-separator {
+  color: #37f499 !important;
+}
+
+.tab-icon-overlay {
+  pointer-events: none !important;
+}
+
+/* Hide container when empty */
+#vertical-pinned-tabs-container:empty {
+  display: none !important;
+}
+
+/* Also hide the separator when container is empty */
+#vertical-pinned-tabs-container:empty
+  + #vertical-pinned-tabs-container-separator {
+  display: none !important;
+}
+
+#vertical-pinned-tabs-container {
+  /* Base styling */
+  display: flex !important;
+  flex-direction: column !important;
+
+  /* Dynamic height based on content */
+  height: auto !important;
+  min-height: calc(
+    var(--pinned-tab-height, 36px) * var(--number-of-pinned-tabs, 1)
+  ) !important;
+
+  /* Ensure tabs have consistent sizing */
+  --pinned-tab-height: 36px !important;
+}
+
+#vertical-pinned-tabs-container > .tab {
+  flex: 0 0 var(--pinned-tab-height) !important;
+  min-height: var(--pinned-tab-height) !important;
+}
+
+/* Set container padding proportional to tab count */
+#vertical-pinned-tabs-container {
+  padding-top: calc(
+    var(--pinned-tabs-padding, 5px) * var(--number-of-pinned-tabs, 1)
+  ) !important;
+  padding-bottom: calc(
+    var(--pinned-tabs-padding, 5px) * var(--number-of-pinned-tabs, 1)
+  ) !important;
+  --pinned-tabs-padding: 5px !important;
+}
+
+#PersonalToolbar {
+  border-top: none !important;
+  background-image: linear-gradient(
+    to right,
+    rgba(55, 244, 153, 0.5) 0%,
+    rgba(55, 244, 153, 0.1) 50%,
+    rgba(55, 244, 153, 0.5) 100%
+  ) !important;
+  background-size: 100% 1px !important;
+  background-repeat: no-repeat !important;
+  background-position: top !important;
+  margin-top: 3px !important;
+  padding-top: 1px !important;
+}

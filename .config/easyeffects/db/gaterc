@@ -1,0 +1,16 @@
+[sie][Gate#0]
+attack=1
+curveThreshold=-50
+curveZone=-2
+hpfMode=2
+hysteresis=true
+hysteresisThreshold=-3
+hysteresisZone=-1
+lpfMode=2
+makeup=1
+reduction=-15
+release=200
+sidechainInputDevice=alsa_input.usb-R__DE_Microphones_R__DE_NT-USB_Mini_F5DF5DCC-00.mono-fallback
+sidechainMode=1
+sidechainType=1
+wet=-1

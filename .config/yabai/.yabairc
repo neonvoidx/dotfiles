@@ -1,0 +1,91 @@
+#!/usr/bin/env sh
+# https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(from-HEAD)#configure-scripting-addition
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# global settings
+yabai -m config focus_follows_mouse off
+yabai -m config window_shadow off
+yabai -m config window_opacity on
+yabai -m config window_opacity_duration 0.0
+yabai -m config active_window_opacity 1
+yabai -m config normal_window_opacity 1
+yabai -m config insert_feedback_color 0xff61afef
+yabai -m config split_ratio 0.50
+yabai -m config auto_balance on
+yabai -m config mouse_modifier fn
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
+yabai -m config mouse_drop_action swap
+yabai -m config layout bsp
+yabai -m config top_padding 0
+yabai -m config bottom_padding 10
+yabai -m config left_padding 5
+yabai -m config right_padding 5
+yabai -m config window_gap 10
+
+# Space Mapper
+setup_space() {
+  idx="$1"
+  name="$2"
+  display="$3"
+
+  space=$(yabai -m query --spaces --space "$idx")
+  if [ -z "$space" ]; then
+    yabai -m space --create "$display"
+  fi
+
+  yabai -m space "$idx" --label "$name"
+  yabai -m space "$idx" --display "$display"
+}
+
+# Setup or destroy spaces as needed to match 5
+existing_spaces=$(yabai -m query --spaces | jq '.[] | .index')
+for i in $existing_spaces; do
+  if [ "$i" -gt 5 ]; then
+    yabai -m space "$i" --destroy
+  fi
+done
+
+# Set Up Spaces
+setup_space 1 dev 1
+setup_space 2 email 1
+setup_space 3 zoom 1
+setup_space 4 notes 1
+setup_space 5 slack 2
+
+# Rules
+# No Manage
+yabai -m rule --add app="^System Preferences$" manage=off grid=6:4:1:1:2:4
+yabai -m rule --add app="^System Settings$" manage=off grid=6:4:1:1:2:4
+yabai -m rule --add app="^Cisco Secure Client$" manage=off grid=6:4:1:1:2:4
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Bitwarden$" manage=off grid=6:4:1:1:2:4
+yabai -m rule --add app="^Finder$" manage=off grid=6:4:1:1:2:4
+yabai -m rule --add app=".*Authenticator.*" manage=off
+yabai -m rule --add app=".*Oracle Backup.*" manage=off
+yabai -m rule --add app=".*Chromium.*" manage=off
+yabai -m rule --add app=".*Slack.*" manage=on space=5
+# Managed
+yabai -m rule --add title=".*Reminder" sticky=on grid=1:1:1:1:1:1
+yabai -m rule --add app=".*zoom.*" manage=on space=3
+yabai -m rule --add app=".*Outlook.*" manage=on space=2
+yabai -m rule --add app=".*Obsidian.*" manage=on space=4
+# Apply Rules
+yabai -m rule --apply
+
+# S K E T C H Y B A R  E V E N T S
+yabai -m config external_bar all:35:0
+yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
+yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
+yabai -m signal --add event=system_woke action="sh -c 'sleep 1; sketchybar --reload'"
+
+# Window List Caching
+yabai -m signal --add event=window_created action="~/.config/yabai/refresh_window_list.sh"
+yabai -m signal --add event=window_destroyed action="~/.config/yabai/refresh_window_list.sh"
+yabai -m signal --add event=window_title_changed action="~/.config/yabai/refresh_window_list.sh"
+
+killall sketchybar
+sketchybar
+
+YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &

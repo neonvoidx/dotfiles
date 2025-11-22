@@ -1,0 +1,20 @@
+xwayland-satellite {
+    path "xwayland-satellite"
+}
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+input {
+    touchpad {
+        tap
+        dwt
+    }
+    warp-mouse-to-focus
+    focus-follows-mouse
+}
+hotkey-overlay {
+    hide-not-bound
+    skip-at-startup
+}
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+

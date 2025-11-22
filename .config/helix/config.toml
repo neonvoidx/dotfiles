@@ -1,0 +1,69 @@
+theme = "eldritch"
+
+[editor]
+auto-pairs = true
+true-color = true
+mouse = true
+middle-click-paste = false
+line-number = "relative"
+auto-completion = true
+auto-format = true
+auto-save = false
+preview-completion-insert = true
+completion-replace = true
+color-modes= true
+bufferline = "multiple"
+text-width = 120
+default-line-ending = "lf"
+insert-final-newline = true
+gutters = ["diff", "diagnostics", "line-numbers", "spacer"]
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator"]
+right = ["diagnostics", "separator", "workspace-diagnostics", "version-control", "selections", "position", "file-encoding", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+enable = true
+display-messages = true
+auto-signature-help = true
+display-inlay-hints = true
+display-signature-help-docs = true
+snippets = true
+goto-reference-include-declaration = true
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "bar"
+
+[editor.file-picker]
+hidden = false
+follow-symlinks = true
+git-ignore = false
+
+[editor.search]
+smart-case = true
+wrap-around = true
+
+[editor.whitespace.characters]
+space = "·"
+
+[editor.indent-guides]
+render = true
+character = "▏" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 0
+
+[keys.normal]
+C-s = ":w"
+C-q = ":xa!"
+"ret" = ["open_below", "normal_mode"]
+
+[keys.insert]
+C-s = ":w"
+C-q = ":xa!"
+
+[keys.select]

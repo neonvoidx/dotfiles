@@ -1,0 +1,5 @@
+# vim:ft=kitty
+include ~/.config/kitty/kitty.conf##default 
+
+font_size 16
+background_opacity 0.95

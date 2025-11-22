@@ -1,0 +1,270 @@
+binds {
+    Mod+Shift+Slash {
+        show-hotkey-overlay
+    }
+    Mod+Return hotkey-overlay-title="Open a Terminal" {
+        spawn "kitty"
+    }
+    Mod+Space hotkey-overlay-title="Run an Application" {
+        spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"
+    }
+    Mod+e hotkey-overlay-title="Thunar" {
+        spawn "thunar"
+    }
+    Mod+Delete hotkey-overlay-title="Session menu" {
+        spawn "qs" "-c" "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"
+    }
+    Mod+Shift+Delete hotkey-overlay-title="Lock the Screen" {
+        spawn "qs" "-c" "noctalia-shell" "ipc" "call" "lockScreen" "lock"
+    }
+    Mod+b hotkey-overlay-title="Firefox" {
+        spawn "firefox-developer-edition"
+    }
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1"
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+    }
+    XF86AudioMute allow-when-locked=true {
+        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    }
+    Ctrl+XF86AudioMute allow-when-locked=true {
+        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+    }
+    Ctrl+XF86AudioRaiseVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+ -l 1"
+    }
+    Ctrl+XF86AudioLowerVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-"
+    }
+    XF86AudioPlay allow-when-locked=true {
+        spawn-sh "playerctl play-pause"
+    }
+    XF86AudioStop allow-when-locked=true {
+        spawn-sh "playerctl stop"
+    }
+    XF86AudioPrev allow-when-locked=true {
+        spawn-sh "playerctl previous"
+    }
+    XF86AudioNext allow-when-locked=true {
+        spawn-sh "playerctl next"
+    }
+    // Example brightness key mappings for brightnessctl.
+    // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
+    // but you need to manually put each argument in separate "" quotes.
+    XF86MonBrightnessUp allow-when-locked=true {
+        spawn "brightnessctl" "--class=backlight" "set" "+10%"
+    }
+    XF86MonBrightnessDown allow-when-locked=true {
+        spawn "brightnessctl" "--class=backlight" "set" "10%-"
+    }
+    Mod+s hotkey-overlay-title="Focus steam" {
+        spawn-sh "~/.config/niri/scripts/focus_by_id.sh steam"
+    }
+    Mod+g hotkey-overlay-title="Focus gamescope" {
+        spawn-sh "~/.config/niri/scripts/focus_by_id.sh gamescope"
+    }
+    Mod+d hotkey-overlay-title="Focus vesktop/spotify" {
+        spawn-sh "~/.config/niri/scripts/focus_by_id.sh vesktop"
+    }
+    // Open/close the Overview: a zoomed-out view of workspaces and windows.
+    // You can also move the mouse into the top-left hot corner,
+    // or do a four-finger swipe up on a touchpad.
+    Mod+Tab repeat=false hotkey-overlay-title="Show Overview" {
+        toggle-overview
+    }
+    Mod+Q repeat=false hotkey-overlay-title="Close Window" {
+        close-window
+    }
+    Mod+P hotkey-overlay-title="Toggle Window Floating" {
+        toggle-window-floating
+    }
+    Mod+H hotkey-overlay-title="Focus Left" {
+        focus-column-or-monitor-left
+    }
+    Mod+J hotkey-overlay-title="Focus Down" {
+        focus-window-or-monitor-down
+    }
+    Mod+K hotkey-overlay-title="Focus Up" {
+        focus-window-or-monitor-up
+    }
+    Mod+L hotkey-overlay-title="Focus Right" {
+        focus-column-or-monitor-right
+    }
+    Mod+Shift+J hotkey-overlay-title="Move Window Down" {
+        move-window-down-or-to-workspace-down
+    }
+    Mod+Shift+K hotkey-overlay-title="Move Window Up" {
+        move-window-up-or-to-workspace-up
+    }
+    Mod+Shift+L hotkey-overlay-title="Move Column Right" {
+        move-column-right
+    }
+    Mod+Shift+H hotkey-overlay-title="Move Column Left" {
+        move-column-left
+    }
+    Mod+Down hotkey-overlay-title="Move Workspace Down" {
+        move-workspace-to-monitor-down
+    }
+    Mod+Up hotkey-overlay-title="Move Workspace Up" {
+        move-workspace-to-monitor-up
+    }
+    Mod+Right hotkey-overlay-title="Move Workspace Right" {
+        move-workspace-to-monitor-right
+    }
+    Mod+Left hotkey-overlay-title="Move Workspace Left" {
+        move-workspace-to-monitor-left
+    }
+    Mod+V hotkey-overlay-title="Clipboard Menu" {
+        spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "clipboard"
+    }
+    Mod+WheelScrollDown cooldown-ms=150 hotkey-overlay-title="Focus Workspace Down" {
+        focus-workspace-down
+    }
+    Mod+WheelScrollUp cooldown-ms=150 hotkey-overlay-title="Focus Workspace Up" {
+        focus-workspace-up
+    }
+    Mod+Shift+WheelScrollDown cooldown-ms=150 hotkey-overlay-title="Move Column to Workspace Down" {
+        move-column-to-workspace-down
+    }
+    Mod+Shift+WheelScrollUp cooldown-ms=150 hotkey-overlay-title="Move Column to Workspace Up" {
+        move-column-to-workspace-up
+    }
+    Mod+WheelScrollRight hotkey-overlay-title="Focus column right" {
+       focus-column-right
+    }
+    Mod+WheelScrollLeft hotkey-overlay-title="Focus column right" {
+       focus-column-left
+    }
+    Mod+Shift+WheelScrollLeft hotkey-overlay-title="Move Column Left" {
+        move-column-left
+    }
+    Mod+Shift+WheelScrollRight hotkey-overlay-title="Move Column Right" {
+        move-column-right
+    }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 hotkey-overlay-title="Move Workspace Down" {
+        move-workspace-to-monitor-down
+    }
+    Mod+Ctrl+WheelScrollUp cooldown-ms=150 hotkey-overlay-title="Move Workspace Up" {
+        move-workspace-to-monitor-up
+    }
+    Mod+Ctrl+WheelScrollRight cooldown-ms=150 hotkey-overlay-title="Move Workspace Right" {
+        move-workspace-to-monitor-right
+    }
+    Mod+Ctrl+WheelScrollLeft cooldown-ms=150 hotkey-overlay-title="Move Workspace Left" {
+        move-workspace-to-monitor-left
+    }
+    Mod+1 hotkey-overlay-title="Focus Workspace 1" {
+        focus-workspace 1
+    }
+    Mod+2 hotkey-overlay-title="Focus Workspace 2" {
+        focus-workspace 2
+    }
+    Mod+3 hotkey-overlay-title="Focus Workspace 3" {
+        focus-workspace 3
+    }
+    Mod+4 hotkey-overlay-title="Focus Workspace 4" {
+        focus-workspace 4
+    }
+    Mod+5 hotkey-overlay-title="Focus Workspace 5" {
+        focus-workspace 5
+    }
+    Mod+6 hotkey-overlay-title="Focus Workspace 6" {
+        focus-workspace 6
+    }
+    Mod+7 hotkey-overlay-title="Focus Workspace 7" {
+        focus-workspace 7
+    }
+    Mod+8 hotkey-overlay-title="Focus Workspace 8" {
+        focus-workspace 8
+    }
+    Mod+9 hotkey-overlay-title="Focus Workspace 9" {
+        focus-workspace 9
+    }
+    Mod+Shift+1 hotkey-overlay-title="Move Column to Workspace 1" {
+        move-column-to-workspace 1
+    }
+    Mod+Shift+2 hotkey-overlay-title="Move Column to Workspace 2" {
+        move-column-to-workspace 2
+    }
+    Mod+Shift+3 hotkey-overlay-title="Move Column to Workspace 3" {
+        move-column-to-workspace 3
+    }
+    Mod+Shift+4 hotkey-overlay-title="Move Column to Workspace 4" {
+        move-column-to-workspace 4
+    }
+    Mod+Shift+5 hotkey-overlay-title="Move Column to Workspace 5" {
+        move-column-to-workspace 5
+    }
+    Mod+Shift+6 hotkey-overlay-title="Move Column to Workspace 6" {
+        move-column-to-workspace 6
+    }
+    Mod+Shift+7 hotkey-overlay-title="Move Column to Workspace 7" {
+        move-column-to-workspace 7
+    }
+    Mod+Shift+8 hotkey-overlay-title="Move Column to Workspace 8" {
+        move-column-to-workspace 8
+    }
+    Mod+Shift+9 hotkey-overlay-title="Move Column to Workspace 9" {
+        move-column-to-workspace 9
+    }
+    // Switches focus between the current and the previous workspace.
+    Alt+Tab hotkey-overlay-title="Focus Previous Workspace" {
+        focus-workspace-previous
+    }
+    Mod+R hotkey-overlay-title="Switch Column Width Preset" {
+        switch-preset-column-width
+    }
+    Mod+F hotkey-overlay-title="Maximize Column" {
+        maximize-column
+    }
+    Mod+Shift+F hotkey-overlay-title="Fullscreen Window" {
+        fullscreen-window
+    }
+    Mod+C hotkey-overlay-title="Center Column" {
+        center-column
+    }
+    Mod+Shift+C hotkey-overlay-title="Center Visible Columns" {
+        center-visible-columns
+    }
+    Mod+Minus hotkey-overlay-title="Decrease Column Width" {
+        set-column-width "-10%"
+    }
+    Mod+Equal hotkey-overlay-title="Increase Column Width" {
+        set-column-width "+10%"
+    }
+    Mod+Shift+Minus hotkey-overlay-title="Decrease Window Height" {
+        set-window-height "-10%"
+    }
+    Mod+Shift+Equal hotkey-overlay-title="Increase Window Height" {
+        set-window-height "+10%"
+    }
+    Mod+W hotkey-overlay-title="Toggle Tabbed Column Display" {
+        toggle-column-tabbed-display
+    }
+    // Screenshot
+    Print hotkey-overlay-title="Screenshot" {
+        screenshot
+    }
+    // Edit clipboard screenshot
+    Alt+Print hotkey-overlay-title="Screenshot to Swappy" {
+        spawn-sh "wl-paste --type image/png | swappy -f -"
+    }
+    // Screenshot current window
+    Shift+Print hotkey-overlay-title="Screenshot Window (No Save)" {
+        screenshot-window write-to-disk=false
+    }
+    // Screenshot current monitor
+    Ctrl+Print hotkey-overlay-title="Screenshot Screen (No Save)" {
+        screenshot-screen write-to-disk=false
+    }
+    Mod+Escape allow-inhibiting=false hotkey-overlay-title="Toggle Keyboard Shortcut Inhibitor" {
+        toggle-keyboard-shortcuts-inhibit
+    }
+    Mod+Shift+Q hotkey-overlay-title="Quit Session" {
+        quit
+    }
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+}

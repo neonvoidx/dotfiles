@@ -1,0 +1,52 @@
+// Laptop monitor
+output "eDP-1" {
+    scale 1.5
+    hot-corners {
+        off
+    }
+    background-color "#212337"
+    backdrop-color "#212337"
+}
+// Top Mon
+output "DP-3" {
+    variable-refresh-rate on-demand=true
+    hot-corners {
+        off
+    }
+    scale 1
+    transform "normal"
+    position x=4880 y=0
+    background-color "#212337"
+    backdrop-color "#212337"
+}
+// Main (bottom) mon
+output "DP-2" {
+    variable-refresh-rate on-demand=true
+    hot-corners {
+        off
+    }
+    scale 1
+    transform "normal"
+    position x=4880 y=1440
+    background-color "#212337"
+    backdrop-color "#212337"
+}
+// Left portrait mode monitor
+output "HDMI-A-1" {
+    hot-corners {
+        off
+    }
+    scale 1
+    transform "90"
+    position x=3440 y=727
+    background-color "#212337"
+    backdrop-color "#212337"
+    layout {
+        preset-column-widths {
+            proportion 1.0
+        }
+        default-column-width {
+            proportion 1.0
+        }
+    }
+}

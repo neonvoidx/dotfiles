@@ -1,0 +1,9 @@
+// https://yalter.github.io/niri/Configuration
+include "conf/env.kdl" // Environment variables
+include "conf/startup.kdl" // Startup apps and scripts
+include "conf/appearance.kdl" // layout, animations, overview,
+include "conf/monitors.kdl" // Monitors
+include "conf/workspaces.kdl" // Named Workspaces
+include "conf/rules.kdl" // Window rules, layer rules
+include "conf/binds.kdl" // Keybinds
+include "conf/misc.kdl" // Anything not from above
