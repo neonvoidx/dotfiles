@@ -13,7 +13,7 @@ fi
 echo "✓ Successfully updated git submodules"
 
 echo "Running GNU Stow..."
-if ! stow .; then
+if ! stow --adopt .; then
     echo "✗ Error: Failed to run stow" >&2
     exit 1
 fi
