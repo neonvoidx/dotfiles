@@ -1,5 +1,5 @@
 [mgr]
-ratio = [1,4,3]
+ratio = [1, 4, 3]
 sort_by = "alphabetical"
 sort_sensitive = false
 sort_reverse = false
@@ -17,20 +17,12 @@ theme = "Eldritch"
 background = "#212337"
 
 [opener]
-play = [
-  {run = 'celluloid "$@"', orphan = true, for="unix"}
-]
-edit = [
-  { run = '$EDITOR "$@"', block=true, for="unix"}
-]
-open = [
-  { run = 'xdg-open "$@"', desc="Open"}
-]
+play = [{ run = 'mpv "$@"', orphan = true, for = "unix" }]
+edit = [{ run = '$EDITOR "$@"', block = true, for = "unix" }]
+open = [{ run = 'xdg-open "$@"', desc = "Open" }]
 
 [tasks]
-image_bound = [ 20000, 20000]
+image_bound = [20000, 20000]
 
 [input]
 cursor_blink = true
-
-

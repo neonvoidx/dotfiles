@@ -390,11 +390,11 @@
     },
     "wallpaper": {
         "defaultWallpaper": "/etc/xdg/quickshell/noctalia-shell/Assets/Wallpaper/noctalia.png",
-        "directory": "/home/neonvoid/pics",
+        "directory": "/home/neonvoid/pics/ultrawide",
         "enableMultiMonitorDirectories": true,
         "enabled": true,
         "fillColor": "#212337",
-        "fillMode": "crop",
+        "fillMode": "center",
         "hideWallpaperFilenames": true,
         "monitors": [
             {
@@ -403,12 +403,12 @@
                 "wallpaper": "/home/neonvoid/pics/vertical/f2ozw9v341j31.png"
             },
             {
-                "directory": "/home/neonvoid/pics",
+                "directory": "/home/neonvoid/pics/ultrawide",
                 "name": "DP-2",
                 "wallpaper": "/home/neonvoid/pics/wallhaven-21e8xy.png"
             },
             {
-                "directory": "/home/neonvoid/pics",
+                "directory": "/home/neonvoid/pics/ultrawide",
                 "name": "DP-3",
                 "wallpaper": "/home/neonvoid/pics/katana.jpg"
             },
