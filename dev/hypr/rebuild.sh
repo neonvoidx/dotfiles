@@ -14,27 +14,32 @@ cd ~/dev/hypr || {
   exit 1
 }
 
-# List of folders and their build/install commands
+# Folders for each repo
+# They must be built in this order
 folders=(
   hyprland-protocols
   hyprwayland-scanner
   hyprutils
   hyprgraphics
   hyprlang
+  hyprcursor
   aquamarine
   xdg-desktop-portal-hyprland
+  Hyprland
 )
-
+# repos for each folder
 repos=(
   git@github.com:hyprwm/hyprland-protocols.git
   git@github.com:hyprwm/hyprwayland-scanner.git
   git@github.com:hyprwm/hyprutils.git
   git@github.com:hyprwm/hyprgraphics.git
   git@github.com:hyprwm/hyprlang.git
+  git@github.com:hyprwm/hyprcursor.git
   git@github.com:hyprwm/aquamarine.git
   git@github.com:hyprwm/xdg-desktop-portal-hyprland.git
+  git@github.com:hyprwm/Hyprland.git
 )
-
+# build commands per repo
 build_commands=(
   # hyprland-protocols
   "meson setup build"
@@ -46,21 +51,27 @@ build_commands=(
   "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j\$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
   # hyprlang
   "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprlang -j\$(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)"
+  # hyprcursor
+  "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)"
   # aquamarine
   "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j\$(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)"
   # xdg-desktop-portal-hyprland
   "cmake -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -B build && cmake --build build"
+  # hyprland (NOTE: adding NO_UWSM)
+  "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DNO_UWSM:STRING=true -B build && cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
 )
 
-# Check and install missing dependencies
+# Check and install missing dependencies, before starting build
 hyprland_deps="ninja gcc cmake meson libxcb xcb-proto xcb-util xcb-util-keysyms libxfixes libx11 libxcomposite libxrender libxcursor pixman wayland-protocols cairo pango libxkbcommon xcb-util-wm xorg-xwayland libinput libliftoff libdisplay-info cpio tomlplusplus hyprlang-git hyprcursor-git hyprwayland-scanner-git xcb-util-errors hyprutils-git glaze hyprgraphics-git aquamarine-git re2 hyprland-qtutils-git"
 missing_pkgs=()
 printf "\033[0;36mChecking for Hyprland dependency packages\033[0m\n"
+# Get missing packages if any
 for pkg in $hyprland_deps; do
   if ! pacman -Q "$pkg" &>/dev/null; then
     missing_pkgs+=("$pkg")
   fi
 done
+# if any missing packages, install
 if [ ${#missing_pkgs[@]} -ne 0 ]; then
   printf "\033[0;36mMissing packages: %s\033[0m\n" "${missing_pkgs[*]}"
   printf "\033[0;36mRunning paru to install missing dependencies...\033[0m\n"
@@ -69,6 +80,7 @@ else
   printf "\033[0;36mAll dependencies are installed.\033[0m\n"
 fi
 
+# install command per repo
 install_commands=(
   # hyprland-protocols
   "sudo meson install -C build"
@@ -80,10 +92,14 @@ install_commands=(
   "sudo cmake --install build"
   # hyprlang
   "sudo cmake --install ./build"
+  # hyprcursor
+  "sudo cmake --install build"
   # aquamarine
   ""
   # xdg-desktop-portal-hyprland
   "sudo cmake --install build"
+  # hyprland
+  "sudo cmake --install ./build"
 )
 
 failures=()
@@ -92,13 +108,14 @@ install_progress=()
 build_status=()
 
 # Step 1: Ensure folders exist and are up to date
+# If folder doesn't exist clone it
 for i in "${!folders[@]}"; do
   folder="${folders[$i]}"
   printf "\033[0;36m\n===== Preparing %s =====\033[0m\n" "$folder"
   if [ ! -d "$folder" ]; then
     printf "\033[0;36m%s not found, cloning...\033[0m\n" "$folder"
     # specifically for hyprland, it has submodules, so clone with submodules recursive
-    if [ "$folder" = "hyprland" ]; then
+    if [ "$folder" = "Hyprland" ]; then
       git clone --recursive "${repos[$i]}" || {
         failures+=("$folder: clone failed")
         printf "\033[0;31mClone failed for %s\033[0m\n" "$folder"
@@ -112,7 +129,9 @@ for i in "${!folders[@]}"; do
       }
     fi
   fi
+  # cd into each folder
   cd "$folder"
+  # get latest
   git fetch origin || {
     failures+=("$folder: git fetch failed")
     printf "\033[0;31mGit fetch failed for %s\033[0m\n" "$folder"
@@ -132,8 +151,8 @@ for i in "${!folders[@]}"; do
     cd ..
     continue
   }
-  # when pulling, update all submodules
-  if [ "$folder" = "hyprland" ]; then
+  # when pulling, update all submodules for hyprland
+  if [ "$folder" = "Hyprland" ]; then
     git submodule update --init --recursive || {
       failures+=("$folder: submodule update failed")
       printf "\033[0;31mSubmodule update failed for %s\033[0m\n" "$folder"
@@ -144,6 +163,7 @@ for i in "${!folders[@]}"; do
   cd ..
 done
 
+# If any faiilures in repo setup exit
 if [ "${#failures[@]}" -ne 0 ]; then
   printf "\033[0;36m\n===== Repo Preparation Failures =====\033[0m\n"
   for f in "${failures[@]}"; do
@@ -206,37 +226,38 @@ if [ "${#failures[@]}" -ne 0 ]; then
   done
   exit 1
 fi
-# Proceed with install if no failures
 
+# Proceed with install if no failures, ask for user confirmation first
+read -rp "Proceed with install? [Y/n]: " confirm
+confirm=${confirm:-Y}
+if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
+  printf "\033[0;36mInstall step skipped by user. Exiting.\033[0m\n"
+  exit 0
+fi
 for i in "${!folders[@]}"; do
   folder="${folders[$i]}"
   install_cmd="${install_commands[$i]}"
-  # Only run install if build succeeded
-  if [ "${build_status[$i]}" = "0" ]; then
-    if [ "$DRY_RUN" = "1" ]; then
-      install_progress+=("$folder: skipped install (dry run)")
-      continue
-    fi
-    if [ -n "$install_cmd" ]; then
-      cd "$folder"
-      if eval "$install_cmd"; then
-        install_progress+=("$folder: install success")
-      else
-        install_progress+=("$folder: install failed")
-        printf "\033[0;31mInstall failed for %s\033[0m\n" "$folder"
-        failures+=("$folder: install failed")
-        printf "\033[0;31mInstall failed for %s\033[0m\n" "$folder"
-      fi
-      cd ..
+  if [ "$DRY_RUN" = "1" ]; then
+    install_progress+=("$folder: skipped install (dry run)")
+    continue
+  fi
+  if [ -n "$install_cmd" ]; then
+    cd "$folder"
+    if eval "$install_cmd"; then
+      install_progress+=("$folder: install success")
     else
-      install_progress+=("$folder: no install command")
+      install_progress+=("$folder: install failed")
+      printf "\033[0;31mInstall failed for %s\033[0m\n" "$folder"
+      failures+=("$folder: install failed")
+      printf "\033[0;31mInstall failed for %s\033[0m\n" "$folder"
     fi
+    cd ..
   else
-    install_progress+=("$folder: skipped install (build failed)")
+    install_progress+=("$folder: no install command")
   fi
 done
-# Step 5: Print summary
 
+# Step 5: Print summary
 printf "\033[0;36m\n===== Build Summary =====\033[0m\n"
 for p in "${build_progress[@]}"; do
   printf "\033[0;36mBUILD: $p\033[0m\n"
