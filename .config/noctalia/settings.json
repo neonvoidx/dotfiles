@@ -57,6 +57,7 @@
                 },
                 {
                     "characterCount": 7,
+                    "followFocusedScreen": false,
                     "hideUnoccupied": true,
                     "id": "Workspace",
                     "labelMode": "index"
@@ -240,6 +241,7 @@
         "shadowDirection": "bottom",
         "shadowOffsetX": 0,
         "shadowOffsetY": 3,
+        "showHibernateOnLockScreen": false,
         "showScreenCorners": false
     },
     "hooks": {
@@ -316,7 +318,7 @@
             },
             {
                 "action": "logout",
-                "countdownEnabled": true,
+                "countdownEnabled": false,
                 "enabled": true
             },
             {
@@ -371,6 +373,7 @@
         "pywalfox": false,
         "qt": true,
         "spicetify": false,
+        "telegram": false,
         "vicinae": false,
         "walker": false,
         "wezterm": false
@@ -397,17 +400,17 @@
             {
                 "directory": "/home/neonvoid/pics/vertical",
                 "name": "HDMI-A-1",
-                "wallpaper": "/home/neonvoid/pics/vertical/tsx0wxyklwp31.jpg"
+                "wallpaper": "/home/neonvoid/pics/vertical/f2ozw9v341j31.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-2",
-                "wallpaper": "/home/neonvoid/pics/hyprdragon.jpg"
+                "wallpaper": "/home/neonvoid/pics/wallhaven-21e8xy.png"
             },
             {
                 "directory": "/home/neonvoid/pics",
                 "name": "DP-3",
-                "wallpaper": "/home/neonvoid/pics/cyberpunk-edgerunners.jpg"
+                "wallpaper": "/home/neonvoid/pics/katana.jpg"
             },
             {
                 "directory": "/home/neonvoid/pics",

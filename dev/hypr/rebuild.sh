@@ -26,6 +26,8 @@ folders=(
   aquamarine
   xdg-desktop-portal-hyprland
   Hyprland
+  hypridle
+  hyprpicker
 )
 # repos for each folder
 repos=(
@@ -38,6 +40,8 @@ repos=(
   git@github.com:hyprwm/aquamarine.git
   git@github.com:hyprwm/xdg-desktop-portal-hyprland.git
   git@github.com:hyprwm/Hyprland.git
+  git@github.com:hyprwm/hypridle.git
+  git@github.com:hyprwm/hyprpicker.git
 )
 # build commands per repo
 build_commands=(
@@ -59,10 +63,14 @@ build_commands=(
   "cmake -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib -DCMAKE_INSTALL_PREFIX=/usr -B build && cmake --build build"
   # hyprland (NOTE: adding NO_UWSM)
   "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DNO_UWSM:STRING=true -B build && cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
+  # hypridle
+  "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
+  # hyprpicker
+  "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprpicker -j$(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)"
 )
 
 # Check and install missing dependencies, before starting build
-hyprland_deps="ninja gcc cmake meson libxcb xcb-proto xcb-util xcb-util-keysyms libxfixes libx11 libxcomposite libxrender libxcursor pixman wayland-protocols cairo pango libxkbcommon xcb-util-wm xorg-xwayland libinput libliftoff libdisplay-info cpio tomlplusplus hyprlang-git hyprcursor-git hyprwayland-scanner-git xcb-util-errors hyprutils-git glaze hyprgraphics-git aquamarine-git re2 hyprland-qtutils-git"
+hyprland_deps="ninja gcc cmake meson libxcb xcb-proto xcb-util xcb-util-keysyms libxfixes libx11 libxcomposite libxrender libxcursor pixman wayland-protocols cairo pango libxkbcommon xcb-util-wm xorg-xwayland libinput libliftoff libdisplay-info cpio tomlplusplus xcb-util-errors glaze re2"
 missing_pkgs=()
 printf "\033[0;36mChecking for Hyprland dependency packages\033[0m\n"
 # Get missing packages if any
@@ -100,6 +108,12 @@ install_commands=(
   "sudo cmake --install build"
   # hyprland
   "sudo cmake --install ./build"
+  # hyprland-qtutils
+  ""
+  # hypridle
+  "sudo cmake --install ./build"
+  # hyprpicker
+  "sudo cmake --install ./build"
 )
 
 failures=()
@@ -107,9 +121,34 @@ build_progress=()
 install_progress=()
 build_status=()
 
+# Interactive multi-select for packages to build/install
+if ! command -v fzf &>/dev/null; then
+  echo "fzf is required for interactive selection. Please install it (e.g., 'paru -S fzf' or 'sudo pacman -S fzf') and rerun this script."
+  exit 1
+fi
+
+# Present folders for selection
+selected_folders=($(printf "%s\n" "${folders[@]}" | fzf --multi --prompt="Select packages to build/install: " --header="[SPACE] to select, [ENTER] to confirm" --height=20 --border))
+
+if [ ${#selected_folders[@]} -eq 0 ]; then
+  echo "No packages selected. Exiting."
+  exit 0
+fi
+
+# Map selected folder names to their indices
+selected_indices=()
+for sel in "${selected_folders[@]}"; do
+  for idx in "${!folders[@]}"; do
+    if [ "${folders[$idx]}" = "$sel" ]; then
+      selected_indices+=("$idx")
+      break
+    fi
+  done
+done
+
 # Step 1: Ensure folders exist and are up to date
 # If folder doesn't exist clone it
-for i in "${!folders[@]}"; do
+for i in "${selected_indices[@]}"; do
   folder="${folders[$i]}"
   printf "\033[0;36m\n===== Preparing %s =====\033[0m\n" "$folder"
   if [ ! -d "$folder" ]; then
@@ -172,10 +211,11 @@ if [ "${#failures[@]}" -ne 0 ]; then
   exit 1
 fi
 
-# Step 2: Build all sequentially
-for i in "${!folders[@]}"; do
+# Step 2: Build and install each package sequentially
+for i in "${selected_indices[@]}"; do
   folder="${folders[$i]}"
   build_cmd="${build_commands[$i]}"
+  install_cmd="${install_commands[$i]}"
   echo -e "\n===== Building $folder ====="
   cd "$folder"
   if [ -d build ]; then
@@ -188,76 +228,36 @@ for i in "${!folders[@]}"; do
   if eval "$build_cmd"; then
     build_progress+=("$folder: build success")
     build_status[i]=0
+    echo -e "===== Installing $folder ====="
+    if [ "$DRY_RUN" = "1" ]; then
+      install_progress+=("$folder: skipped install (dry run)")
+    elif [ -n "$install_cmd" ]; then
+      if eval "$install_cmd"; then
+        install_progress+=("$folder: install success")
+      else
+        install_progress+=("$folder: install failed")
+        printf "\033[0;31mInstall failed for %s\033[0m\n" "$folder"
+        failures+=("$folder: install failed")
+        printf "\033[0;31mInstall failed for %s\033[0m\n" "$folder"
+        cd ..
+        exit 1
+      fi
+    else
+      install_progress+=("$folder: no install command")
+    fi
   else
     build_progress+=("$folder: build failed")
     printf "\033[0;31mBuild failed for %s\033[0m\n" "$folder"
     build_status[i]=1
     failures+=("$folder: build failed")
     printf "\033[0;31mBuild failed for %s\033[0m\n" "$folder"
+    cd ..
+    exit 1
   fi
   cd ..
 done
 
-# Step 4: Print build results and exit if any failures
-success_count=0
-fail_count=0
-printf "\033[0;36m\n===== Build Results =====\033[0m\n"
-for i in "${!folders[@]}"; do
-  folder="${folders[$i]}"
-  if [ "${build_status[$i]}" = "0" ]; then
-    printf "\033[0;32m✔\033[0m \033[0;36m%s\033[0m\n" "$folder"
-    success_count=$((success_count + 1))
-  else
-    printf "\033[0;31m✗\033[0m \033[0;36m%s\033[0m\n" "$folder"
-    fail_count=$((fail_count + 1))
-  fi
-done
-printf "\033[0;36m\nTotal success: %s\033[0m\n" "$success_count"
-printf "\033[0;36mTotal failed: %s\033[0m\n" "$fail_count"
-if [ "${#failures[@]}" -ne 0 ]; then
-  printf "\033[0;31mFailures detected during build. Exiting.\033[0m\n"
-  # Print summary
-  printf "\033[0;36m\n===== Build Summary =====\033[0m\n"
-  for p in "${build_progress[@]}"; do
-    printf "\033[0;36mBUILD: %s\033[0m\n" "$p"
-  done
-  for f in "${failures[@]}"; do
-    printf "\033[0;31mFAIL: %s\033[0m\n" "$f"
-  done
-  exit 1
-fi
-
-# Proceed with install if no failures, ask for user confirmation first
-read -rp "Proceed with install? [Y/n]: " confirm
-confirm=${confirm:-Y}
-if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
-  printf "\033[0;36mInstall step skipped by user. Exiting.\033[0m\n"
-  exit 0
-fi
-for i in "${!folders[@]}"; do
-  folder="${folders[$i]}"
-  install_cmd="${install_commands[$i]}"
-  if [ "$DRY_RUN" = "1" ]; then
-    install_progress+=("$folder: skipped install (dry run)")
-    continue
-  fi
-  if [ -n "$install_cmd" ]; then
-    cd "$folder"
-    if eval "$install_cmd"; then
-      install_progress+=("$folder: install success")
-    else
-      install_progress+=("$folder: install failed")
-      printf "\033[0;31mInstall failed for %s\033[0m\n" "$folder"
-      failures+=("$folder: install failed")
-      printf "\033[0;31mInstall failed for %s\033[0m\n" "$folder"
-    fi
-    cd ..
-  else
-    install_progress+=("$folder: no install command")
-  fi
-done
-
-# Step 5: Print summary
+# Step 3: Print summary
 printf "\033[0;36m\n===== Build Summary =====\033[0m\n"
 for p in "${build_progress[@]}"; do
   printf "\033[0;36mBUILD: $p\033[0m\n"
