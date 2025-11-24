@@ -20,6 +20,8 @@ folders=(
   hyprland-protocols
   hyprwayland-scanner
   hyprutils
+  hyprtoolkit
+  hyprland-guiutils
   hyprgraphics
   hyprlang
   hyprcursor
@@ -34,6 +36,8 @@ repos=(
   git@github.com:hyprwm/hyprland-protocols.git
   git@github.com:hyprwm/hyprwayland-scanner.git
   git@github.com:hyprwm/hyprutils.git
+  git@github.com:hyprwm/hyprtoolkit.git
+  git@github.com:hyprwm/hyprland-guiutils.git
   git@github.com:hyprwm/hyprgraphics.git
   git@github.com:hyprwm/hyprlang.git
   git@github.com:hyprwm/hyprcursor.git
@@ -42,8 +46,6 @@ repos=(
   git@github.com:hyprwm/Hyprland.git
   git@github.com:hyprwm/hypridle.git
   git@github.com:hyprwm/hyprpicker.git
-  git@github.com:hyprwm/hyprtoolkit.git
-  git@github.com:hyprwm/hyprland-guiutils.git
 )
 # build commands per repo
 build_commands=(
@@ -53,6 +55,10 @@ build_commands=(
   "cmake -DCMAKE_INSTALL_PREFIX=/usr -B build && cmake --build build -j \$(nproc)"
   # hyprutils
   "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j\$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
+  # hyprtoolkit
+  "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
+  # hyprland-guiutils
+  "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
   # hyprgraphics
   "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j\$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
   # hyprlang
@@ -69,10 +75,6 @@ build_commands=(
   "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
   # hyprpicker
   "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprpicker -j$(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)"
-  # hyprtoolkit
-  "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
-  # hyprland-guiutils
-  "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
 )
 
 # Check and install missing dependencies, before starting build
@@ -102,6 +104,10 @@ install_commands=(
   "sudo cmake --install build"
   # hyprutils
   "sudo cmake --install build"
+  # hyprtoolkit
+  "sudo cmake --install ./build"
+  # hypr-guiutils
+  "sudo cmake --install ./build"
   # hyprgraphics
   "sudo cmake --install build"
   # hyprlang
@@ -119,10 +125,6 @@ install_commands=(
   # hypridle
   "sudo cmake --install ./build"
   # hyprpicker
-  "sudo cmake --install ./build"
-  # hyprtoolkit
-  "sudo cmake --install ./build"
-  # hypr-guiutils
   "sudo cmake --install ./build"
 )
 
