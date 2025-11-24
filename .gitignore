@@ -1,2 +1,5 @@
 .config/lazygit/state.yml
 .config/lazygit/state.yml
+.config/.copilot
+.config/configstore
+.config/github-copilot
