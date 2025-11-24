@@ -12,36 +12,16 @@ if ! git submodule update --init --recursive --remote; then
 fi
 echo "✓ Successfully updated git submodules"
 
-echo "Running GNU Stow..."
-STOW_OUTPUT=$(stow . 2>&1)
+echo "Running GNU Stow"
+STOW_OUTPUT=$(stow --adopt . 2>&1)
 STOW_EXIT=$?
 if [ $STOW_EXIT -ne 0 ]; then
-  if echo "$STOW_OUTPUT" | grep -qi 'adopt'; then
-    echo "stow failed, retrying with --adopt..."
-    if ! stow --adopt .; then
-      echo "✗ Error: Failed to run stow with --adopt" >&2
-      exit 1
-    fi
-    echo "✓ Successfully ran stow with --adopt"
-  else
-    echo "✗ Error: Failed to run stow" >&2
-    echo "$STOW_OUTPUT" >&2
-    exit 1
-  fi
+  echo "✗ Error: Failed to run stow" >&2
+  echo "$STOW_OUTPUT" >&2
+  exit 1
 else
   echo "✓ Successfully ran stow"
 fi
-
-echo "Resetting adopted changes..."
-if ! git reset --hard origin/master; then
-  echo "✗ Error: Failed to hard reset git changes" >&2
-  exit 1
-fi
-if ! git clean -fd; then
-  echo "✗ Error: Failed to clean untracked files" >&2
-  exit 1
-fi
-echo "✓ Successfully reset and cleaned adopted changes"
 
 echo
 
