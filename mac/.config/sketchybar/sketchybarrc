@@ -25,7 +25,7 @@ launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /
 # Flush with top of screen, 40px total space (32px bar + 8px gap below)
 # Transparent bar for dynamic island effect
 bar=(
-  height=35
+  height=45
   color=0xff212337
   shadow=on
   position=top

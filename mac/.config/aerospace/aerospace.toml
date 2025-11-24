@@ -54,7 +54,7 @@ inner.vertical = 10
 outer.left = 5
 outer.bottom = 5
 # Main monitor has a bigger gap at the top
-outer.top = [{ monitor.main = 45 }, 20]
+outer.top = [{ monitor.main = 50 }, 15]
 outer.right = 5
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
