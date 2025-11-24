@@ -242,6 +242,7 @@ tldr
 tmux
 toilet
 toilet-fonts
+tomlplusplus
 trash-cli
 tree-sitter-cli
 ttf-jetbrains-mono
@@ -260,6 +261,7 @@ vesktop-git
 vim
 vkbasalt
 vulkan-radeon
+wayland-protocols
 webkit2gtk
 wev
 wget
