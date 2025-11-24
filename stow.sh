@@ -8,14 +8,19 @@ if ! git submodule update --init --recursive --remote; then
 fi
 echo "✓ Successfully updated git submodules"
 
+echo "Running stow for common package..."
+stow -v common
+echo
+
 if [ "$(uname -s)" = "Darwin" ]; then
   echo "Detected macOS. Running stow on 'mac' folder for Mac-specific dotfiles..."
-  stow mac
+  stow -v mac
   echo "✓ Successfully ran stow on 'mac' folder"
 fi
+
 if [ "$(uname -s)" = "Linux" ]; then
   echo "Detected Linux. Running stow on 'linux' folder..."
-  stow linux
+  stow -v linux
   echo "✓ Successfully ran stow on 'linux' folder"
 fi
 echo

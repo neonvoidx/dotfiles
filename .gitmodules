@@ -4,3 +4,6 @@
 [submodule "linux/pics"]
 	path = linux/pics
 	url = git@github.com:neonvoidx/pics.git
+[submodule "common/vault"]
+	path = common/vault
+	url = git@github.com:neonvoidx/vault.git
