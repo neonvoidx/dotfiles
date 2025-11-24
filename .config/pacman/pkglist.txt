@@ -9,6 +9,7 @@ astroterm
 base
 base-devel
 bat
+bc
 bind
 blender
 blueman
@@ -125,6 +126,7 @@ masscan
 matugen-git
 mbuffer
 mda.lv2
+mediainfo
 mkinitcpio-firmware
 mpv
 muparser

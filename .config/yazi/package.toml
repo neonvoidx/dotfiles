@@ -1,7 +1,27 @@
 [[plugin.deps]]
-use = "yazi-rs/plugins:smart-enter"
-rev = "2301ff8"
-hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+use = "boydaihungst/mediainfo"
+rev = "1099409"
+hash = "77e78e16578e8f5a37475c04d8324619"
+
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "c264639"
+hash = "e17c11b605d989568a1d1741ca17c584"
+
+[[plugin.deps]]
+use = "uhs-robert/recycle-bin"
+rev = "1762676"
+hash = "c77042b4296544a9edb4849338056039"
+
+[[plugin.deps]]
+use = "boydaihungst/thunar-bulk-rename"
+rev = "159c62a"
+hash = "3a8c45cd04a095a97c256e19ffea0cf3"
+
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "8f37dc5"
+hash = "ee71543790f0ce3951161045a3787abd"
 
 [flavor]
 deps = []

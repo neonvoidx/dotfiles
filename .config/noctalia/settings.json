@@ -9,7 +9,8 @@
         "position": "center",
         "sortByMostUsed": true,
         "terminalCommand": "kitty -e",
-        "useApp2Unit": false
+        "useApp2Unit": false,
+        "viewMode": "list"
     },
     "audio": {
         "cavaFrameRate": 60,
@@ -81,6 +82,7 @@
                     "scrollingMode": "always",
                     "showAlbumArt": true,
                     "showArtistFirst": true,
+                    "showProgressRing": true,
                     "showVisualizer": false,
                     "useFixedWidth": false,
                     "visualizerType": "mirrored"
@@ -109,15 +111,15 @@
                     ]
                 },
                 {
+                    "displayMode": "onhover",
+                    "id": "VPN"
+                },
+                {
                     "displayMode": "alwaysShow",
                     "id": "Bluetooth"
                 },
                 {
                     "id": "KeepAwake"
-                },
-                {
-                    "displayMode": "onhover",
-                    "id": "Brightness"
                 },
                 {
                     "displayMode": "onhover",
@@ -361,6 +363,7 @@
     },
     "templates": {
         "alacritty": false,
+        "cava": false,
         "code": false,
         "discord": false,
         "enableUserTemplates": false,
@@ -421,7 +424,7 @@
         "overviewEnabled": true,
         "panelPosition": "center",
         "randomEnabled": true,
-        "randomIntervalSec": 180,
+        "randomIntervalSec": 300,
         "recursiveSearch": false,
         "setWallpaperOnAllMonitors": false,
         "transitionDuration": 1500,
