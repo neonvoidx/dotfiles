@@ -42,6 +42,8 @@ repos=(
   git@github.com:hyprwm/Hyprland.git
   git@github.com:hyprwm/hypridle.git
   git@github.com:hyprwm/hyprpicker.git
+  git@github.com:hyprwm/hyprtoolkit.git
+  git@github.com:hyprwm/hyprland-guiutils.git
 )
 # build commands per repo
 build_commands=(
@@ -67,6 +69,10 @@ build_commands=(
   "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
   # hyprpicker
   "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprpicker -j$(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)"
+  # hyprtoolkit
+  "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
+  # hyprland-guiutils
+  "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
 )
 
 # Check and install missing dependencies, before starting build
@@ -103,16 +109,20 @@ install_commands=(
   # hyprcursor
   "sudo cmake --install build"
   # aquamarine
-  ""
+  "sudo cmake --install build"
   # xdg-desktop-portal-hyprland
   "sudo cmake --install build"
   # hyprland
   "sudo cmake --install ./build"
   # hyprland-qtutils
-  ""
+  "sudo cmake --install ./build"
   # hypridle
   "sudo cmake --install ./build"
   # hyprpicker
+  "sudo cmake --install ./build"
+  # hyprtoolkit
+  "sudo cmake --install ./build"
+  # hypr-guiutils
   "sudo cmake --install ./build"
 )
 
@@ -127,8 +137,18 @@ if ! command -v fzf &>/dev/null; then
   exit 1
 fi
 
-# Present folders for selection
-selected_folders=($(printf "%s\n" "${folders[@]}" | fzf --multi --prompt="Select packages to build/install: " --header="[SPACE] to select, [ENTER] to confirm" --height=20 --border))
+# Present folders for selection, add 'a (all)' as first entry
+fzf_list=("a (all)" "${folders[@]}")
+selected_folders=($(printf "%s\n" "${fzf_list[@]}" | fzf --multi --prompt="Select packages to build/install: " --header="[SPACE] to select, [ENTER] to confirm, [a] for all" --height=20 --border))
+
+# If 'a (all)' is selected, select all folders
+for sel in "${selected_folders[@]}"; do
+  if [ "$sel" = "a (all)" ]; then
+    selected_folders=("${folders[@]}")
+    break
+  fi
+
+done
 
 if [ ${#selected_folders[@]} -eq 0 ]; then
   echo "No packages selected. Exiting."
@@ -137,14 +157,21 @@ fi
 
 # Map selected folder names to their indices
 selected_indices=()
-for sel in "${selected_folders[@]}"; do
+# If 'a (all)' was selected, use all indices
+if [[ " ${selected_folders[*]} " =~ " a (all) " ]]; then
   for idx in "${!folders[@]}"; do
-    if [ "${folders[$idx]}" = "$sel" ]; then
-      selected_indices+=("$idx")
-      break
-    fi
+    selected_indices+=("$idx")
   done
-done
+else
+  for sel in "${selected_folders[@]}"; do
+    for idx in "${!folders[@]}"; do
+      if [ "${folders[$idx]}" = "$sel" ]; then
+        selected_indices+=("$idx")
+        break
+      fi
+    done
+  done
+fi
 
 # Step 1: Ensure folders exist and are up to date
 # If folder doesn't exist clone it

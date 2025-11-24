@@ -184,6 +184,23 @@ python-pywal
 python-systemd
 qt5-wayland
 qt5ct
+qt6-3d
+qt6-charts
+qt6-connectivity
+qt6-datavis3d
+qt6-doc
+qt6-examples
+qt6-grpc
+qt6-httpserver
+qt6-languageserver
+qt6-lottie
+qt6-networkauth
+qt6-quick3dphysics
+qt6-quickeffectmaker
+qt6-remoteobjects
+qt6-scxml
+qt6-serialbus
+qt6-serialport
 qt6ct
 rebuild-detector
 reflector
@@ -225,6 +242,7 @@ tldr
 tmux
 toilet
 toilet-fonts
+trash-cli
 tree-sitter-cli
 ttf-jetbrains-mono
 ttf-liberation
@@ -264,6 +282,7 @@ xdg-utils
 xf86-video-amdgpu
 xf86-video-ati
 xfce4-artwork
+xorg-xinput
 xpadneo-dkms-git
 yarn
 yazi
@@ -283,7 +302,6 @@ gconf-debug
 grim-hyprland-git
 gstreamer-svt-av1
 gstreamer0.10-base-plugins
-hyprland-meta-git
 layer-shell-qt5
 libdeep_filter_ladspa-git
 lua-language-server-git
