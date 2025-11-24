@@ -1,3 +1,23 @@
 #!/bin/bash
-# TODO check uname, if uname -s == Darwin, run stow mac
-# if Linux run stow linux
+set -e # Exit on error
+
+echo "Updating git submodules..."
+if ! git submodule update --init --recursive --remote; then
+  echo "✗ Error: Failed to update git submodules" >&2
+  exit 1
+fi
+echo "✓ Successfully updated git submodules"
+
+if [ "$(uname -s)" = "Darwin" ]; then
+  echo "Detected macOS. Running stow on 'mac' folder for Mac-specific dotfiles..."
+  stow mac
+  echo "✓ Successfully ran stow on 'mac' folder"
+fi
+if [ "$(uname -s)" = "Linux" ]; then
+  echo "Detected Linux. Running stow on 'linux' folder..."
+  stow linux
+  echo "✓ Successfully ran stow on 'linux' folder"
+fi
+echo
+
+echo "Dotfiles updated successfully!"

@@ -1,0 +1,6 @@
+[submodule "common/.config/nvim"]
+	path = common/.config/nvim
+	url = git@github.com:neonvoidx/nvim.git
+[submodule "linux/pics"]
+	path = linux/pics
+	url = git@github.com:neonvoidx/pics.git
