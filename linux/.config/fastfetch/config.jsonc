@@ -3,112 +3,89 @@
   "logo": {
     "type": "kitty-direct",
     "source": "~/.config/fastfetch/neonvoid-avatar.png",
-    "width": 40,
+    "width": 25,
     "padding": {
+      "top": 1,
       "right": 10
     }
   },
   "display": {
-    "separator": "",
-    "constants": [
-      "\u001b[77C", // $1: Move cursor forward 77 columns (adjust if needed)
-      "\u001b[77D", // $2: Move cursor back 77 columns (not used, defined anyway)
-      "\u001b[88C", // $3: Move cursor to max width (wide term), or last column (narrow term)
-      "\u001b[20D", // $4: Move back 20 columns for the color block (both lines)
-      "───────────────────────────────────────────────────────────────────────────────────────"
-    ],
-    "key": {
-      "width": 14
-    }
+    "separator": "  "
   },
   "modules": [
-    "break",
     {
-      "type": "custom",
-      "format": "{$5}",
-      "outputColor": "38;2;55;244;153"
+      "key": "╭───────────╮",
+      "type": "custom"
     },
     {
-      "type": "os",
-      "key": " {$1}",
-      "format": "{2}",
-      "keyColor": "38;2;55;244;153"
+      "key": "│ {#31} user    {#keys}│",
+      "type": "title",
+      "format": "{user-name}"
     },
     {
-      "type": "kernel",
-      "key": " {$1}",
-      "keyColor": "38;2;55;244;153"
+      "key": "│ {#32}󰇅 hname   {#keys}│",
+      "type": "title",
+      "format": "{host-name}"
     },
     {
-      "type": "uptime",
-      "key": " {$1}",
-      "keyColor": "38;2;55;244;153"
+      "key": "│ {#33}󰅐 uptime  {#keys}│",
+      "type": "uptime"
     },
     {
-      "type": "shell",
-      "key": " {$1}",
-      "keyColor": "38;2;55;244;153",
-      "format": "{1}"
+      "key": "│ {#34}{icon} distro  {#keys}│",
+      "type": "os"
     },
     {
-      "type": "terminal",
-      "key": " {$1}",
-      "keyColor": "38;2;55;244;153",
-      "format": "{1}"
+      "key": "│ {#35} kernel  {#keys}│",
+      "type": "kernel"
     },
     {
-      "type": "custom",
-      "format": "{$5}",
-      "outputColor": "38;2;55;244;153"
+      "key": "│ {#36}󰇄 desktop {#keys}│",
+      "type": "de"
     },
     {
-      "type": "custom",
-      "format": "{$5}",
-      "outputColor": "38;2;4;209;249"
+      "key": "│ {#37}󰖲 wm      {#keys}│",
+      "type": "wm"
     },
     {
-      "type": "wm",
-      "key": " {$1}",
-      "keyColor": "38;2;4;209;249",
-      "format": "{1}"
+      "key": "│ {#31} term    {#keys}│",
+      "type": "terminal"
     },
     {
-      "type": "terminalfont",
-      "key": " {$1}",
-      "keyColor": "38;2;4;209;249"
+      "key": "│ {#32} shell   {#keys}│",
+      "type": "shell"
     },
     {
-      "type": "custom",
-      "format": "{$5}",
-      "outputColor": "38;2;4;209;249"
-    },
-    {
-      "type": "custom",
-      "format": "{$5}",
-      "outputColor": "38;2;164;140;242"
-    },
-    {
+      "key": "│ {#33}󰍛 cpu     {#keys}│",
       "type": "cpu",
-      "key": " {$1}",
-      "keyColor": "38;2;164;140;242",
-      "format": "{1}"
+      "showPeCoreCount": true
     },
     {
-      "type": "gpu",
-      "key": "󰍹 {$1}",
-      "keyColor": "38;2;164;140;242",
-      "hideType": "integrated",
-      "format": "{2}"
+      "key": "│ {#34}󰉉 disk    {#keys}│",
+      "type": "disk",
+      "folders": "/"
     },
     {
-      "type": "memory",
-      "key": " {$1}",
-      "keyColor": "38;2;164;140;242"
+      "key": "│ {#35} memory  {#keys}│",
+      "type": "memory"
     },
     {
-      "type": "custom",
-      "format": "{$5}",
-      "outputColor": "38;2;164;140;242"
+      "key": "│ {#36}󰩟 network {#keys}│",
+      "type": "localip",
+      "format": "{ipv4} ({ifname})"
+    },
+    {
+      "key": "├───────────┤",
+      "type": "custom"
+    },
+    {
+      "key": "│ {#39} colors  {#keys}│",
+      "type": "colors",
+      "symbol": "circle"
+    },
+    {
+      "key": "╰───────────╯",
+      "type": "custom"
     }
   ]
 }

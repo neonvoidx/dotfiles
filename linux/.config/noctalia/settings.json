@@ -59,7 +59,7 @@
                 {
                     "characterCount": 7,
                     "followFocusedScreen": false,
-                    "hideUnoccupied": true,
+                    "hideUnoccupied": false,
                     "id": "Workspace",
                     "labelMode": "index"
                 },
