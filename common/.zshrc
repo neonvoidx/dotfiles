@@ -329,7 +329,7 @@ eval $(thefuck --alias fk)
 
 # Zoxide
 export _ZO_EXCLUDE_DIRS="/Applications/**:**/node_modules"
-export _ZO_RESOLVE_SYMLINKS=1
+export _ZO_RESOLVE_SYMLINKS=0
 # FZF
 # Define fzf-file-widget just in case
 export FZF_CTRL_T_COMMAND=""
