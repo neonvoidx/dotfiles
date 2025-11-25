@@ -24,6 +24,7 @@ calibre
 chafa
 chaotic-keyring
 chaotic-mirrorlist
+chezmoi
 clapper-enhancers
 cliphist
 cmatrix

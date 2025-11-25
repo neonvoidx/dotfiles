@@ -1,0 +1,224 @@
+{
+  "layer": "top",
+  "output": [
+    "DP-1",
+    "DP-2",
+    "DP-3"
+  ],
+  "height": 30,
+  "margin": 8,
+  "spacing": 4,
+  "reload_style_on_change": true,
+  "fixed-center": true,
+  // MODULES
+  "modules-left": [
+    "custom/icon",
+    "hyprland/workspaces",
+    "hyprland/submap",
+    "mpris"
+  ],
+  "modules-center": [
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "group/system",
+    "group/actions",
+    "clock",
+    "tray"
+  ],
+  // GROUPS
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": [
+      "network",
+      "custom/separator",
+      "wireplumber",
+      "custom/separator",
+      "memory",
+      "cpu"
+    ]
+  },
+  "group/actions": {
+    "orientation": "horizontal",
+    "modules": [
+      "custom/notification",
+      "idle_inhibitor",
+      "backlight",
+      "battery"
+    ]
+  },
+  // MODULE CONFIGURATIONS
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{id} {windows}", // Only show workspace number
+    "format-window-separator": " ",
+    "workspace-taskbar": {
+      "enable": true,
+      "update-active-window": true,
+      "format": "{icon}",
+      "icon-size": 18
+    }
+  },
+  "hyprland/window": {
+    "format": "{class} - {title}",
+    "max-length": 60,
+    "rewrite": {
+      "firefox - (.*)": "  $1", // Firefox
+      "firefox-developer-edition - (.*)": "  $1", // Firefox Dev
+      "thunderbird - (.*)": "  $1", // Firefox Dev
+      "kitty - (.*)": "😺️ $1", // Kitty terminal
+      "Steam - (.*)": "  $1", // Steam
+      "discord - (.*)": "  $1", // Discord
+      "spotify - (.*)": "  $1" // Spotify
+    },
+    "separate-outputs": true
+  },
+  "hyprland/submap": {
+    "max-length": 16,
+    "format": "󰩨 Resize Mode"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": " ",
+      "deactivated": " "
+    }
+    // Send notification TODO
+    // "on-click": "$HOME/.config/waybar/scripts/toggle-idle.sh"
+  },
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": " Muted",
+    // "format-muted": " {format_source}",
+    // "format-source": "{source_volume}% ",
+    // "format-source-muted": " ",
+    "format-icons": [
+      " ",
+      " ",
+      " "
+    ],
+    "scroll-step": 0.2,
+    "max-volume": 100,
+    "on-click": "pavucontrol",
+    "on-click-right": "qpwgraph",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+  },
+  "mpris": {
+    "format": "{player_icon} {artist} - {title}",
+    "format-paused": "{status_icon} {artist} - {title}",
+    "max-length": 60,
+    "player-icons": {
+      "default": "󰎆 ",
+      "cmus": "",
+      "mpv": "🎵",
+      "vlc": "🎬",
+      "spotify": " "
+    },
+    "status-icons": {
+      "paused": "󰏦"
+    },
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "smooth-scrolling-threshold": 10,
+    "on-scroll-down": "playerctl previous"
+    // "ignored-players": ["cmus", "spotify"]
+  },
+  "cava": {
+    "framerate": 30,
+    "autosens": 1,
+    "sensitivity": 1000,
+    "bars": 12,
+    "lower_cutoff_freq": 10,
+    "higher_cutoff_freq": 200,
+    "hide_on_silence": false,
+    "method": "pulse",
+    "source": "auto",
+    "stereo": true,
+    "reverse": false,
+    "bar_delimiter": 0,
+    "monstercat": true,
+    "waves": true,
+    "noise_reduction": 0.77,
+    "input_delay": 2,
+    "format-icons": [
+      "▁",
+      "▂",
+      "▃",
+      "▄",
+      "▅",
+      "▆",
+      "▇",
+      "█"
+    ],
+    "actions": {
+      "on-click-right": "mode"
+    }
+  },
+  "network": {
+    "interface": "enp10s0",
+    "format": "{ifname}",
+    "format-wifi": "  {ifname} {bandwidthDownBytes}↓ {bandwidthUpBytes}↑",
+    "format-ethernet": "󰈀 {bandwidthDownBytes}↓ {bandwidthUpBytes}↑",
+    "format-disconnected": "󰤮 ", //An empty format will hide the module.
+    "tooltip-format": "{ifname} via {gwaddr} 󰊗 ",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
+    "tooltip-format-ethernet": "{ifname}  ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+    "on-click": "nm-connection-editor"
+  },
+  "battery": {
+    "states": {
+      "medium": 40,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ],
+    "format-charging": " {capacity}% {icon}",
+    "interval": 5
+  },
+  "clock": {
+    "format": "{:%d %b %y %H:%M:%S}",
+    "interval": 1,
+    "tooltip": true,
+    "tooltip-format": "{:%A, %B %d, %Y}"
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% 󰛨 "
+  },
+  "tray": {
+    "icon-size": 21,
+    "spacing": 10
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "{usage}%  ",
+    "max-length": 10
+  },
+  "memory": {
+    "interval": 10,
+    "format": "{percentage}%   ",
+    "max-length": 10
+  },
+  // CUSTOMS
+  "custom/icon": {
+    "format": "󰣇",
+    "on-click": "wlogout --protocol layer-shell -b 3 -T 400 -B 400 -L 400 -R 400"
+  },
+  "custom/notification": {
+    "format": "  "
+    // "on-click-right": "dunstctl set-paused toggle"
+  },
+  "custom/separator": {
+    "format": " ┆ "
+  }
+}

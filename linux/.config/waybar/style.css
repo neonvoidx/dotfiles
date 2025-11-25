@@ -1,0 +1,198 @@
+@define-color bg #212337;
+@define-color transparent-bg rgba(33,35,55,0.2);
+@define-color light-bg #323449;
+@define-color transparent-light-bg rgba(50,52,73,0.5);
+@define-color fg #ebfafa;
+@define-color comment #7081d0;
+@define-color cyan #04d1f9;
+@define-color green #37f499;
+@define-color pink #f265b5;
+@define-color purple #a48cf2;
+@define-color red #f16c75;
+@define-color yellow #f1fc79;
+@define-color orange #f7c67f;
+
+*{
+  font-family: "Roboto Mono", "JetBrainsMonoNerdFont", monospace;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Main bar */
+window#waybar {
+  background-color: transparent;
+  color: @purple;
+  border-radius: 5px;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+  border-width: 0px;
+}
+
+/* all modules defaults */
+.module {
+  background-color: @bg;
+  padding-left: 2px;
+  padding-right:2px;
+  color: @fg;
+}
+/* module left,center,right specific */
+.modules-left {
+}
+.modules-center {
+}
+.modules-right {
+}
+
+/* Workspaces */
+#workspaces {
+  border-radius: 5px;
+  border-color: @green;
+  border-style:solid;
+  border-width: 2px;
+}
+/* workspace button (texts mostly) */
+#workspaces button {
+  color: @fg;
+}
+#workspaces button:hover {
+  background: @transparent-light-bg;
+}
+#workspaces button.active {
+  background: transparent;
+  color: @green;
+}
+/* workspace window icons */
+#workspaces .taskbar-window.active {
+  border-bottom: 2px solid @cyan;
+}
+
+#custom-icon {
+  font-size: 25px;
+  color: @cyan;
+  border-style: solid;
+  border-width: 2px;
+  border-color: @green;
+  margin-right: 5px;
+  padding-right: 20px;
+  padding-left: 10px;
+  border-radius: 8px;
+  background-color: @bg;
+}
+
+#mpris {
+  border-style: solid;
+  border-width: 2px;
+  border-color: @green;
+  border-radius: 8px;
+  margin-left: 3em;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+#mpris.spotify {
+  color: @cyan;
+}
+#mpris.paused {
+  color: @red;
+}
+
+#window {
+  border-style: solid;
+  border-width: 2px;
+  border-color: @green;
+  border-radius: 8px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+#tray {
+  background-color: @bg;
+  border-style: solid;
+  border-width: 2px;
+  border-color: @green;
+  border-radius: 8px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+#system {
+  background-color: @bg;
+  border-style: solid;
+  border-width: 2px;
+  border-color: @green;
+  border-radius: 8px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+#actions {
+  background-color: @bg;
+  border-style: solid;
+  border-width: 2px;
+  border-color: @green;
+  border-radius: 8px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+#clock {
+  background-color: @bg;
+  border-style: solid;
+  border-width: 2px;
+  border-color: @green;
+  border-radius: 8px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+#submap {
+  background-color: @bg;
+  border-style: solid;
+  border-width: 2px;
+  border-color: @red;
+  border-radius: 8px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+#cava {
+  border-radius: 8px;
+  background-color: transparent;
+  color: @pink;
+}
+
+#custom-separator {
+  color: @transparent-light-bg;
+}
+
+#network {
+  color: @purple;
+}
+
+#wireplumber {
+  color: @pink;
+}
+
+#memory {
+  color: @orange;
+}
+
+#cpu {
+  color: @yellow;
+}
+
+#idle_inhibitor.activated {
+  color: @yellow;
+}
+#idle_inhibitor.deactivated {
+  color: @comment;
+}
+
+#custom-notification {
+  color: @comment;
+}
+
+#window {
+  color: @purple;
+}
