@@ -1,4 +1,0 @@
-[[entries]]
-default = true
-name = "DuckDuckGo"
-url = "https://duckduckgo.com/?q=%TERM%"

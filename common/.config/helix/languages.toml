@@ -1,4 +1,0 @@
-[[language]]
-name = "tsx"
-formatter = { command = 'deno', args = ["fmt", "-", "--ext", "tsx" ] }
-auto-format = true
