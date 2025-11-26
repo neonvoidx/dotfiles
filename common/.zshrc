@@ -208,7 +208,7 @@ if command -v bat &> /dev/null; then
   alias cat="bat"
 fi
 if command -v pacman &> /dev/null; then
-  alias pacq="~/pacrm.sh"
+  alias pacq="~/scripts/fzfpac.sh"
 fi
 # if htop, replace btop
 if command -v btop &> /dev/null; then
