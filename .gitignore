@@ -4,3 +4,4 @@ common/.local/share/fonts/.uuid
 .aider.tags*
 .aider.chat*
 .aider.input*
+linux/.config/Thunar/accels.scm
