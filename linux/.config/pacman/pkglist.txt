@@ -38,7 +38,7 @@ direnv
 dkms
 docker-rootless-extras
 dosfstools
-easyeffects
+easyeffects-git
 efibootmgr
 egl-wayland
 evtest
@@ -203,6 +203,7 @@ qt6-scxml
 qt6-serialbus
 qt6-serialport
 qt6ct
+quickshell
 rebuild-detector
 reflector
 rofi
@@ -305,6 +306,7 @@ gconf-debug
 grim-hyprland-git
 gstreamer-svt-av1
 gstreamer0.10-base-plugins
+hyprland-meta-git
 layer-shell-qt5
 libdeep_filter_ladspa-git
 lua-language-server-git
@@ -317,7 +319,6 @@ noisetorch-debug
 paru-debug
 proton-pass-bin
 python-proton-client
-quickshell-git
 r2modman-appimage
 rate-mirrors-bin
 rose-pine-cursor
