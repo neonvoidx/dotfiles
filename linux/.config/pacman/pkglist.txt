@@ -51,6 +51,7 @@ chezmoi
 chwd
 cliphist
 cmatrix
+cpio
 cpupower
 cryptsetup
 cups
@@ -66,7 +67,7 @@ dnsmasq
 dosfstools
 duf
 e2fsprogs
-easyeffects-git
+easyeffects
 efibootmgr
 efitools
 ethtool
