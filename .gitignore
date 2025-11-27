@@ -7,3 +7,4 @@ common/.local/share/fonts/.uuid
 linux/.config/Thunar/accels.scm
 linux/.config/easyeffects/db/easyeffectsrc
 linux/.config/scopebuddy/scopebuddy.log
+common/.config/spicetify/config-xpui.ini

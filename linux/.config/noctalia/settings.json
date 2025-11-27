@@ -150,26 +150,6 @@
         "enableDdcSupport": false,
         "enforceMinimum": true
     },
-    "calendar": {
-        "cards": [
-            {
-                "enabled": true,
-                "id": "banner-card"
-            },
-            {
-                "enabled": true,
-                "id": "calendar-card"
-            },
-            {
-                "enabled": true,
-                "id": "timer-card"
-            },
-            {
-                "enabled": true,
-                "id": "weather-card"
-            }
-        ]
-    },
     "changelog": {
         "lastSeenVersion": ""
     },
@@ -312,8 +292,6 @@
         "autoHideMs": 2000,
         "backgroundOpacity": 1,
         "enabled": true,
-        "enabledTypes": [
-        ],
         "location": "top",
         "monitors": [
         ],
@@ -368,7 +346,8 @@
         ],
         "showHeader": true
     },
-    "settingsVersion": 25,
+    "settingsVersion": 23,
+    "setupCompleted": true,
     "systemMonitor": {
         "cpuCriticalThreshold": 90,
         "cpuWarningThreshold": 80,
@@ -414,7 +393,7 @@
     },
     "wallpaper": {
         "defaultWallpaper": "/etc/xdg/quickshell/noctalia-shell/Assets/Wallpaper/noctalia.png",
-        "directory": "/home/neonvoid/pics/ultrawide",
+        "directory": "/home/neonvoid/Pictures/Wallpapers",
         "enableMultiMonitorDirectories": true,
         "enabled": true,
         "fillColor": "#212337",

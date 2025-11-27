@@ -47,6 +47,7 @@ cachyos-wallpapers
 cachyos-zsh-config
 calibre
 cantarell-fonts
+catppuccin-cursors-mocha
 chafa
 chaotic-keyring
 chaotic-mirrorlist
