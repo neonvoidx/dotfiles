@@ -25,7 +25,10 @@ brightnessctl
 btop
 btrfs-assistant
 btrfs-progs
+cachy-update
 cachyos-fish-config
+cachyos-gaming-applications
+cachyos-gaming-meta
 cachyos-grub-theme
 cachyos-hello
 cachyos-hooks
@@ -47,7 +50,6 @@ cantarell-fonts
 chafa
 chaotic-keyring
 chaotic-mirrorlist
-chezmoi
 chwd
 cliphist
 cmatrix
@@ -90,9 +92,11 @@ git
 git-delta
 github-cli
 glances
+gnome-keyring
 go
 godot
 gpu-screen-recorder-git
+grim
 grub
 grub-btrfs-support
 grub-hook
@@ -178,6 +182,7 @@ nss-mdns
 ntfs-3g
 ntp
 nwg-displays
+nwg-look
 obs-studio
 obsidian
 octopi
@@ -224,6 +229,7 @@ rtkit
 rust-analyzer
 s-nail
 sbctl
+seahorse
 sg3_utils
 shellcheck
 slurp
@@ -237,7 +243,6 @@ steam
 steamcmd
 steamtinkerlaunch
 stow
-streamdeck-ui-git
 sudo
 swappy
 sysfsutils
@@ -296,9 +301,9 @@ wireless-regdb
 wireless_tools
 wireplumber
 wl-clip-persist
-wowup-cf-bin
 wpa_supplicant
 xarchiver
+xdg-desktop-portal-gnome
 xdg-user-dirs
 xf86-input-libinput
 xf86-video-amdgpu
@@ -316,6 +321,7 @@ yarn
 yazi
 yubico-authenticator-bin
 zoxide
+curseforge
 dmenu-bluetooth
 exercism
 gconf
@@ -332,6 +338,7 @@ rose-pine-cursor
 rose-pine-hyprcursor
 scopebuddy-git
 sgdboop
+streamcontroller-git
 thorium-browser-bin
 ttf-font-awesome-5
 vencord-hook

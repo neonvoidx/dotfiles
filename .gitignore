@@ -5,3 +5,5 @@ common/.local/share/fonts/.uuid
 .aider.chat*
 .aider.input*
 linux/.config/Thunar/accels.scm
+linux/.config/easyeffects/db/easyeffectsrc
+linux/.config/scopebuddy/scopebuddy.log
