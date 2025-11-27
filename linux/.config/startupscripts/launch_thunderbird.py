@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import imaplib  # Added for a more robust IMAP server check
 import socket
 import subprocess
