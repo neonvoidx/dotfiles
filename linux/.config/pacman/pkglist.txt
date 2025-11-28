@@ -331,6 +331,7 @@ github-copilot-cli
 gstreamer-svt-av1
 gstreamer0.10-base-plugins
 hyprland-meta-git
+ly-git
 mkinitcpio-colors-git
 proton-pass-bin
 r2modman-appimage
