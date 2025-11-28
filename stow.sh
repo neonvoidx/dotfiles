@@ -22,6 +22,16 @@ if [ "$(uname -s)" = "Linux" ]; then
   echo "Detected Linux. Running stow on 'linux' folder..."
   stow -v linux
   echo "✓ Successfully ran stow on 'linux' folder"
+  echo
+  
+  echo "Running stow on 'linux-sys' folder (requires root)..."
+  if [ "$EUID" -ne 0 ]; then
+    echo "Note: Running with sudo for system-level configuration..."
+    sudo stow -v -t / linux-sys
+  else
+    stow -v -t / linux-sys
+  fi
+  echo "✓ Successfully ran stow on 'linux-sys' folder"
 fi
 echo
 

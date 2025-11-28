@@ -137,6 +137,7 @@ libgsf
 libopenraw
 libu2f-server
 libva-utils
+libvirt
 libwnck3
 linux-cachyos
 linux-cachyos-headers
@@ -290,6 +291,7 @@ uv
 ventoy-bin
 vesktop-git
 vim
+virtualbox
 vkbasalt
 vlc-plugins-all
 vulkan-radeon

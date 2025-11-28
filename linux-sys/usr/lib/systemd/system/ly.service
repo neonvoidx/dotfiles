@@ -1,0 +1,17 @@
+[Unit]
+Description=TUI display manager
+After=systemd-user-sessions.service plymouth-quit-wait.service
+After=getty@tty1.service
+Conflicts=getty@tty1.service
+
+[Service]
+Type=idle
+ExecStartPre=/usr/sbin/fbset -xres 3440 -yres 1440
+ExecStart=/usr/bin/ly-dm
+StandardInput=tty
+TTYPath=/dev/tty1
+TTYReset=yes
+TTYVHangup=yes
+
+[Install]
+Alias=display-manager.service
