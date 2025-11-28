@@ -1,8 +1,5 @@
 { config, pkgs, lib, ... }:
 
-let
-  dotfilesPath = ../../../..;
-in
 {
   # Hyprlock config is included in the hypr directory symlink from hyprland.nix
   # This module just ensures hyprlock is available

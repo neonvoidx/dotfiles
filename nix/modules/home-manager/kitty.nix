@@ -2,6 +2,8 @@
 
 let
   # Path to dotfiles repository (adjust if needed)
+  # Path to the dotfiles repository root (resolved at flake evaluation time)
+  # This relative path is standard for Nix flakes
   dotfilesPath = ../../../..;
 in
 {
