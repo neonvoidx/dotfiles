@@ -19,7 +19,6 @@
 
     shellAliases = {
       # Replace commands with better alternatives
-      yay = "paru";
       ls = "lsd";
       l = "ls -Al";
       lt = "ls --tree --ignore-glob=node_modules";
@@ -108,19 +107,24 @@
         kitten @ send-text --match-tab state:focused $1 && kitten @ send-key --match-tab state:focused Enter
       }
 
-      # Yubikey handler
+      # Yubikey handler (adjust path for NixOS if using opensc)
       reload-ssh() {
-        ssh-add -e /usr/local/lib/opensc-pkcs11.so >> /dev/null
-        if [ $? -gt 0 ]; then
-          echo "Failed to remove previous card"
+        local opensc_lib="$(find /nix/store -name 'opensc-pkcs11.so' 2>/dev/null | head -n1)"
+        if [ -n "$opensc_lib" ]; then
+          ssh-add -e "$opensc_lib" >> /dev/null
+          if [ $? -gt 0 ]; then
+            echo "Failed to remove previous card"
+          fi
+          ssh-add -s "$opensc_lib"
+        else
+          echo "opensc-pkcs11.so not found in Nix store"
         fi
-        ssh-add -s /usr/local/lib/opensc-pkcs11.so
       }
 
       # ZSH plugin load times
       timezsh() {
         shell=''${1-$SHELL}
-        for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+        for i in $(seq 1 10); do command time $shell -i -c exit; done
       }
 
       # FFmpeg helpers

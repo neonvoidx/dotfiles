@@ -118,7 +118,6 @@
     iwd
     wireguard-tools
     openssh
-    wget
     curl
 
     # Bluetooth
@@ -154,9 +153,13 @@
     hyprland
     hyprlock
     hypridle
+    hyprpicker
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
     xwayland
+
+    # Launchers
+    rofi-wayland
 
     # Theming
     gtk3
@@ -165,17 +168,6 @@
     adw-gtk3
     papirus-icon-theme
     nwg-look
-
-    # Fonts
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-    font-awesome
-    jetbrains-mono
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Meslo" ]; })
-    roboto
-    inter
-    liberation_ttf
 
     # Applications
     firefox-devedition

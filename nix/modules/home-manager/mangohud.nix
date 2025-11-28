@@ -46,7 +46,7 @@
       toggle_logging = "Shift_L+F2";
       
       # Logging
-      output_folder = "/home/neonvoid";
+      output_folder = "${config.home.homeDirectory}";
       log_duration = 30;
       autostart_log = 0;
       log_interval = 100;
