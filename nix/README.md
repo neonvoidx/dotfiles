@@ -16,23 +16,23 @@ nix/
     ├── nixos/
     │   └── packages.nix         # System packages from pkglist.txt
     └── home-manager/
-        ├── kitty.nix            # Kitty terminal configuration
-        ├── zsh.nix              # Zsh shell configuration
-        ├── bash.nix             # Bash shell configuration
-        ├── git.nix              # Git configuration
-        ├── btop.nix             # Btop system monitor
-        ├── bat.nix              # Bat (cat replacement) configuration
-        ├── lsd.nix              # Lsd (ls replacement) configuration
-        ├── yazi.nix             # Yazi file manager configuration
-        ├── lazygit.nix          # Lazygit configuration
-        ├── mpv.nix              # Mpv media player configuration
-        ├── hyprland.nix         # Hyprland window manager
-        ├── hypridle.nix         # Hypridle screen idle daemon
-        ├── hyprlock.nix         # Hyprlock screen locker
-        ├── gtk.nix              # GTK theming
-        ├── fastfetch.nix        # Fastfetch system info
-        ├── mangohud.nix         # MangoHud gaming overlay
-        └── walker.nix           # Walker application launcher
+        ├── kitty.nix            # Symlinks kitty config from dotfiles
+        ├── zsh.nix              # Sources zshrc from dotfiles
+        ├── bash.nix             # Sources bashrc from dotfiles
+        ├── git.nix              # Sources gitconfig from dotfiles
+        ├── btop.nix             # Symlinks btop config from dotfiles
+        ├── bat.nix              # Symlinks bat config from dotfiles
+        ├── lsd.nix              # Symlinks lsd config from dotfiles
+        ├── yazi.nix             # Symlinks yazi config from dotfiles
+        ├── lazygit.nix          # Symlinks lazygit config from dotfiles
+        ├── mpv.nix              # Symlinks mpv config from dotfiles
+        ├── hyprland.nix         # Symlinks hypr config from dotfiles
+        ├── hypridle.nix         # Uses hypridle config from hypr directory
+        ├── hyprlock.nix         # Uses hyprlock config from hypr directory
+        ├── gtk.nix              # Symlinks GTK configs from dotfiles
+        ├── fastfetch.nix        # Symlinks fastfetch config from dotfiles
+        ├── mangohud.nix         # Symlinks MangoHud config from dotfiles
+        └── walker.nix           # Symlinks walker config from dotfiles
 ```
 
 ## Usage
@@ -72,8 +72,17 @@ sudo nixos-rebuild switch --flake .#default
 
 ## Key Features
 
+### Dotfiles Sourcing
+
+Home Manager modules **symlink/source the original dotfiles** from the `common/` and `linux/` directories instead of generating configurations inline. This means:
+
+- Your existing dotfiles remain the source of truth
+- Changes to dotfiles are immediately reflected
+- No duplication of configuration
+- Easy to maintain and update
+
 ### Eldritch Theme
-All configurations use the [Eldritch](https://github.com/eldritch-theme) color scheme:
+All original dotfiles use the [Eldritch](https://github.com/eldritch-theme) color scheme:
 - Background: `#212337`
 - Foreground: `#ebfafa`
 - Green: `#37f499`
@@ -87,25 +96,29 @@ All configurations use the [Eldritch](https://github.com/eldritch-theme) color s
 
 ### Home Manager Modules
 
-Home Manager is configured to **only manage application configurations**, not install applications. All applications are installed via the NixOS system configuration in `modules/nixos/packages.nix`.
+Home Manager is configured to:
+1. **Symlink configuration directories** from `common/.config/` and `linux/.config/`
+2. **Source shell configs** (`.zshrc`, `.bashrc`, `.gitconfig`) from `common/`
+3. **Only manage configurations**, not install applications
+
+All applications are installed via the NixOS system configuration in `modules/nixos/packages.nix`.
 
 ### Hyprland
 
-The configuration includes a full Hyprland setup with:
-- Custom keybindings (SUPER as mod key)
-- Eldritch themed borders and colors
-- Animation configurations
-- Multi-monitor support
-- Hypridle for screen timeout
-- Hyprlock for screen locking
+The configuration symlinks the entire `linux/.config/hypr` directory, which includes:
+- `hyprland.conf` - Main Hyprland configuration
+- `hypridle.conf` - Idle management
+- `hyprlock.conf` - Lock screen configuration
+- `scripts/` - Helper scripts
 
 ### Shell Configuration
 
-Both Zsh and Bash are configured with:
-- Aliases for common commands
-- Integration with fzf, zoxide, thefuck
-- Custom functions for yazi, ffmpeg helpers
-- Pure prompt for Zsh
+Shell configurations are sourced from your existing dotfiles:
+- `.zshrc` from `common/.zshrc`
+- `.bashrc` from `common/.bashrc`
+- `.bash_profile` from `common/.bash_profile`
+
+ZSH plugins (pure, zsh-vi-mode, fzf-tab) are still managed by Home Manager.
 
 ## Customization
 
@@ -119,6 +132,7 @@ Both Zsh and Bash are configured with:
 
 1. Create a new `.nix` file in `modules/home-manager/`
 2. Import it in `hosts/default/home.nix`
+3. Use `xdg.configFile` or `home.file` to symlink from dotfiles
 
 ### Package Management
 
@@ -126,7 +140,7 @@ System packages are managed in `modules/nixos/packages.nix`. Add or remove packa
 
 ## Notes
 
-- All configurations are generated from scratch based on the dotfiles in `common/` and `linux/` directories
-- No external configuration files are sourced - everything is inline in the Nix files
+- Home Manager symlinks to the original dotfiles in `common/` and `linux/` directories
+- The dotfiles are the single source of truth for all configurations
 - The hardware configuration is a placeholder - run `nixos-generate-config` on your target system
 - Some Arch-specific packages may need NixOS alternatives
