@@ -1,17 +1,8 @@
 { config, pkgs, lib, ... }:
 
-let
-  # Path to the dotfiles repository root (resolved at flake evaluation time)
-  # This relative path is standard for Nix flakes
-  dotfilesPath = ../../../..;
-in
 {
-  # Source zshrc from dotfiles
-  home.file.".zshrc" = {
-    source = "${dotfilesPath}/common/.zshrc";
-  };
-
   # Enable zsh plugins via home-manager (these need to be installed)
+  # Shell config is sourced from dotfiles via dotfiles.nix
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;

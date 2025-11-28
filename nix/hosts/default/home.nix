@@ -2,6 +2,10 @@
 
 {
   imports = [
+    # Consolidated dotfiles symlinking
+    ../../modules/home-manager/dotfiles.nix
+    
+    # Program-specific configurations
     ../../modules/home-manager/kitty.nix
     ../../modules/home-manager/zsh.nix
     ../../modules/home-manager/bash.nix

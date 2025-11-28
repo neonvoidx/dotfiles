@@ -1,27 +1,7 @@
 { config, pkgs, lib, ... }:
 
-let
-  # Path to the dotfiles repository root (resolved at flake evaluation time)
-  # This relative path is standard for Nix flakes
-  dotfilesPath = ../../../..;
-in
 {
-  # Symlink GTK config directories from dotfiles
-  xdg.configFile = {
-    "gtk-2.0" = {
-      source = "${dotfilesPath}/linux/.config/gtk-2.0";
-      recursive = true;
-    };
-    "gtk-3.0" = {
-      source = "${dotfilesPath}/linux/.config/gtk-3.0";
-      recursive = true;
-    };
-    "gtk-4.0" = {
-      source = "${dotfilesPath}/linux/.config/gtk-4.0";
-      recursive = true;
-    };
-  };
-
+  # GTK config is sourced from dotfiles via dotfiles.nix
   # Enable GTK theming
   gtk.enable = true;
 

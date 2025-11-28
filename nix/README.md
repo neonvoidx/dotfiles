@@ -16,23 +16,14 @@ nix/
     ├── nixos/
     │   └── packages.nix         # System packages from pkglist.txt
     └── home-manager/
-        ├── kitty.nix            # Symlinks kitty config from dotfiles
-        ├── zsh.nix              # Sources zshrc from dotfiles
-        ├── bash.nix             # Sources bashrc from dotfiles
-        ├── git.nix              # Sources gitconfig from dotfiles
-        ├── btop.nix             # Symlinks btop config from dotfiles
-        ├── bat.nix              # Symlinks bat config from dotfiles
-        ├── lsd.nix              # Symlinks lsd config from dotfiles
-        ├── yazi.nix             # Symlinks yazi config from dotfiles
-        ├── lazygit.nix          # Symlinks lazygit config from dotfiles
-        ├── mpv.nix              # Symlinks mpv config from dotfiles
-        ├── hyprland.nix         # Symlinks hypr config from dotfiles
-        ├── hypridle.nix         # Uses hypridle config from hypr directory
-        ├── hyprlock.nix         # Uses hyprlock config from hypr directory
-        ├── gtk.nix              # Symlinks GTK configs from dotfiles
-        ├── fastfetch.nix        # Symlinks fastfetch config from dotfiles
-        ├── mangohud.nix         # Symlinks MangoHud config from dotfiles
-        └── walker.nix           # Symlinks walker config from dotfiles
+        ├── dotfiles.nix         # All dotfile symlinks in one place
+        ├── zsh.nix              # ZSH plugins and shell integrations
+        ├── git.nix              # Git delta integration
+        ├── hyprland.nix         # Hyprland wayland compositor
+        ├── hypridle.nix         # Hypridle service
+        ├── hyprlock.nix         # Hyprlock service
+        ├── gtk.nix              # GTK/Qt theming
+        └── *.nix                # Other program placeholders
 ```
 
 ## Usage
@@ -72,14 +63,30 @@ sudo nixos-rebuild switch --flake .#default
 
 ## Key Features
 
-### Dotfiles Sourcing
+### Consolidated Dotfiles Symlinking
 
-Home Manager modules **symlink/source the original dotfiles** from the `common/` and `linux/` directories instead of generating configurations inline. This means:
+All dotfile symlinks are defined in a single file: `modules/home-manager/dotfiles.nix`. This includes:
 
+**Home directory files:**
+- `.zshrc`, `.bashrc`, `.bash_profile` → from `common/`
+- `.gitconfig`, `.gitconfig.local` → from `common/` and `linux/`
+
+**XDG config directories:**
+- `kitty`, `btop`, `bat`, `lsd`, `yazi`, `lazygit`, `mpv` → from `common/.config/`
+- `hypr`, `gtk-*`, `fastfetch`, `MangoHud`, `walker` → from `linux/.config/`
+
+This approach:
+- Keeps all symlink definitions in one place for easy maintenance
 - Your existing dotfiles remain the source of truth
 - Changes to dotfiles are immediately reflected
 - No duplication of configuration
-- Easy to maintain and update
+
+### Program Modules
+
+Individual program modules (`zsh.nix`, `git.nix`, `hyprland.nix`, etc.) focus on:
+- Enabling programs/services via Home Manager
+- Installing plugins (e.g., ZSH plugins)
+- Configuring integrations (e.g., fzf, zoxide)
 
 ### Eldritch Theme
 All original dotfiles use the [Eldritch](https://github.com/eldritch-theme) color scheme:
@@ -94,33 +101,13 @@ All original dotfiles use the [Eldritch](https://github.com/eldritch-theme) colo
 - Orange: `#f7c67f`
 - Comment: `#7081d0`
 
-### Home Manager Modules
-
-Home Manager is configured to:
-1. **Symlink configuration directories** from `common/.config/` and `linux/.config/`
-2. **Source shell configs** (`.zshrc`, `.bashrc`, `.gitconfig`) from `common/`
-3. **Only manage configurations**, not install applications
-
-All applications are installed via the NixOS system configuration in `modules/nixos/packages.nix`.
-
-### Hyprland
-
-The configuration symlinks the entire `linux/.config/hypr` directory, which includes:
-- `hyprland.conf` - Main Hyprland configuration
-- `hypridle.conf` - Idle management
-- `hyprlock.conf` - Lock screen configuration
-- `scripts/` - Helper scripts
-
-### Shell Configuration
-
-Shell configurations are sourced from your existing dotfiles:
-- `.zshrc` from `common/.zshrc`
-- `.bashrc` from `common/.bashrc`
-- `.bash_profile` from `common/.bash_profile`
-
-ZSH plugins (pure, zsh-vi-mode, fzf-tab) are still managed by Home Manager.
-
 ## Customization
+
+### Adding New Dotfile Symlinks
+
+Edit `modules/home-manager/dotfiles.nix` and add entries to:
+- `home.file` for files in home directory
+- `xdg.configFile` for files in `~/.config/`
 
 ### Adding New Hosts
 
@@ -128,19 +115,13 @@ ZSH plugins (pure, zsh-vi-mode, fzf-tab) are still managed by Home Manager.
 2. Copy and modify `configuration.nix`, `hardware-configuration.nix`, and `home.nix`
 3. Add the new host to `flake.nix`
 
-### Adding Home Manager Modules
-
-1. Create a new `.nix` file in `modules/home-manager/`
-2. Import it in `hosts/default/home.nix`
-3. Use `xdg.configFile` or `home.file` to symlink from dotfiles
-
 ### Package Management
 
 System packages are managed in `modules/nixos/packages.nix`. Add or remove packages there.
 
 ## Notes
 
-- Home Manager symlinks to the original dotfiles in `common/` and `linux/` directories
+- All symlinks are consolidated in `modules/home-manager/dotfiles.nix`
 - The dotfiles are the single source of truth for all configurations
 - The hardware configuration is a placeholder - run `nixos-generate-config` on your target system
 - Some Arch-specific packages may need NixOS alternatives
