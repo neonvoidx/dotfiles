@@ -76,7 +76,7 @@
           range = 4;
           render_power = 3;
           ignore_window = true;
-          color = "rgb(212337)";
+          color = "rgb(33, 35, 55)";
         };
       };
 

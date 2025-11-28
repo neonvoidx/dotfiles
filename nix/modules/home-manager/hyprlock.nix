@@ -28,7 +28,7 @@
           color = "rgba(50, 52, 73, 0.8)";
           rounding = 15;
           border_size = 1;
-          border_color = "rgb(37f499) rgb(04d1f9) 45deg";
+          border_color = "rgb(55, 244, 153) rgb(4, 209, 249) 45deg";
           halign = "center";
           valign = "top";
           zindex = 0;
