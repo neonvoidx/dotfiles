@@ -16,14 +16,23 @@ nix/
     ├── nixos/
     │   └── packages.nix         # System packages from pkglist.txt
     └── home-manager/
-        ├── dotfiles.nix         # All dotfile symlinks in one place
-        ├── zsh.nix              # ZSH plugins and shell integrations
-        ├── git.nix              # Git delta integration
-        ├── hyprland.nix         # Hyprland wayland compositor
-        ├── hypridle.nix         # Hypridle service
-        ├── hyprlock.nix         # Hyprlock service
+        ├── kitty.nix            # Kitty terminal with Eldritch theme
+        ├── zsh.nix              # ZSH with plugins, aliases, functions
+        ├── bash.nix             # Bash configuration
+        ├── git.nix              # Git with delta, aliases
+        ├── btop.nix             # System monitor with Eldritch theme
+        ├── bat.nix              # Cat replacement with Eldritch theme
+        ├── lsd.nix              # Ls replacement with custom colors
+        ├── yazi.nix             # File manager with Eldritch theme
+        ├── lazygit.nix          # Git UI with commitizen integration
+        ├── mpv.nix              # Media player with Wayland/Vulkan
+        ├── hyprland.nix         # Hyprland window manager
+        ├── hypridle.nix         # Idle daemon configuration
+        ├── hyprlock.nix         # Lock screen with Eldritch theme
         ├── gtk.nix              # GTK/Qt theming
-        └── *.nix                # Other program placeholders
+        ├── fastfetch.nix        # System info display
+        ├── mangohud.nix         # Gaming overlay
+        └── walker.nix           # Application launcher
 ```
 
 ## Usage
@@ -63,33 +72,30 @@ sudo nixos-rebuild switch --flake .#default
 
 ## Key Features
 
-### Consolidated Dotfiles Symlinking
+### Native Nix Configuration
 
-All dotfile symlinks are defined in a single file: `modules/home-manager/dotfiles.nix`. This includes:
+All modules use **native Home Manager program options** instead of multiline strings or symlinks. This provides:
 
-**Home directory files:**
-- `.zshrc`, `.bashrc`, `.bash_profile` → from `common/`
-- `.gitconfig`, `.gitconfig.local` → from `common/` and `linux/`
+- Type-checked configuration values
+- Better error messages
+- IDE support and autocompletion
+- Proper Nix module composition
 
-**XDG config directories:**
-- `kitty`, `btop`, `bat`, `lsd`, `yazi`, `lazygit`, `mpv` → from `common/.config/`
-- `hypr`, `gtk-*`, `fastfetch`, `MangoHud`, `walker` → from `linux/.config/`
-
-This approach:
-- Keeps all symlink definitions in one place for easy maintenance
-- Your existing dotfiles remain the source of truth
-- Changes to dotfiles are immediately reflected
-- No duplication of configuration
-
-### Program Modules
-
-Individual program modules (`zsh.nix`, `git.nix`, `hyprland.nix`, etc.) focus on:
-- Enabling programs/services via Home Manager
-- Installing plugins (e.g., ZSH plugins)
-- Configuring integrations (e.g., fzf, zoxide)
+Example from `kitty.nix`:
+```nix
+programs.kitty = {
+  enable = true;
+  settings = {
+    foreground = "#ebfafa";
+    background = "#212337";
+    cursor = "#37f499";
+  };
+};
+```
 
 ### Eldritch Theme
-All original dotfiles use the [Eldritch](https://github.com/eldritch-theme) color scheme:
+
+All configurations use the [Eldritch](https://github.com/eldritch-theme) color scheme:
 - Background: `#212337`
 - Foreground: `#ebfafa`
 - Green: `#37f499`
@@ -101,13 +107,32 @@ All original dotfiles use the [Eldritch](https://github.com/eldritch-theme) colo
 - Orange: `#f7c67f`
 - Comment: `#7081d0`
 
+### Home Manager Modules
+
+Each application has its own module with:
+- Program-specific settings using Home Manager's program options
+- Theme colors configured inline
+- Shell integrations enabled where applicable
+
+### Hyprland
+
+Full Hyprland configuration including:
+- Window manager settings (gaps, borders, animations)
+- Keybindings (SUPER as mod key)
+- Startup applications
+- Hypridle for screen timeout
+- Hyprlock for screen locking
+
+### Shell Configuration
+
+ZSH configuration includes:
+- Pure prompt with Eldritch colors
+- fzf-tab for completions
+- zsh-vi-mode for vim-style editing
+- Useful aliases and functions
+- Integration with zoxide, fzf, thefuck
+
 ## Customization
-
-### Adding New Dotfile Symlinks
-
-Edit `modules/home-manager/dotfiles.nix` and add entries to:
-- `home.file` for files in home directory
-- `xdg.configFile` for files in `~/.config/`
 
 ### Adding New Hosts
 
@@ -115,13 +140,18 @@ Edit `modules/home-manager/dotfiles.nix` and add entries to:
 2. Copy and modify `configuration.nix`, `hardware-configuration.nix`, and `home.nix`
 3. Add the new host to `flake.nix`
 
+### Adding Home Manager Modules
+
+1. Create a new `.nix` file in `modules/home-manager/`
+2. Import it in `hosts/default/home.nix`
+3. Use `programs.<name>` options where available
+
 ### Package Management
 
 System packages are managed in `modules/nixos/packages.nix`. Add or remove packages there.
 
 ## Notes
 
-- All symlinks are consolidated in `modules/home-manager/dotfiles.nix`
-- The dotfiles are the single source of truth for all configurations
+- All configurations use native Nix settings instead of multiline strings
 - The hardware configuration is a placeholder - run `nixos-generate-config` on your target system
 - Some Arch-specific packages may need NixOS alternatives

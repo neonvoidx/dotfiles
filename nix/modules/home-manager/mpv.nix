@@ -1,6 +1,13 @@
 { config, pkgs, lib, ... }:
 
 {
-  # Mpv config is sourced from dotfiles via dotfiles.nix
-  # This module is kept for potential future program-specific settings
+  programs.mpv = {
+    enable = true;
+    config = {
+      gpu-context = "waylandvk";
+      vo = "gpu-next";
+      gpu-api = "vulkan";
+      target-colorspace-hint = true;
+    };
+  };
 }

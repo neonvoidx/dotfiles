@@ -1,6 +1,38 @@
 { config, pkgs, lib, ... }:
 
 {
-  # MangoHud config is sourced from dotfiles via dotfiles.nix
-  # This module is kept for potential future program-specific settings
+  programs.mangohud = {
+    enable = true;
+    settings = {
+      legacy_layout = false;
+      background_alpha = 0.2;
+      round_corners = 10;
+      background_color = "000000";
+      font_size = 22;
+      text_color = "F0F0F0";
+      position = "top-left";
+      toggle_hud = "Shift_R+F12";
+      hud_compact = true;
+      pci_dev = "0:03:00.0";
+      table_columns = 2;
+      gpu_text = "GPU";
+      cpu_text = "CPU";
+      fps_text = "FPS";
+      fps = true;
+      fps_metrics = "avg,0.01";
+      fps_limit_method = "late";
+      toggle_fps_limit = "Shift_L+F1";
+      fps_limit = 0;
+      hdr = true;
+      fps_color_change = true;
+      fps_color = "B22222,FDFD09,39F900";
+      fps_value = "30,60";
+      output_folder = "~";
+      log_duration = 30;
+      autostart_log = 0;
+      log_interval = 100;
+      blacklist = "zenity,protonplus,lsfg-vk-ui,bazzar,gnome-calculator,pamac-manager,lact,ghb,bitwig-studio,ptyxis,yumex";
+      toggle_logging = "Shift_L+F2";
+    };
+  };
 }

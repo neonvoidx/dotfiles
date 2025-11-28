@@ -1,6 +1,121 @@
 { config, pkgs, lib, ... }:
 
 {
-  # Btop config is sourced from dotfiles via dotfiles.nix
-  # This module is kept for potential future program-specific settings
+  programs.btop = {
+    enable = true;
+    
+    settings = {
+      color_theme = "eldritch";
+      theme_background = false;
+      truecolor = true;
+      force_tty = false;
+      presets = "cpu:1:default,proc:0:default cpu:0:default,mem:0:default,net:0:default cpu:0:block,net:0:tty";
+      vim_keys = true;
+      rounded_corners = true;
+      graph_symbol = "braille";
+      graph_symbol_cpu = "default";
+      graph_symbol_gpu = "default";
+      graph_symbol_mem = "default";
+      graph_symbol_net = "default";
+      graph_symbol_proc = "default";
+      shown_boxes = "cpu mem proc";
+      update_ms = 1500;
+      proc_sorting = "threads";
+      proc_reversed = false;
+      proc_tree = false;
+      proc_colors = true;
+      proc_gradient = true;
+      proc_per_core = false;
+      proc_mem_bytes = true;
+      proc_cpu_graphs = true;
+      proc_info_smaps = false;
+      proc_left = false;
+      proc_filter_kernel = false;
+      proc_aggregate = false;
+      cpu_graph_upper = "total";
+      cpu_graph_lower = "total";
+      show_gpu_info = "Auto";
+      cpu_invert_lower = true;
+      cpu_single_graph = false;
+      cpu_bottom = true;
+      show_uptime = true;
+      show_cpu_watts = true;
+      check_temp = true;
+      cpu_sensor = "Auto";
+      show_coretemp = true;
+      temp_scale = "celsius";
+      base_10_sizes = false;
+      show_cpu_freq = true;
+      clock_format = "%X";
+      background_update = true;
+      mem_graphs = true;
+      mem_below_net = false;
+      zfs_arc_cached = true;
+      show_swap = true;
+      swap_disk = true;
+      show_disks = true;
+      only_physical = true;
+      use_fstab = true;
+      show_io_stat = true;
+      io_mode = false;
+      io_graph_combined = false;
+      net_download = 100;
+      net_upload = 100;
+      net_auto = true;
+      net_sync = false;
+      base_10_bitrate = "Auto";
+      show_battery = true;
+      selected_battery = "Auto";
+      show_battery_watts = true;
+      log_level = "WARNING";
+      nvml_measure_pcie_speeds = true;
+      rsmi_measure_pcie_speeds = true;
+      gpu_mirror_graph = true;
+    };
+  };
+
+  # Eldritch theme for btop
+  xdg.configFile."btop/themes/eldritch.theme".text = ''
+    theme[main_bg]="#212337"
+    theme[main_fg]="#ebfafa"
+    theme[title]="#ebfafa"
+    theme[hi_fg]="#04d1f9"
+    theme[selected_bg]="#323449"
+    theme[selected_fg]="#ebfafa"
+    theme[inactive_fg]="#7081d0"
+    theme[graph_text]="#f7c67f"
+    theme[proc_misc]="#04d1f9"
+    theme[cpu_box]="#37f499"
+    theme[mem_box]="#a48cf2"
+    theme[net_box]="#f265b5"
+    theme[proc_box]="#04d1f9"
+    theme[div_line]="#323449"
+    theme[temp_start]="#37f499"
+    theme[temp_mid]="#f7c67f"
+    theme[temp_end]="#f16c75"
+    theme[cpu_start]="#37f499"
+    theme[cpu_mid]="#04d1f9"
+    theme[cpu_end]="#a48cf2"
+    theme[free_start]="#323449"
+    theme[free_mid]="#7081d0"
+    theme[free_end]="#a48cf2"
+    theme[cached_start]="#04d1f9"
+    theme[cached_mid]="#37f499"
+    theme[cached_end]="#f1fc79"
+    theme[available_start]="#f7c67f"
+    theme[available_mid]="#f265b5"
+    theme[available_end]="#f16c75"
+    theme[used_start]="#37f499"
+    theme[used_mid]="#04d1f9"
+    theme[used_end]="#a48cf2"
+    theme[download_start]="#04d1f9"
+    theme[download_mid]="#37f499"
+    theme[download_end]="#f1fc79"
+    theme[upload_start]="#f265b5"
+    theme[upload_mid]="#a48cf2"
+    theme[upload_end]="#f16c75"
+    theme[process_start]="#04d1f9"
+    theme[process_mid]="#37f499"
+    theme[process_end]="#a48cf2"
+  '';
 }
