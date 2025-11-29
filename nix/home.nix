@@ -22,6 +22,7 @@ in
       protonmail-bridge
       protonup-qt
       thunderbird
+      thefuck
     ];
     
     #programs.zsh = {
