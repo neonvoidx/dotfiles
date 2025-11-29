@@ -1,37 +1,18 @@
 { config, pkgs, lib, ... }:
 
+let
+  # Path to dotfiles repository - adjust if your dotfiles are in a different location
+  dotfilesPath = "${config.home.homeDirectory}/dotfiles";
+in
 {
-  programs.git = {
-    enable = true;
-    userName = "neonvoidx";
-    userEmail = "me@neonvoid.dev";
+  programs.git.enable = true;
 
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        side-by-side = true;
-      };
-    };
+  # Symlink git configs from dotfiles
+  home.file.".gitconfig" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/common/.gitconfig";
+  };
 
-    extraConfig = {
-      init.defaultBranch = "master";
-      core = {
-        editor = "nvim";
-        pager = "delta";
-      };
-      interactive.diffFilter = "delta --color-only";
-      pull.rebase = true;
-      push.autoSetupRemote = true;
-      http.postBuffer = 157286400;
-      rerere.enabled = true;
-      column.ui = "auto";
-      branch.sort = "-committerdate";
-    };
-
-    aliases = {
-      lg = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all";
-      squash = "!f(){ git reset $(git commit-tree \"HEAD^{tree}\" \"$@\");};f";
-    };
+  home.file.".gitconfig.local" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/linux/.gitconfig.local";
   };
 }

@@ -1,41 +1,26 @@
 { config, pkgs, lib, ... }:
 
+let
+  # Path to dotfiles repository - adjust if your dotfiles are in a different location
+  dotfilesPath = "${config.home.homeDirectory}/dotfiles";
+in
 {
-  gtk = {
-    enable = true;
-    theme = {
-      name = "adw-gtk3";
-      package = pkgs.adw-gtk3;
-    };
-    iconTheme = {
-      name = "Tela-circle-dracula-dark";
-      package = pkgs.tela-circle-icon-theme;
-    };
-    font = {
-      name = "Adwaita Sans";
-      size = 11;
-    };
-    cursorTheme = {
-      name = "catppuccin-mocha-sapphire-cursors";
-      package = pkgs.catppuccin-cursors.mochaSapphire;
-      size = 24;
-    };
-    gtk3.extraConfig = {
-      gtk-toolbar-style = "GTK_TOOLBAR_ICONS";
-      gtk-toolbar-icon-size = "GTK_ICON_SIZE_LARGE_TOOLBAR";
-      gtk-button-images = 0;
-      gtk-menu-images = 0;
-      gtk-enable-event-sounds = 1;
-      gtk-enable-input-feedback-sounds = 0;
-      gtk-xft-antialias = 1;
-      gtk-xft-hinting = 1;
-      gtk-xft-hintstyle = "hintslight";
-      gtk-xft-rgba = "rgb";
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+  gtk.enable = true;
+
+  # Symlink gtk configs from dotfiles
+  xdg.configFile."gtk-2.0" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/linux/.config/gtk-2.0";
+    recursive = true;
+  };
+
+  xdg.configFile."gtk-3.0" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/linux/.config/gtk-3.0";
+    recursive = true;
+  };
+
+  xdg.configFile."gtk-4.0" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/linux/.config/gtk-4.0";
+    recursive = true;
   };
 
   qt = {
