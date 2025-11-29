@@ -7,3 +7,6 @@
 [submodule "common/vault"]
 	path = common/vault
 	url = git@github.com:neonvoidx/vault.git
+[submodule "common/pics"]
+	path = common/pics
+	url = git@github.com:neonvoidx/pics.git

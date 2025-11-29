@@ -35,8 +35,17 @@ in
 
     home.packages = with pkgs; [ 
       firefox-devedition
+      # Aliasing to firefox-developer-edition
+      (writeScriptBin "firefox-developer-edition" ''
+	exec ${firefox-devedition}/bin/firefoxdevedition "$@"
+      '')
+      fnm
       github-copilot-cli
       gh
+      proton-pass
+      protonmail-bridge
+      protonup-qt
+      thunderbird
     ];
     
     #programs.zsh = {

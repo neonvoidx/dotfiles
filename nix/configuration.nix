@@ -53,6 +53,10 @@ networking.wireless.networks."LittyPitty".pskRaw = "654787ccc87bf9e3520e3cc82840
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+  rustc
+  cargo
+    lazygit
+    ripgrep
     neovim
     wget
     git
@@ -60,6 +64,7 @@ networking.wireless.networks."LittyPitty".pskRaw = "654787ccc87bf9e3520e3cc82840
     kitty
     ripgrep
     gcc
+    yazi
   ];
 
   services.displayManager.ly.enable = true;
