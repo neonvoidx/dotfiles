@@ -12,22 +12,35 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
-    nixosConfigurations.voidframe = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.neonvoid = import ./home.nix;
-            backupFileExtension = "backup";
-          };
-        }
-        ./noctalia.nix
-      ];
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+    let
+      mkHost = { hostname, system ? "x86_64-linux", username, homeDirectory, stateVersion ? "25.05" }:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/${hostname}/configuration.nix
+            ./modules/noctalia.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${username} = import ./modules/home.nix;
+                backupFileExtension = "backup";
+                extraSpecialArgs = { inherit inputs; };
+              };
+            }
+          ];
+        };
+    in
+    {
+      nixosConfigurations = {
+        voidframe = mkHost {
+          hostname = "voidframe";
+          username = "neonvoid";
+          homeDirectory = "/home/neonvoid";
+        };
+      };
     };
-  };
 }
