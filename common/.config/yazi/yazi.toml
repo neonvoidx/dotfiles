@@ -1,0 +1,45 @@
+[mgr]
+ratio = [1, 4, 3]
+sort_by = "alphabetical"
+sort_sensitive = false
+sort_reverse = false
+linemode = "permissions"
+show_hidden = true
+show_symlink = true
+mouse_events = ["scroll"]
+
+[preview]
+wrap = "yes"
+tab_size = 2
+
+[preview.syntax]
+theme = "Eldritch"
+background = "#212337"
+
+[opener]
+play = [{ run = 'mpv "$@"', orphan = true, for = "unix" }]
+edit = [{ run = '$EDITOR "$@"', block = true, for = "unix" }]
+open = [{ run = 'xdg-open "$@"', desc = "Open" }]
+
+[tasks]
+image_bound = [20000, 20000]
+image_alloc = 1073741824     # = 1024*1024*1024 = 1024MB
+
+[input]
+cursor_blink = true
+
+[plugin]
+prepend_preloaders = [
+  # Replace magick, image, video with mediainfo
+  { mime = "{audio,video,image}/*", run = "mediainfo" },
+  { mime = "application/subrip", run = "mediainfo" },
+  { mime = "application/postscript", run = "mediainfo" },
+]
+prepend_previewers = [
+  { mime = "{audio,video,image}/*", run = "mediainfo" },
+  { mime = "application/subrip", run = "mediainfo" },
+  { mime = "application/postscript", run = "mediainfo" },
+]
+# There are more extensions which are supported by mediainfo.
+# Just add file's MIME type to `previewers`, `preloaders` above.
+# https://mediaarea.net/en/MediaInfo/Support/Formats

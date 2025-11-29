@@ -1,0 +1,97 @@
+//  _                            ____        _
+// | |    __ _ _   _  ___ _ __  |  _ \ _   _| | ___  ___
+// | |   / _` | | | |/ _ \ '__| | |_) | | | | |/ _ \/ __|
+// | |__| (_| | |_| |  __/ |    |  _ <| |_| | |  __/\__ \
+// |_____\__,_|\__, |\___|_|    |_| \_\\__,_|_|\___||___/
+//             |___/
+layer-rule {
+    match namespace="^noctalia-overview*"
+    place-within-backdrop true
+}
+layer-rule {
+  match namespace="^noctalia-notifications*"
+  block-out-from "screen-capture"
+}
+// __        ___           _                 ____        _
+// \ \      / (_)_ __   __| | _____      __ |  _ \ _   _| | ___  ___
+//  \ \ /\ / /| | '_ \ / _` |/ _ \ \ /\ / / | |_) | | | | |/ _ \/ __|
+//   \ V  V / | | | | | (_| | (_) \ V  V /  |  _ <| |_| | |  __/\__ \
+//    \_/\_/  |_|_| |_|\__,_|\___/ \_/\_/   |_| \_\\__,_|_|\___||___/
+//
+//
+window-rule {
+    match app-id="firefox-developer-edition" title="Picture-in-Picture"
+    open-floating true
+    open-focused false
+    default-floating-position x=32 y=32 relative-to="bottom-right"
+    default-window-height { proportion 0.3; }
+    default-column-width { proportion 0.2; }
+}
+window-rule {
+  match title="Winetricks.*"
+  open-floating true
+}
+window-rule {
+    match app-id="steam" title="^notificationtoasts_\\d+_desktop$"
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+    open-on-workspace "games"
+    open-floating true
+}
+window-rule {
+    match app-id="vesktop"
+    open-on-workspace "media"
+    block-out-from "screen-capture"
+}
+window-rule {
+    match app-id="Spotify"
+    open-on-workspace "media"
+}
+window-rule {
+    match app-id="^firefox.*$"
+    open-on-workspace "browser"
+}
+window-rule {
+    match app-id="steam$"
+    open-on-workspace "games"
+    open-focused false
+}
+window-rule {
+    match app-id="gamescope$"
+    open-on-workspace "games"
+    open-focused true
+    open-fullscreen true
+}
+window-rule {
+    match app-id="bitwarden$"
+    block-out-from "screen-capture"
+}
+window-rule {
+    match app-id="org.mozilla.Thunderbird"
+    open-on-workspace "communication"
+    open-maximized-to-edges false
+    block-out-from "screen-capture"
+    open-focused false
+}
+window-rule {
+    match app-id="org.gnome.Fractal"
+    open-on-workspace "communication"
+    open-maximized-to-edges false
+    block-out-from "screen-capture"
+    open-focused false
+}
+window-rule {
+    match app-id="org.mozilla.Thunderbird" title=".*Reminder"
+    open-floating true
+    block-out-from "screen-capture"
+    open-focused false
+}
+window-rule {
+  match app-id="SGDBoop"
+  open-floating true
+}
+// Enable rounded corners for all windows, disable open maximixed to edges
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+    open-maximized-to-edges false
+}

@@ -1,0 +1,15 @@
+[StreamInputs]
+inputDevice=alsa_input.usb-R__DE_Microphones_R__DE_NT-USB_Mini_F5DF5DCC-00.mono-fallback
+visiblePage=pluginsPage
+
+[StreamOutputs]
+outputDevice=alsa_output.usb-Schiit_Audio_Schiit_Unison_Modius_ES-00.analog-stereo
+plugins=equalizer#0
+visiblePage=pluginsPage
+visiblePlugin=equalizer#0
+
+[Window]
+height=847
+visiblePage=inputPage
+visiblePresetSheetPage=autoloadingPage
+width=1615

@@ -1,0 +1,20 @@
+[flavor]
+# Theme metadata
+name = "Eldritch"
+author = "neonvoid"
+version = "1.0.0"
+description = "A theme for the Ancient ones!"
+
+# Color palette definition
+[theme.colors]
+background = "#212337"
+current_line = "#292e42"
+foreground = "#ebfafa"
+comment = "#7081d0"
+purple = "#a48cf2"
+green = "#37f499"
+orange = "#f7c67f"
+red = "#f16c75"
+pink = "#f265b5"
+cyan = "#04d1f9"
+yellow = "#f1fc79"

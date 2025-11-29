@@ -1,0 +1,82 @@
+{
+  "Gestures": [
+    {
+      "pattern": [
+        [
+          -2,
+          380
+        ]
+      ],
+      "command": {
+        "name": "TogglePin"
+      }
+    },
+    {
+      "pattern": [
+        [
+          -13,
+          -320
+        ]
+      ],
+      "command": {
+        "name": "CloseTab",
+        "settings": {
+          "nextFocus": "default",
+          "closePinned": true
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          178,
+          2
+        ]
+      ],
+      "command": {
+        "name": "OpenImageInNewTab",
+        "settings": {
+          "position": "default",
+          "focus": true
+        }
+      }
+    },
+    {
+      "pattern": [
+        [
+          -303,
+          3
+        ]
+      ],
+      "command": {
+        "name": "CopyTabURL"
+      }
+    }
+  ],
+  "Settings": {
+    "General": {
+      "theme": "dark"
+    },
+    "Rocker": {
+      "active": true
+    },
+    "Wheel": {
+      "active": true,
+      "wheelUp": {
+        "name": "FocusLeftTab",
+        "settings": {
+          "cycling": true,
+          "excludeDiscarded": false
+        }
+      },
+      "wheelDown": {
+        "name": "FocusRightTab",
+        "settings": {
+          "cycling": true,
+          "excludeDiscarded": false
+        }
+      },
+      "mouseButton": "2"
+    }
+  }
+}

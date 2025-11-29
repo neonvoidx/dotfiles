@@ -1,0 +1,127 @@
+#!/bin/bash
+
+source "$HOME/.config/sketchybar/colors.sh" # Loads all defined colors
+source "$HOME/.config/sketchybar/icons.sh" # Loads all defined icons
+
+ITEM_DIR="$HOME/.config/sketchybar/items" # Directory where the items are configured
+PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin scripts are stored
+
+FONT="JetBrainsMono Nerd Font" # Using installed Nerd Font for icon compatibility
+PADDINGS=3 # All paddings use this value (icon, label, background)
+
+# Setting up and starting the helper process for CPU monitoring
+HELPER=git.felix.helper
+killall helper 2>/dev/null
+cd $HOME/.config/sketchybar/helper && make
+$HOME/.config/sketchybar/helper/helper $HELPER > /dev/null 2>&1 &
+
+# Add aerospace workspace change event
+sketchybar --add event aerospace_workspace_change
+
+# Unload the macOS on screen indicator overlay for volume change
+launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /dev/null 2>&1 &
+
+# Setting up the general bar appearance of the bar
+# Flush with top of screen, 40px total space (32px bar + 8px gap below)
+# Transparent bar for dynamic island effect
+bar=(
+  height=45
+  color=0xff212337
+  shadow=on
+  position=top
+  sticky=on
+  padding_right=5
+  padding_left=5
+  y_offset=5
+  margin=5
+  blur_radius=0
+  notch_width=0
+  corner_radius=8
+)
+
+sketchybar --bar "${bar[@]}"
+
+# Setting up default values - all monospace font
+defaults=(
+  updates=when_shown
+  icon.font="$FONT:Regular:13.0"
+  icon.color=$ICON_COLOR
+  icon.padding_left=$PADDINGS
+  icon.padding_right=$PADDINGS
+  label.font="$FONT:Regular:13.0"
+  label.color=$LABEL_COLOR
+  label.padding_left=$PADDINGS
+  label.padding_right=$PADDINGS
+  padding_right=$PADDINGS
+  padding_left=$PADDINGS
+  background.height=30
+  background.corner_radius=9
+  background.color=0xff323449
+  background.drawing=off
+  popup.background.border_width=2
+  popup.background.corner_radius=9
+  popup.background.border_color=$POPUP_BORDER_COLOR
+  popup.background.color=0xff323449
+  popup.blur_radius=0
+  popup.background.shadow.drawing=off
+)
+
+sketchybar --default "${defaults[@]}"
+
+# Left
+source "$ITEM_DIR/apple.sh"
+source "$ITEM_DIR/spaces.sh"
+source "$ITEM_DIR/front_app.sh"
+
+# Right
+source "$ITEM_DIR/calendar.sh"
+
+# Small gap after calendar
+sketchybar --add item gap.r1 right \
+           --set gap.r1 width=5 \
+                        background.drawing=off \
+                        icon.drawing=off \
+                        label.drawing=off
+
+source "$ITEM_DIR/brew.sh"
+source "$ITEM_DIR/github.sh"
+
+# Small gap before system stats
+sketchybar --add item gap.r2 right \
+           --set gap.r2 width=5 \
+                        background.drawing=off \
+                        icon.drawing=off \
+                        label.drawing=off
+
+source "$ITEM_DIR/battery.sh"
+source "$ITEM_DIR/volume.sh"
+source "$ITEM_DIR/cpu.sh"
+
+# Creating dynamic islands by grouping items with backgrounds
+# Left island: Apple menu + spaces + front app
+sketchybar --add bracket left_island apple.logo '/space\..*/' front_app \
+           --set left_island background.color=0xff323449 \
+                             background.corner_radius=9 \
+                             background.height=30 \
+                             background.drawing=on \
+                             background.shadow.drawing=off
+
+# Add gap between left and right islands
+sketchybar --add item gap.main left \
+           --set gap.main width=10 \
+                          background.drawing=off \
+                          icon.drawing=off \
+                          label.drawing=off
+
+# Right main island: Contains all right side items with internal gaps
+sketchybar --add bracket right_island calendar gap.r1 brew github gap.r2 battery volume_icon cpu \
+           --set right_island background.color=0xff24273a \
+                              background.corner_radius=9 \
+                              background.height=30 \
+                              background.drawing=on \
+                              background.shadow.drawing=off
+
+# Forcing all item scripts to run (never do this outside of sketchybarrc)
+sketchybar --update
+
+echo "sketchybar configuation loaded.."
