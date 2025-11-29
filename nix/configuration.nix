@@ -56,10 +56,12 @@ networking.wireless.networks."LittyPitty".pskRaw = "654787ccc87bf9e3520e3cc82840
     rustc
     cargo
     tealdr
+    pay-respects
     lazygit
     ripgrep
     neovim
     wget
+    tree-sitter
     git
     stow
     kitty
@@ -69,7 +71,14 @@ networking.wireless.networks."LittyPitty".pskRaw = "654787ccc87bf9e3520e3cc82840
     zoxide
   ];
 
-  services.displayManager.ly.enable = true;
+  services.displayManager.ly = {
+    enable = true;
+    settings = {
+      animation = "colormix";
+      bigclock = true;
+      clear_password = true;
+    };
+  };
 
   networking.firewall.enable = false;
 
