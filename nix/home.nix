@@ -30,15 +30,12 @@ in
         #syntaxHighlighting.enable = true;
     #};
 
-    # Symlink all common dotfiles first
+    # Symlink dotfiles: common first, then Linux-specific (overrides common)
     home.file = builtins.mapAttrs (name: _: {
       source = create_sym "${dotfiles}/common/${name}";
       recursive = true;
       force = true;
-    }) (builtins.readDir "${dotfiles}/common");
-    
-    # Then overlay Linux-specific dotfiles (overrides common)
-    home.file = home.file // builtins.mapAttrs (name: _: {
+    }) (builtins.readDir "${dotfiles}/common") // builtins.mapAttrs (name: _: {
       source = create_sym "${dotfiles}/linux/${name}";
       recursive = true;
       force = true;
