@@ -323,8 +323,6 @@ fi
 # | |___ \ V / (_| | | | (_>  <  ___) | (_) | |_| | | | (_|  __/
 # |_____| \_/ \__,_|_|  \___/\/ |____/ \___/ \__,_|_|  \___\___|
 #                                                               
-# thefuck
-eval $(thefuck --alias fk)
 # .env 
 
 # Zoxide
@@ -335,14 +333,14 @@ export _ZO_RESOLVE_SYMLINKS=0
 export FZF_CTRL_T_COMMAND=""
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # fnm
-export PATH="$HOME/.local/share/fnm:$PATH"
-export FNM_DIR="$HOME/.cache/fnm"
-eval "$(fnm env --use-on-cd --shell zsh --fnm-dir ~/.cache/fnm)"
+# export PATH="$HOME/.local/share/fnm:$PATH"
+# export FNM_DIR="$HOME/.cache/fnm"
+# eval "$(fnm env --use-on-cd --shell zsh --fnm-dir ~/.cache/fnm)"
 # SSH agent start if necessary
 if [ -z $SSH_AGENT_PID ] && [ -z $SSH_TTY ]; then  # if no agent & not in ssh
   eval `ssh-agent -s` > /dev/null
 fi
-
+alias f="$(pay-respects zsh)"
 if [ -f ~/.ssh/scm-script.sh ]; then
   alias scm-ssh='bash ~/.ssh/scm-script.sh'
   scm-ssh start_agent >/dev/null 2>&1
