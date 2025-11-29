@@ -55,7 +55,7 @@ networking.wireless.networks."LittyPitty".pskRaw = "654787ccc87bf9e3520e3cc82840
   environment.systemPackages = with pkgs; [
     rustc
     cargo
-    tealdr
+    tealdeer
     pay-respects
     lazygit
     ripgrep
