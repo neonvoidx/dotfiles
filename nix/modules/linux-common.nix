@@ -103,6 +103,7 @@
   environment.systemPackages = with pkgs; [
     vesktop
     steam
+    gpu-screen-recorder
     mangohud
     protonup-ng
     protonmail-bridge
