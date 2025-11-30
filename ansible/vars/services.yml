@@ -1,0 +1,27 @@
+---
+# System services to enable and start
+services_to_enable:
+  # Networking
+  # - NetworkManager
+  
+  # SSH
+  # - sshd
+  
+  # Docker
+  # - docker
+  
+  # Display manager
+  # - gdm
+  # - lightdm
+  # - sddm
+  
+  # Add your services here
+
+# Services to disable
+services_to_disable: []
+  # - bluetooth
+  # - cups
+
+# Services to restart after configuration
+services_to_restart: []
+  # - NetworkManager

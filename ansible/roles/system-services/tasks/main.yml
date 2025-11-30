@@ -1,0 +1,35 @@
+---
+# Role: system-services
+# Description: Manage systemd services - enable, disable, start, stop, restart
+
+- name: Enable and start services
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  loop: "{{ services_to_enable }}"
+  when: services_to_enable is defined and services_to_enable | length > 0
+  tags: ['services', 'systemd']
+
+- name: Disable and stop services
+  systemd:
+    name: "{{ item }}"
+    enabled: no
+    state: stopped
+  loop: "{{ services_to_disable }}"
+  when: services_to_disable is defined and services_to_disable | length > 0
+  tags: ['services', 'systemd']
+
+- name: Restart services
+  systemd:
+    name: "{{ item }}"
+    state: restarted
+  loop: "{{ services_to_restart }}"
+  when: services_to_restart is defined and services_to_restart | length > 0
+  tags: ['services', 'systemd']
+
+# Add additional tasks here:
+# - Create custom systemd unit files
+# - Configure systemd timers
+# - Set up user services
+# - Manage service dependencies

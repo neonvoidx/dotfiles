@@ -1,0 +1,34 @@
+# .gitignore for Ansible directory
+
+# Ansible retry files
+*.retry
+
+# Ansible vault password files
+.vault_pass
+vault_pass.txt
+
+# Local variable overrides
+vars/local.yml
+vars/secrets.yml
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Cache directories
+.cache/
+__pycache__/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Collection downloads
+collections/
+
+# Role downloads
+roles/external/

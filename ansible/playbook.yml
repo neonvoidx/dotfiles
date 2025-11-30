@@ -1,0 +1,28 @@
+---
+# Main Ansible playbook for Arch Linux system configuration
+# Usage: ansible-playbook -i inventory.ini playbook.yml --ask-become-pass
+
+- name: Configure Arch Linux System
+  hosts: localhost
+  connection: local
+  become: yes
+  
+  vars_files:
+    - vars/packages.yml
+    - vars/services.yml
+  
+  roles:
+    - arch-packages
+    - paru-aur-helper
+    - aur-packages
+    - system-services
+    # - dotfiles  # Uncomment if you want to manage dotfiles
+    # - custom-configs  # Uncomment for additional configurations
+  
+  tasks:
+    # Add any standalone tasks here if needed
+    - name: Ensure system is up to date
+      community.general.pacman:
+        update_cache: yes
+        upgrade: yes
+      tags: ['update']

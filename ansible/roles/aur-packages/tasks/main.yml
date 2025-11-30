@@ -1,0 +1,33 @@
+---
+# Role: aur-packages
+# Description: Install AUR packages using paru
+# Note: This role depends on paru-aur-helper role
+
+- name: Check if paru is installed
+  command: which paru
+  register: paru_check
+  changed_when: false
+  failed_when: paru_check.rc != 0
+  tags: ['aur', 'packages']
+
+- name: Install AUR packages with paru
+  become: no
+  command: paru -S --noconfirm --needed {{ item }}
+  loop: "{{ aur_packages }}"
+  when: aur_packages is defined and aur_packages | length > 0
+  tags: ['aur', 'packages']
+  # Note: changed_when logic can be added to detect if package was already installed
+
+# Alternative method using kewlfft.aur collection (requires: ansible-galaxy collection install kewlfft.aur)
+# - name: Install AUR packages using kewlfft.aur
+#   become: no
+#   kewlfft.aur.aur:
+#     name: "{{ aur_packages }}"
+#     state: present
+#   when: aur_packages is defined and aur_packages | length > 0
+#   tags: ['aur', 'packages']
+
+# Add additional tasks here:
+# - Configure AUR package settings
+# - Create symlinks
+# - Set up package-specific configurations

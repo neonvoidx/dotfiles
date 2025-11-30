@@ -1,0 +1,206 @@
+{
+    "brightness": {
+        "value": 75
+    },
+    "keys": {
+        "0x0": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_AudioSwitcher::ToggleOutput",
+                            "settings": {
+                                "device_a": "alsa_output.usb-Logitech_G560_Gaming_Speaker_00000000-00.analog-stereo",
+                                "device_b": "alsa_output.usb-Schiit_Audio_Schiit_Unison_Modius_ES-00.analog-stereo"
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "media": {
+                        "size": 0.85
+                    }
+                }
+            }
+        },
+        "1x0": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_gapls_AudioControl::Mute",
+                            "settings": {
+                                "device-filter": "source",
+                                "show-info": true,
+                                "show-device-name": false,
+                                "info-content": "adjustment"
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0
+                }
+            }
+        },
+        "4x0": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "~/.config/streamdeck-ui/toggle-monitor.sh 0",
+                                "display_output": false,
+                                "detached": true
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "labels": {
+                        "center": {
+                            "text": "Off"
+                        }
+                    }
+                }
+            }
+        },
+        "3x0": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "~/.config/streamdeck-ui/toggle-monitor.sh 1",
+                                "display_output": false,
+                                "detached": true
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "labels": {
+                        "center": {
+                            "text": "On"
+                        }
+                    }
+                }
+            }
+        },
+        "4x2": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_MediaPlugin::Next",
+                            "settings": {
+                                "show_label": false,
+                                "show_thumbnail": false
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0
+                }
+            }
+        },
+        "3x2": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_MediaPlugin::PlayPause",
+                            "settings": {
+                                "show_label": true,
+                                "show_thumbnail": true
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0
+                }
+            }
+        },
+        "2x2": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_MediaPlugin::Previous",
+                            "settings": {
+                                "show_label": false,
+                                "show_thumbnail": false
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0
+                }
+            }
+        },
+        "4x1": {
+            "states": {
+                "0": {
+                    "actions": [
+                        {
+                            "id": "com_core447_OSPlugin::RunCommand",
+                            "settings": {
+                                "command": "~/.config/hypr/scripts/gamescreen-toggle.sh",
+                                "display_output": false,
+                                "detached": false
+                            }
+                        }
+                    ],
+                    "image-control-action": 0,
+                    "label-control-actions": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "background-control-action": 0,
+                    "labels": {
+                        "center": {
+                            "text": "Game"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

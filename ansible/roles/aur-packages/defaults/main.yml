@@ -1,0 +1,7 @@
+---
+# Default variables for aur-packages role
+
+# Additional paru options
+# paru_options: "--noconfirm --needed"
+
+# Add any role-specific defaults here

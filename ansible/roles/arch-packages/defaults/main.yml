@@ -1,0 +1,10 @@
+---
+# Default variables for arch-packages role
+
+# Ensure pacman cache is updated
+update_cache: yes
+
+# Upgrade all packages before installing new ones
+upgrade_system: no
+
+# Add any role-specific defaults here
