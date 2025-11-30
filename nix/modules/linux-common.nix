@@ -107,10 +107,12 @@
     cliphist
     wl-clipboard
     wl-clip-persist
+    hyprpolkitagent
     thunderbird
     nwg-look
     udiskie
     dracula-icon-theme
+    tokyo-night-gtk
     xdg-desktop-portal-hyprland
     gnome-keyring
     xfce.thunar
