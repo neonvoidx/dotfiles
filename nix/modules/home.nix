@@ -72,7 +72,6 @@ in
     nodejs_24
     pay-respects
     proton-pass
-    protonup-qt
     python314
     ripgrep
     ripgrep
