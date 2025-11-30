@@ -1,5 +1,5 @@
-{ pkgs, inputs, ... }: {
-  # install package
-  environment.systemPackages = with pkgs;
-    [ inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+{ pkgs, inputs, lib, ... }: {
+  # install package only on Linux systems
+  environment.systemPackages = lib.mkIf pkgs.stdenv.isLinux (with pkgs;
+    [ inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default ]);
 }

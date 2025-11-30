@@ -38,7 +38,8 @@ let
         builtins.listToAttrs (map makeSymlinkEntry files);
     
     # Determine which directories to symlink based on system
-    commonFiles = symlinkFiles "${dotfiles}/common";
+    commonFiles = symlinkFiles "${dotfiles}/common"; # All common dotfiles
+    # OS specific
     platformFiles = if pkgs.stdenv.isLinux 
                     then symlinkFiles "${dotfiles}/linux"
                     else if pkgs.stdenv.isDarwin

@@ -1,7 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ /etc/nixos/hardware-configuration.nix ];
+  imports = [ 
+    /etc/nixos/hardware-configuration.nix
+    ../../modules/fonts.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
