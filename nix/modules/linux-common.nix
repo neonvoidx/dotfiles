@@ -113,6 +113,9 @@
     udiskie
     dracula-icon-theme
     tokyonight-gtk-theme
+    catppuccin-cursors.mochaSapphire
+    tela-icon-theme
+    tokyonight-gtk-theme
     xdg-desktop-portal-hyprland
     gnome-keyring
     xfce.thunar
@@ -122,7 +125,6 @@
     xfce.thunar-media-tags-plugin
     grim
     slurp
-    catppuccin-cursors
     (pkgs.callPackage ./scopebuddy.nix { })
   ];
 

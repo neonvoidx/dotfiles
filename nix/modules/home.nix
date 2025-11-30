@@ -76,8 +76,6 @@ in {
     wget
     yazi
     zoxide
-    catppuccin-cursors.mochaSapphire
-    tela-icon-theme
   ];
 
   # Symlink all dotfiles
@@ -85,9 +83,10 @@ in {
 
   programs.spicetify = {
     enable = true;
-    enabledExtensions = with config.lib.spicetify.extensions; [
-      # Add your extensions here
-    ];
+    enabledExtensions = with config.lib.spicetify.extensions;
+      [
+        # Add your extensions here
+      ];
   };
 
   home.activation.cloneWallpapers = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
@@ -101,29 +100,26 @@ in {
 
   gtk = {
     enable = true;
-    
+
     theme = {
-      name = "Adwaita-dark";
+      name = "Tokyonight-Dark";
+      package = pkgs.tokyonight-gtk-theme;
     };
-    
+
     iconTheme = {
       name = "Tela-dracula-dark";
       package = pkgs.tela-icon-theme;
     };
-    
+
     cursorTheme = {
       name = "catppuccin-mocha-sapphire-cursors";
       package = pkgs.catppuccin-cursors.mochaSapphire;
       size = 24;
     };
-    
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+
+    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+
+    gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
   };
 
 }
