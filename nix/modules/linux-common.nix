@@ -9,10 +9,10 @@
   # Bootloader
   boot = {
     loader = {
-     systemd-boot.enable=true;
-     efi.canTouchEfiVariables=true;
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
      };
-      plymouth = {
+    plymouth = {
       enable = true;
       theme = "rings";
       themePackages = with pkgs; [
@@ -37,7 +37,7 @@
     # It's still possible to open the bootloader list by pressing any key
     # It will just not appear on screen unless a key is pressed
     loader.timeout = 0;
-  }
+   };
 
   time.timeZone = "America/New_York";
 
