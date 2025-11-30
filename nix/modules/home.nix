@@ -7,7 +7,7 @@ let
     # Recursively find all files in a directory and create symlink mappings
     symlinkFiles = sourceDir: 
       let
-        # Get all files recursively
+        # Get all files recursively, only regular files not directories
         findFiles = dir: 
           let
             entries = builtins.readDir dir;
@@ -15,9 +15,9 @@ let
               let path = "${dir}/${name}";
               in
                 if type == "directory" then
-                  findFiles path
+                  findFiles path  # Recurse into directories but don't symlink them
                 else if type == "regular" then
-                  [ path ]
+                  [ path ]  # Only collect regular files
                 else
                   [];
           in
