@@ -118,7 +118,7 @@
     grim
     slurp
     catppuccin-cursors
-    # TODO scopebuddy
+    (pkgs.callPackage ./scopebuddy.nix {})
   ];
 
   environment.sessionVariables = {

@@ -423,7 +423,7 @@
         "tooltipsEnabled": true
     },
     "wallpaper": {
-        "directory": "/home/neonvoid/Pictures/Wallpapers",
+        "directory": "/home/neonvoid/pics/ultrawide",
         "enableMultiMonitorDirectories": true,
         "enabled": true,
         "fillColor": "#212337",
