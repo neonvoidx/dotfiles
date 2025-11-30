@@ -1,7 +1,11 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
-  imports = [ /etc/nixos/hardware-configuration.nix ./fonts.nix inputs.hyprland.nixosModules.default ];
+  imports = [
+    /etc/nixos/hardware-configuration.nix
+    ./fonts.nix
+    inputs.hyprland.nixosModules.default
+  ];
 
   # Bootloader
   boot = {
@@ -81,7 +85,8 @@
   programs.zsh.enable = true;
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     xwayland.enable = true;
     withUWSM = false;
   };
@@ -103,6 +108,8 @@
     spicetify-cli
     nwg-look
     udiskie
+    xdg-desktop-portal-hyprland
+    gnome-keyring
     xfce.thunar
     xfce.thunar-volman
     xfce.thunar-vcs-plugin
