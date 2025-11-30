@@ -111,11 +111,6 @@
     thunderbird
     nwg-look
     udiskie
-    dracula-icon-theme
-    tokyonight-gtk-theme
-    catppuccin-cursors.mochaSapphire
-    tela-icon-theme
-    tokyonight-gtk-theme
     xdg-desktop-portal-hyprland
     gnome-keyring
     xfce.thunar
