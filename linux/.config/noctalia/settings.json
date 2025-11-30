@@ -430,6 +430,11 @@
         "fillMode": "center",
         "hideWallpaperFilenames": true,
         "monitorDirectories": [
+            {
+                "directory": "/home/neonvoid/pics/ultrawide",
+                "name": "eDP-1",
+                "wallpaper": ""
+            }
         ],
         "overviewEnabled": true,
         "panelPosition": "center",
