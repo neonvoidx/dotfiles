@@ -112,6 +112,7 @@
     spicetify-cli
     nwg-look
     udiskie
+    dracula-icon-theme
     xdg-desktop-portal-hyprland
     gnome-keyring
     xfce.thunar
