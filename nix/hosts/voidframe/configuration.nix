@@ -65,14 +65,11 @@
     ripgrep
     neovim
     wget
-    tree-sitter
-    git
     stow
     kitty
     ripgrep
     gcc
     gzip
-    yazi
     zoxide
   ];
 
