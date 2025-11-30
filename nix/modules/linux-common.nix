@@ -139,7 +139,7 @@
   };
 
   networking.firewall.enable = false;
-  networking.nameservers = ["192.168.86.7" "192.168.86.8"]
+  networking.nameservers = [ "192.168.86.7" "192.168.86.8" ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.05";
