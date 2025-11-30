@@ -1,7 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
-  imports = [ /etc/nixos/hardware-configuration.nix ./fonts.nix ];
+  imports = [ /etc/nixos/hardware-configuration.nix ./fonts.nix inputs.hyprland.nixosModules.default ];
 
   # Bootloader
   boot = {
@@ -45,6 +45,17 @@
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
 
+  # Prevent rfkill from softblocking bluetooth and wifi
+  systemd.services.rfkill-unblock = {
+    description = "Unblock rfkill devices";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.util-linux}/bin/rfkill unblock all";
+    };
+  };
+
   # Sound with pipewire
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -70,6 +81,7 @@
   programs.zsh.enable = true;
   programs.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     xwayland.enable = true;
     withUWSM = false;
   };
