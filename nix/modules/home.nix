@@ -57,18 +57,34 @@ in
     (writeScriptBin "firefox-developer-edition" ''
       exec ${firefox-devedition}/bin/firefox-devedition "$@"
     '')
+    cargo
     fastfetch
     firefox-devedition
+    gcc
     gh
     git
     github-copilot-cli
+    go
+    gzip
+    kitty
+    lazygit
+    neovim
     nodejs_24
+    pay-respects
     proton-pass
     protonmail-bridge
     protonup-qt
+    python314
+    ripgrep
+    ripgrep
+    rustc
+    tealdeer
     thunderbird
     tree-sitter
+    unzip
+    wget
     yazi
+    zoxide
   ];
 
   # Symlink all dotfiles

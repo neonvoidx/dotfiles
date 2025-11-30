@@ -55,24 +55,21 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+
   environment.systemPackages = with pkgs; [
-    rustc
-    python314
-    go
-    cargo
-    unzip
-    tealdeer
-    pay-respects
-    lazygit
-    ripgrep
-    neovim
-    wget
-    stow
-    kitty
-    ripgrep
-    gcc
-    gzip
-    zoxide
+    mangohud
+  ];
+
+  environment.systemPackages = with pkgs; [
+    vesktop
+    steam
   ];
 
   services.displayManager.ly = {
