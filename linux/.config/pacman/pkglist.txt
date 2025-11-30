@@ -6,6 +6,7 @@ alsa-plugins
 alsa-utils
 amdgpu_top
 amd-ucode
+ansible
 ark
 asciinema
 awesome-terminal-fonts
