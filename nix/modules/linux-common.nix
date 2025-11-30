@@ -112,7 +112,7 @@
     nwg-look
     udiskie
     dracula-icon-theme
-    tokyo-night-gtk
+    tokyonight-gtk-theme
     xdg-desktop-portal-hyprland
     gnome-keyring
     xfce.thunar
