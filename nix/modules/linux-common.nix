@@ -105,8 +105,6 @@
     protonup-ng
     protonmail-bridge
     thunderbird
-    spotify
-    spicetify-cli
     nwg-look
     udiskie
     dracula-icon-theme

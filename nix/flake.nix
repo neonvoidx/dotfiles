@@ -11,6 +11,10 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
@@ -32,6 +36,7 @@
                 users.${username} = import ./modules/home.nix;
                 backupFileExtension = "backup";
                 extraSpecialArgs = { inherit inputs; };
+                sharedModules = [ inputs.spicetify-nix.homeManagerModules.default ];
               };
             }
           ];

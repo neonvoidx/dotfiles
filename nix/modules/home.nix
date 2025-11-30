@@ -83,6 +83,13 @@ in {
   # Symlink all dotfiles
   home.file = commonFiles // platformFiles;
 
+  programs.spicetify = {
+    enable = true;
+    enabledExtensions = with config.lib.spicetify.extensions; [
+      # Add your extensions here
+    ];
+  };
+
   home.activation.cloneWallpapers = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     PICS_DIR="${config.home.homeDirectory}/pics"
     if [ ! -d "$PICS_DIR" ]; then
