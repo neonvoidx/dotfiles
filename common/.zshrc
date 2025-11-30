@@ -323,9 +323,7 @@ fi
 # | |___ \ V / (_| | | | (_>  <  ___) | (_) | |_| | | | (_|  __/
 # |_____| \_/ \__,_|_|  \___/\/ |____/ \___/ \__,_|_|  \___\___|
 #                                                               
-# thefuck
-eval $(thefuck --alias fk)
-# .env 
+eval "$(pay-respects zsh --alias)"
 
 # Zoxide
 export _ZO_EXCLUDE_DIRS="/Applications/**:**/node_modules"
