@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ /etc/nixos/hardware-configuration.nix ];
+  imports = [ ./hardware-configuration.nix ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -34,7 +34,6 @@
     jack.enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.neonvoid = {
     isNormalUser = true;
     description = "neonvoid";

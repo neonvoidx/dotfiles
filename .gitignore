@@ -14,3 +14,4 @@ common/.mozilla/firefox/Crash Reports
 common/.mozilla/firefox/Profile Groups
 common/.mozilla/firefox/ii993gog.dev-edition-default
 common/.mozilla/firefox/profiles.ini
+hardware-configuration.nix
