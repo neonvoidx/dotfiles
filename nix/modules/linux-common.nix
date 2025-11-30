@@ -89,6 +89,13 @@
     thunderbird
     spotify
     spicetify-cli
+    nwg-look
+    udiskie
+    xfce.thunar
+    xfce.thunar-volman
+    xfce.thunar-vcs-plugin
+    xfce.thunar-archive-plugin
+    xfce.thunar-media-tags-plugin
     # TODO scopebuddy
   ];
 
