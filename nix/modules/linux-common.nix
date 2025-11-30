@@ -96,6 +96,9 @@
     xfce.thunar-vcs-plugin
     xfce.thunar-archive-plugin
     xfce.thunar-media-tags-plugin
+    grim
+    slurp
+    catppuccin-cursors
     # TODO scopebuddy
   ];
 
