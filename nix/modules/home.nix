@@ -90,4 +90,12 @@ in {
     fi
   '';
 
+  gtk = {
+    enable = true;
+    cursorTheme = {
+      name = "catppuccin-mocha-sapphire-cursors";
+      size = 24;
+    };
+  };
+
 }
