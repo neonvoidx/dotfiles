@@ -92,10 +92,7 @@
     withUWSM = false;
   };
 
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri-unstable;
-  };
+  programs.niri.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
