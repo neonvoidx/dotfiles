@@ -66,6 +66,7 @@ in {
     nodejs_24
     pay-respects
     proton-pass
+    jq
     python314
     ripgrep
     ripgrep
@@ -108,10 +109,18 @@ in {
 
     iconTheme = {
       name = "Tela-dracula-dark";
-      package = pkgs.tela-icon-theme.override {
-        colorVariants = ["dracula"];
-        circularFolder = false;
-      };
+      package = pkgs.tela-icon-theme.overrideAttrs (oldAttrs: {
+        installPhase = ''
+          runHook preInstall
+
+          patchShebangs install.sh
+          mkdir -p $out/share/icons
+          ./install.sh dracula -d $out/share/icons
+          ${pkgs.jdupes}/bin/jdupes -l -r $out/share/icons
+
+          runHook postInstall
+        '';
+      });
     };
 
     cursorTheme = {
