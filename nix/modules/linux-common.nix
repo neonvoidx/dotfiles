@@ -104,6 +104,9 @@
     mangohud
     protonup-ng
     protonmail-bridge
+    cliphist
+    wl-clipboard
+    wl-clip-persist
     thunderbird
     nwg-look
     udiskie
@@ -118,7 +121,7 @@
     grim
     slurp
     catppuccin-cursors
-    (pkgs.callPackage ./scopebuddy.nix {})
+    (pkgs.callPackage ./scopebuddy.nix { })
   ];
 
   environment.sessionVariables = {
