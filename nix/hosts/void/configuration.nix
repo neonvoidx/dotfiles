@@ -10,13 +10,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "voidframe"; # Define your hostname.
-  networking.wireless.enable =
-    true; # Enables wireless support via wpa_supplicant.
-  networking.wireless.networks."LittyPitty".pskRaw =
-    "654787ccc87bf9e3520e3cc82840cf1e3dd182a466e92a70d5f47ecd160501e0";
+  networking.hostName = "void"; # Define your hostname.
+  # networking.wireless.enable =
+  #   true; # Enables wireless support via wpa_supplicant.
+  # networking.wireless.networks."LittyPitty".pskRaw =
+  #   "654787ccc87bf9e3520e3cc82840cf1e3dd182a466e92a70d5f47ecd160501e0";
   # Enable networking, for ethernet
-  #networking.networkmanager.enable = true;
+  networking.networkmanager.enable = true;
 
   time.timeZone = "America/New_York";
 
@@ -55,6 +55,11 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
 
@@ -66,6 +71,12 @@
     protonmail-bridge
     thunderbird
   ];
+  boot.kernelParams = [
+    "video=DP-1:3440x1440@144"
+    "video=DP-2:3440x1440@144"
+    "video=HDMI-A-1:2560x1440@144"
+  ];
+hardware.amdgpu.initrd.enable = true;
 
   environment.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =
@@ -82,6 +93,7 @@
   };
 
   networking.firewall.enable = false;
+  environment.variables.AMD_VULKAN_ICD = "RADV";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.05";

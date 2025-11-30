@@ -21,6 +21,7 @@
           modules = [
             ./hosts/${hostname}/configuration.nix
             ./modules/noctalia.nix
+            ./modules/garbage-collection.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {

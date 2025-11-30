@@ -72,14 +72,12 @@ in
     nodejs_24
     pay-respects
     proton-pass
-    protonmail-bridge
     protonup-qt
     python314
     ripgrep
     ripgrep
     rustc
     tealdeer
-    thunderbird
     tree-sitter
     unzip
     wget
@@ -89,5 +87,14 @@ in
 
   # Symlink all dotfiles
   home.file = commonFiles // platformFiles;
+
+  home.activation.cloneWallpapers = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    PICS_DIR="${config.home.homeDirectory}/pics"
+    if [ ! -d "$PICS_DIR" ]; then
+      $DRY_RUN_CMD ${pkgs.git}/bin/git clone https://github.com/neonvoidx/pics.git "$PICS_DIR"
+    else
+      $DRY_RUN_CMD ${pkgs.git}/bin/git -C "$PICS_DIR" pull
+    fi
+  '';
 
 }
