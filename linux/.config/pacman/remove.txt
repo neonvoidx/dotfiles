@@ -1,4 +1,0 @@
-vivaldi-ffmpeg-codecs
-vivaldi-update-ffmpeg-hook
-cuda
-

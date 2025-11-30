@@ -1,17 +1,49 @@
 { config, pkgs, lib, ... }:
 
 let
-  # Import all .nix files from dotfiles directory
-  dotfilesDir = ./dotfiles;
-  dotfilesModules = 
-    if builtins.pathExists dotfilesDir
-    then
+    dotfiles = "${config.home.homeDirectory}/dotfiles";
+    create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+    
+    # Recursively find all files in a directory and create symlink mappings
+    symlinkFiles = sourceDir: 
       let
-        entries = builtins.readDir dotfilesDir;
-        nixFiles = lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".nix" name) entries;
+        # Get all files recursively
+        findFiles = dir: 
+          let
+            entries = builtins.readDir dir;
+            processEntry = name: type:
+              let path = "${dir}/${name}";
+              in
+                if type == "directory" then
+                  findFiles path
+                else if type == "regular" then
+                  [ path ]
+                else
+                  [];
+          in
+            lib.flatten (lib.mapAttrsToList processEntry entries);
+        
+        files = findFiles sourceDir;
+        
+        # Convert absolute paths to relative paths for home.file
+        makeSymlinkEntry = filePath:
+          let
+            # Remove the sourceDir prefix and leading slash to get relative path
+            relativePath = lib.removePrefix "${sourceDir}/" filePath;
+          in
+            lib.nameValuePair relativePath {
+              source = create_symlink filePath;
+            };
       in
-        map (name: dotfilesDir + "/${name}") (builtins.attrNames nixFiles)
-    else [];
+        builtins.listToAttrs (map makeSymlinkEntry files);
+    
+    # Determine which directories to symlink based on system
+    commonFiles = symlinkFiles "${dotfiles}/common";
+    platformFiles = if pkgs.stdenv.isLinux 
+                    then symlinkFiles "${dotfiles}/linux"
+                    else if pkgs.stdenv.isDarwin
+                    then symlinkFiles "${dotfiles}/mac"
+                    else {};
 in
 {
   imports = dotfilesModules;
@@ -38,5 +70,8 @@ in
     tree-sitter
     yazi
   ];
+
+  # Symlink all dotfiles
+  home.file = commonFiles // platformFiles;
 
 }
