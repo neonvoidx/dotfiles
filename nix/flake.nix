@@ -7,10 +7,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +15,8 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
-      mkHost = { hostname, system ? "x86_64-linux", username, homeDirectory, stateVersion ? "25.05" }:
+      mkHost = { hostname, system ? "x86_64-linux", username, homeDirectory
+        , stateVersion ? "25.05" }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -39,8 +36,7 @@
             }
           ];
         };
-    in
-    {
+    in {
       nixosConfigurations = {
         voidframe = mkHost {
           hostname = "voidframe";

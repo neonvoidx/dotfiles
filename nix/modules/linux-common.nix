@@ -5,7 +5,6 @@
     /etc/nixos/hardware-configuration.nix
     ./fonts.nix
     inputs.hyprland.nixosModules.default
-    inputs.niri.nixosModules.niri
   ];
 
   # Bootloader
@@ -91,8 +90,6 @@
     xwayland.enable = true;
     withUWSM = false;
   };
-
-  programs.niri.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
