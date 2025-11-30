@@ -100,6 +100,7 @@
   environment.systemPackages = with pkgs; [
     vesktop
     steam
+    linuxKernel.packages.linux_6_12.xpadneo
     gpu-screen-recorder
     mangohud
     protonup-ng
