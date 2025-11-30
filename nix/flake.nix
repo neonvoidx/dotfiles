@@ -28,6 +28,7 @@
             ./hosts/${hostname}/configuration.nix
             ./modules/noctalia.nix
             ./modules/garbage-collection.nix
+            ./modules/network-drives.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
