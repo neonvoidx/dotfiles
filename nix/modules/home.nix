@@ -46,7 +46,6 @@ let
                     else {};
 in
 {
-  imports = dotfilesModules;
   home.username = "neonvoid";
   home.homeDirectory = "/home/neonvoid";
   home.stateVersion = "25.05";
