@@ -76,6 +76,8 @@ in {
     wget
     yazi
     zoxide
+    catppuccin-cursors.mochaSapphire
+    tela-icon-theme
   ];
 
   # Symlink all dotfiles
@@ -92,9 +94,28 @@ in {
 
   gtk = {
     enable = true;
+    
+    theme = {
+      name = "Adwaita-dark";
+    };
+    
+    iconTheme = {
+      name = "Tela-dracula-dark";
+      package = pkgs.tela-icon-theme;
+    };
+    
     cursorTheme = {
       name = "catppuccin-mocha-sapphire-cursors";
+      package = pkgs.catppuccin-cursors.mochaSapphire;
       size = 24;
+    };
+    
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+    
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
     };
   };
 
