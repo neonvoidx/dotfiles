@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ 
-    ../../modules/linux-common.nix
-  ];
+  imports = [ ../../modules/linux-common.nix ];
 
   networking.hostName = "void";
   networking.networkmanager.enable = true;
@@ -20,4 +18,6 @@
   ];
   hardware.amdgpu.initrd.enable = true;
   environment.variables.AMD_VULKAN_ICD = "RADV";
+
+  environment.systemPackages = with pkgs; [ streamcontroller, easyeffects ];
 }
