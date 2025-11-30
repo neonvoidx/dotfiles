@@ -57,7 +57,6 @@
     vesktop
     steam
     mangohud
-    protonup
     protonup-ng
     protonmail-bridge
     thunderbird
