@@ -108,7 +108,10 @@ in {
 
     iconTheme = {
       name = "Tela-dracula-dark";
-      package = pkgs.tela-icon-theme;
+      package = pkgs.tela-icon-theme.override {
+        colorVariants = ["dracula"];
+        circularFolder = false;
+      };
     };
 
     cursorTheme = {
