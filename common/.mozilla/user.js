@@ -20,7 +20,6 @@
 /** GENERAL ***/
 user_pref("content.notify.interval", 100000);
 
-user_pref("browser.uiCustomization.state", {"placements":{"widget-overflow-fixed-list":[],"unified-extensions-area":["_react-devtools-browser-action","_f60d7183-d8f1-4a2b-891b-f2de614ada9e_-browser-action","_09acf9ff-55d4-4366-a1a9-c9b3c8877c09_-browser-action","_c4b582ec-4343-438c-bda2-2f691c16c262_-browser-action","_506e023c-7f2b-40a3-8066-bc5deb40aebe_-browser-action","_a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7_-browser-action"],"nav-bar":["sidebar-button","back-button","forward-button","stop-reload-button","customizableui-special-spring1","vertical-spacer","urlbar-container","jid0-bnmfwww2w2w4e4edvcddbnmhdvg_jetpack-browser-action","78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action","ublock0_raymondhill_net-browser-action","_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action","_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action","addon_darkreader_org-browser-action","vpn_proton_ch-browser-action","unified-extensions-button","downloads-button","fxa-toolbar-menu-button","preferences-button","developer-button","firefox-view-button","alltabs-button","reset-pbm-toolbar-button"],"toolbar-menubar":["menubar-items"],"TabsToolbar":[],"vertical-tabs":["tabbrowser-tabs"],"PersonalToolbar":["personal-bookmarks"]},"seen":["developer-button","profiler-button","screenshot-button","_react-devtools-browser-action","_f60d7183-d8f1-4a2b-891b-f2de614ada9e_-browser-action","_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action","78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action","_09acf9ff-55d4-4366-a1a9-c9b3c8877c09_-browser-action","vpn_proton_ch-browser-action","jid0-bnmfwww2w2w4e4edvcddbnmhdvg_jetpack-browser-action","_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action","ublock0_raymondhill_net-browser-action","_c4b582ec-4343-438c-bda2-2f691c16c262_-browser-action","_506e023c-7f2b-40a3-8066-bc5deb40aebe_-browser-action","_a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7_-browser-action","addon_darkreader_org-browser-action","reset-pbm-toolbar-button"],"dirtyAreaCache":["nav-bar","vertical-tabs","toolbar-menubar","TabsToolbar","PersonalToolbar","unified-extensions-area"],"currentVersion":23,"newElementCount":7})
 /** GFX ***/
 user_pref("gfx.canvas.accelerated.cache-items", 4096);
 user_pref("gfx.canvas.accelerated.cache-size", 512);
@@ -222,6 +221,39 @@ user_pref("findbar.highlightAll", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
 
 /****************************************************************************
+ * SECTION: SMOOTHFOX                                                       *
+ ****************************************************************************/
+// visit https://github.com/yokoffing/Betterfox/blob/main/Smoothfox.js
+// Enter your scrolling overrides below this line:
+/****************************************************************************************
+ * OPTION: NATURAL SMOOTH SCROLLING V3 [MODIFIED]                                      *
+ ****************************************************************************************/
+// credit: https://github.com/AveYo/fox/blob/cf56d1194f4e5958169f9cf335cd175daa48d349/Natural%20Smooth%20Scrolling%20for%20user.js
+// recommended for 120hz+ displays
+// largely matches Chrome flags: Windows Scrolling Personality and Smooth Scrolling
+user_pref("apz.overscroll.enabled", true); // DEFAULT NON-LINUX
+user_pref("general.smoothScroll", true); // DEFAULT
+user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
+user_pref("general.smoothScroll.msdPhysics.enabled", true);
+user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 600);
+user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 650);
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25);
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio", "2");
+user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
+user_pref("general.smoothScroll.currentVelocityWeighting", "1");
+user_pref("general.smoothScroll.stopDecelerationWeighting", "1");
+user_pref("mousewheel.default.delta_multiplier_y", 300); // 250-400; adjust this number to your liking
+
+/****************************************************************************
+ * END: BETTERFOX                                                           *
+ ****************************************************************************/
+
+
+
+
+
+
+/****************************************************************************
  * START: MY OVERRIDES                                                      *
  ****************************************************************************/
 // visit https://github.com/yokoffing/Betterfox/wiki/Common-Overrides
@@ -229,6 +261,7 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 // Enter your personal overrides below this line:
 user_pref("gfx.webrender.layer-compositor", true)
 user_pref("media.wmf.zero-copy-nv12-textures-force-enabled", true)
+user_pref("browser.uiCustomization.state", {"placements":{"widget-overflow-fixed-list":[],"unified-extensions-area":["_react-devtools-browser-action","_f60d7183-d8f1-4a2b-891b-f2de614ada9e_-browser-action","_09acf9ff-55d4-4366-a1a9-c9b3c8877c09_-browser-action","_c4b582ec-4343-438c-bda2-2f691c16c262_-browser-action","_506e023c-7f2b-40a3-8066-bc5deb40aebe_-browser-action","_a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7_-browser-action"],"nav-bar":["sidebar-button","back-button","forward-button","stop-reload-button","customizableui-special-spring1","vertical-spacer","urlbar-container","jid0-bnmfwww2w2w4e4edvcddbnmhdvg_jetpack-browser-action","78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action","ublock0_raymondhill_net-browser-action","_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action","_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action","addon_darkreader_org-browser-action","vpn_proton_ch-browser-action","unified-extensions-button","downloads-button","fxa-toolbar-menu-button","preferences-button","developer-button","firefox-view-button","alltabs-button","reset-pbm-toolbar-button"],"toolbar-menubar":["menubar-items"],"TabsToolbar":[],"vertical-tabs":["tabbrowser-tabs"],"PersonalToolbar":["personal-bookmarks"]},"seen":["developer-button","profiler-button","screenshot-button","_react-devtools-browser-action","_f60d7183-d8f1-4a2b-891b-f2de614ada9e_-browser-action","_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action","78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action","_09acf9ff-55d4-4366-a1a9-c9b3c8877c09_-browser-action","vpn_proton_ch-browser-action","jid0-bnmfwww2w2w4e4edvcddbnmhdvg_jetpack-browser-action","_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action","ublock0_raymondhill_net-browser-action","_c4b582ec-4343-438c-bda2-2f691c16c262_-browser-action","_506e023c-7f2b-40a3-8066-bc5deb40aebe_-browser-action","_a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7_-browser-action","addon_darkreader_org-browser-action","reset-pbm-toolbar-button"],"dirtyAreaCache":["nav-bar","vertical-tabs","toolbar-menubar","TabsToolbar","PersonalToolbar","unified-extensions-area"],"currentVersion":23,"newElementCount":7});
 user_pref("places.frecency.bookmarkVisitBonus", 2000);
 user_pref("places.frecency.unvisitedBookmarkBonus", 2000);
 user_pref("browser.urlbar.showSearchSuggestionsFirst", false);
@@ -303,30 +336,3 @@ user_pref("network.dns.disablePrefetch", false);
 user_pref("network.dns.disablePrefetchFromHTTPS", false);
 user_pref("network.prefetch-next", true);
 
-/****************************************************************************
- * SECTION: SMOOTHFOX                                                       *
- ****************************************************************************/
-// visit https://github.com/yokoffing/Betterfox/blob/main/Smoothfox.js
-// Enter your scrolling overrides below this line:
-/****************************************************************************************
- * OPTION: NATURAL SMOOTH SCROLLING V3 [MODIFIED]                                      *
- ****************************************************************************************/
-// credit: https://github.com/AveYo/fox/blob/cf56d1194f4e5958169f9cf335cd175daa48d349/Natural%20Smooth%20Scrolling%20for%20user.js
-// recommended for 120hz+ displays
-// largely matches Chrome flags: Windows Scrolling Personality and Smooth Scrolling
-user_pref("apz.overscroll.enabled", true); // DEFAULT NON-LINUX
-user_pref("general.smoothScroll", true); // DEFAULT
-user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
-user_pref("general.smoothScroll.msdPhysics.enabled", true);
-user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 600);
-user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 650);
-user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25);
-user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio", "2");
-user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
-user_pref("general.smoothScroll.currentVelocityWeighting", "1");
-user_pref("general.smoothScroll.stopDecelerationWeighting", "1");
-user_pref("mousewheel.default.delta_multiplier_y", 300); // 250-400; adjust this number to your liking
-
-/****************************************************************************
- * END: BETTERFOX                                                           *
- ****************************************************************************/
