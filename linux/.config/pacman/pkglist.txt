@@ -176,6 +176,7 @@ networkmanager
 networkmanager-openvpn
 nfs-utils
 nilfs-utils
+niri
 nmap
 noctalia-shell
 nomacs
