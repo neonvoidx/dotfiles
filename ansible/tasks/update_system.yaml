@@ -1,0 +1,11 @@
+---
+- name: Check if system is up to date with paru
+  ansible.builtin.shell: paru -Qu
+  register: paru_check
+  failed_when: false
+  changed_when: false
+
+- name: Update system with paru
+  ansible.builtin.command: paru --noconfirm
+  when: paru_check.stdout != ""
+  become: true

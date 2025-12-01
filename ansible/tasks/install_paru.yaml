@@ -1,0 +1,33 @@
+---
+- name: Check if paru is installed
+  ansible.builtin.command: which paru
+  register: paru_check
+  ignore_errors: true
+  changed_when: false
+
+- name: Install paru
+  when: paru_check.rc != 0
+  block:
+    - name: Install base-devel and git
+      become: true
+      ansible.builtin.pacman:
+        name:
+          - base-devel
+          - git
+        state: present
+
+    - name: Clone paru repository
+      ansible.builtin.git:
+        repo: https://aur.archlinux.org/paru.git
+        dest: /tmp/paru
+        version: master
+
+    - name: Build and install paru
+      ansible.builtin.command:
+        cmd: makepkg -si --noconfirm
+        chdir: /tmp/paru
+
+    - name: Clean up paru build directory
+      ansible.builtin.file:
+        path: /tmp/paru
+        state: absent

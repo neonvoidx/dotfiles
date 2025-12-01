@@ -4,8 +4,8 @@ alacritty
 alsa-firmware
 alsa-plugins
 alsa-utils
-amdgpu_top
 amd-ucode
+amdgpu_top
 ansible
 ark
 asciinema
@@ -26,6 +26,7 @@ brightnessctl
 btop
 btrfs-assistant
 btrfs-progs
+cachy-update
 cachyos-fish-config
 cachyos-gaming-applications
 cachyos-gaming-meta
@@ -45,7 +46,6 @@ cachyos-v3-mirrorlist
 cachyos-v4-mirrorlist
 cachyos-wallpapers
 cachyos-zsh-config
-cachy-update
 calibre
 cantarell-fonts
 catppuccin-cursors-mocha
@@ -61,12 +61,10 @@ cryptsetup
 cups
 cups-filters
 cups-pdf
-curseforge
 device-mapper
 dhclient
 dhcpcd
 diffutils
-dmenu-bluetooth
 dmidecode
 dmraid
 dnsmasq
@@ -77,7 +75,6 @@ easyeffects
 efibootmgr
 efitools
 ethtool
-exercism
 exfatprogs
 f2fs-tools
 fastfetch
@@ -92,12 +89,10 @@ fprintd
 fractal
 fsarchiver
 gamescope
-gconf
 gimp
 git
 git-delta
 github-cli
-github-copilot-cli
 glances
 gnome-keyring
 go
@@ -109,11 +104,9 @@ grub-btrfs-support
 grub-hook
 gst-libav
 gst-plugin-pipewire
+gst-plugin-va
 gst-plugins-bad
 gst-plugins-ugly
-gst-plugin-va
-gstreamer0.10-base-plugins
-gstreamer-svt-av1
 gvfs
 gvfs-smb
 hashcat
@@ -123,7 +116,6 @@ hplip
 htop
 hwdetect
 hwinfo
-hyprland-meta-git
 inetutils
 inotify-tools
 inter-font
@@ -160,10 +152,10 @@ lsof
 lsscsi
 luarocks
 lvm2
-ly-git
+ly
 man-db
-mangohud
 man-pages
+mangohud
 masscan
 mdadm
 mediainfo
@@ -171,7 +163,6 @@ meld
 mesa-utils
 micro
 mkinitcpio
-mkinitcpio-colors-git
 mkinitcpio-firmware
 modemmanager
 mpv
@@ -180,8 +171,8 @@ nano
 nano-syntax-highlighting
 neovim
 netctl
-networkmanager
 network-manager-applet
+networkmanager
 networkmanager-openvpn
 nfs-utils
 nilfs-utils
@@ -197,8 +188,8 @@ ntfs-3g
 ntp
 nwg-displays
 nwg-look
-obsidian
 obs-studio
+obsidian
 octopi
 oculante
 okular
@@ -210,7 +201,6 @@ pacman-contrib
 paru
 pastel
 pavucontrol
-pay-respects
 perl
 pipewire-alsa
 pipewire-jack
@@ -223,7 +213,6 @@ poppler-glib
 power-profiles-daemon
 proton-ge-custom-bin
 protonmail-bridge
-proton-pass-bin
 protontricks-git
 protonup-qt
 prusa-slicer
@@ -236,25 +225,20 @@ python-packaging
 python-pyqt5
 python-reportlab
 quickshell
-r2modman-appimage
 rebuild-detector
 reflector
 ripgrep
 rofi
-rose-pine-cursor
-rose-pine-hyprcursor
 rsync
 rtkit
 rust-analyzer
+s-nail
 sbctl
-scopebuddy-git
 seahorse
 sg3_utils
-sgdboop
 shellcheck
 slurp
 smartmontools
-s-nail
 snapper
 sof-firmware
 spicetify-cli
@@ -264,7 +248,6 @@ steam
 steamcmd
 steamtinkerlaunch
 stow
-streamcontroller-git
 sudo
 swappy
 sysfsutils
@@ -275,7 +258,6 @@ tenacity
 terminus-font
 termshark
 texinfo
-thorium-browser-bin
 thunar
 thunar-archive-plugin
 thunar-media-tags-plugin
@@ -290,7 +272,6 @@ trash-cli
 tree-sitter-cli
 ttf-bitstream-vera
 ttf-dejavu
-ttf-font-awesome-5
 ttf-jetbrains-mono
 ttf-liberation
 ttf-material-symbols-variable-git
@@ -308,7 +289,6 @@ upower
 usb_modeswitch
 usbutils
 uv
-vencord-hook
 ventoy-bin
 vesktop-git
 vim

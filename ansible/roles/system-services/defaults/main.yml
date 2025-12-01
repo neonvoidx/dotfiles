@@ -1,7 +1,0 @@
----
-# Default variables for system-services role
-
-# Wait for services to start (seconds)
-service_start_timeout: 30
-
-# Add any role-specific defaults here

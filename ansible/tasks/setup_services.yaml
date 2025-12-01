@@ -1,0 +1,65 @@
+---
+- name: Copy ly config
+  ansible.builtin.copy:
+    src: ~/dotfiles/linux-sys/etc/ly/config.ini
+    dest: /etc/ly/config.ini
+    mode: preserve
+    force: true
+  become: true
+
+- name: Enable ly.service
+  ansible.builtin.systemd_service:
+    name: ly.service
+    enabled: true
+  become: true
+
+- name: Replace tty2 with tty1 in ly.service
+  ansible.builtin.replace:
+    path: /usr/lib/systemd/system/ly.service
+    regexp: "tty2"
+    replace: "tty1"
+  become: true
+
+- name: Add ExecStartPre to ly.service, to set screen resolution before ly starts
+  ansible.builtin.lineinfile:
+    path: /usr/lib/systemd/system/ly.service
+    insertbefore: "^ExecStart"
+    line: "ExecStartPre=/usr/sbin/fbset -xres 3440 -yres 1440"
+  become: true
+
+- name: Reload systemd daemon
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+  become: true
+
+- name: Create /etc/pacman.d/hooks directory
+  ansible.builtin.file:
+    path: /etc/pacman.d/hooks
+    state: directory
+    mode: "0755"
+  become: true
+
+- name: Copy pacman hooks
+  ansible.builtin.copy:
+    src: ~/dotfiles/linux-sys/etc/pacman.d/hooks/
+    dest: /etc/pacman.d/hooks/
+    mode: preserve
+  become: true
+
+- name: Enable ananicy-cpp
+  ansible.builtin.systemd_service:
+    name: ananicy-cpp.service
+    enabled: true
+  become: true
+
+- name: Enable hypridle
+  ansible.builtin.systemd_service:
+    name: hypridle.service
+    enabled: true
+    scope: user
+
+- name: Enable gnome-keying
+  ansible.builtin.systemd_service:
+    name: gnome-keyring-daemon.service
+    enabled: true
+    scope: user

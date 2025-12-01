@@ -1,0 +1,30 @@
+---
+- name: Read package list from file
+  ansible.builtin.slurp:
+    src: "{{ pkglist_file | default('~/dotfiles/linux/.config/pacman/pkglist.txt') }}"
+  register: pkglist_content
+
+- name: Parse package list
+  ansible.builtin.set_fact:
+    packages_to_install: "{{ (pkglist_content['content'] | b64decode).split('\n') | select('match', '.+') | list }}"
+
+- name: Install packages from list
+  community.general.pacman:
+    name: "{{ packages_to_install }}"
+    state: present
+  become: true
+
+- name: Read AUR package list from file
+  ansible.builtin.slurp:
+    src: "{{ pkglist_aur_file | default('~/dotfiles/linux/.config/pacman/pkglist_aur.txt') }}"
+  register: pkglist_aur_content
+
+- name: Parse AUR package list
+  ansible.builtin.set_fact:
+    aur_packages_to_install: "{{ (pkglist_aur_content['content'] | b64decode).split('\n') | select('match', '.+') | list }}"
+
+- name: Install AUR packages from list
+  kewlfft.aur.aur:
+    name: "{{ aur_packages_to_install }}"
+    use: paru
+    state: present
