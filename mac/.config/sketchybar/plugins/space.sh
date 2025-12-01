@@ -69,10 +69,10 @@ hide_apps() {
 case "$SENDER" in
   "mouse.clicked") mouse_clicked
   ;;
-  "mouse.entered") show_apps
-  ;;
-  "mouse.exited"|"mouse.exited.global") hide_apps
-  ;;
+  # "mouse.entered") show_apps
+  # ;;
+  # "mouse.exited"|"mouse.exited.global") hide_apps
+  # ;;
   *) update
   ;;
 esac
