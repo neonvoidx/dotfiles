@@ -1,7 +1,7 @@
 ---
 - name: Copy ly config
   ansible.builtin.copy:
-    src: ~/dotfiles/linux-sys/etc/ly/config.ini
+    src: "{{ ly_config_src | default('~/dotfiles/linux-sys/etc/ly/config.ini') }}"
     dest: /etc/ly/config.ini
     mode: preserve
     force: true
@@ -12,6 +12,11 @@
     name: ly.service
     enabled: true
   become: true
+
+- name: Disable getty@tty1.service
+  ansible.builtin.systemd_service:
+    name: getty@tty1.service
+    enabled: false
 
 - name: Replace tty2 with tty1 in ly.service
   ansible.builtin.replace:
@@ -24,7 +29,7 @@
   ansible.builtin.lineinfile:
     path: /usr/lib/systemd/system/ly.service
     insertbefore: "^ExecStart"
-    line: "ExecStartPre=/usr/sbin/fbset -xres 3440 -yres 1440"
+    line: "ExecStartPre=/usr/sbin/fbset -xres {{ screen_xres | default('3440') }} -yres {{ screen_yres | default('1440') }}"
   become: true
 
 - name: Reload systemd daemon
@@ -41,7 +46,7 @@
 
 - name: Copy pacman hooks
   ansible.builtin.copy:
-    src: ~/dotfiles/linux-sys/etc/pacman.d/hooks/
+    src: "{{ pacman_hooks_src | default('~/dotfiles/linux-sys/etc/pacman.d/hooks/') }}"
     dest: /etc/pacman.d/hooks/
     mode: preserve
   become: true

@@ -1,4 +1,51 @@
 ---
+- name: Install Chaotic AUR keyring
+  ansible.builtin.shell: |
+    pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+    pacman-key --lsign-key 3056513887B78AEB
+  become: true
+  args:
+    executable: /bin/bash
+  ignore_errors: true
+  when: enable_chaotic_aur | default(true) | bool
+
+- name: Download Chaotic AUR keyring and mirrorlist packages
+  ansible.builtin.get_url:
+    url: "https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-{{ item }}"
+    dest: "/tmp/chaotic-{{ item }}"
+    mode: "0644"
+  loop:
+    - keyring.pkg.tar.zst
+    - mirrorlist.pkg.tar.zst
+  become: true
+  when: enable_chaotic_aur | default(true) | bool
+
+- name: Install Chaotic AUR keyring and mirrorlist packages
+  community.general.pacman:
+    name:
+      - /tmp/chaotic-keyring.pkg.tar.zst
+      - /tmp/chaotic-mirrorlist.pkg.tar.zst
+    state: present
+  become: true
+  when: enable_chaotic_aur | default(true) | bool
+
+- name: Add Chaotic AUR repository to pacman.conf
+  ansible.builtin.blockinfile:
+    path: /etc/pacman.conf
+    block: |
+      [chaotic-aur]
+      Include = /etc/pacman.d/chaotic-mirrorlist
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - Chaotic AUR"
+    insertafter: EOF
+  become: true
+  when: enable_chaotic_aur | default(true) | bool
+
+- name: Update package databases
+  community.general.pacman:
+    update_cache: true
+  become: true
+  when: enable_chaotic_aur | default(true) | bool
+
 - name: Read package list from file
   ansible.builtin.slurp:
     src: "{{ pkglist_file | default('~/dotfiles/linux/.config/pacman/pkglist.txt') }}"
