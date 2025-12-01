@@ -7,3 +7,6 @@
 [submodule "common/vault"]
 	path = common/vault
 	url = git@github.com:neonvoidx/vault.git
+[submodule "linux/homepage"]
+	path = linux/homepage
+	url = git@github.com:neonvoidx/homepage.git
