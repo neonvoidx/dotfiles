@@ -17,5 +17,6 @@ scopebuddy-git
 sgdboop
 streamcontroller-git
 thorium-browser-bin
+timesup
 ttf-font-awesome-5
 vencord-hook

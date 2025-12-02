@@ -8,11 +8,6 @@ if [ "$1" = "--dry" ]; then
   echo "Dry run: will only build, not install."
 fi
 
-# Ensure we are in ~/dev/hypr
-cd ~/dev/hypr || {
-  printf "\033[0;31mFailed to cd to ~/dev/hypr\033[0m\n"
-  exit 1
-}
 
 # Folders for each repo
 # They must be built in this order

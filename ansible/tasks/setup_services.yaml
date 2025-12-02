@@ -7,17 +7,6 @@
     force: true
   become: true
 
-- name: Enable ly.service
-  ansible.builtin.systemd_service:
-    name: ly.service
-    enabled: true
-  become: true
-
-- name: Disable getty@tty1.service
-  ansible.builtin.systemd_service:
-    name: getty@tty1.service
-    enabled: false
-
 - name: Replace tty2 with tty1 in ly.service
   ansible.builtin.replace:
     path: /usr/lib/systemd/system/ly.service
@@ -25,11 +14,30 @@
     replace: "tty1"
   become: true
 
+- name: Enable ly.service
+  ansible.builtin.systemd_service:
+    name: ly.service
+    enabled: true
+  become: true
+
+# - name: Disable getty@tty1.service
+#   ansible.builtin.systemd_service:
+#     name: getty@tty1.service
+#     enabled: false
+
 - name: Add ExecStartPre to ly.service, to set screen resolution before ly starts
   ansible.builtin.lineinfile:
     path: /usr/lib/systemd/system/ly.service
     insertbefore: "^ExecStart"
     line: "ExecStartPre=/usr/sbin/fbset -xres {{ screen_xres | default('3440') }} -yres {{ screen_yres | default('1440') }}"
+    regexp: "^ExecStartPre=/usr/sbin/fbset"
+  become: true
+
+- name: Set stop job timeouts to 15sec
+  ansible.builtin.lineinfile:
+    path: /etc/systemd/system.conf
+    regexp: "^#?DefaultTimeoutStopSec"
+    line: "DefaultTimeoutStopSec=15s"
   become: true
 
 - name: Reload systemd daemon
