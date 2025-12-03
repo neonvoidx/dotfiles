@@ -285,7 +285,7 @@
         "weatherShowEffects": true
     },
     "network": {
-        "wifiEnabled": true
+        "wifiEnabled": false
     },
     "nightLight": {
         "autoSchedule": true,
@@ -421,13 +421,23 @@
         "tooltipsEnabled": true
     },
     "wallpaper": {
-        "directory": "/home/neonvoid/Pictures/Wallpapers",
+        "directory": "/home/neonvoid/dotfiles/linux/pics/ultrawide",
         "enableMultiMonitorDirectories": true,
         "enabled": true,
         "fillColor": "#212337",
         "fillMode": "center",
         "hideWallpaperFilenames": true,
         "monitorDirectories": [
+            {
+                "directory": "/home/neonvoid/dotfiles/linux/pics/ultrawide",
+                "name": "DP-3",
+                "wallpaper": ""
+            },
+            {
+                "directory": "/home/neonvoid/dotfiles/linux/pics/vertical",
+                "name": "HDMI-A-1",
+                "wallpaper": ""
+            }
         ],
         "overviewEnabled": true,
         "panelPosition": "center",
