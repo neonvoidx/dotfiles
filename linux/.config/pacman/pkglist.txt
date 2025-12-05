@@ -88,17 +88,21 @@ fnm
 fprintd
 fractal
 fsarchiver
+game-devices-udev
+gamemode
 gamescope
 gimp
 git
 git-delta
 github-cli
 glances
+gleam
 gnome-keyring
 go
 godot
 gpu-screen-recorder-git
 grim
+grimblast-git
 grub
 grub-btrfs-support
 grub-hook
@@ -119,6 +123,7 @@ hwinfo
 inetutils
 inotify-tools
 inter-font
+ipcalc
 iptables-nft
 iwd
 jfsutils
@@ -178,7 +183,6 @@ nfs-utils
 nilfs-utils
 niri
 nmap
-noctalia-shell
 nomacs
 noto-color-emoji-fontconfig
 noto-fonts

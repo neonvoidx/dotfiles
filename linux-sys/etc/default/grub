@@ -1,0 +1,15 @@
+# GRUB boot loader configuration
+
+### AMD GPU KERNEL PARAMS
+# amdgpu.ppfeaturemask=0xffff7fff - Disables GFX_OFF
+# amdgpu.ppfeaturemask=0xfffd7fff - Disables GFX_OFF, STUTTER_MODE
+# amdgpu.ppfeaturemask=0xfffd3fff - Disables GFX_OFF, STUTTER_MODE, OVERDRIVE
+# amdgpu.ppfeaturemask=0xfff73fff - Disables GFX_OFF, GFX_DCS, OVERDRIVE 
+#
+# amdgpu.noretry=0 - Can fix ring timeouts, enables retry, default -1 (auto)
+# amdgpu.lockup_timeout=0 - timeout in ms for lockups, default is 10000 (10s)
+# iommu=pt = Adds passthrough if running VMs
+# amdgpu.gpu_recovery=1 - Enable GPU recovery, default -1 (auto, disabled except SRIOV)
+# amdgpu.runpm=0 # prevents GPU from powering down dynamically - default -1 (auto)
+#
+# ############
