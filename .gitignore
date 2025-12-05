@@ -8,3 +8,5 @@ linux/.config/Thunar/accels.scm
 linux/.config/easyeffects/db/easyeffectsrc
 linux/.config/scopebuddy/scopebuddy.log
 common/.config/spicetify/config-xpui.ini
+linux/.config/hypr/build/hyprshutdown
+linux/.config/hypr/build/hyprutils

@@ -102,7 +102,6 @@ go
 godot
 gpu-screen-recorder-git
 grim
-grimblast-git
 grub
 grub-btrfs-support
 grub-hook

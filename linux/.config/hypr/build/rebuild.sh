@@ -25,6 +25,7 @@ folders=(
   Hyprland
   hypridle
   hyprpicker
+  hyprshutdown
 )
 # repos for each folder
 repos=(
@@ -41,6 +42,7 @@ repos=(
   git@github.com:hyprwm/Hyprland.git
   git@github.com:hyprwm/hypridle.git
   git@github.com:hyprwm/hyprpicker.git
+  git@github.com:hyprwm/hyprshutdown.git
 )
 # build commands per repo
 build_commands=(
@@ -70,6 +72,8 @@ build_commands=(
   "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target all -j$(nproc 2>/dev/null || getconf NPROCESSORS_CONF)"
   # hyprpicker
   "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprpicker -j$(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)"
+  # hyprshutdown
+  "cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build && cmake --build ./build --config Release --target hyprshutdown -j$(nproc 2>/dev/null || getconf _NPROCESSORS_CONF)"
 )
 
 # Check and install missing dependencies, before starting build
@@ -120,6 +124,8 @@ install_commands=(
   # hypridle
   "sudo cmake --install ./build"
   # hyprpicker
+  "sudo cmake --install ./build"
+  # hyprshutdown
   "sudo cmake --install ./build"
 )
 
