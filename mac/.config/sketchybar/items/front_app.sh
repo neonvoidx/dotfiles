@@ -11,7 +11,7 @@ elif command -v aerospace > /dev/null && pgrep -x "AeroSpace" > /dev/null; then
   WM="aerospace"
   WM_SCRIPT="$PLUGIN_DIR/aerospace.sh"
   # Subscribe to aerospace_workspace_change instead of windows_on_spaces
-  WM_EVENTS="window_focus aerospace_workspace_change aerospace_windows_change mouse.clicked"
+  WM_EVENTS="window_focus front_app_switched aerospace_workspace_change aerospace_windows_change mouse.clicked"
 else
   # Default to yabai script if neither is detected
   WM="yabai"

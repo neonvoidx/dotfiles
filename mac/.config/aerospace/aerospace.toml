@@ -81,10 +81,10 @@ alt-cmd-ctrl-q = "close --quit-if-last-window"
 cmd-slash = 'layout tiles horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-cmd-h = 'focus left'
-cmd-j = 'focus down'
-cmd-k = 'focus up'
-cmd-l = 'focus right'
+cmd-h = ['focus left', 'exec-and-forget sketchybar --trigger window_focus']
+cmd-j = ['focus down', 'exec-and-forget sketchybar --trigger window_focus']
+cmd-k = ['focus up', 'exec-and-forget sketchybar --trigger window_focus']
+cmd-l = ['focus right', 'exec-and-forget sketchybar --trigger window_focus']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 cmd-shift-h = 'move left'

@@ -8,17 +8,21 @@ update() {
   
   # Get current workspace from aerospace
   CURRENT_WORKSPACE=$(aerospace list-workspaces --focused 2>/dev/null)
+  
+  # Get focused app
+  FOCUSED_APP=$(aerospace list-windows --focused --json 2>/dev/null | jq -r '.[0].["app-name"]' 2>/dev/null)
 
   WIDTH="dynamic"
   SELECTED="false"
-  # Dimmed green for non-focused workspaces (60% opacity)
-  LABEL_COLOR=0x9937f499
+  
+  # For non-focused workspaces, use dimmed green for all apps
+  LABEL_COLOR=$GREEN_DIM
 
   if [ "$WORKSPACE_ID" = "$CURRENT_WORKSPACE" ]; then
     SELECTED="true"
-    # Keep width as dynamic to show app icons even on focused workspace
     WIDTH="dynamic"
-    # Use bright green label color for focused workspace
+    # For focused workspace, the label color will be set by aerospace.sh
+    # based on which app is focused
     LABEL_COLOR=$GREEN
   fi
 

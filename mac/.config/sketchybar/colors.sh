@@ -5,6 +5,7 @@ export BLACK=0xff212337
 export WHITE=0xffebfafa
 export RED=0xfff16c75
 export GREEN=0xff37f499
+export GREEN_DIM=0x9937f499
 export BLUE=0xff04d1f9
 export YELLOW=0xfff1fc79
 export ORANGE=0xfff7c67f
