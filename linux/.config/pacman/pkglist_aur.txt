@@ -9,7 +9,6 @@ hyprland-meta-git
 hyprshot-git
 mangowc-git
 mkinitcpio-colors-git
-noctalia-shell-git
 pay-respects
 proton-pass-bin
 r2modman-appimage

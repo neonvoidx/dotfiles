@@ -183,6 +183,7 @@ nfs-utils
 nilfs-utils
 niri
 nmap
+noctalia-shell
 nomacs
 noto-color-emoji-fontconfig
 noto-fonts
