@@ -4,18 +4,25 @@
 WORKSPACE_ID="$1"
 
 update() {
+  source "$HOME/.config/sketchybar/colors.sh"
+  
   # Get current workspace from aerospace
   CURRENT_WORKSPACE=$(aerospace list-workspaces --focused 2>/dev/null)
 
   WIDTH="dynamic"
   SELECTED="false"
+  # Dimmed green for non-focused workspaces (60% opacity)
+  LABEL_COLOR=0x9937f499
 
   if [ "$WORKSPACE_ID" = "$CURRENT_WORKSPACE" ]; then
     SELECTED="true"
-    WIDTH="0"
+    # Keep width as dynamic to show app icons even on focused workspace
+    WIDTH="dynamic"
+    # Use bright green label color for focused workspace
+    LABEL_COLOR=$GREEN
   fi
 
-  sketchybar --animate tanh 20 --set $NAME icon.highlight=$SELECTED label.width=$WIDTH
+  sketchybar --animate tanh 20 --set $NAME icon.highlight=$SELECTED label.width=$WIDTH label.color=$LABEL_COLOR
 }
 
 mouse_clicked() {

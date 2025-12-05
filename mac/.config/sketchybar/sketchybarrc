@@ -71,6 +71,8 @@ sketchybar --default "${defaults[@]}"
 # Left
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
+
+# Center
 source "$ITEM_DIR/front_app.sh"
 
 # Right
@@ -100,8 +102,15 @@ source "$ITEM_DIR/cpu_top.sh"
 
 # Creating dynamic islands by grouping items with backgrounds
 # Left island: Apple menu + spaces + front app
-sketchybar --add bracket left_island apple.logo '/space\..*/' front_app \
+sketchybar --add bracket left_island apple.logo '/space\..*/' \
            --set left_island background.color=0xff323449 \
+                             background.corner_radius=9 \
+                             background.height=30 \
+                             background.drawing=on \
+                             background.shadow.drawing=off
+
+sketchybar --add bracket center_island front_app \
+           --set center_island background.color=0xff323449 \
                              background.corner_radius=9 \
                              background.height=30 \
                              background.drawing=on \
