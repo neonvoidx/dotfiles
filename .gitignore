@@ -10,3 +10,8 @@ linux/.config/scopebuddy/scopebuddy.log
 common/.config/spicetify/config-xpui.ini
 linux/.config/hypr/build/hyprshutdown
 linux/.config/hypr/build/hyprutils
+linux/.config/easyeffects/db
+linux/.config/hypr/build/aquamarine
+linux/.config/hypr/build/Hyprland
+linux/.config/hypr/build/hyprland-guiutils
+linux/.config/hypr/build/hyprtoolkit

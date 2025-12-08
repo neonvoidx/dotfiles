@@ -46,6 +46,7 @@ cachyos-v3-mirrorlist
 cachyos-v4-mirrorlist
 cachyos-wallpapers
 cachyos-zsh-config
+calf
 calibre
 cantarell-fonts
 catppuccin-cursors-mocha
@@ -101,6 +102,8 @@ gnome-keyring
 go
 godot
 gpu-screen-recorder-git
+greetd
+greetd-tuigreet
 grim
 grub
 grub-btrfs-support
@@ -153,6 +156,7 @@ logrotate
 lsb-release
 lsd
 lsof
+lsp-plugins
 lsscsi
 luarocks
 lvm2
@@ -274,7 +278,6 @@ thunar-shares-plugin
 thunar-vcs-plugin
 thunar-volman
 thunderbird
-tmux
 toilet
 toilet-fonts
 tomlplusplus
