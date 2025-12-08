@@ -29,7 +29,7 @@
         "density": "comfortable",
         "exclusive": true,
         "floating": true,
-        "marginHorizontal": 0.51,
+        "marginHorizontal": 0.3,
         "marginVertical": 0.3,
         "monitors": [
         ],
@@ -42,7 +42,7 @@
                     "colorizeIcons": false,
                     "hideMode": "hidden",
                     "id": "ActiveWindow",
-                    "maxWidth": 145,
+                    "maxWidth": 350,
                     "scrollingMode": "hover",
                     "showIcon": true,
                     "useFixedWidth": false

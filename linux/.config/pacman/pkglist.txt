@@ -171,6 +171,7 @@ mkinitcpio-firmware
 modemmanager
 mpv
 mtools
+muparser
 nano
 nano-syntax-highlighting
 neovim
@@ -183,6 +184,7 @@ nilfs-utils
 niri
 nmap
 noctalia-shell
+noise-suppression-for-voice
 nomacs
 noto-color-emoji-fontconfig
 noto-fonts
@@ -192,6 +194,7 @@ nss-mdns
 ntfs-3g
 ntp
 nwg-displays
+nwg-dock-hyprland
 nwg-look
 obs-studio
 obsidian
@@ -221,7 +224,6 @@ proton-ge-custom-bin
 protonmail-bridge
 protontricks-git
 protonup-qt
-prusa-slicer
 pv
 pwvucontrol
 pyenv
@@ -240,6 +242,7 @@ rtkit
 rust-analyzer
 s-nail
 sbctl
+sdbus-cpp
 seahorse
 sg3_utils
 shellcheck
@@ -274,6 +277,7 @@ thunderbird
 tmux
 toilet
 toilet-fonts
+tomlplusplus
 trash-cli
 tree-sitter-cli
 ttf-bitstream-vera
@@ -289,13 +293,13 @@ tumbler
 udiskie
 ufw
 umu-launcher
+unixodbc
 unrar
 unzip
 upower
 usb_modeswitch
 usbutils
 uv
-ventoy-bin
 vesktop-git
 vim
 virtualbox
@@ -303,6 +307,7 @@ virtualbox-host-dkms
 vkbasalt
 vlc-plugins-all
 vulkan-radeon
+wayland-protocols
 wev
 wget
 which
