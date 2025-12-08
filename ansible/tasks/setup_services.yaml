@@ -1,33 +1,21 @@
 ---
-- name: Copy ly config
+- name: Copy greetd config
   ansible.builtin.copy:
-    src: "{{ ly_config_src | default('~/dotfiles/linux-sys/etc/ly/config.ini') }}"
-    dest: /etc/ly/config.ini
+    src: "{{ greetd_config_src | default('~/dotfiles/linux-sys/etc/greetd/config.toml') }}"
+    dest: /etc/greetd/config.toml
     mode: preserve
     force: true
   become: true
 
-- name: Replace tty2 with tty1 in ly.service
-  ansible.builtin.replace:
-    path: /usr/lib/systemd/system/ly.service
-    regexp: "tty2"
-    replace: "tty1"
-  become: true
-
-- name: Enable ly.service
+- name: Enable greetd.service
   ansible.builtin.systemd_service:
-    name: ly.service
+    name: greetd.service
     enabled: true
   become: true
 
-# - name: Disable getty@tty1.service
-#   ansible.builtin.systemd_service:
-#     name: getty@tty1.service
-#     enabled: false
-
-- name: Add ExecStartPre to ly.service, to set screen resolution before ly starts
+- name: Add ExecStartPre to greetd.service, to set screen resolution before ly starts
   ansible.builtin.lineinfile:
-    path: /usr/lib/systemd/system/ly.service
+    path: /usr/lib/systemd/system/greetd.service
     insertbefore: "^ExecStart"
     line: "ExecStartPre=/usr/sbin/fbset -xres {{ screen_xres | default('3440') }} -yres {{ screen_yres | default('1440') }}"
     regexp: "^ExecStartPre=/usr/sbin/fbset"
@@ -64,15 +52,3 @@
     name: ananicy-cpp.service
     enabled: true
   become: true
-
-- name: Enable hypridle
-  ansible.builtin.systemd_service:
-    name: hypridle.service
-    enabled: true
-    scope: user
-
-- name: Enable gnome-keying
-  ansible.builtin.systemd_service:
-    name: gnome-keyring-daemon.service
-    enabled: true
-    scope: user
