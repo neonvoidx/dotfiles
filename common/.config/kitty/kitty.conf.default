@@ -93,6 +93,7 @@ linux_display_server wayland
 # Keyboard shortcuts
 map cmd+enter no_op
 map ctrl+tab no_op
+map cmd+` no_op
 ## Copy/Paste
 map kitty_mod+c copy_to_clipboard
 map kitty_mod+v paste_from_clipboard
