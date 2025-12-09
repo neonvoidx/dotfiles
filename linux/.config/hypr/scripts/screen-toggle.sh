@@ -2,6 +2,7 @@
 INTERNAL_MONITOR="DP-2"
 EXTERNAL_MONITOR="DP-3"
 WORKSPACES_TO_MOVE=(1 2 4 5 6 7 8 9 10 11)
+GAMESCREEN_STATE_FILE="/tmp/hypr-gamescreen-state"
 
 move_all_workspaces_to_monitor() {
   # Get the list of existing workspace IDs
@@ -19,7 +20,14 @@ disable_monitor() {
 }
 
 enable_monitor() {
-  hyprctl keyword monitor "DP-2,3440x1440@143.92,4880x1582,1.0,bitdepth,10, cm, hdredid, sdrbrightness, 1.3, sdrsaturation, 0.93, vrr, 1"
+  # Check if gamescreen-toggle is active (monitors not touching)
+  if [ -f "$GAMESCREEN_STATE_FILE" ]; then
+    # Gaming mode: monitors not touching (Y offset: 1582)
+    hyprctl keyword monitor "DP-2,3440x1440@143.92,4880x1582,1.0,bitdepth,10, cm, hdredid, sdrbrightness, 1.3, sdrsaturation, 0.93, vrr, 1"
+  else
+    # Default mode: monitors touching (Y offset: 1440)
+    hyprctl keyword monitor "DP-2,3440x1440@143.92,4880x1440,1.0,bitdepth,10, cm, hdredid, sdrbrightness, 1.3, sdrsaturation, 0.93, vrr, 1"
+  fi
 }
 
 if [ "$1" = "1" ]; then
