@@ -11,6 +11,7 @@ hyprshutdown-git
 libdeep_filter_ladspa-bin
 mangowc-git
 mkinitcpio-colors-git
+noctalia-shell-git
 paccache-hook
 pay-respects
 proton-pass-bin

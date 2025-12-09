@@ -7,6 +7,7 @@
         "pinnedExecs": [
         ],
         "position": "center",
+        "showCategories": true,
         "sortByMostUsed": true,
         "terminalCommand": "kitty -e",
         "useApp2Unit": false,
@@ -32,6 +33,7 @@
         "marginHorizontal": 0.3,
         "marginVertical": 0.3,
         "monitors": [
+            "DP-3"
         ],
         "outerCorners": false,
         "position": "top",
@@ -51,10 +53,10 @@
             "left": [
                 {
                     "colorizeDistroLogo": false,
-                    "colorizeSystemIcon": "none",
+                    "colorizeSystemIcon": "secondary",
                     "customIconPath": "",
-                    "enableColorization": false,
-                    "icon": "bomb",
+                    "enableColorization": true,
+                    "icon": "hyprland",
                     "id": "ControlCenter",
                     "useDistroLogo": false
                 },
@@ -80,8 +82,8 @@
                     "hideMode": "hidden",
                     "hideWhenIdle": false,
                     "id": "MediaMini",
-                    "maxWidth": 145,
-                    "scrollingMode": "always",
+                    "maxWidth": 250,
+                    "scrollingMode": "hover",
                     "showAlbumArt": true,
                     "showArtistFirst": true,
                     "showProgressRing": true,
@@ -97,6 +99,17 @@
                 }
             ],
             "right": [
+                {
+                    "diskPath": "/",
+                    "id": "SystemMonitor",
+                    "showCpuTemp": true,
+                    "showCpuUsage": true,
+                    "showDiskUsage": false,
+                    "showMemoryAsPercent": true,
+                    "showMemoryUsage": true,
+                    "showNetworkStats": true,
+                    "usePrimaryColor": true
+                },
                 {
                     "id": "WallpaperSelector"
                 },
@@ -172,9 +185,6 @@
             }
         ]
     },
-    "changelog": {
-        "lastSeenVersion": ""
-    },
     "colorSchemes": {
         "darkMode": true,
         "generateTemplatesForPredefined": true,
@@ -204,7 +214,7 @@
                 "id": "media-sysmon-card"
             },
             {
-                "enabled": true,
+                "enabled": false,
                 "id": "weather-card"
             }
         ],
@@ -237,14 +247,17 @@
     "dock": {
         "backgroundOpacity": 1,
         "colorizeIcons": false,
+        "deadOpacity": 0.6,
         "displayMode": "auto_hide",
         "enabled": false,
         "floatingRatio": 1,
+        "inactiveIndicators": false,
         "monitors": [
         ],
         "onlySameOutput": true,
         "pinnedApps": [
         ],
+        "pinnedStatic": false,
         "size": 1
     },
     "general": {
@@ -252,10 +265,12 @@
         "animationDisabled": false,
         "animationSpeed": 1,
         "avatarImage": "/home/neonvoid/.face",
+        "boxRadiusRatio": 1,
         "compactLockScreen": false,
         "dimmerOpacity": 0.3,
         "enableShadows": true,
         "forceBlackScreenCorners": false,
+        "iRadiusRatio": 1,
         "language": "",
         "lockOnSuspend": true,
         "radiusRatio": 1,
@@ -265,7 +280,8 @@
         "shadowOffsetX": 0,
         "shadowOffsetY": 3,
         "showHibernateOnLockScreen": false,
-        "showScreenCorners": false
+        "showScreenCorners": false,
+        "showSessionButtonsOnLockScreen": true
     },
     "hooks": {
         "darkModeChange": "",
@@ -307,7 +323,16 @@
         ],
         "normalUrgencyDuration": 8,
         "overlayLayer": true,
-        "respectExpireTimeout": true
+        "respectExpireTimeout": true,
+        "sounds": {
+            "criticalSoundFile": "",
+            "enabled": false,
+            "excludedApps": "discord,firefox,chrome,chromium,edge",
+            "lowSoundFile": "",
+            "normalSoundFile": "",
+            "separateSounds": false,
+            "volume": 0.5
+        }
     },
     "osd": {
         "autoHideMs": 2000,
@@ -338,31 +363,37 @@
         "powerOptions": [
             {
                 "action": "lock",
+                "command": "",
                 "countdownEnabled": false,
                 "enabled": true
             },
             {
                 "action": "logout",
+                "command": "hyprshutdown",
                 "countdownEnabled": false,
                 "enabled": true
             },
             {
                 "action": "reboot",
+                "command": "",
                 "countdownEnabled": true,
                 "enabled": true
             },
             {
                 "action": "shutdown",
+                "command": "",
                 "countdownEnabled": true,
                 "enabled": true
             },
             {
                 "action": "suspend",
+                "command": "",
                 "countdownEnabled": true,
                 "enabled": true
             },
             {
                 "action": "hibernate",
+                "command": "",
                 "countdownEnabled": true,
                 "enabled": false
             }
@@ -442,7 +473,7 @@
         "overviewEnabled": true,
         "panelPosition": "center",
         "randomEnabled": true,
-        "randomIntervalSec": 300,
+        "randomIntervalSec": 1800,
         "recursiveSearch": false,
         "setWallpaperOnAllMonitors": false,
         "transitionDuration": 1500,

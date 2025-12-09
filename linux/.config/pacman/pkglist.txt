@@ -50,6 +50,7 @@ calf
 calibre
 cantarell-fonts
 catppuccin-cursors-mocha
+cava
 chafa
 chaotic-keyring
 chaotic-mirrorlist
@@ -187,7 +188,6 @@ nfs-utils
 nilfs-utils
 niri
 nmap
-noctalia-shell
 noise-suppression-for-voice
 nomacs
 noto-color-emoji-fontconfig
