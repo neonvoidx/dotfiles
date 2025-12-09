@@ -3,10 +3,10 @@
 
 STATE_FILE="/tmp/hypr-gamescreen-state"
 SCREEN_STATE_FILE="/tmp/hypr-screen-state"
-MONITORS_DEFAULT="$HOME/.config/hypr/hyprland/monitors.conf"
-MONITORS_NOTOUCH="$HOME/.config/hypr/hyprland/monitors-notouch.conf"
-MONITORS_WORK="$HOME/.config/hypr/hyprland/monitors-work.conf"
-MONITORS_WORK_NOTOUCH="$HOME/.config/hypr/hyprland/monitors-work-notouch.conf"
+MONITORS_DEFAULT="$HOME/.config/hypr/hyprland/monitors/monitors.conf"
+MONITORS_NOTOUCH="$HOME/.config/hypr/hyprland/monitors/monitors-notouch.conf"
+MONITORS_WORK="$HOME/.config/hypr/hyprland/monitors/monitors-work.conf"
+MONITORS_WORK_NOTOUCH="$HOME/.config/hypr/hyprland/monitors/monitors-work-notouch.conf"
 
 # Check screen-toggle state to determine which monitors are active
 SCREEN_STATE="both"
