@@ -197,6 +197,7 @@ noto-fonts-emoji
 nss-mdns
 ntfs-3g
 ntp
+nurl
 nwg-displays
 nwg-dock-hyprland
 nwg-look
@@ -312,6 +313,7 @@ vlc-plugins-all
 vulkan-radeon
 wayland-protocols
 wev
+wezterm
 wget
 which
 wine-staging

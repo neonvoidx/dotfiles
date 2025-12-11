@@ -26,7 +26,3 @@
   ui = auto
 [branch]
   sort=-committerdate
-[maintenance]
-	repo = /Users/jrreed/dev/eldritch-workspace/bat
-[includeIf "gitdir:~/.local/share/yadm/repo.git"]
-  path = .gitconfig.submodules

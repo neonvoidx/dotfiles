@@ -86,7 +86,6 @@ user_pref("privacy.history.custom", true);
 /** SEARCH / URL BAR ***/
 user_pref("browser.urlbar.trimHttps", true);
 user_pref("browser.urlbar.untrimOnUserInteraction.featureGate", true);
-user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
 user_pref("browser.urlbar.update2.engineAliasRefresh", true);
 user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.quicksuggest.enabled", false);
@@ -267,7 +266,6 @@ user_pref("places.frecency.bookmarkVisitBonus", 2000);
 user_pref("places.frecency.unvisitedBookmarkBonus", 2000);
 user_pref("browser.urlbar.showSearchSuggestionsFirst", false);
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true);
-user_pref("extensions.webextensions.restrictedDomains", "");
 user_pref(
   "media.videocontrols.picture-in-picture.enable-when-switching-tabs.enabled",
   true
