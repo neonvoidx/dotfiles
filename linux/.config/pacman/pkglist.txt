@@ -187,6 +187,7 @@ networkmanager-openvpn
 nfs-utils
 nilfs-utils
 niri
+nix
 nmap
 noise-suppression-for-voice
 nomacs
