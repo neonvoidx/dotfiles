@@ -1,6 +1,0 @@
----
-- name: Configure System
-  hosts: local
-  tasks:
-    - name: Include configure_system tasks
-      ansible.builtin.include_tasks: configure_system.yaml
