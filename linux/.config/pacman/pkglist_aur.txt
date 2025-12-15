@@ -9,6 +9,7 @@ hyprshot-git
 hyprshutdown-git
 libdeep_filter_ladspa-bin
 mkinitcpio-colors-git
+neovim-nvim-treesitter
 paccache-hook
 pay-respects
 proton-pass-bin

@@ -31,3 +31,6 @@ common/.local/share/applications
 common/.local/share/gh/extensions
 common/.local/share/protonmail/bridge-v3/gluon/backend
 linux/.config/cava
+common/.local/share/Trash
+common/.local/share/keyrings
+common/.local/share/nvim

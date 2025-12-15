@@ -1,5 +1,6 @@
 accountsservice
 adw-gtk-theme
+age
 alacritty
 alsa-firmware
 alsa-plugins
@@ -244,6 +245,7 @@ slurp
 smartmontools
 snapper
 sof-firmware
+sops
 spicetify-cli
 spicetify-marketplace-bin
 spotify
