@@ -1,0 +1,18 @@
+[metadata]
+name = "paru"
+description = "A channel to select from your installed paru packages"
+requirements = ["paru"]
+
+[source]
+command = "paru -Qq"
+
+[preview]
+command = "paru -Qi {} 2>/dev/null | grep -E \"(^Name|^Version|^Description|Required By)\" || echo \"No info found\""
+
+[keybindings]
+delete = "actions:remove_package"
+
+[actions.remove_package]
+description = "Remove selected package"
+command = "paru -R '{}'"
+mode="execute"

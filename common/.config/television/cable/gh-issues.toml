@@ -13,4 +13,3 @@ command = "gh issue view '{strip_ansi|split:\n\"  \" + .title,\n\"  #\" + (.numb
 
 [ui.preview_panel]
 header = "{strip_ansi|split:#:1|split: :0}"
-
