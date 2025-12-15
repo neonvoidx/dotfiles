@@ -1,0 +1,18 @@
+{
+    "version": "0.1.0",
+    "thumbnail": "store/thumbnail.png",
+    "id": "dev_eumario_MangoHud",
+    "name": "MangoHud Integration",
+    "author": "eumario",
+    "github": "https://github.com/eumario/StreamController_MangoHud",
+    "tags": [
+        "stats",
+        "game stats",
+        "indicators",
+        "fps"
+    ],
+    "minimum-app-version": "1.5.0-beta.7",
+    "app-version": "1.5.0-beta.7",
+    "description": "Creates Buttons to show FPS, GPU Stats and more from Game Perspective.",
+    "short-description": "Stat Indicator buttons for MangoHud."
+}

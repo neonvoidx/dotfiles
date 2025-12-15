@@ -1,0 +1,9 @@
+{
+    "generic": {
+        "copyright": "Google LLC",
+        "original-url": "https://github.com/google/material-design-icons",
+        "license": "Apache-2.0",
+        "license-url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+        "description": "Unoficial Material Design Icons from Google\nMaterial Design icons by Google: google.github.io/material-design-icons\nThese are the exact same icons as the official Material Design icons, but as an icon for this app.\nNo changes are made to the icons themselves besides the color invertion for the -inv variants."
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "generic": {
+        "copyright": "Tiebe Groosman",
+        "original-url": "https://github.com/Tiebe/JetbrainsPlugin",
+        "license": "MIT",
+        "license-url": "https://opensource.org/license/mit",
+        "description": "Main source code of this plugin."
+    },
+
+    "assets": {
+        "copyright": "JetBrains s.r.o.",
+        "original-url": "https://github.com/JetBrains/intellij-community",
+        "license": "Apache-2.0 License",
+        "license-url": "https://www.apache.org/licenses/LICENSE-2.0",
+        "description": "Icons used by IntelliJ. No modifications were made."
+    }
+}

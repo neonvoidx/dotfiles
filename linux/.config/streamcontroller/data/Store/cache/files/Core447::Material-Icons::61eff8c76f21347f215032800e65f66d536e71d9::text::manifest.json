@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_MaterialIcons",
+    "name": "Material Icons",
+    "descriptions": {
+        "en_US": "Unofficial - Material Icons designed by Google."
+    },
+    "short-descriptions": {
+        "en_US": "Material Icons"
+    },
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.5.0-beta",
+    "icons": "icons/",
+
+
+    "description": "Unofficial - Material Icons designed by Google.",
+    "short-description": "Material Icons pack"
+}

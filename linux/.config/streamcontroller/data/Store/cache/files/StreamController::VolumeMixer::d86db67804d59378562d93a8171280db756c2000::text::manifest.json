@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_VolumeMixer",
+    "name": "Volume Mixer",
+    "descriptions": {
+        "en_US": "Mix the volume levels of different apps."
+    },
+    "short-descriptions": {
+        "en_US": "Mix your volume levels"
+    },
+    "tags": ["Audio", "Utility"],
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.4.11-beta",
+
+    
+    "description": "Mix the volume levels of different apps.",
+    "short-description": "Mix your volume levels"
+}

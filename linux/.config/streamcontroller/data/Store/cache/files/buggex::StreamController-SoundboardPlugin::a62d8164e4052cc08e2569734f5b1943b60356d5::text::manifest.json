@@ -1,0 +1,19 @@
+{
+    "version": "1.1.1",
+    "thumbnail": "assets/Thumbnail.png",
+    "id": "com_buggex_soundboard",
+    "name": "Soundboard",
+    "github": "https://github.com/buggex/StreamController-SoundboardPlugin",
+    "descriptions": {
+        "en_US": "Play an audio file to a spesific device."
+    },
+    "short-descriptions": {
+        "en_US": "Play an audio file."
+    },
+    "auther": "buggex",
+    "tags": ["Audio"],
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.5.0-beta",
+    "description": "Play an audio file to a spesific device.",
+    "short-description": "Play an audio file."
+}

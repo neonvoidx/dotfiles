@@ -1,0 +1,17 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/thumbnail.png",
+    "id": "com_myrik_IconPack_simple-icons",
+    "name": "Simple Icons",
+    "descriptions": {
+        "en_US": "Over 3200 SVG icons for popular brands. See them all on one page at SimpleIcons.org"
+    },
+    "short-descriptions": {
+        "en_US": "Over 3200 SVG icons for popular brands"
+    },
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.5.0-beta",
+    "icons": "icons/",
+    "description": "Over 3200 SVG icons for popular brands. See them all on one page at SimpleIcons.org",
+    "short-description": "Over 3200 SVG icons for popular brands"
+}

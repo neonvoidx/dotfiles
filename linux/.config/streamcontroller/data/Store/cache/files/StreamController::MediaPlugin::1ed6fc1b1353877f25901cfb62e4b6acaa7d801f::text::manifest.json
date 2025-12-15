@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_MediaPlugin",
+    "name": "Media",
+    "descriptions": {
+        "en_US": "See and control the state of your media players. If the current player provides a thumbnail it will also be shown."
+    },
+    "short-descriptions": {
+        "en_US": "Control your media players"
+    },
+    "tags": "Audio",
+    "minimum-version": "1.0.0",
+    "app-version": "1.5.0-beta",
+
+
+    "description": "See and control the state of your media players. If the current player provides a thumbnail it will also be shown.",
+    "short-description": "Control your media players"
+}

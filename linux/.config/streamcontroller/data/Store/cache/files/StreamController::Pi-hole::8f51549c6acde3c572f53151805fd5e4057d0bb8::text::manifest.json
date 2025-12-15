@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0-beta",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_Pi-hole",
+    "name": "Pi-hole",
+    "descriptions": {
+        "en_US": "This plugin allows you to control and monitor your Pi-hole server."
+    },
+    "short-descriptions": {
+        "en_US": "Control and monitor Pi-hole"
+    },
+    "tags": ["Utility", "Network"],
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.4.11-beta",
+
+    
+    "description": "This plugin allows you to control and monitor your Pi-hole server.",
+    "short-description": "Control and monitor Pi-hole"
+}

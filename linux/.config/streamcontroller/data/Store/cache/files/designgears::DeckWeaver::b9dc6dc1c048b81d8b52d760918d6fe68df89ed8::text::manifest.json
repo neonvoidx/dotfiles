@@ -1,0 +1,29 @@
+{
+  "version": "0.1.1-alpha",
+  "id": "com_designgears_DeckWeaver",
+  "name": "DeckWeaver",
+  "thumbnail": "store/Thumbnail.png",
+  "app-version": "1.5.0-beta.12",
+  "author": "DesignGears",
+  "github": "https://github.com/designgears/DeckWeaver",
+  "descriptions": {
+    "en_US": "Control PipeWeaver virtual audio devices from your Stream Deck",
+    "es_ES": "Controla dispositivos de audio virtuales de PipeWeaver desde tu Stream Deck",
+    "zh_CN": "从您的 Stream Deck 控制 PipeWeaver 虚拟音频设备",
+    "fr_FR": "Contrôlez les périphériques audio virtuels de PipeWeaver depuis votre Stream Deck", 
+    "de_DE": "Steuern Sie PipeWeaver virtuelle Audiogeräte von Ihrem Stream Deck"
+  },
+  "short-descriptions": {
+    "en_US": "Audio control for PipeWeaver",
+    "es_ES": "Control de audio para PipeWeaver",
+    "zh_CN": "PipeWeaver 的音频控制",
+    "fr_FR": "Contrôle audio pour PipeWeaver",
+    "de_DE": "Audio Steuerung für PipeWeaver"
+  },
+  "tags": ["audio", "control", "pipeweaver", "virtual"],
+  "minimum-app-version": "1.5.0-beta.12",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2025 DesignGears",
+  "url": "https://github.com/designgears/DeckWeaver",
+  "license-description": "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+}

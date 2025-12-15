@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_DeckPlugin",
+    "name": "Deck",
+    "descriptions": {
+        "en_US": "Control your deck - Change the brightness, pages, etc."
+    },
+    "short-descriptions": {
+        "en_US": "Control your decks"
+    },
+    "tags": ["Utility"],
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.4.11-beta",
+
+    
+    "description": "Control your deck - Change the brightness, pages, etc.",
+    "short-description": "Control your decks"
+}

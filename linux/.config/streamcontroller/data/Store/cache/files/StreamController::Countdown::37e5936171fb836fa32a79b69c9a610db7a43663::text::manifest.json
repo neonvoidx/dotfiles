@@ -1,0 +1,20 @@
+{
+    "version": "0.0.1",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_Countdown",
+    "name": "Countdown",
+    "github": "https://github.com/StreamController/Countdown",
+    "minimum-app-version": "1.5.0-beta.5",
+    "app-version": "1.5.0-beta.6",
+
+    "descriptions": {
+        "en_US": "A simple countdown for your Stream Deck"
+    },
+    "short-descriptions": {
+        "en_US": "Simple countdown"
+    },
+    "description": "A simple countdown for your Stream Deck",
+    "short-description": "Simple countdown",
+
+    "tags": ["Time"]
+}

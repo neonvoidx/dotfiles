@@ -1,0 +1,18 @@
+{
+    "plugin.name": "Media",
+    "actions.play.name": "Play",
+    "actions.pause.name": "Pause",
+    "actions.play-pause.name": "Play/Pause",
+    "actions.next.name": "Next",
+    "actions.previous.name": "Previous",
+    "actions.info.name": "Info",
+    "actions.thumbnail.name": "Thumbnail Background",
+    "actions.media-action.bind-to-player.label": "Bind to player",
+    "actions.media-action.bind-to-player.subtitle": "Specify the player to control",
+    "actions.media-action.show-name-switch.label": "Show name of the playing song",
+    "actions.media-action.show-name-switch.subtitle": "Show the name of the currently playing media",
+    "actions.media-action.show-thumbnail-switch.label": "Show thumbnail of the playing song",
+    "actions.media-action.show-thumbnail-switch.subtitle": "Show the thumbnail of the currently playing media",
+    "actions.media-action-bind-to-player.all-players": "All Players",
+    "actions.info.seperator.text": "Seperator Text:"
+}

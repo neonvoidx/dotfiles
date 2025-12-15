@@ -1,0 +1,17 @@
+{
+    "plugin.name": "Medien",
+    "actions.play.name": "Play",
+    "actions.pause.name": "Pause",
+    "actions.play-pause.name": "Play/Pause",
+    "actions.next.name": "Nächster Titel",
+    "actions.previous.name": "Vorheriger Titel",
+    "actions.info.name": "Info",
+    "actions.media-action.bind-to-player.label": "An App binden",
+    "actions.media-action.bind-to-player.subtitle": "Die zu steuende Medienanwendung auswählen",
+    "actions.media-action.show-name-switch.label": "Den Titel des spielenden Titels anzeigen",
+    "actions.media-action.show-name-switch.subtitle": "Den Namen des aktuell spielenden Titels anzeigen",
+    "actions.media-action.show-thumbnail-switch.label": "Bild des spielenden Titels anzeigen",
+    "actions.media-action.show-thumbnail-switch.subtitle": "Den Titelbild des aktuell spielenden Titels anzeigen",
+    "actions.media-action-bind-to-player.all-players": "Alle Spieler",
+    "actions.info.seperator.text": "Trenntext:"
+}

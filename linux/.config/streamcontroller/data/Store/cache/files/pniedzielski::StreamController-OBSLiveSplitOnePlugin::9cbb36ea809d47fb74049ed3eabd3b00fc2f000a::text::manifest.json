@@ -1,0 +1,20 @@
+{
+    "name": "OBS LiveSplit One",
+    "version": "1.2.0",
+    "thumbnail": "store/thumbnail.png",
+    "id": "net_pniedzielski_OBSLiveSplitOnePlugin",
+    "github": "https://github.com/pniedzielski/StreamController-OBSLiveSplitOnePlugin",
+    "minimum-app-version": "1.5.0-beta",
+    "app-version": "1.5.0-beta",
+
+    "descriptions": {
+        "en_US": "Control the OBS LiveSplit One plugin from your Stream Deck"
+    },
+    "short-description": {
+        "en_US": "Control OBS LiveSplit One"
+    },
+    "description": "Control the OBS LiveSplit One plugin from your Stream Deck",
+    "short-description": "Control OBS LiveSplit One",
+
+    "tags": ["Speedrun", "OBS", "LiveSplit"]
+}

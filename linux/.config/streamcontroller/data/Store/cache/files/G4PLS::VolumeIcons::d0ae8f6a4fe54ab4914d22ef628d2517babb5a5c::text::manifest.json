@@ -1,0 +1,15 @@
+{
+    "version": "1.0.0",
+    "id": "com_g4pls_volume_icons",
+    "icons": "icons/",
+    "name": "Volume Icons",
+    "thumbnail": "store/Thumbnail.png",
+    "descriptions": {
+        "en_US": "Simple Icons to show Different Audio States. There are multiple variations of everything and they are available in White and Black!. Supported icons are for: Muting, Volume Up, Volume Down, Loud, Quiet and a general Audio Icon (Not centered to have nice transitions between other icons in the set).",
+        "de_DE": "Einfache Icons zur Anzeige verschiedener Audiozustände. Es gibt mehrere Variationen von allem und sie sind in Weiß und Schwarz verfügbar! Unterstützte Symbole sind für: Stummschalten, Lautstärke erhöhen, Lautstärke verringern, Laut, Leise und ein allgemeines Audio-Symbol (Nicht zentriert, um schöne Übergänge zwischen anderen Symbolen im Set zu haben)."
+    },
+    "short-descriptions": {
+        "en_US": "Simple icons in white and black display various audio states like muting, volume adjustment, and more.",
+        "de_DE": "Einfache Icons in Weiß und Schwarz zeigen verschiedene Audiozustände wie Stummschalten, Lautstärkeanpassungen und mehr."
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_GnomeWindowCalls",
+    "name": "GnomeWindowCalls",
+    "descriptions": {
+        "en_US": "Resize and move windows using the 'Window Calls' Gnome extension."
+    },
+    "short-descriptions": {
+        "en_US": "Move and resize windows"
+    },
+    "tags": ["Utility"],
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.4.11-beta",
+
+    
+    "description": "Resize and move windows using the 'Window Calls' Gnome extension.",
+    "short-description": "Move and resize windows"
+}

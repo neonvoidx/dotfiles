@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_MicMute",
+    "name": "MicMute",
+    "descriptions": {
+        "en_US": "Mute your microphone."
+    },
+    "short-descriptions": {
+        "en_US": "Mute your microphone"
+    },
+    "tags": ["Audio"],
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.4.11-beta",
+
+    
+    "description": "Mute your microphone.",
+    "short-description": "Mute your microphone"
+}

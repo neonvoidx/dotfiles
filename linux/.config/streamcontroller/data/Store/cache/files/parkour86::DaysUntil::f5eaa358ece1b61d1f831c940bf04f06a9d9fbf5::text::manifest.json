@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "thumbnail": "store/Thumbnail.png",
+  "id": "com_codeNinja_DaysUntil",
+  "name": "Days until",
+  "descriptions": {
+    "en_US": "Enter a date and see the number of days until that date. Useful for countdowns to events, deadlines, or reminders."
+  },
+  "short-descriptions": {
+    "en_US": "Countdown to a date"
+  },
+  "tags": ["Productivity", "Utility"],
+  "minimum-app-version": "1.0.0",
+  "app-version": "1.1.1-alpha",
+  "description": "Enter a date and see the number of days until that date. Useful for countdowns to events, deadlines, or reminders.",
+  "short-description": "Countdown to a date"
+}

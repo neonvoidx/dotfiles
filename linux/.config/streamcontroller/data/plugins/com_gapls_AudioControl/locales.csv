@@ -1,0 +1,23 @@
+key;en_US;de_DE
+name-mute;Mute;Mute
+name-set-vol;Set Volume;Set Volume
+name-adjust-vol;Adjust Volume;Adjust Volume
+name-vol-display;Volume Display;Volume Display
+name-dial;Dial Controller;Dial Controller
+;;
+base-filter-dropdown;Device Filter;Audio Filter
+base-device-dropdown;Device;Audiogerät
+base-info-toggle;Show Info;Info Anzeigen
+base-info-content;Info Content;Inhalt
+base-name-toggle;Show Name;Zeige Gerätename
+base-nick;Device Nick;Geräte Nickname
+;;
+adjust-vol-scale;Adjust Volume;Änderung
+adjust-bound-scale;Volume Bounds;Grenze
+;;
+set-extend-toggle;Extend Volume;Lautstärke Erweitern
+set-vol-scale;Volume;Lautstärke
+;;
+dial-behaviour-group;Button Behaviour;Knopf Verhalten
+dial-behaviour-extender;Behaviour Settings;Knopf Einstellungen
+dial-behaviour-dropdown;Press Behaviour;Druck Verhalten

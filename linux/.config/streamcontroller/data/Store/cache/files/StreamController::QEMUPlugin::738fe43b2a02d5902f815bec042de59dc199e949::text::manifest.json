@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_QEMUPlugin",
+    "name": "QEMU",
+    "descriptions": {
+        "en_US": "Control your QEMU virtual machines. Sponsored by Cuthulu."
+    },
+    "short-descriptions": {
+        "en_US": "Control QEMU"
+    },
+    "tags": ["Utility"],
+    "minimum-app-version": "1.5.0-beta.8",
+    "app-version": "1.5.0-beta.8",
+
+    
+    "description": "Control your QEMU virtual machines. Sponsored by Cuthulu.",
+    "short-description": "Control your OS"
+}

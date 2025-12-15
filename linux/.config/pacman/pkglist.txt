@@ -245,6 +245,7 @@ smartmontools
 snapper
 sof-firmware
 spicetify-cli
+spicetify-marketplace-bin
 spotify
 steam
 steamtinkerlaunch

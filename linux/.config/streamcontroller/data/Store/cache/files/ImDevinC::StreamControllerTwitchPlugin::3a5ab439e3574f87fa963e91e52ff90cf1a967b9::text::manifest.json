@@ -1,0 +1,16 @@
+{
+  "version": "1.6.0",
+  "thumbnail": "store/thumbnail.png",
+  "id": "com_imdevinc_StreamControllerTwitchPlugin",
+  "name": "Twitch Integration",
+  "author": "ImDevinC",
+  "github": "https://github.com/imdevinc/StreamControllerTwitchPlugin",
+  "tags": [
+    "streaming",
+    "twitch"
+  ],
+  "minimum-app-version": "1.5.0-beta.9",
+  "app-version": "1.5.0-beta.9",
+  "description": "Adds different controls for interacting with your Twitch stream",
+  "short-description": "Control Twitch"
+}

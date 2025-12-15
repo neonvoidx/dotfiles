@@ -1,0 +1,30 @@
+{
+    "generic": {
+        "copyright": "Copyright (c) 2025 thiritin",
+        "original-url": "https://github.com/thiritin/kimai-streamcontroller-action",
+        "license": "GNU Affero General Public License v3.0",
+        "license-url": "https://www.gnu.org/licenses/agpl-3.0.en.html",
+        "description": "Kimai Time Tracking plugin for StreamController - Professional time tracking integration"
+    },
+    "assets/info.png": {
+        "copyright": "Google",
+        "original-url": "https://fonts.google.com/icons",
+        "license": "Apache License, Version 2.0",
+        "license-url": "https://www.apache.org/licenses/LICENSE-2.0",
+        "description": "Material Design icon from Google Fonts"
+    },
+    "assets/start.png": {
+        "copyright": "Google", 
+        "original-url": "https://fonts.google.com/icons",
+        "license": "Apache License, Version 2.0",
+        "license-url": "https://www.apache.org/licenses/LICENSE-2.0",
+        "description": "Material Design play/start icon from Google Fonts"
+    },
+    "assets/stop.png": {
+        "copyright": "Google",
+        "original-url": "https://fonts.google.com/icons", 
+        "license": "Apache License, Version 2.0",
+        "license-url": "https://www.apache.org/licenses/LICENSE-2.0",
+        "description": "Material Design stop icon from Google Fonts"
+    }
+}

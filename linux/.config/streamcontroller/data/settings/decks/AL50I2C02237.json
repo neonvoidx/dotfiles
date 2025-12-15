@@ -1,0 +1,10 @@
+{
+    "screensaver": {
+        "enable": false,
+        "path": null,
+        "loop": false,
+        "fps": 30,
+        "time-delay": 5,
+        "brightness": 30
+    }
+}

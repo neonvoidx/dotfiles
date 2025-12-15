@@ -1,0 +1,18 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_Weather",
+    "name": "Weather",
+    "descriptions": {
+        "en_US": "Displays the current weather for the selected location"
+    },
+    "short-descriptions": {
+        "en_US": "Show the weather"
+    },
+    "tags": [],
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.5.0-beta",
+
+    "description": "Displays the current weather for the selected location",
+    "short-description": "Show the weather"
+}

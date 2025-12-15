@@ -1,0 +1,12 @@
+{
+    "version": "1.1.0",
+    "id": "me_amankhanna_opendeck",
+    "name": "OpenDeck for StreamController",
+    "app-version": "1.5.0-beta.11",
+    "thumbnail": "banner.png",
+    "author": "nekename",
+    "github": "https://github.com/nekename/streamcontroller-opendeck",
+    "short-descriptions": {
+        "en_US": "A StreamController plugin to trigger actions in OpenDeck"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "version": "0.3.0",
+    "thumbnail": "assets/Thumbnail.png",
+    "id": "de_outsider_Spotify",
+    "name": "Spotify for StreamController",
+    "author": "Marc Baldauf",
+    "github": "https://github.com/bamarc/SpotifyForStreamController"
+}

@@ -1,0 +1,16 @@
+{
+    "generic": {
+        "copyright": "",
+        "original-url": "",
+        "license": "",
+        "license-url": "",
+        "description": ""
+    },
+    "assets/ix-icons/*": {
+        "copyright": "Copyright (c) 2022 Siemens AG",
+        "original-url": "https://github.com/siemens/ix-icons/blob/v2.2.0/incoming-svg/*",
+        "license": "MIT",
+        "license-url": "https://opensource.org/licenses/MIT",
+        "description": "Rendered original SVG, converted to white"
+    }
+}

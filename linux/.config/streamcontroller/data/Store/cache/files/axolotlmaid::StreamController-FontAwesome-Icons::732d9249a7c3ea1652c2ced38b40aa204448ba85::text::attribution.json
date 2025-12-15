@@ -1,0 +1,9 @@
+{
+    "generic": {
+        "copyright": "Fonticons, Inc.",
+        "original-url": "https://github.com/FortAwesome/Font-Awesome",
+        "license": "CC BY 4.0",
+        "license-url": "https://creativecommons.org/licenses/by/4.0/",
+        "description": "Unofficial Font Awesome Icons\nThese icons are taken from the official Font Awesome icons repository on GitHub.\nNo icons were changed except that I ran code to change all the icons to white."
+    }
+}

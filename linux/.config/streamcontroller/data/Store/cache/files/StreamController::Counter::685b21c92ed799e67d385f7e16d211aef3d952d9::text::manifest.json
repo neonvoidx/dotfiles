@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_Counter",
+    "name": "Counter",
+    "descriptions": {
+        "en_US": "A simple counter that increases on press and can be configured to either decrease or reset on a long press. You can also configure the counter to store the current value in a txt file to use in other apps like OBS."
+    },
+    "short-descriptions": {
+        "en_US": "Keep track of numbers"
+    },
+    "tags": ["Productivity"],
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.4.11-beta",
+
+    
+    "description": "A simple counter that increases on press and can be configured to either decrease or reset on a long press. You can also configure the counter to store the current value in a txt file to use in other apps like OBS.",
+    "short-description": "Keep track of numbers"
+}

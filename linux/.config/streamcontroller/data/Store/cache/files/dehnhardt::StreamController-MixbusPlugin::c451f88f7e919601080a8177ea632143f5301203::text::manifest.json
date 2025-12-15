@@ -1,0 +1,23 @@
+{
+    "version": "0.9",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "org_dehnhardt_MixbusPlugin",
+    "minimum-app-version": "1.5.0",
+    "app-version": "1.5.0-beta.6",
+    "name": "Harrison Mixbus Plugin",
+    "github": "https://github.com/dehnhardt/StreamController-MixbusPlugin",
+    "descriptions": {
+        "en_US": "This plugin connects to Harrison Mixbus or Ardour DAW over OSC and allows to control a alrge set of operations. Feedback on many operations is included",
+        "de_DE": "Dieses Plugin verbindet sich mit den DAWs Harrison Mixbus oder Ardour und erlaubt eine vielzahl von Funtionen auszulösen. Die Rückmeldung vieler Funktionen ist integriert"
+      },
+      "short-descriptions": {
+        "en_US": "Lets you Control the DAWs Mixbus and Ardour",
+        "de_DE": "Steuert Mixbus und Ardour DAWs"
+      },
+      "author": "Holger Dehnhardt",
+      "tags": [
+        "DAW",
+        "Audio"
+      ]
+    
+}

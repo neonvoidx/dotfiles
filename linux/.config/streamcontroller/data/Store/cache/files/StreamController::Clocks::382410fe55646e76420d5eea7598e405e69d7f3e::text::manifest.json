@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_Clocks",
+    "name": "Clocks",
+    "descriptions": {
+        "en_US": "Adds an analog and a digital clock."
+    },
+    "short-descriptions": {
+        "en_US": "Add clock widgets"
+    },
+    "tags": ["Utilities"],
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.4.11-beta",
+
+    
+    "description": "Adds an analog and a digital clock.",
+    "short-description": "Add clock widgets"
+}

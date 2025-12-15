@@ -1,0 +1,22 @@
+{
+    "id": "com_thiritin_kimai_plugin",
+    "name": "Kimai Time Tracking",
+    "version": "1.0.0",
+    "app-version": "1.5.0.beta.11",
+    "descriptions": {
+        "en_US": "Professional time tracking integration with Kimai. Features smart start/stop toggle buttons, real-time active tracking display, and seamless multi-instance coordination for efficient project time management."
+    },
+    "short-descriptions": {
+        "en_US": "Smart Kimai time tracking for StreamController with live status and multi-instance support."
+    },
+    "tags": [
+        "time-tracking",
+        "productivity", 
+        "kimai",
+        "project-management",
+        "work"
+    ],
+    "minimum-app-version": "1.5.0-beta",
+    "thumbnail": "assets/thumbnail.png",
+    "github": "https://github.com/Thiritin/kimai-streamcontroller-action"
+}

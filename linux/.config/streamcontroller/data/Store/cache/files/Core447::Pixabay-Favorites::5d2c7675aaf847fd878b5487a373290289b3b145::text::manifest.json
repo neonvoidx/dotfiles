@@ -1,0 +1,11 @@
+{
+    "version": "1.0.0",
+    "images": "images/",
+    "id": "com_core447_PixabayFavorites",
+    "name": "Pixabay Favorites",
+    "thumbnail": "store/thumbnail.png",
+    "descriptions": {
+        "en_US": "Some of my favorite images from Pixabay."
+    },
+    "description": "Some of my favorite images from Pixabay."
+}

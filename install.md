@@ -41,3 +41,10 @@ vconsole colors
 set gnome-keyring auto login
 sops and ages for credentials, ssh, github, spotify, firefox profile, vesktop profile, gnome keyring
 Thunderbird setup accounts automatically
+
+# spicetify
+sudo chmod a+wr /opt/spotify
+sudo chmod a+wr /opt/spotify/Apps -R
+spicetify backup apply
+spicetify apply?
+Go to marketplace inside spotify -> backup restore -> restore from json file in ~/.config/spicetify/marketplace.json

@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_Speedtest",
+    "name": "Speedtest",
+    "descriptions": {
+        "en_US": "Check your internet speed using speedtest.net."
+    },
+    "short-descriptions": {
+        "en_US": "Check your internet"
+    },
+    "tags": ["Utility", "Internet"],
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.4.11-beta",
+
+    
+    "description": "Check your internet speed using speedtest.net.",
+    "short-description": "Check your internet"
+}

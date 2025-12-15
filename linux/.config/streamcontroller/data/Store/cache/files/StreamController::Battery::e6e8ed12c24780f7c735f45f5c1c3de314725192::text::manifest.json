@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_core447_Battery",
+    "name": "Battery",
+    "descriptions": {
+        "en_US": "Show the battery percentage of all devices implementing org.freedesktop.UPower."
+    },
+    "short-descriptions": {
+        "en_US": "Show battery percentages"
+    },
+    "tags": ["System"],
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.4.11-beta",
+
+    
+    "description": "Show the battery percentage of all devices implementing org.freedesktop.UPower.",
+    "short-description": "Show battery percentages"
+}

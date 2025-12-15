@@ -1,0 +1,8 @@
+{
+    "plugin.name": "Audio Switcher",
+    "actions.toggle-output.device-a.title": "First device",
+    "actions.toggle-output.device-b.title": "Second device",
+    "actions.set-device.device.title": "Device",
+    "actions.toggle-output.name": "Toggle output",
+    "actions.set-output.name": "Set device"
+}

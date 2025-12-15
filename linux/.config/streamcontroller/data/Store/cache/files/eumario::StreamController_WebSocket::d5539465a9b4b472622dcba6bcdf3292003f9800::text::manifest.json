@@ -1,0 +1,17 @@
+{
+    "version": "0.1.0",
+    "thumbnail": "store/thumbnail.png",
+    "id": "dev_eumario_WebSocket",
+    "name": "WebSocket Server",
+    "author": "eumario",
+    "github": "https://github.com/eumario/StreamController_WebSocket",
+    "tags": [
+        "websocket",
+        "development",
+        "integration"
+    ],
+    "minimum-app-version": "1.5.0-beta.7",
+    "app-version": "1.5.0-beta.7",
+    "description": "Creates a WebSocket server, to integrate into Development Projects",
+    "short-description": "WebSocket Server"
+}

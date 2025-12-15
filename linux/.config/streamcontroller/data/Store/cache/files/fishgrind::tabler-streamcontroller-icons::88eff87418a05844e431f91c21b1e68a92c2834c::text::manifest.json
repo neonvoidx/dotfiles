@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail.png",
+    "id": "com_fishgrind_IconPack_Tabler",
+    "name": "Tabler Streamcontroller Icons",
+    "descriptions": {
+        "en_US": "Tabler Iconpack by Fishgrind.com"
+    },
+    "short-descriptions": {
+        "en_US": "Tabler Iconpack"
+    },
+    "minimum-app-version": "1.0.0",
+    "app-version": "1.5.0-beta",
+    "icons": "icons/",
+
+
+    "description": "Tabler Iconpack by Fishgrind.com",
+    "short-description": "Tabler Iconpack"
+}
