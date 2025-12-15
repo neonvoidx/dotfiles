@@ -256,6 +256,7 @@ sudo
 swappy
 sysfsutils
 system-config-printer
+tealdeer
 tela-circle-icon-theme-dracula
 television
 tenacity

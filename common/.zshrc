@@ -360,3 +360,5 @@ fi
 # zprof
 export CMAKE_PREFIX_PATH="/usr/local:$CMAKE_PREFIX_PATH"
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
+
+eval "$(tv init zsh)"
