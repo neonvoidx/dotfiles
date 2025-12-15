@@ -2,15 +2,15 @@
   hosts: local
   become: true
   tasks:
-    # - name: Install paru if needed
-    #   ansible.builtin.include_tasks: tasks/install_paru.yaml
-    #   tags: install_paru
-    # - name: Ensure system up to date, if not update
-    #   ansible.builtin.include_tasks: tasks/update_system.yaml
-    #   tags: update_system
-    # - name: Install packages from Arch repo and AUR
-    #   ansible.builtin.include_tasks: tasks/install_packages.yaml
-    #   tags: install_packages
+    - name: Install paru if needed
+      ansible.builtin.include_tasks: tasks/install_paru.yaml
+      tags: install_paru
+    - name: Ensure system up to date, if not update
+      ansible.builtin.include_tasks: tasks/update_system.yaml
+      tags: update_system
+    - name: Install packages from Arch repo and AUR
+      ansible.builtin.include_tasks: tasks/install_packages.yaml
+      tags: install_packages
     - name: Setup default systemd services
       ansible.builtin.include_tasks: tasks/setup_services.yaml
       tags: setup_services

@@ -401,7 +401,7 @@
         ],
         "showHeader": true
     },
-    "settingsVersion": 27,
+    "settingsVersion": 26,
     "systemMonitor": {
         "cpuCriticalThreshold": 90,
         "cpuPollingInterval": 3000,
@@ -449,7 +449,7 @@
         "fontFixedScale": 1.15,
         "panelBackgroundOpacity": 1,
         "panelsAttachedToBar": true,
-        "settingsPanelMode": "attached",
+        "settingsPanelAttachToBar": false,
         "tooltipsEnabled": true
     },
     "wallpaper": {

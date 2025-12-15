@@ -16,3 +16,14 @@ linux/.config/hypr/build/Hyprland
 linux/.config/hypr/build/hyprland-guiutils
 linux/.config/hypr/build/hyprtoolkit
 linux/.config/easyeffects/db
+common/.local/share/Steam
+common/.local/share/color-schemes
+common/.local/share/delta
+common/.local/share/flatpak
+common/.local/share/gvfs-metadata
+common/.local/share/hyprland
+common/.local/share/protonmail/bridge-v3/logs
+common/.local/share/vulkan/implicit_layer.d
+common/.local/share/zinit
+common/.local/share/zoxide
+common/.local/share/recently-used.xbel

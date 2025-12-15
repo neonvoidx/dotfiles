@@ -13,7 +13,7 @@
     enabled: true
   become: true
 
-- name: Add ExecStartPre to greetd.service, to set screen resolution before ly starts
+- name: Add ExecStartPre to greetd.service, to set screen resolution before greetd starts
   ansible.builtin.lineinfile:
     path: /usr/lib/systemd/system/greetd.service
     insertbefore: "^ExecStart"
@@ -47,8 +47,9 @@
     mode: preserve
   become: true
 
-- name: Enable ananicy-cpp
-  ansible.builtin.systemd_service:
-    name: ananicy-cpp.service
-    enabled: true
-  become: true
+# Enabled by default in cachyos
+# - name: Enable ananicy-cpp
+#   ansible.builtin.systemd_service:
+#     name: ananicy-cpp.service
+#     enabled: true
+#   become: true
