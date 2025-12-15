@@ -1,0 +1,6 @@
+{
+    "device": "alsa_input.usb-R__DE_Microphones_R__DE_NT-USB_Mini_F5DF5DCC-00.mono-fallback",
+    "device-description": "RØDE NT-USB Mini Mono",
+    "device-profile": "Microphone",
+    "preset-name": "microphone"
+}

@@ -27,3 +27,7 @@ common/.local/share/vulkan/implicit_layer.d
 common/.local/share/zinit
 common/.local/share/zoxide
 common/.local/share/recently-used.xbel
+common/.local/share/applications
+common/.local/share/gh/extensions
+common/.local/share/protonmail/bridge-v3/gluon/backend
+linux/.config/cava

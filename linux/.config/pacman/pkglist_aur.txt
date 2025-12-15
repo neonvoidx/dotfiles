@@ -4,7 +4,9 @@ gconf
 github-copilot-cli
 gstreamer-svt-av1
 gstreamer0.10-base-plugins
+hyprland-meta-git
 hyprshot-git
+hyprshutdown-git
 libdeep_filter_ladspa-bin
 mkinitcpio-colors-git
 paccache-hook

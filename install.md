@@ -28,6 +28,7 @@ pipewire-jack conflicted with jack2?
 
 # ADD TO PLAYBOOK
 add /games mount to fstab
+streamcontroller service?
 anyway to declaratively setup steam and storage, and default proton version, etc?
 install stow # add to ansible post ansible install and dotfile clone
 get secrets for github, ssh keys etc
@@ -36,4 +37,7 @@ systemctl disable ufw # add to ansible in services setup task
 chsh -s /bin/zsh neonvoid # change to zsh shell for neonvoid
 Add kernel params for amdgpu -> TODO
 spicetify-cli setup
-sops and ages for credentials, ssh, github, spotify, firefox profile, vesktop profile
+vconsole colors
+set gnome-keyring auto login
+sops and ages for credentials, ssh, github, spotify, firefox profile, vesktop profile, gnome keyring
+Thunderbird setup accounts automatically

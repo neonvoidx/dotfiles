@@ -1,0 +1,6 @@
+{
+    "device": "alsa_output.usb-Schiit_Audio_Schiit_Unison_Modius_ES-00.analog-stereo",
+    "device-description": "Schiit Unison Modius ES Analog Stereo",
+    "device-profile": "Analog Output",
+    "preset-name": "DT1990PRO"
+}
