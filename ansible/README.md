@@ -46,6 +46,14 @@ ansible-playbook -i inventory.yaml playbook.yaml --ask-become-pass \
 
 ## How to Run
 
+### Initial Setup
+
+```bash
+# Make sure ~/keys.txt exists with your age key
+# Then run the init script
+./init.sh
+```
+
 ### Run the entire playbook
 
 ```bash
@@ -54,14 +62,32 @@ ansible-playbook -i inventory.yaml playbook.yaml --ask-become-pass
 
 ### Run specific tasks
 
-Use tags or specify the task file directly:
+Use tags to run specific task groups:
 
 ```bash
-# Run only package installation
-ansible-playbook -i inventory.yaml playbook.yaml --ask-become-pass --tags install_packages
+# Run only dotfiles deployment
+ansible-playbook -i inventory.yaml playbook.yaml --tags dotfiles --ask-become-pass
 
-# Run specific task file
-ansible-playbook -i inventory.yaml playbook.yaml --ask-become-pass --start-at-task "Install packages from Arch repo and AUR"
+# Run only package installation
+ansible-playbook -i inventory.yaml playbook.yaml --tags install_packages --ask-become-pass
+
+# Run only system configuration
+ansible-playbook -i inventory.yaml playbook.yaml --tags configure_system --ask-become-pass
+```
+
+### Run task files directly
+
+You can run individual task files directly without going through the main playbook:
+
+```bash
+# Run configure_system tasks
+ansible-playbook -i inventory.yaml tasks/configure_system.yaml --ask-become-pass -v
+
+# Run dotfiles tasks
+ansible-playbook -i inventory.yaml tasks/dotfiles.yaml --ask-become-pass -v
+
+# Run any other task file
+ansible-playbook -i inventory.yaml tasks/<task_file>.yaml --ask-become-pass -v
 ```
 
 ### Check what would change (dry-run)
@@ -78,10 +104,12 @@ ansible-playbook -i inventory.yaml playbook.yaml --ask-become-pass -v   # or -vv
 
 ## Task Files
 
+- `tasks/dotfiles.yaml` - Deploys dotfiles with stow, decrypts SSH keys with sops/age, authenticates GitHub CLI
 - `tasks/install_paru.yaml` - Installs paru AUR helper
 - `tasks/update_system.yaml` - Updates system packages including AUR packages
 - `tasks/install_packages.yaml` - Installs packages from repos and AUR
-- `tasks/setup_services.yaml` - Configures ly, ananicy-cpp, hypridle, gnome-keyring services
+- `tasks/setup_services.yaml` - Configures greetd, systemd services, pacman hooks
+- `tasks/configure_system.yaml` - Sets shell, kernel parameters, mounts /games partition
 
 ## Configuration
 

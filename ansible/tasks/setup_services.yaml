@@ -33,6 +33,12 @@
     daemon_reload: true
   become: true
 
+- name: Disable ufw
+  ansible.builtin.systemd_service:
+    name: ufw
+    enabled: false
+  become: true
+
 - name: Create /etc/pacman.d/hooks directory
   ansible.builtin.file:
     path: /etc/pacman.d/hooks
@@ -46,7 +52,6 @@
     dest: /etc/pacman.d/hooks/
     mode: preserve
   become: true
-
 # Enabled by default in cachyos
 # - name: Enable ananicy-cpp
 #   ansible.builtin.systemd_service:

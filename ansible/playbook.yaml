@@ -1,7 +1,9 @@
 - name: ArchSetup
   hosts: local
-  become: true
   tasks:
+    - name: Deploy dotfiles
+      ansible.builtin.include_tasks: tasks/dotfiles.yaml
+      tags: dotfiles
     - name: Install paru if needed
       ansible.builtin.include_tasks: tasks/install_paru.yaml
       tags: install_paru
@@ -14,3 +16,9 @@
     - name: Setup default systemd services
       ansible.builtin.include_tasks: tasks/setup_services.yaml
       tags: setup_services
+    - name: Configure system
+      ansible.builtin.include_tasks:
+        file: tasks/configure_system.yaml
+        apply:
+          tags: configure_system
+      tags: configure_system

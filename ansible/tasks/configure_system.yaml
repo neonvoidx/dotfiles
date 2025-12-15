@@ -1,0 +1,87 @@
+---
+- name: Change shell for neonvoid to /bin/zsh
+  ansible.builtin.user:
+    name: neonvoid
+    shell: /bin/zsh
+  become: true
+
+- name: Read existing kernel cmdline from /etc/default/limine
+  ansible.builtin.shell: grep 'KERNEL_CMDLINE\[default\]' /etc/default/limine | grep -oP 'root=UUID=\S+'
+  register: existing_root
+  changed_when: false
+  become: true
+  failed_when: false
+
+- name: Extract root UUID from existing cmdline
+  ansible.builtin.set_fact:
+    root_uuid: "{{ existing_root.stdout | regex_replace('root=UUID=', '') }}"
+  when: existing_root.stdout is defined and existing_root.stdout != ''
+
+- name: Configure kernel parameters in /etc/default/limine
+  ansible.builtin.lineinfile:
+    path: /etc/default/limine
+    regexp: '^KERNEL_CMDLINE\[default\]'
+    line: 'KERNEL_CMDLINE[default]+="quiet nowatchdog splash video=DP-1:3440x1440@144 video=DP-2:3440x1440@144 video=HDMI-A-1:2560x1440@144 amdgpu.gpu_recovery=1 amdgpu.ppfeaturemask=0xfffd7fff amdgpu.noretry=0 amdgpu.runpm=0 rw rootflags=subvol=/@ root=UUID={{ root_uuid }}"'
+  become: true
+
+- name: Regenerate limine config
+  ansible.builtin.command: limine-update
+  become: true
+
+- name: Create /games directory
+  ansible.builtin.file:
+    path: /games
+    state: directory
+    mode: "0755"
+  become: true
+
+- name: Add /games mount to fstab
+  ansible.builtin.mount:
+    path: /games
+    src: UUID=ae21aab8-0d67-4e6a-9f01-df1d473460d9
+    fstype: ext4
+    opts: defaults
+    state: mounted
+  become: true
+
+- name: Configure vconsole font
+  ansible.builtin.lineinfile:
+    path: /etc/vconsole.conf
+    regexp: "^FONT="
+    line: "FONT=ter-118b"
+    create: true
+  become: true
+
+- name: Configure vconsole color palette
+  ansible.builtin.blockinfile:
+    path: /etc/vconsole.conf
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - Color Palette"
+    block: |
+      COLOR_0=21222c
+      COLOR_1=7081d0
+      COLOR_2=f9515d
+      COLOR_3=f16c75
+      COLOR_4=37f499
+      COLOR_5=69F8B3
+      COLOR_6=e9f941
+      COLOR_7=f1fc79
+      COLOR_8=9071f4
+      COLOR_9=a48cf2
+      COLOR_10=f265b5
+      COLOR_11=FD92CE
+      COLOR_12=04d1f9
+      COLOR_13=66e4fd
+      COLOR_14=ebfafa
+      COLOR_15=ffffff
+  become: true
+
+- name: Add color hook to mkinitcpio.conf after udev/systemd
+  ansible.builtin.replace:
+    path: /etc/mkinitcpio.conf
+    regexp: '^(HOOKS=\(.*?\b(?:udev|systemd)\b)(.*?\))'
+    replace: '\1 colors\2'
+  become: true
+
+- name: Regenerate initramfs
+  ansible.builtin.shell: echo "" | mkinitcpio -P
+  become: true

@@ -71,25 +71,25 @@
   ansible.builtin.set_fact:
     aur_packages_to_install: "{{ (pkglist_aur_content['content'] | b64decode).split('\n') | select('match', '.+') | list }}"
 - name: Create the `aur_builder` user
-  become: yes
+  become: true
   ansible.builtin.user:
     name: aur_builder
     create_home: yes
     group: wheel
 
 - name: Allow the `aur_builder` user to run `sudo pacman` without a password
-  become: yes
+  become: true
   ansible.builtin.lineinfile:
     path: /etc/sudoers.d/11-install-aur_builder
-    line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
     create: yes
     mode: 0644
-    validate: 'visudo -cf %s'
+    validate: "visudo -cf %s"
 
 - name: Install AUR packages from list
   kewlfft.aur.aur:
     name: "{{ aur_packages_to_install }}"
     use: paru
     state: present
-  become: yes
+  become: true
   become_user: aur_builder

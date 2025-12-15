@@ -1,0 +1,56 @@
+---
+- name: Install required packages
+  community.general.pacman:
+    name:
+      - stow
+      - sops
+      - age
+      - github-cli
+    state: present
+  become: true
+
+- name: Create .ssh directory
+  ansible.builtin.file:
+    path: ~/.ssh
+    state: directory
+    mode: "0700"
+
+- name: Decrypt and copy SSH private key from sops
+  ansible.builtin.shell: |
+    sops -d {{ dotfiles_path }}/ansible/secrets/ssh_key.enc | jq -r .data > ~/.ssh/id_ed25519
+    chmod 600 ~/.ssh/id_ed25519
+  args:
+    creates: ~/.ssh/id_ed25519
+  environment:
+    SOPS_AGE_KEY_FILE: "{{ sops_age_key_file | default('~/keys.txt') }}"
+
+- name: Run stow.sh to deploy dotfiles
+  ansible.builtin.shell: ~/dotfiles/stow.sh
+  args:
+    chdir: ~/dotfiles
+  changed_when: true
+
+- name: Authenticate GitHub CLI with SSH
+  ansible.builtin.shell: |
+    echo "{{ github_token }}" | gh auth login --with-token
+  when: github_token is defined
+  no_log: true
+
+- name: Set permissions on Spotify directory
+  ansible.builtin.file:
+    path: /opt/spotify
+    mode: a+wr
+    state: directory
+  become: true
+
+- name: Set permissions on Spotify Apps directory recursively
+  ansible.builtin.file:
+    path: /opt/spotify/Apps
+    mode: a+wr
+    recurse: true
+    state: directory
+  become: true
+
+- name: Apply spicetify configuration
+  ansible.builtin.command: spicetify backup apply
+  changed_when: true
