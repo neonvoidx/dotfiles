@@ -15,6 +15,7 @@ pay-respects
 proton-pass-bin
 scopebuddy-git
 sgdboop
+steamgrid
 streamcontroller-git
 thorium-browser-bin
 timesup

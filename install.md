@@ -6,7 +6,7 @@
 
 # Install OS
 
-1. Install CachyOS
+1. Install CachyOS (base no DE or WM)
 2. cachy-chroot into system:
     - sbctl steps:
       - sbctl status # checks status of secure boot, should be in setup mode
@@ -23,10 +23,9 @@
 
 1. git clone <https://github.com/neonvoidx/dotfiles>
 2. paru -S ansible stow  # pre ansible run dependencies
-3. ansible-playbook -i inventory.yaml playbook.yaml --ask-become-pass -vvv
+3. ensure keys.txt is downloaded (encryption key)
+4. SOPS_AGE_KEY_FILE=~/keys.txt ansible-playbook -i inventory.yaml playbook.yaml --ask-become-pass -vv
 
 # ADD TO PLAYBOOK
 
-anyway to declaratively setup steam and storage, and default proton version, etc?
-Thunderbird setup accounts automatically
 hyprcursor

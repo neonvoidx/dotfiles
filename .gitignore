@@ -34,3 +34,6 @@ linux/.config/cava
 common/.local/share/Trash
 common/.local/share/keyrings
 common/.local/share/nvim
+common/.local/share/Sentry/C67DA804046263DD14C2EEB662F280E1E34B21C3
+linux/.config/streamcontroller/data/com_core447_MediaPlugin/cache
+linux/.config/streamcontroller/data/logs

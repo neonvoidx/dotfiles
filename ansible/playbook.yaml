@@ -2,19 +2,34 @@
   hosts: local
   tasks:
     - name: Deploy dotfiles
-      ansible.builtin.include_tasks: tasks/dotfiles.yaml
+      ansible.builtin.include_tasks:
+        file: tasks/dotfiles.yaml
+        apply:
+          tags: dotfiles
       tags: dotfiles
     - name: Install paru if needed
-      ansible.builtin.include_tasks: tasks/install_paru.yaml
+      ansible.builtin.include_tasks:
+        file: tasks/install_paru.yaml
+        apply:
+          tags: install_paru
       tags: install_paru
     - name: Ensure system up to date, if not update
-      ansible.builtin.include_tasks: tasks/update_system.yaml
+      ansible.builtin.include_tasks:
+        file: tasks/update_system.yaml
+        apply:
+          tags: update_system
       tags: update_system
     - name: Install packages from Arch repo and AUR
-      ansible.builtin.include_tasks: tasks/install_packages.yaml
+      ansible.builtin.include_tasks:
+        file: tasks/install_packages.yaml
+        apply:
+          tags: install_packages
       tags: install_packages
     - name: Setup default systemd services
-      ansible.builtin.include_tasks: tasks/setup_services.yaml
+      ansible.builtin.include_tasks:
+        file: tasks/setup_services.yaml
+        apply:
+          tags: setup_services
       tags: setup_services
     - name: Configure system
       ansible.builtin.include_tasks:
