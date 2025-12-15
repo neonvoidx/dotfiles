@@ -466,15 +466,20 @@
                 "wallpaper": ""
             },
             {
-                "directory": "/home/neonvoid/dotfiles/linux/pics/vertical",
+                "directory": "/home/neonvoid/dotfiles/linux/pics/ultrawide",
                 "name": "HDMI-A-1",
+                "wallpaper": ""
+            },
+            {
+                "directory": "/home/neonvoid/dotfiles/linux/pics/ultrawide",
+                "name": "DP-2",
                 "wallpaper": ""
             }
         ],
         "overviewEnabled": true,
         "panelPosition": "center",
         "randomEnabled": true,
-        "randomIntervalSec": 1800,
+        "randomIntervalSec": 300,
         "recursiveSearch": false,
         "setWallpaperOnAllMonitors": false,
         "transitionDuration": 1500,
