@@ -71,7 +71,6 @@ outer.right = 5
 # - Arrows.         left, down, up, right
 # All possible modifiers: cmd, alt, ctrl, shift
 cmd-alt-r = "reload-config"
-cmd-shift-r = 'mode resize'                                   # 1. Define a binding to switch to 'resize' mode
 cmd-enter = 'exec-and-forget open -n /Applications/kitty.app'
 
 # Close
