@@ -76,7 +76,8 @@
           "excludeDiscarded": false
         }
       },
-      "mouseButton": "2"
+      "mouseButton": "2",
+      "wheelSensitivity": 120
     }
   }
 }
