@@ -28,11 +28,37 @@
   ansible.builtin.command: limine-update
   become: true
 
+- name: Configure limine settings at top of file
+  ansible.builtin.blockinfile:
+    path: /boot/limine.conf
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - Limine Configuration"
+    insertbefore: BOF
+    block: |
+      #timeout: 3
+      ### Note: For "default_entry" to select a sub-entry within an OS menu, modify "/OS name" to "/+OS name" to keep its submenus visible.
+      default_entry: 2
+      #interface_branding: Your boot manager
+      #interface_branding_color: 3
+      hash_mismatch_panic: no
+      term_palette: "212337;f16c75;37f499;f1fc79;04d1f9;a48cf2;7081d0;ebfafa"
+      term_palette_bright: "323449;f16c75;37f499;f1fc79;04d1f9;a48cf2;7081d0;ebfafa"
+      term_background: "212337"
+      foreground: "37f499"
+      brightBackground: "323449"
+      brightForeground: "37f499"
+      interface_resolution: "3440x1440"
+      interface_branding: "The Void"
+      interface_branding_color: 2
+      editor_enable: yes
+      editor_highlighting: yes
+      editor_validation: yes
+  become: true
+
 - name: Create /games directory
   ansible.builtin.file:
     path: /games
     state: directory
-    mode: "0755"
+    mode: "0777"
   become: true
 
 - name: Add /games mount to fstab
@@ -40,7 +66,7 @@
     path: /games
     src: UUID=ae21aab8-0d67-4e6a-9f01-df1d473460d9
     fstype: ext4
-    opts: defaults
+    opts: defaults,noatime,nofail,mode=0777
     state: mounted
   become: true
 
