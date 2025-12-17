@@ -114,6 +114,7 @@ gvfs-smb
 hashcat
 haveged
 hdparm
+helix
 hplip
 htop
 hwdetect
@@ -174,6 +175,7 @@ mpv
 mtools
 nano
 nano-syntax-highlighting
+navi
 neovim
 netctl
 network-manager-applet
@@ -237,7 +239,6 @@ rsync
 rtkit
 rust-analyzer
 s-nail
-sbctl
 seahorse
 sg3_utils
 shellcheck
@@ -296,6 +297,8 @@ uv
 vesktop-git
 vi
 vim
+vivaldi
+vivaldi-ffmpeg-codecs
 vkbasalt
 vlc-plugins-all
 vulkan-radeon
@@ -327,7 +330,7 @@ xorg-xinput
 xorg-xkill
 xorg-xrandr
 xorg-xwayland
-xpadneo-dkms-git
+xpadneo-dkms
 yarn
 yazi
 yubico-authenticator-bin

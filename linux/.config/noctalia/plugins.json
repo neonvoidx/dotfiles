@@ -6,6 +6,9 @@
         }
     ],
     "states": {
+        "privacy-indicator": {
+            "enabled": true
+        }
     },
     "version": 1
 }

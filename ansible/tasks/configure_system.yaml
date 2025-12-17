@@ -85,3 +85,45 @@
 - name: Regenerate initramfs
   ansible.builtin.shell: echo "" | mkinitcpio -P
   become: true
+
+- name: Configure Bluetooth LE MinConnectionInterval
+  ansible.builtin.ini_file:
+    path: /etc/bluetooth/main.conf
+    section: LE
+    option: MinConnectionInterval
+    value: "7"
+  become: true
+
+- name: Configure Bluetooth LE MaxConnectionInterval
+  ansible.builtin.ini_file:
+    path: /etc/bluetooth/main.conf
+    section: LE
+    option: MaxConnectionInterval
+    value: "9"
+  become: true
+
+- name: Configure Bluetooth LE ConnectionLatency
+  ansible.builtin.ini_file:
+    path: /etc/bluetooth/main.conf
+    section: LE
+    option: ConnectionLatency
+    value: "0"
+  become: true
+
+# Steam - Disable shader cache
+# Then enable these
+- name: Set AMD_VULKAN_ICD in /etc/environment
+  ansible.builtin.lineinfile:
+    path: /etc/environment
+    regexp: "^AMD_VULKAN_ICD="
+    line: "AMD_VULKAN_ICD=RADV"
+    create: true
+  become: true
+
+- name: Set MESA_SHADER_CACHE_MAX_SIZE in /etc/environment
+  ansible.builtin.lineinfile:
+    path: /etc/environment
+    regexp: "^MESA_SHADER_CACHE_MAX_SIZE="
+    line: "MESA_SHADER_CACHE_MAX_SIZE=12G"
+    create: true
+  become: true
