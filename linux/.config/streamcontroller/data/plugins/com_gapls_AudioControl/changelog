@@ -1,9 +1,0 @@
-<p>Changes</p>
-<ul>
-    <li> Switched to Generative UI</li>
-    <li> Removed Dial Controller Action</li>
-    <li> Added Toggle Default Device Action</li>
-    <li> Added Audio Warning Action</li>
-    <li> Updated assets</li>
-    <li> Updated store thumbnail</li>
-</ul>

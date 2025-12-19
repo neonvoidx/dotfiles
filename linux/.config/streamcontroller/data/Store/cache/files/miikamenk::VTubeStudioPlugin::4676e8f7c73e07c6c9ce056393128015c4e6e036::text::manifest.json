@@ -1,8 +1,0 @@
-{
-  "version": "1.0.0",
-  "thumbnail": "store/Thumbnail.png",
-  "id": "com_miikamenk_vtubestudio",
-  "name": "VTubeStudio plugin",
-  "description": "A plugin for controlling your VTubeStudio",
-  "description-short": "Plugin for controlling VTubeStudio"
-}

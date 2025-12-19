@@ -1,9 +1,0 @@
-{
-  "generic": {
-    "copyright": "codeNinja",
-    "original-url": "",
-    "license": "GPL-3.0",
-    "license-url": "https://www.gnu.org/licenses/gpl-3.0.txt",
-    "description": "A plugin that lets you enter a date and shows the number of days until that date using StreamController's action system."
-  }
-}

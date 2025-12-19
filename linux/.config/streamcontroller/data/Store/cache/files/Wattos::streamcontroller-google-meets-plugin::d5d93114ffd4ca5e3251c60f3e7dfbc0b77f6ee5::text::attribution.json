@@ -1,9 +1,0 @@
-{
-    "generic": {
-        "copyright": "2025 Wattos",
-        "original-url": "https://github.com/Wattos/streamcontroller-google-meets-plugin",
-        "license": "MIT",
-        "license-url": "https://opensource.org/licenses/MIT",
-        "description": "Control Google Meet from StreamController - toggle mic/camera, raise hand, send reactions"
-    }
-}

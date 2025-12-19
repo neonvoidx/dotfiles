@@ -3,6 +3,11 @@
         "brightness": {
             "value": 75
         },
+        "background": {
+            "overwrite": true,
+            "path": "/home/neonvoid/.config/streamcontroller/data/Assets/AssetManager/Assets/space-umbra.png",
+            "show": true
+        },
         "keys": {
             "0x0": {
                 "states": {

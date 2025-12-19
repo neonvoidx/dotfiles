@@ -1,9 +1,0 @@
-{
-    "general": {
-        "app-launches": 22,
-        "show-donate-window": false
-    },
-    "system": {
-        "keep-running": true
-    }
-}
