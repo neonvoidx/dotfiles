@@ -103,3 +103,5 @@ linux/.config/streamcontroller/data/pages/backups
 common/.local/share/icons/hicolor
 common/.local/share/navi/cheats/denisidoro__cheats
 common/.local/share/.vivaldi_reporting_data
+common/.local/share
+linux/.config/Thunar

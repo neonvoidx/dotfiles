@@ -1,614 +1,614 @@
 {
     "StreamController::StreamController-Store::1.5.0::text::OfficialAuthors.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::StreamController-Store::1.5.0::text::OfficialAuthors.json",
-        "date": 1765809147.5831516
+        "date": 1766090875.984349
     },
     "StreamController::StreamController-Store::versions::text::versions.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::StreamController-Store::versions::text::versions.json",
-        "date": 1765809149.7387266
+        "date": 1766090878.2007046
     },
     "StreamController::StreamController-Store::main::text::Plugins.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::StreamController-Store::main::text::Plugins.json",
-        "date": 1765809149.8551328
+        "date": 1766090878.3031073
     },
     "StreamController::MediaPlugin::1ed6fc1b1353877f25901cfb62e4b6acaa7d801f::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::MediaPlugin::1ed6fc1b1353877f25901cfb62e4b6acaa7d801f::text::manifest.json",
-        "date": 1765809149.8567736
+        "date": 1766090878.3045435
     },
     "StreamController::MediaPlugin::1ed6fc1b1353877f25901cfb62e4b6acaa7d801f::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::MediaPlugin::1ed6fc1b1353877f25901cfb62e4b6acaa7d801f::text::store/Thumbnail.png",
-        "date": 1765809149.8573596
+        "date": 1766090878.3050811
     },
     "StreamController::MediaPlugin::1ed6fc1b1353877f25901cfb62e4b6acaa7d801f::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::MediaPlugin::1ed6fc1b1353877f25901cfb62e4b6acaa7d801f::text::attribution.json",
-        "date": 1765809149.8580456
+        "date": 1766090878.305891
     },
     "StreamController::OBSPlugin::bd2cfc343ed55f53612d9ccc83f0a8fbe91e779a::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::OBSPlugin::bd2cfc343ed55f53612d9ccc83f0a8fbe91e779a::text::manifest.json",
-        "date": 1765809149.859111
+        "date": 1766090878.3065166
     },
     "StreamController::OBSPlugin::bd2cfc343ed55f53612d9ccc83f0a8fbe91e779a::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::OBSPlugin::bd2cfc343ed55f53612d9ccc83f0a8fbe91e779a::text::store/Thumbnail.png",
-        "date": 1765809149.8596888
+        "date": 1766090878.307
     },
     "StreamController::DeckPlugin::dd053be1d541034d53b7bebf87125979fd7cdc0c::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::DeckPlugin::dd053be1d541034d53b7bebf87125979fd7cdc0c::text::manifest.json",
-        "date": 1765809149.9785194
+        "date": 1766090878.402416
     },
     "StreamController::DeckPlugin::dd053be1d541034d53b7bebf87125979fd7cdc0c::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::DeckPlugin::dd053be1d541034d53b7bebf87125979fd7cdc0c::text::store/Thumbnail.png",
-        "date": 1765809149.979074
+        "date": 1766090878.4048567
     },
     "StreamController::DeckPlugin::dd053be1d541034d53b7bebf87125979fd7cdc0c::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::DeckPlugin::dd053be1d541034d53b7bebf87125979fd7cdc0c::text::attribution.json",
-        "date": 1765809149.9796267
+        "date": 1766090878.4059212
     },
     "StreamController::OSPlugin::0056970ceed3707fe902c6cebe748b6eaa5b8c7b::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::OSPlugin::0056970ceed3707fe902c6cebe748b6eaa5b8c7b::text::manifest.json",
-        "date": 1765809149.9801142
+        "date": 1766090878.4065542
     },
     "StreamController::OSPlugin::0056970ceed3707fe902c6cebe748b6eaa5b8c7b::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::OSPlugin::0056970ceed3707fe902c6cebe748b6eaa5b8c7b::text::store/Thumbnail.png",
-        "date": 1765809149.9805045
+        "date": 1766090878.4071836
     },
     "StreamController::OSPlugin::0056970ceed3707fe902c6cebe748b6eaa5b8c7b::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::OSPlugin::0056970ceed3707fe902c6cebe748b6eaa5b8c7b::text::attribution.json",
-        "date": 1765809149.98099
+        "date": 1766090878.4089208
     },
     "StreamController::Requests::bfe1fa16fa3e8a2162774f6771ed1ec218af392b::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Requests::bfe1fa16fa3e8a2162774f6771ed1ec218af392b::text::manifest.json",
-        "date": 1765809149.9814372
+        "date": 1766090878.410343
     },
     "StreamController::Requests::bfe1fa16fa3e8a2162774f6771ed1ec218af392b::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Requests::bfe1fa16fa3e8a2162774f6771ed1ec218af392b::text::store/Thumbnail.png",
-        "date": 1765809149.9818206
+        "date": 1766090878.4113905
     },
     "StreamController::Requests::bfe1fa16fa3e8a2162774f6771ed1ec218af392b::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Requests::bfe1fa16fa3e8a2162774f6771ed1ec218af392b::text::attribution.json",
-        "date": 1765809149.9822896
+        "date": 1766090878.4126956
     },
     "StreamController::Clocks::382410fe55646e76420d5eea7598e405e69d7f3e::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Clocks::382410fe55646e76420d5eea7598e405e69d7f3e::text::manifest.json",
-        "date": 1765809149.9827387
+        "date": 1766090878.4133859
     },
     "StreamController::Clocks::382410fe55646e76420d5eea7598e405e69d7f3e::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Clocks::382410fe55646e76420d5eea7598e405e69d7f3e::text::store/Thumbnail.png",
-        "date": 1765809149.983126
+        "date": 1766090878.4140084
     },
     "StreamController::Clocks::382410fe55646e76420d5eea7598e405e69d7f3e::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Clocks::382410fe55646e76420d5eea7598e405e69d7f3e::text::attribution.json",
-        "date": 1765809149.9835749
+        "date": 1766090878.4148767
     },
     "StreamController::Weather::6d8ad12803c331042b221dcc0ae080af5ed8ef90::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Weather::6d8ad12803c331042b221dcc0ae080af5ed8ef90::text::manifest.json",
-        "date": 1765809149.9840107
+        "date": 1766090878.4154773
     },
     "StreamController::Weather::6d8ad12803c331042b221dcc0ae080af5ed8ef90::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Weather::6d8ad12803c331042b221dcc0ae080af5ed8ef90::text::store/Thumbnail.png",
-        "date": 1765809149.9843822
+        "date": 1766090878.415888
     },
     "StreamController::Weather::6d8ad12803c331042b221dcc0ae080af5ed8ef90::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Weather::6d8ad12803c331042b221dcc0ae080af5ed8ef90::text::attribution.json",
-        "date": 1765809149.984828
+        "date": 1766090878.4167306
     },
     "StreamController::Counter::685b21c92ed799e67d385f7e16d211aef3d952d9::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Counter::685b21c92ed799e67d385f7e16d211aef3d952d9::text::manifest.json",
-        "date": 1765809149.985254
+        "date": 1766090878.4173226
     },
     "StreamController::Counter::685b21c92ed799e67d385f7e16d211aef3d952d9::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Counter::685b21c92ed799e67d385f7e16d211aef3d952d9::text::store/Thumbnail.png",
-        "date": 1765809149.9856234
+        "date": 1766090878.4178073
     },
     "StreamController::Counter::685b21c92ed799e67d385f7e16d211aef3d952d9::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Counter::685b21c92ed799e67d385f7e16d211aef3d952d9::text::attribution.json",
-        "date": 1765809149.986085
+        "date": 1766090878.4187164
     },
     "StreamController::VolumeMixer::d86db67804d59378562d93a8171280db756c2000::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::VolumeMixer::d86db67804d59378562d93a8171280db756c2000::text::manifest.json",
-        "date": 1765809149.9865322
+        "date": 1766090878.4192958
     },
     "StreamController::VolumeMixer::d86db67804d59378562d93a8171280db756c2000::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::VolumeMixer::d86db67804d59378562d93a8171280db756c2000::text::store/Thumbnail.png",
-        "date": 1765809149.9869084
+        "date": 1766090878.4224248
     },
     "StreamController::VolumeMixer::d86db67804d59378562d93a8171280db756c2000::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::VolumeMixer::d86db67804d59378562d93a8171280db756c2000::text::attribution.json",
-        "date": 1765809149.9873836
+        "date": 1766090878.4243548
     },
     "StreamController::Speedtest::2d7794259903f4c85827c2c0a2b6cb044ace3efa::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Speedtest::2d7794259903f4c85827c2c0a2b6cb044ace3efa::text::manifest.json",
-        "date": 1765809149.9878266
+        "date": 1766090878.4250035
     },
     "StreamController::Speedtest::2d7794259903f4c85827c2c0a2b6cb044ace3efa::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Speedtest::2d7794259903f4c85827c2c0a2b6cb044ace3efa::text::store/Thumbnail.png",
-        "date": 1765809149.988218
+        "date": 1766090878.4254467
     },
     "StreamController::Speedtest::2d7794259903f4c85827c2c0a2b6cb044ace3efa::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Speedtest::2d7794259903f4c85827c2c0a2b6cb044ace3efa::text::attribution.json",
-        "date": 1765809149.9886684
+        "date": 1766090878.4261777
     },
     "StreamController::GnomeWindowCalls::a8846468adbc2d3f27775da63b92560c07d85155::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::GnomeWindowCalls::a8846468adbc2d3f27775da63b92560c07d85155::text::manifest.json",
-        "date": 1765809149.9890995
+        "date": 1766090878.4268286
     },
     "StreamController::GnomeWindowCalls::a8846468adbc2d3f27775da63b92560c07d85155::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::GnomeWindowCalls::a8846468adbc2d3f27775da63b92560c07d85155::text::store/Thumbnail.png",
-        "date": 1765809149.9894745
+        "date": 1766090878.4273305
     },
     "StreamController::GnomeWindowCalls::a8846468adbc2d3f27775da63b92560c07d85155::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::GnomeWindowCalls::a8846468adbc2d3f27775da63b92560c07d85155::text::attribution.json",
-        "date": 1765809149.989931
+        "date": 1766090878.429359
     },
     "StreamController::MicMute::c78789dc79f4eafd23584e7a4cab83436fd132de::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::MicMute::c78789dc79f4eafd23584e7a4cab83436fd132de::text::manifest.json",
-        "date": 1765809149.9903452
+        "date": 1766090878.4300365
     },
     "StreamController::MicMute::c78789dc79f4eafd23584e7a4cab83436fd132de::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::MicMute::c78789dc79f4eafd23584e7a4cab83436fd132de::text::store/Thumbnail.png",
-        "date": 1765809149.9907205
+        "date": 1766090878.430623
     },
     "StreamController::MicMute::c78789dc79f4eafd23584e7a4cab83436fd132de::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::MicMute::c78789dc79f4eafd23584e7a4cab83436fd132de::text::attribution.json",
-        "date": 1765809149.9911559
+        "date": 1766090878.4323256
     },
     "StreamController::Battery::e6e8ed12c24780f7c735f45f5c1c3de314725192::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Battery::e6e8ed12c24780f7c735f45f5c1c3de314725192::text::manifest.json",
-        "date": 1765809149.9915748
+        "date": 1766090878.4329734
     },
     "StreamController::Battery::e6e8ed12c24780f7c735f45f5c1c3de314725192::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Battery::e6e8ed12c24780f7c735f45f5c1c3de314725192::text::store/Thumbnail.png",
-        "date": 1765809149.9919696
+        "date": 1766090878.4334385
     },
     "StreamController::Battery::e6e8ed12c24780f7c735f45f5c1c3de314725192::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Battery::e6e8ed12c24780f7c735f45f5c1c3de314725192::text::attribution.json",
-        "date": 1765809149.992547
+        "date": 1766090878.4342837
     },
     "StreamController::AudioSwitcher::81b29136a099c08c1618c0e1cf1bbc4a84841a53::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::AudioSwitcher::81b29136a099c08c1618c0e1cf1bbc4a84841a53::text::manifest.json",
-        "date": 1765809149.9929948
+        "date": 1766090878.4349802
     },
     "StreamController::AudioSwitcher::81b29136a099c08c1618c0e1cf1bbc4a84841a53::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::AudioSwitcher::81b29136a099c08c1618c0e1cf1bbc4a84841a53::text::store/Thumbnail.png",
-        "date": 1765809149.9933937
+        "date": 1766090878.4373686
     },
     "StreamController::AudioSwitcher::81b29136a099c08c1618c0e1cf1bbc4a84841a53::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::AudioSwitcher::81b29136a099c08c1618c0e1cf1bbc4a84841a53::text::attribution.json",
-        "date": 1765809149.9938788
+        "date": 1766090878.4386122
     },
     "StreamController::Pi-hole::8f51549c6acde3c572f53151805fd5e4057d0bb8::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Pi-hole::8f51549c6acde3c572f53151805fd5e4057d0bb8::text::manifest.json",
-        "date": 1765809149.9943113
+        "date": 1766090878.439266
     },
     "StreamController::Pi-hole::8f51549c6acde3c572f53151805fd5e4057d0bb8::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Pi-hole::8f51549c6acde3c572f53151805fd5e4057d0bb8::text::store/Thumbnail.png",
-        "date": 1765809149.9947197
+        "date": 1766090878.440486
     },
     "StreamController::Pi-hole::8f51549c6acde3c572f53151805fd5e4057d0bb8::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Pi-hole::8f51549c6acde3c572f53151805fd5e4057d0bb8::text::attribution.json",
-        "date": 1765809149.995299
+        "date": 1766090878.4416568
     },
     "G4PLS::AudioControl::171add294aac52ffaf4901ea41d3d7adbbe79e78::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/G4PLS::AudioControl::171add294aac52ffaf4901ea41d3d7adbbe79e78::text::manifest.json",
-        "date": 1765809149.9960065
+        "date": 1766090878.442323
     },
     "G4PLS::AudioControl::171add294aac52ffaf4901ea41d3d7adbbe79e78::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/G4PLS::AudioControl::171add294aac52ffaf4901ea41d3d7adbbe79e78::text::store/Thumbnail.png",
-        "date": 1765809149.9964063
+        "date": 1766090878.4431005
     },
     "G4PLS::AudioControl::171add294aac52ffaf4901ea41d3d7adbbe79e78::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/G4PLS::AudioControl::171add294aac52ffaf4901ea41d3d7adbbe79e78::text::attribution.json",
-        "date": 1765809149.9968073
+        "date": 1766090878.4443204
     },
     "jslay88::streamcontroller_helldivers_2::c18c87df83c830394c1ebd6967581080ff0bc462::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/jslay88::streamcontroller_helldivers_2::c18c87df83c830394c1ebd6967581080ff0bc462::text::manifest.json",
-        "date": 1765809149.9972184
+        "date": 1766090878.445207
     },
     "jslay88::streamcontroller_helldivers_2::c18c87df83c830394c1ebd6967581080ff0bc462::text::store/thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/jslay88::streamcontroller_helldivers_2::c18c87df83c830394c1ebd6967581080ff0bc462::text::store/thumbnail.png",
-        "date": 1765809149.9977298
+        "date": 1766090878.4460573
     },
     "jslay88::streamcontroller_helldivers_2::c18c87df83c830394c1ebd6967581080ff0bc462::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/jslay88::streamcontroller_helldivers_2::c18c87df83c830394c1ebd6967581080ff0bc462::text::attribution.json",
-        "date": 1765809149.998204
+        "date": 1766090878.4470606
     },
     "gensyn::de_gensyn_HomeAssistantPlugin::2ec1d111929f0c6097d43b0d14a67002c619a8cc::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/gensyn::de_gensyn_HomeAssistantPlugin::2ec1d111929f0c6097d43b0d14a67002c619a8cc::text::manifest.json",
-        "date": 1765809149.9986215
+        "date": 1766090878.4477952
     },
     "gensyn::de_gensyn_HomeAssistantPlugin::2ec1d111929f0c6097d43b0d14a67002c619a8cc::text::assets/homeassistant.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/gensyn::de_gensyn_HomeAssistantPlugin::2ec1d111929f0c6097d43b0d14a67002c619a8cc::text::assets/homeassistant.png",
-        "date": 1765809149.9989967
+        "date": 1766090878.4493253
     },
     "gensyn::de_gensyn_HomeAssistantPlugin::2ec1d111929f0c6097d43b0d14a67002c619a8cc::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/gensyn::de_gensyn_HomeAssistantPlugin::2ec1d111929f0c6097d43b0d14a67002c619a8cc::text::attribution.json",
-        "date": 1765809149.999417
+        "date": 1766090878.451138
     },
     "gensyn::HomeAssistantPlugin::f3ba0abc4260a7ac3dd8ba039f333f360197f503::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/gensyn::HomeAssistantPlugin::f3ba0abc4260a7ac3dd8ba039f333f360197f503::text::manifest.json",
-        "date": 1765809149.9998217
+        "date": 1766090878.451633
     },
     "gensyn::HomeAssistantPlugin::f3ba0abc4260a7ac3dd8ba039f333f360197f503::text::assets/homeassistant.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/gensyn::HomeAssistantPlugin::f3ba0abc4260a7ac3dd8ba039f333f360197f503::text::assets/homeassistant.png",
-        "date": 1765809150.000188
+        "date": 1766090878.4520612
     },
     "gensyn::HomeAssistantPlugin::f3ba0abc4260a7ac3dd8ba039f333f360197f503::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/gensyn::HomeAssistantPlugin::f3ba0abc4260a7ac3dd8ba039f333f360197f503::text::attribution.json",
-        "date": 1765809150.0006168
+        "date": 1766090878.453577
     },
     "ImDevinC::StreamControllerTwitchPlugin::3a5ab439e3574f87fa963e91e52ff90cf1a967b9::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/ImDevinC::StreamControllerTwitchPlugin::3a5ab439e3574f87fa963e91e52ff90cf1a967b9::text::manifest.json",
-        "date": 1765809150.001127
+        "date": 1766090878.4543147
     },
     "ImDevinC::StreamControllerTwitchPlugin::3a5ab439e3574f87fa963e91e52ff90cf1a967b9::text::store/thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/ImDevinC::StreamControllerTwitchPlugin::3a5ab439e3574f87fa963e91e52ff90cf1a967b9::text::store/thumbnail.png",
-        "date": 1765809150.0015194
+        "date": 1766090878.4547935
     },
     "ImDevinC::StreamControllerTwitchPlugin::3a5ab439e3574f87fa963e91e52ff90cf1a967b9::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/ImDevinC::StreamControllerTwitchPlugin::3a5ab439e3574f87fa963e91e52ff90cf1a967b9::text::attribution.json",
-        "date": 1765809150.001965
+        "date": 1766090878.455643
     },
     "StreamController::Countdown::37e5936171fb836fa32a79b69c9a610db7a43663::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Countdown::37e5936171fb836fa32a79b69c9a610db7a43663::text::manifest.json",
-        "date": 1765809150.002378
+        "date": 1766090878.456396
     },
     "StreamController::Countdown::37e5936171fb836fa32a79b69c9a610db7a43663::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Countdown::37e5936171fb836fa32a79b69c9a610db7a43663::text::store/Thumbnail.png",
-        "date": 1765809150.0027657
+        "date": 1766090878.457989
     },
     "StreamController::Countdown::37e5936171fb836fa32a79b69c9a610db7a43663::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::Countdown::37e5936171fb836fa32a79b69c9a610db7a43663::text::attribution.json",
-        "date": 1765809150.0032291
+        "date": 1766090878.459738
     },
     "SilentSwordmaiden::StreamController-XIVDeck-Plugin::ccefae9878a0d0547d14aedbb2c0521d5573ec10::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/SilentSwordmaiden::StreamController-XIVDeck-Plugin::ccefae9878a0d0547d14aedbb2c0521d5573ec10::text::manifest.json",
-        "date": 1765809150.0036685
+        "date": 1766090878.4616454
     },
     "SilentSwordmaiden::StreamController-XIVDeck-Plugin::ccefae9878a0d0547d14aedbb2c0521d5573ec10::text::assets/xivdeck_store_banner.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/SilentSwordmaiden::StreamController-XIVDeck-Plugin::ccefae9878a0d0547d14aedbb2c0521d5573ec10::text::assets/xivdeck_store_banner.png",
-        "date": 1765809150.0040507
+        "date": 1766090878.4627705
     },
     "SilentSwordmaiden::StreamController-XIVDeck-Plugin::ccefae9878a0d0547d14aedbb2c0521d5573ec10::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/SilentSwordmaiden::StreamController-XIVDeck-Plugin::ccefae9878a0d0547d14aedbb2c0521d5573ec10::text::attribution.json",
-        "date": 1765809150.0044756
+        "date": 1766090878.4635386
     },
     "pniedzielski::StreamController-OBSLiveSplitOnePlugin::9cbb36ea809d47fb74049ed3eabd3b00fc2f000a::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/pniedzielski::StreamController-OBSLiveSplitOnePlugin::9cbb36ea809d47fb74049ed3eabd3b00fc2f000a::text::manifest.json",
-        "date": 1765809150.004878
+        "date": 1766090878.4640613
     },
     "pniedzielski::StreamController-OBSLiveSplitOnePlugin::9cbb36ea809d47fb74049ed3eabd3b00fc2f000a::text::store/thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/pniedzielski::StreamController-OBSLiveSplitOnePlugin::9cbb36ea809d47fb74049ed3eabd3b00fc2f000a::text::store/thumbnail.png",
-        "date": 1765809150.005252
+        "date": 1766090878.4644818
     },
     "pniedzielski::StreamController-OBSLiveSplitOnePlugin::9cbb36ea809d47fb74049ed3eabd3b00fc2f000a::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/pniedzielski::StreamController-OBSLiveSplitOnePlugin::9cbb36ea809d47fb74049ed3eabd3b00fc2f000a::text::attribution.json",
-        "date": 1765809150.0056803
+        "date": 1766090878.46549
     },
     "ImDevinC::StreamControllerDiscordPlugin::18e3e289adab103c6b774f746ff4fb2140550747::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/ImDevinC::StreamControllerDiscordPlugin::18e3e289adab103c6b774f746ff4fb2140550747::text::manifest.json",
-        "date": 1765809150.006087
+        "date": 1766090878.4662619
     },
     "ImDevinC::StreamControllerDiscordPlugin::18e3e289adab103c6b774f746ff4fb2140550747::text::store/thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/ImDevinC::StreamControllerDiscordPlugin::18e3e289adab103c6b774f746ff4fb2140550747::text::store/thumbnail.png",
-        "date": 1765809150.0064523
+        "date": 1766090878.466984
     },
     "ImDevinC::StreamControllerDiscordPlugin::18e3e289adab103c6b774f746ff4fb2140550747::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/ImDevinC::StreamControllerDiscordPlugin::18e3e289adab103c6b774f746ff4fb2140550747::text::attribution.json",
-        "date": 1765809150.0068982
+        "date": 1766090878.4677699
     },
     "dehnhardt::StreamController-MixbusPlugin::c451f88f7e919601080a8177ea632143f5301203::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/dehnhardt::StreamController-MixbusPlugin::c451f88f7e919601080a8177ea632143f5301203::text::manifest.json",
-        "date": 1765809150.0072987
+        "date": 1766090878.4687915
     },
     "dehnhardt::StreamController-MixbusPlugin::c451f88f7e919601080a8177ea632143f5301203::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/dehnhardt::StreamController-MixbusPlugin::c451f88f7e919601080a8177ea632143f5301203::text::store/Thumbnail.png",
-        "date": 1765809150.0083861
+        "date": 1766090878.4702542
     },
     "dehnhardt::StreamController-MixbusPlugin::c451f88f7e919601080a8177ea632143f5301203::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/dehnhardt::StreamController-MixbusPlugin::c451f88f7e919601080a8177ea632143f5301203::text::attribution.json",
-        "date": 1765809150.0088327
+        "date": 1766090878.4712737
     },
     "cozybuild::StreamControllerElgatoKeyLight::1ea07125f182edced672671d31ac7de1dbec8c8e::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/cozybuild::StreamControllerElgatoKeyLight::1ea07125f182edced672671d31ac7de1dbec8c8e::text::manifest.json",
-        "date": 1765809150.0092354
+        "date": 1766090878.4720056
     },
     "cozybuild::StreamControllerElgatoKeyLight::1ea07125f182edced672671d31ac7de1dbec8c8e::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/cozybuild::StreamControllerElgatoKeyLight::1ea07125f182edced672671d31ac7de1dbec8c8e::text::store/Thumbnail.png",
-        "date": 1765809150.0096047
+        "date": 1766090878.472409
     },
     "cozybuild::StreamControllerElgatoKeyLight::1ea07125f182edced672671d31ac7de1dbec8c8e::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/cozybuild::StreamControllerElgatoKeyLight::1ea07125f182edced672671d31ac7de1dbec8c8e::text::attribution.json",
-        "date": 1765809150.0100193
+        "date": 1766090878.4733882
     },
     "eumario::StreamController_WebSocket::d5539465a9b4b472622dcba6bcdf3292003f9800::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/eumario::StreamController_WebSocket::d5539465a9b4b472622dcba6bcdf3292003f9800::text::manifest.json",
-        "date": 1765809150.0104213
+        "date": 1766090878.4738894
     },
     "eumario::StreamController_WebSocket::d5539465a9b4b472622dcba6bcdf3292003f9800::text::store/thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/eumario::StreamController_WebSocket::d5539465a9b4b472622dcba6bcdf3292003f9800::text::store/thumbnail.png",
-        "date": 1765809150.0114272
+        "date": 1766090878.4747715
     },
     "eumario::StreamController_WebSocket::d5539465a9b4b472622dcba6bcdf3292003f9800::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/eumario::StreamController_WebSocket::d5539465a9b4b472622dcba6bcdf3292003f9800::text::attribution.json",
-        "date": 1765809150.0118551
+        "date": 1766090878.4755144
     },
     "eumario::StreamController_MangoHud::8f5187693ba8d144fa26ed25004f7839ddee1a23::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/eumario::StreamController_MangoHud::8f5187693ba8d144fa26ed25004f7839ddee1a23::text::manifest.json",
-        "date": 1765809150.0122683
+        "date": 1766090878.4765284
     },
     "eumario::StreamController_MangoHud::8f5187693ba8d144fa26ed25004f7839ddee1a23::text::store/thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/eumario::StreamController_MangoHud::8f5187693ba8d144fa26ed25004f7839ddee1a23::text::store/thumbnail.png",
-        "date": 1765809150.012706
+        "date": 1766090878.4773233
     },
     "eumario::StreamController_MangoHud::8f5187693ba8d144fa26ed25004f7839ddee1a23::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/eumario::StreamController_MangoHud::8f5187693ba8d144fa26ed25004f7839ddee1a23::text::attribution.json",
-        "date": 1765809150.013186
+        "date": 1766090878.478475
     },
     "Kekemui::VeadoSC::0791541cc0ff7ec2d3a86d85d494d3d83aab4d60::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Kekemui::VeadoSC::0791541cc0ff7ec2d3a86d85d494d3d83aab4d60::text::manifest.json",
-        "date": 1765809150.013594
+        "date": 1766090878.479364
     },
     "Kekemui::VeadoSC::0791541cc0ff7ec2d3a86d85d494d3d83aab4d60::text::store/thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Kekemui::VeadoSC::0791541cc0ff7ec2d3a86d85d494d3d83aab4d60::text::store/thumbnail.png",
-        "date": 1765809150.0139754
+        "date": 1766090878.4801345
     },
     "Kekemui::VeadoSC::0791541cc0ff7ec2d3a86d85d494d3d83aab4d60::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Kekemui::VeadoSC::0791541cc0ff7ec2d3a86d85d494d3d83aab4d60::text::attribution.json",
-        "date": 1765809150.014385
+        "date": 1766090878.481359
     },
     "StreamController::QEMUPlugin::738fe43b2a02d5902f815bec042de59dc199e949::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::QEMUPlugin::738fe43b2a02d5902f815bec042de59dc199e949::text::manifest.json",
-        "date": 1765809150.014797
+        "date": 1766090878.4820306
     },
     "StreamController::QEMUPlugin::738fe43b2a02d5902f815bec042de59dc199e949::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::QEMUPlugin::738fe43b2a02d5902f815bec042de59dc199e949::text::store/Thumbnail.png",
-        "date": 1765809150.0151653
+        "date": 1766090878.482589
     },
     "StreamController::QEMUPlugin::738fe43b2a02d5902f815bec042de59dc199e949::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::QEMUPlugin::738fe43b2a02d5902f815bec042de59dc199e949::text::attribution.json",
-        "date": 1765809150.0157564
+        "date": 1766090878.483633
     },
     "ReneLu::SpotifyControl::cdc46acce611c3301b5999258e08626503267f4a::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/ReneLu::SpotifyControl::cdc46acce611c3301b5999258e08626503267f4a::text::manifest.json",
-        "date": 1765809150.0162797
+        "date": 1766090878.4842494
     },
     "ReneLu::SpotifyControl::cdc46acce611c3301b5999258e08626503267f4a::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/ReneLu::SpotifyControl::cdc46acce611c3301b5999258e08626503267f4a::text::store/Thumbnail.png",
-        "date": 1765809150.016658
+        "date": 1766090878.4847958
     },
     "ReneLu::SpotifyControl::cdc46acce611c3301b5999258e08626503267f4a::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/ReneLu::SpotifyControl::cdc46acce611c3301b5999258e08626503267f4a::text::attribution.json",
-        "date": 1765809150.017057
+        "date": 1766090878.4856396
     },
     "StreamController::ControllerPlugin::61c3b02fb816366a281b71d527e9215e0d213335::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::ControllerPlugin::61c3b02fb816366a281b71d527e9215e0d213335::text::manifest.json",
-        "date": 1765809150.0174508
+        "date": 1766090878.4863055
     },
     "StreamController::ControllerPlugin::61c3b02fb816366a281b71d527e9215e0d213335::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::ControllerPlugin::61c3b02fb816366a281b71d527e9215e0d213335::text::store/Thumbnail.png",
-        "date": 1765809150.0178242
+        "date": 1766090878.4874258
     },
     "bamarc::SpotifyForStreamController::5306137e07a6f6f50723f9a8ef95a419e5d4d857::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/bamarc::SpotifyForStreamController::5306137e07a6f6f50723f9a8ef95a419e5d4d857::text::manifest.json",
-        "date": 1765809150.0862033
+        "date": 1766090878.5559561
     },
     "bamarc::SpotifyForStreamController::5306137e07a6f6f50723f9a8ef95a419e5d4d857::text::assets/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/bamarc::SpotifyForStreamController::5306137e07a6f6f50723f9a8ef95a419e5d4d857::text::assets/Thumbnail.png",
-        "date": 1765809150.0867524
+        "date": 1766090878.5565891
     },
     "bamarc::SpotifyForStreamController::5306137e07a6f6f50723f9a8ef95a419e5d4d857::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/bamarc::SpotifyForStreamController::5306137e07a6f6f50723f9a8ef95a419e5d4d857::text::attribution.json",
-        "date": 1765809150.0872629
+        "date": 1766090878.5572803
     },
     "buggex::StreamController-SoundboardPlugin::a62d8164e4052cc08e2569734f5b1943b60356d5::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/buggex::StreamController-SoundboardPlugin::a62d8164e4052cc08e2569734f5b1943b60356d5::text::manifest.json",
-        "date": 1765809150.087706
+        "date": 1766090878.5582898
     },
     "buggex::StreamController-SoundboardPlugin::a62d8164e4052cc08e2569734f5b1943b60356d5::text::assets/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/buggex::StreamController-SoundboardPlugin::a62d8164e4052cc08e2569734f5b1943b60356d5::text::assets/Thumbnail.png",
-        "date": 1765809150.0880985
+        "date": 1766090878.5587459
     },
     "buggex::StreamController-SoundboardPlugin::a62d8164e4052cc08e2569734f5b1943b60356d5::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/buggex::StreamController-SoundboardPlugin::a62d8164e4052cc08e2569734f5b1943b60356d5::text::attribution.json",
-        "date": 1765809150.0885522
+        "date": 1766090878.559486
     },
     "Thiritin::kimai-streamcontroller-action::21d2bc3fd0c3adedf47f0db32098a612272149b4::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Thiritin::kimai-streamcontroller-action::21d2bc3fd0c3adedf47f0db32098a612272149b4::text::manifest.json",
-        "date": 1765809150.0889633
+        "date": 1766090878.5599194
     },
     "Thiritin::kimai-streamcontroller-action::21d2bc3fd0c3adedf47f0db32098a612272149b4::text::assets/thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Thiritin::kimai-streamcontroller-action::21d2bc3fd0c3adedf47f0db32098a612272149b4::text::assets/thumbnail.png",
-        "date": 1765809150.0893433
+        "date": 1766090878.5603032
     },
     "Thiritin::kimai-streamcontroller-action::21d2bc3fd0c3adedf47f0db32098a612272149b4::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Thiritin::kimai-streamcontroller-action::21d2bc3fd0c3adedf47f0db32098a612272149b4::text::attribution.json",
-        "date": 1765809150.0897288
+        "date": 1766090878.5608246
     },
     "parkour86::DaysUntil::f5eaa358ece1b61d1f831c940bf04f06a9d9fbf5::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/parkour86::DaysUntil::f5eaa358ece1b61d1f831c940bf04f06a9d9fbf5::text::manifest.json",
-        "date": 1765809150.0901718
+        "date": 1766090878.5615268
     },
     "parkour86::DaysUntil::f5eaa358ece1b61d1f831c940bf04f06a9d9fbf5::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/parkour86::DaysUntil::f5eaa358ece1b61d1f831c940bf04f06a9d9fbf5::text::store/Thumbnail.png",
-        "date": 1765809150.0905519
+        "date": 1766090878.5620453
     },
     "parkour86::DaysUntil::f5eaa358ece1b61d1f831c940bf04f06a9d9fbf5::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/parkour86::DaysUntil::f5eaa358ece1b61d1f831c940bf04f06a9d9fbf5::text::attribution.json",
-        "date": 1765809150.0915565
+        "date": 1766090878.5643418
     },
     "UlvFoerlev::EasySound::0495b25dfea99203f5f1eefd4772e1f5bf3a9215::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/UlvFoerlev::EasySound::0495b25dfea99203f5f1eefd4772e1f5bf3a9215::text::manifest.json",
-        "date": 1765809150.091978
+        "date": 1766090878.5648968
     },
     "UlvFoerlev::EasySound::0495b25dfea99203f5f1eefd4772e1f5bf3a9215::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/UlvFoerlev::EasySound::0495b25dfea99203f5f1eefd4772e1f5bf3a9215::text::store/Thumbnail.png",
-        "date": 1765809150.0924592
+        "date": 1766090878.5653157
     },
     "UlvFoerlev::EasySound::0495b25dfea99203f5f1eefd4772e1f5bf3a9215::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/UlvFoerlev::EasySound::0495b25dfea99203f5f1eefd4772e1f5bf3a9215::text::attribution.json",
-        "date": 1765809150.093008
+        "date": 1766090878.56605
     },
     "Tiebe::JetbrainsPlugin::805bc64ed1d5263518d88c32be53529bb0171c8b::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Tiebe::JetbrainsPlugin::805bc64ed1d5263518d88c32be53529bb0171c8b::text::manifest.json",
-        "date": 1765809150.0934699
+        "date": 1766090878.5665216
     },
     "Tiebe::JetbrainsPlugin::805bc64ed1d5263518d88c32be53529bb0171c8b::text::store/thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Tiebe::JetbrainsPlugin::805bc64ed1d5263518d88c32be53529bb0171c8b::text::store/thumbnail.png",
-        "date": 1765809150.0938668
+        "date": 1766090878.5669427
     },
     "Tiebe::JetbrainsPlugin::805bc64ed1d5263518d88c32be53529bb0171c8b::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Tiebe::JetbrainsPlugin::805bc64ed1d5263518d88c32be53529bb0171c8b::text::attribution.json",
-        "date": 1765809150.094374
+        "date": 1766090878.567821
     },
     "parkour86::GithubPlugin::dc36bdab1d47e140d3c70c0d6fa29c9283485d21::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/parkour86::GithubPlugin::dc36bdab1d47e140d3c70c0d6fa29c9283485d21::text::manifest.json",
-        "date": 1765809150.0947883
+        "date": 1766090878.5683482
     },
     "parkour86::GithubPlugin::dc36bdab1d47e140d3c70c0d6fa29c9283485d21::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/parkour86::GithubPlugin::dc36bdab1d47e140d3c70c0d6fa29c9283485d21::text::store/Thumbnail.png",
-        "date": 1765809150.0951629
+        "date": 1766090878.5687864
     },
     "parkour86::GithubPlugin::dc36bdab1d47e140d3c70c0d6fa29c9283485d21::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/parkour86::GithubPlugin::dc36bdab1d47e140d3c70c0d6fa29c9283485d21::text::attribution.json",
-        "date": 1765809150.0963514
+        "date": 1766090878.573293
     },
     "nekename::streamcontroller-opendeck::c13e9bbe010a777a68eb04d4bf480139afbfc10d::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/nekename::streamcontroller-opendeck::c13e9bbe010a777a68eb04d4bf480139afbfc10d::text::manifest.json",
-        "date": 1765809150.0968251
+        "date": 1766090878.573872
     },
     "nekename::streamcontroller-opendeck::c13e9bbe010a777a68eb04d4bf480139afbfc10d::text::banner.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/nekename::streamcontroller-opendeck::c13e9bbe010a777a68eb04d4bf480139afbfc10d::text::banner.png",
-        "date": 1765809150.0972009
+        "date": 1766090878.5742946
     },
     "nekename::streamcontroller-opendeck::c13e9bbe010a777a68eb04d4bf480139afbfc10d::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/nekename::streamcontroller-opendeck::c13e9bbe010a777a68eb04d4bf480139afbfc10d::text::attribution.json",
-        "date": 1765809150.0976048
+        "date": 1766090878.5748322
     },
     "miikamenk::VTubeStudioPlugin::4676e8f7c73e07c6c9ce056393128015c4e6e036::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/miikamenk::VTubeStudioPlugin::4676e8f7c73e07c6c9ce056393128015c4e6e036::text::manifest.json",
-        "date": 1765809150.0980766
+        "date": 1766090878.5752575
     },
     "miikamenk::VTubeStudioPlugin::4676e8f7c73e07c6c9ce056393128015c4e6e036::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/miikamenk::VTubeStudioPlugin::4676e8f7c73e07c6c9ce056393128015c4e6e036::text::store/Thumbnail.png",
-        "date": 1765809150.0984476
+        "date": 1766090878.5756457
     },
     "miikamenk::VTubeStudioPlugin::4676e8f7c73e07c6c9ce056393128015c4e6e036::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/miikamenk::VTubeStudioPlugin::4676e8f7c73e07c6c9ce056393128015c4e6e036::text::attribution.json",
-        "date": 1765809150.0990307
+        "date": 1766090878.576204
     },
     "zealain::streamcontroller-pulse-profile::7a7178cc0272db33c23ca6694dbad712b7783674::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/zealain::streamcontroller-pulse-profile::7a7178cc0272db33c23ca6694dbad712b7783674::text::manifest.json",
-        "date": 1765809150.0996823
+        "date": 1766090878.5766242
     },
     "zealain::streamcontroller-pulse-profile::7a7178cc0272db33c23ca6694dbad712b7783674::text::assets/logo.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/zealain::streamcontroller-pulse-profile::7a7178cc0272db33c23ca6694dbad712b7783674::text::assets/logo.png",
-        "date": 1765809150.1001747
+        "date": 1766090878.5770056
     },
     "zealain::streamcontroller-pulse-profile::7a7178cc0272db33c23ca6694dbad712b7783674::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/zealain::streamcontroller-pulse-profile::7a7178cc0272db33c23ca6694dbad712b7783674::text::attribution.json",
-        "date": 1765809150.100762
+        "date": 1766090878.5775967
     },
     "Wattos::streamcontroller-google-meets-plugin::d5d93114ffd4ca5e3251c60f3e7dfbc0b77f6ee5::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Wattos::streamcontroller-google-meets-plugin::d5d93114ffd4ca5e3251c60f3e7dfbc0b77f6ee5::text::manifest.json",
-        "date": 1765809150.1012578
+        "date": 1766090878.5780032
     },
     "Wattos::streamcontroller-google-meets-plugin::d5d93114ffd4ca5e3251c60f3e7dfbc0b77f6ee5::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Wattos::streamcontroller-google-meets-plugin::d5d93114ffd4ca5e3251c60f3e7dfbc0b77f6ee5::text::store/Thumbnail.png",
-        "date": 1765809150.1017005
+        "date": 1766090878.5786488
     },
     "Wattos::streamcontroller-google-meets-plugin::d5d93114ffd4ca5e3251c60f3e7dfbc0b77f6ee5::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Wattos::streamcontroller-google-meets-plugin::d5d93114ffd4ca5e3251c60f3e7dfbc0b77f6ee5::text::attribution.json",
-        "date": 1765809150.1021261
+        "date": 1766090878.579065
     },
     "designgears::DeckWeaver::b9dc6dc1c048b81d8b52d760918d6fe68df89ed8::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/designgears::DeckWeaver::b9dc6dc1c048b81d8b52d760918d6fe68df89ed8::text::manifest.json",
-        "date": 1765809150.1025512
+        "date": 1766090878.579992
     },
     "designgears::DeckWeaver::b9dc6dc1c048b81d8b52d760918d6fe68df89ed8::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/designgears::DeckWeaver::b9dc6dc1c048b81d8b52d760918d6fe68df89ed8::text::store/Thumbnail.png",
-        "date": 1765809150.10304
+        "date": 1766090878.5804238
     },
     "designgears::DeckWeaver::b9dc6dc1c048b81d8b52d760918d6fe68df89ed8::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/designgears::DeckWeaver::b9dc6dc1c048b81d8b52d760918d6fe68df89ed8::text::attribution.json",
-        "date": 1765809150.1044507
+        "date": 1766090878.581494
     },
     "StreamController::StreamController-Store::main::text::Icons.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::StreamController-Store::main::text::Icons.json",
-        "date": 1765809150.227373
+        "date": 1766090878.707344
     },
     "Core447::Material-Icons::61eff8c76f21347f215032800e65f66d536e71d9::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Core447::Material-Icons::61eff8c76f21347f215032800e65f66d536e71d9::text::manifest.json",
-        "date": 1765809150.2286026
+        "date": 1766090878.7091384
     },
     "Core447::Material-Icons::61eff8c76f21347f215032800e65f66d536e71d9::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Core447::Material-Icons::61eff8c76f21347f215032800e65f66d536e71d9::text::attribution.json",
-        "date": 1765809150.2291257
+        "date": 1766090878.710443
     },
     "Core447::Material-Icons::61eff8c76f21347f215032800e65f66d536e71d9::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Core447::Material-Icons::61eff8c76f21347f215032800e65f66d536e71d9::text::store/Thumbnail.png",
-        "date": 1765809150.2295244
+        "date": 1766090878.7113326
     },
     "G4PLS::VolumeIcons::d0ae8f6a4fe54ab4914d22ef628d2517babb5a5c::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/G4PLS::VolumeIcons::d0ae8f6a4fe54ab4914d22ef628d2517babb5a5c::text::manifest.json",
-        "date": 1765809150.2300615
+        "date": 1766090878.7126877
     },
     "G4PLS::VolumeIcons::d0ae8f6a4fe54ab4914d22ef628d2517babb5a5c::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/G4PLS::VolumeIcons::d0ae8f6a4fe54ab4914d22ef628d2517babb5a5c::text::attribution.json",
-        "date": 1765809150.2304513
+        "date": 1766090878.713587
     },
     "G4PLS::VolumeIcons::d0ae8f6a4fe54ab4914d22ef628d2517babb5a5c::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/G4PLS::VolumeIcons::d0ae8f6a4fe54ab4914d22ef628d2517babb5a5c::text::store/Thumbnail.png",
-        "date": 1765809150.2309031
+        "date": 1766090878.714429
     },
     "axolotlmaid::StreamController-FontAwesome-Icons::732d9249a7c3ea1652c2ced38b40aa204448ba85::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/axolotlmaid::StreamController-FontAwesome-Icons::732d9249a7c3ea1652c2ced38b40aa204448ba85::text::manifest.json",
-        "date": 1765809150.2314112
+        "date": 1766090878.715396
     },
     "axolotlmaid::StreamController-FontAwesome-Icons::732d9249a7c3ea1652c2ced38b40aa204448ba85::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/axolotlmaid::StreamController-FontAwesome-Icons::732d9249a7c3ea1652c2ced38b40aa204448ba85::text::attribution.json",
-        "date": 1765809150.2318006
+        "date": 1766090878.715835
     },
     "axolotlmaid::StreamController-FontAwesome-Icons::732d9249a7c3ea1652c2ced38b40aa204448ba85::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/axolotlmaid::StreamController-FontAwesome-Icons::732d9249a7c3ea1652c2ced38b40aa204448ba85::text::store/Thumbnail.png",
-        "date": 1765809150.2321904
+        "date": 1766090878.7163775
     },
     "fishgrind::tabler-streamcontroller-icons::88eff87418a05844e431f91c21b1e68a92c2834c::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/fishgrind::tabler-streamcontroller-icons::88eff87418a05844e431f91c21b1e68a92c2834c::text::manifest.json",
-        "date": 1765809150.2326472
+        "date": 1766090878.7170672
     },
     "fishgrind::tabler-streamcontroller-icons::88eff87418a05844e431f91c21b1e68a92c2834c::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/fishgrind::tabler-streamcontroller-icons::88eff87418a05844e431f91c21b1e68a92c2834c::text::attribution.json",
-        "date": 1765809150.2330363
+        "date": 1766090878.717591
     },
     "fishgrind::tabler-streamcontroller-icons::88eff87418a05844e431f91c21b1e68a92c2834c::text::store/Thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/fishgrind::tabler-streamcontroller-icons::88eff87418a05844e431f91c21b1e68a92c2834c::text::store/Thumbnail.png",
-        "date": 1765809150.233422
+        "date": 1766090878.7186458
     },
     "MyrikLD::streamcontroller_simple_icons::e5a8cade8fc348e48ba97c47207c096d7d39c61e::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/MyrikLD::streamcontroller_simple_icons::e5a8cade8fc348e48ba97c47207c096d7d39c61e::text::manifest.json",
-        "date": 1765809150.233869
+        "date": 1766090878.7196631
     },
     "MyrikLD::streamcontroller_simple_icons::e5a8cade8fc348e48ba97c47207c096d7d39c61e::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/MyrikLD::streamcontroller_simple_icons::e5a8cade8fc348e48ba97c47207c096d7d39c61e::text::attribution.json",
-        "date": 1765809150.234249
+        "date": 1766090878.7201421
     },
     "MyrikLD::streamcontroller_simple_icons::e5a8cade8fc348e48ba97c47207c096d7d39c61e::text::store/thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/MyrikLD::streamcontroller_simple_icons::e5a8cade8fc348e48ba97c47207c096d7d39c61e::text::store/thumbnail.png",
-        "date": 1765809150.234625
+        "date": 1766090878.7212265
     },
     "StreamController::StreamController-Store::main::text::Wallpapers.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/StreamController::StreamController-Store::main::text::Wallpapers.json",
-        "date": 1765809150.3326948
+        "date": 1766090878.8258784
     },
     "Core447::Pixabay-Favorites::5d2c7675aaf847fd878b5487a373290289b3b145::text::manifest.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Core447::Pixabay-Favorites::5d2c7675aaf847fd878b5487a373290289b3b145::text::manifest.json",
-        "date": 1765809150.3336215
+        "date": 1766090878.8267896
     },
     "Core447::Pixabay-Favorites::5d2c7675aaf847fd878b5487a373290289b3b145::text::store/thumbnail.png": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Core447::Pixabay-Favorites::5d2c7675aaf847fd878b5487a373290289b3b145::text::store/thumbnail.png",
-        "date": 1765809150.334075
+        "date": 1766090878.8272471
     },
     "Core447::Pixabay-Favorites::5d2c7675aaf847fd878b5487a373290289b3b145::text::attribution.json": {
         "path": "/home/neonvoid/.var/app/com.core447.StreamController/data/Store/cache/files/Core447::Pixabay-Favorites::5d2c7675aaf847fd878b5487a373290289b3b145::text::attribution.json",
-        "date": 1765809150.3345652
+        "date": 1766090878.8280442
     }
 }

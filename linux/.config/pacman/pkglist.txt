@@ -14,6 +14,7 @@ awesome-terminal-fonts
 base
 base-devel
 bash-completion
+bazaar
 bc
 bind
 blender
@@ -52,6 +53,7 @@ chafa
 chaotic-keyring
 chaotic-mirrorlist
 chwd
+claude-code
 cliphist
 cmatrix
 cpio
@@ -313,6 +315,7 @@ wireless_tools
 wireplumber
 wl-clip-persist
 wl-clipboard
+wowup-cf-beta-bin
 wpa_supplicant
 xarchiver
 xdg-desktop-portal-gnome

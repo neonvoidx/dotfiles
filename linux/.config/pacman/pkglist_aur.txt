@@ -1,4 +1,3 @@
-curseforge
 exercism
 gconf
 github-copilot-cli
