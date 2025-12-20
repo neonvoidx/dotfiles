@@ -4,12 +4,7 @@ CopyFile /etc/default/limine
 CopyFile /etc/environment
 CopyFile /etc/fstab
 CopyFile /etc/greetd/config.toml
-CopyFile /etc/group
-CopyFile /etc/group-
-CopyFile /etc/gshadow
-CopyFile /etc/gshadow- 600
 CopyFile /etc/hostname
-CopyFile /etc/hosts
 CopyFile /etc/issue
 CopyFile /etc/mkinitcpio.conf
 CopyFile /etc/pacman.conf
