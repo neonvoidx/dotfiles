@@ -332,10 +332,7 @@ export _ZO_RESOLVE_SYMLINKS=0
 # Define fzf-file-widget just in case
 export FZF_CTRL_T_COMMAND=""
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# fnm
-export PATH="$HOME/.local/share/fnm:$PATH"
-export FNM_DIR="$HOME/.cache/fnm"
-eval "$(fnm env --use-on-cd --shell zsh --fnm-dir ~/.cache/fnm)"
+
 # SSH agent start if necessary
 if [ -z $SSH_AGENT_PID ] && [ -z $SSH_TTY ]; then  # if no agent & not in ssh
   eval `ssh-agent -s` > /dev/null
@@ -362,3 +359,4 @@ export CMAKE_PREFIX_PATH="/usr/local:$CMAKE_PREFIX_PATH"
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 
 eval "$(tv init zsh)"
+eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
