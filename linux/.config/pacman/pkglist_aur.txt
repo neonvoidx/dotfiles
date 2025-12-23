@@ -6,6 +6,7 @@ gstreamer0.10-base-plugins
 hyprshot-git
 hyprshutdown-git
 libdeep_filter_ladspa-bin
+litecli
 mkinitcpio-colors-git
 neovim-nvim-treesitter
 paccache-hook
