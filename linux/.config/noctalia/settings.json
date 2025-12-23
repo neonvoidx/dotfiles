@@ -4,6 +4,7 @@
         "customLaunchPrefixEnabled": false,
         "enableClipPreview": true,
         "enableClipboardHistory": true,
+        "iconMode": "tabler",
         "pinnedExecs": [
         ],
         "position": "center",
@@ -19,7 +20,6 @@
         "mprisBlacklist": [
         ],
         "preferredPlayer": "spotify,clapper,vlc,firefox-developer-edition,mpv",
-        "visualizerQuality": "high",
         "visualizerType": "mirrored",
         "volumeOverdrive": false,
         "volumeStep": 5
@@ -162,6 +162,7 @@
                 {
                     "deviceNativePath": "hidpp_battery_0",
                     "displayMode": "onhover",
+                    "hideIfNotDetected": true,
                     "id": "Battery",
                     "showNoctaliaPerformance": false,
                     "showPowerProfiles": false,
@@ -276,8 +277,8 @@
         }
     },
     "desktopWidgets": {
-        "editMode": false,
         "enabled": false,
+        "gridSnap": false,
         "monitorWidgets": [
             {
                 "name": "DP-2",
@@ -301,6 +302,7 @@
         ]
     },
     "dock": {
+        "animationSpeed": 1,
         "backgroundOpacity": 1,
         "colorizeIcons": false,
         "deadOpacity": 0.6,
@@ -342,6 +344,8 @@
     "hooks": {
         "darkModeChange": "",
         "enabled": false,
+        "performanceModeDisabled": "",
+        "performanceModeEnabled": "",
         "screenLock": "",
         "screenUnlock": "",
         "wallpaperChange": ""
@@ -459,7 +463,7 @@
         ],
         "showHeader": true
     },
-    "settingsVersion": 31,
+    "settingsVersion": 32,
     "systemMonitor": {
         "cpuCriticalThreshold": 90,
         "cpuPollingInterval": 3000,
@@ -468,7 +472,7 @@
         "diskCriticalThreshold": 90,
         "diskPollingInterval": 3000,
         "diskWarningThreshold": 80,
-        "enableNvidiaGpu": false,
+        "enableDgpuMonitoring": false,
         "gpuCriticalThreshold": 90,
         "gpuPollingInterval": 3000,
         "gpuWarningThreshold": 80,
@@ -493,8 +497,11 @@
         "fuzzel": false,
         "ghostty": false,
         "gtk": true,
+        "helix": false,
+        "hyprland": false,
         "kcolorscheme": true,
         "kitty": false,
+        "mango": false,
         "niri": false,
         "pywalfox": false,
         "qt": true,
@@ -507,6 +514,8 @@
         "zed": false
     },
     "ui": {
+        "bluetoothDetailsViewMode": "grid",
+        "bluetoothHideUnnamedDevices": false,
         "fontDefault": "Roboto",
         "fontDefaultScale": 1.04,
         "fontFixed": "JetBrains Mono",
@@ -514,7 +523,8 @@
         "panelBackgroundOpacity": 1,
         "panelsAttachedToBar": true,
         "settingsPanelMode": "centered",
-        "tooltipsEnabled": true
+        "tooltipsEnabled": true,
+        "wifiDetailsViewMode": "grid"
     },
     "wallpaper": {
         "directory": "/home/neonvoid/dotfiles/linux/pics/ultrawide",
@@ -554,6 +564,7 @@
         "wallhavenOrder": "desc",
         "wallhavenPurity": "100",
         "wallhavenQuery": "",
+        "wallhavenRatios": "",
         "wallhavenResolutionHeight": "",
         "wallhavenResolutionMode": "atleast",
         "wallhavenResolutionWidth": "",

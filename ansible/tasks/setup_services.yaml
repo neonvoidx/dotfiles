@@ -21,6 +21,19 @@
     regexp: "^ExecStartPre=/usr/sbin/fbset"
   become: true
 
+- name: Enable snapper-timeline.timer
+  ansible.builtin.systemd_service:
+    name: snapper-timeline.timer
+    enabled: true
+  become: true
+
+- name: Set snapper limit to ten
+  ansible.builtin.lineinfile:
+    path: /etc/snapper/configs/root
+    regexp: "^?NUMBER_LIMIT_"
+    line: "NUMBER_LIMIT=10"
+  become: true
+
 - name: Set stop job timeouts to 15sec
   ansible.builtin.lineinfile:
     path: /etc/systemd/system.conf
