@@ -1,7 +1,7 @@
 ---
 - name: Copy greetd config
   ansible.builtin.copy:
-    src: "{{ greetd_config_src | default('~/dotfiles/linux-sys/etc/greetd/config.toml') }}"
+    src: "{{ greetd_config_src | default('~/dotfiles/ansible/assets/greetd/config.toml') }}"
     dest: /etc/greetd/config.toml
     mode: preserve
     force: true
@@ -48,7 +48,7 @@
 
 - name: Copy pacman hooks
   ansible.builtin.copy:
-    src: "{{ pacman_hooks_src | default('~/dotfiles/linux-sys/etc/pacman.d/hooks/') }}"
+    src: "{{ pacman_hooks_src | default('~/dotfiles/ansible/assets/pacman.d/hooks/') }}"
     dest: /etc/pacman.d/hooks/
     mode: preserve
   become: true
