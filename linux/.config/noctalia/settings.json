@@ -438,13 +438,13 @@
             },
             {
                 "action": "reboot",
-                "command": "",
+                "command": "hyprshutdown -t \"Restarting...\" --post-cmd \"systemctl reboot\"",
                 "countdownEnabled": true,
                 "enabled": true
             },
             {
                 "action": "shutdown",
-                "command": "",
+                "command": "hyprshutdown -t 'Shutting down...' --post-cmd 'systemctl poweroff'",
                 "countdownEnabled": true,
                 "enabled": true
             },
