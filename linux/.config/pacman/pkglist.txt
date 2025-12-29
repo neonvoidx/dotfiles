@@ -46,7 +46,6 @@ cachyos-snapper-support
 cachyos-v3-mirrorlist
 cachyos-v4-mirrorlist
 calf
-calibre
 cantarell-fonts
 catppuccin-cursors-mocha
 cava
@@ -54,7 +53,6 @@ chafa
 chaotic-keyring
 chaotic-mirrorlist
 chwd
-claude-code
 cliphist
 cmatrix
 cpio
@@ -121,6 +119,12 @@ hplip
 htop
 hwdetect
 hwinfo
+hypridle
+hyprland
+hyprpicker
+hyprpolkitagent
+hyprpwcenter
+hyprshot
 inetutils
 inter-font
 ipcalc
@@ -195,8 +199,6 @@ noto-fonts-emoji
 nss-mdns
 ntfs-3g
 ntp
-nwg-displays
-nwg-dock-hyprland
 nwg-look
 obs-studio
 obsidian
@@ -253,7 +255,6 @@ spicetify-cli
 spicetify-marketplace-bin
 spotify
 steam
-steamtinkerlaunch
 stow
 sudo
 swappy
@@ -296,6 +297,7 @@ upower
 usb_modeswitch
 usbutils
 uv
+ventoy-bin
 vesktop-git
 vi
 vim
@@ -318,7 +320,7 @@ wl-clipboard
 wowup-cf-beta-bin
 wpa_supplicant
 xarchiver
-xdg-desktop-portal-gnome
+xdg-desktop-portal-hyprland
 xdg-user-dirs
 xf86-input-libinput
 xf86-video-amdgpu
@@ -334,6 +336,7 @@ xorg-xkill
 xorg-xrandr
 xorg-xwayland
 xpadneo-dkms
+yadm
 yarn
 yazi
 yubico-authenticator-bin
