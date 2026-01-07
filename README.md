@@ -16,3 +16,7 @@ This contains my dotfiles for Linux and Mac. Uses GNU stow.
     - It will then run `stow common` followed by detecting OS and running appropriate `stow mac` or `stow linux`
   
 ### For full system setup, check `ansible folder`
+
+
+# Nix
+I've moved to Nix, you can see my nix setup here https://github.com/neonvoidx/nix
