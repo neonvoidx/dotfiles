@@ -208,7 +208,7 @@ if.app-name-regex-substring = 'Authenticator'
 run = 'layout floating'
 [[on-window-detected]]
 check-further-callbacks = true
-if.app-name-regex-substring = 'Bitwarden'
+if.app-name-regex-substring = 'Proton Pass'
 run = 'layout floating'
 [[on-window-detected]]
 check-further-callbacks = true
