@@ -1,6 +1,8 @@
 theme = "eldritch"
 background-opacity = 0.99
 cursor-style = "bar"
+font-size = 20
+font-family = "JetBrains Mono"
 class = "ghostty"
 window-padding-x = "0,0"
 window-padding-y = "0,0"
