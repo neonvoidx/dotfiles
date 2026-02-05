@@ -297,22 +297,6 @@ fi
 if command -v wslu &> /dev/null; then
   export BROWSER=wslview
 fi
-# GH CLI Copilot Chat
-COPILOT_CLI=~/.local/share/gh/extensions/gh-copilot/gh-copilot
-if [ -f "$COPILOT_CLI" ]; then
-  # ghcs = gh copilot suggest
-  # ghce = gh copilot explain
-  eval "$(gh copilot alias -- zsh)"
-else
-  # otherwise install extension
-  gh extension install github/gh-copilot
-fi
-# GH CLI gh-clone-org
-# gh clone-org ORGNAME
-CLONE_ORG=~/.local/share/gh/extensions/gh-clone-org/gh-clone-org
-if [ ! -f "$CLONE_ORG" ]; then
-  gh extension install matt-bartel/gh-clone-org
-fi
 if command -v cmake &> /dev/null && command -v ninja &> /dev/null; then
   alias cmakeninja='cmake -S . -B build -G Ninja'
 fi
