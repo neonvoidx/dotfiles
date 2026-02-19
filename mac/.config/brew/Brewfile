@@ -67,7 +67,7 @@ brew "oci-cli"
 brew "openjdk"
 brew "opensc", link: false
 brew "openssh"
-brew "openssl@1.1", link: true
+brew "openssl@1.1"
 brew "pillow"
 brew "pipx"
 brew "pkgconf"
