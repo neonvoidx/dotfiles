@@ -16,7 +16,7 @@ do
     padding_right=2
     label.padding_right=20
     icon.highlight_color=$GREEN
-    label.font="sketchybar-app-font:Regular:16.0"
+    label.font="$FONT:Regular:14.0"
     label.background.height=26
     label.background.drawing=on
     label.background.color=$BACKGROUND_2

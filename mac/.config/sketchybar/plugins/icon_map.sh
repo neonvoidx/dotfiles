@@ -69,7 +69,7 @@ case $@ in
   icon_result=":google_chrome:"
   ;;
 "zoom.us")
-  icon_result=":zoom:"
+  icon_result="󰍫"
   ;;
 "MoneyMoney")
   icon_result=":bank:"
@@ -153,7 +153,7 @@ case $@ in
   icon_result=":airmail:"
   ;;
 "Firefox Developer Edition" | "Firefox Nightly")
-  icon_result=":firefox_developer_edition:"
+  icon_result="󰈹"
   ;;
 "Trello")
   icon_result=":trello:"
@@ -180,7 +180,7 @@ case $@ in
   icon_result=":xcode:"
   ;;
 "Slack")
-  icon_result=":slack:"
+  icon_result="󰒱"
   ;;
 "Sequel Pro")
   icon_result=":sequel_pro:"
@@ -215,8 +215,8 @@ case $@ in
 "Blender")
   icon_result=":blender:"
   ;;
-"Canary Mail" | "HEY" | "Mail" | "Mailspring" | "MailMate" | "邮件" | "Outlook")
-  icon_result=":mail:"
+"Canary Mail" | "HEY" | "Mail" | "Mailspring" | "MailMate" | "邮件" | "Outlook" | "Microsoft Outlook")
+  icon_result="󰇮"
   ;;
 "Safari" | "Safari Technology Preview")
   icon_result=":safari:"
@@ -300,7 +300,7 @@ case $@ in
   icon_result=":atom:"
   ;;
 "Obsidian")
-  icon_result=":obsidian:"
+  icon_result="󱓧"
   ;;
 "CleanMyMac X")
   icon_result=":desktop:"
@@ -379,6 +379,12 @@ case $@ in
   ;;
 "Sequel Ace")
   icon_result=":sequel_ace:"
+  ;;
+"Proton Pass" | "Proton Mail" | "ProtonVPN")
+  icon_result="󰌾"
+  ;;
+"Cisco Secure Client" | "Cisco AnyConnect")
+  icon_result="󰒃"
   ;;
 *)
   icon_result=":default:"
