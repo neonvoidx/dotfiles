@@ -155,6 +155,8 @@ map ctrl+t>w close_tab
 map ctrl+t>z close_other_tabs_in_os_window
 map ctrl+t>, move_tab_backward
 map ctrl+t>. move_tab_forward
+map ctrl+t>s save_as_session --save-only --use-foreground-process --relocatable ~/.local/share/kitty/last-session.session
+map ctrl+t>o goto_session ~/.local/share/kitty/last-session.session
 # Scrollback
 # kitty-scrollback.nvim Kitten alias
 action_alias kitty_scrollback_nvim kitten ~/.local/share/nvim/lazy/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py
@@ -182,8 +184,6 @@ underline_hyperlinks always
 ### Marks
 map f1 toggle_marker text 1 TEST 
 map f2 toggle_marker text 2 ERROR
-map f6 save_as_session --use-foreground-process --relocatable ~/.local/share/kitty/last-session.session
-map f5 goto_session ~/.local/share/kitty/last-session.session
 
 
 # BEGIN_KITTY_THEME

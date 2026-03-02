@@ -75,7 +75,7 @@ yabai -m rule --add app=".*Obsidian.*" manage=on space=4
 yabai -m rule --apply
 
 # S K E T C H Y B A R  E V E N T S
-yabai -m config external_bar all:35:0
+yabai -m config external_bar all:50:0
 yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
 yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
 yabai -m signal --add event=system_woke action="sh -c 'sleep 1; sketchybar --reload'"

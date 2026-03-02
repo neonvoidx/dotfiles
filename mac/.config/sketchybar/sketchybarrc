@@ -70,7 +70,11 @@ sketchybar --default "${defaults[@]}"
 
 # Left
 source "$ITEM_DIR/apple.sh"
-source "$ITEM_DIR/spaces.sh"
+if yabai -m query --spaces > /dev/null 2>&1; then
+  source "$ITEM_DIR/spaces_yabai.sh"
+else
+  source "$ITEM_DIR/spaces.sh"
+fi
 
 # Center
 source "$ITEM_DIR/front_app.sh"
