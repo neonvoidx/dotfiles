@@ -1,5 +1,5 @@
 # Restart yabai
-alt + cmd - r: yabai --restart-service && skhd --restart-service && sketchybar --reload
+cmd + shift - r: yabai --restart-service
 
 ### Switch focus to another destop ###
 cmd - 1 : yabai -m space --focus 1 
@@ -20,7 +20,7 @@ cmd - l : yabai -m window --focus east
 cmd - h : yabai -m window --focus west
 
 # Full screen window
-cmd + shift - f: yabai -m window --toggle zoom-parent
+cmd - f: yabai -m window --toggle zoom-parent
 
 # Split toggle
 # ;
@@ -30,8 +30,8 @@ cmd - 0x29: yabai -m window --toggle split
 cmd + shift - space: yabai -m window --toggle float
 
 #resize windows
-cmd + shift - 0x1B : yabai -m window --resize right:-20:0
-cmd + shift - 0x18 : yabai -m window --resize right:20:0
+cmd - 0x1B : yabai -m window --resize right:-20:0
+cmd - 0x18 : yabai -m window --resize right:20:0
 
 # Swap windows
 cmd + shift - h : yabai -m window --swap west   # Send window to space on the left

@@ -18,6 +18,9 @@ $HOME/.config/sketchybar/helper/helper $HELPER > /dev/null 2>&1 &
 # Add aerospace workspace change event
 sketchybar --add event aerospace_workspace_change
 
+# Add yabai title change event
+sketchybar --add event title_change
+
 # Unload the macOS on screen indicator overlay for volume change
 launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /dev/null 2>&1 &
 

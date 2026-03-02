@@ -68,7 +68,7 @@ yabai -m rule --add app=".*Proton Pass.*" manage=off
 yabai -m rule --add app=".*Chromium.*" manage=off
 yabai -m rule --add app=".*Slack.*" manage=on space=5
 # Managed
-yabai -m rule --add title=".*Reminder" sticky=on grid=1:1:1:1:1:1
+yabai -m rule --add app=".*Outlook.*" title=".*Reminder" manage=off grid=10:10:8:8:2:2
 yabai -m rule --add app=".*zoom.*" manage=on space=3
 yabai -m rule --add app=".*Outlook.*" manage=on space=2
 yabai -m rule --add app=".*Obsidian.*" manage=on space=4
