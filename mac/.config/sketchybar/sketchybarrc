@@ -105,7 +105,7 @@ source "$ITEM_DIR/system_stats.sh"
 
 # Creating dynamic islands by grouping items with backgrounds
 # Left island: Apple menu + spaces + front app
-sketchybar --add bracket left_island apple.logo '/space\..*/' \
+sketchybar --add bracket left_island '/space\..*/' \
            --set left_island background.color=0xff323449 \
                              background.corner_radius=9 \
                              background.height=30 \

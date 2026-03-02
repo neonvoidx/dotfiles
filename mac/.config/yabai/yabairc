@@ -64,6 +64,7 @@ yabai -m rule --add app="^Bitwarden$" manage=off grid=6:4:1:1:2:4
 yabai -m rule --add app="^Finder$" manage=off grid=6:4:1:1:2:4
 yabai -m rule --add app=".*Authenticator.*" manage=off
 yabai -m rule --add app=".*Oracle Backup.*" manage=off
+yabai -m rule --add app=".*Proton Pass.*" manage=off
 yabai -m rule --add app=".*Chromium.*" manage=off
 yabai -m rule --add app=".*Slack.*" manage=on space=5
 # Managed
