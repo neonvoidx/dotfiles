@@ -52,6 +52,15 @@ sketchybar --add item space_visibility_updater left \
                  script="$PLUGIN_DIR/aerospace_spaces_update.sh" \
            --subscribe space_visibility_updater aerospace_workspace_change aerospace_windows_change
 
+# Add a hidden item to render app icons on each workspace (AeroSpace)
+sketchybar --add item aerospace_apps_updater left \
+           --set aerospace_apps_updater \
+                 icon.drawing=off \
+                 label.drawing=off \
+                 width=0 \
+                 script="$PLUGIN_DIR/aerospace.sh" \
+           --subscribe aerospace_apps_updater aerospace_workspace_change aerospace_windows_change
+
 spaces=(
   background.color=$BACKGROUND_1
   background.border_color=$BACKGROUND_2

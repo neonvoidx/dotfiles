@@ -1,18 +1,6 @@
 #!/bin/bash
 
-FRONT_APP_SCRIPT='
-WINDOW=$(yabai -m query --windows --window 2>/dev/null)
-APP=$(echo "$WINDOW" | jq -r ".app" 2>/dev/null)
-TITLE=$(echo "$WINDOW" | jq -r ".title" 2>/dev/null)
-[ -z "$APP" ] || [ "$APP" = "null" ] && APP="$INFO"
-ICON=$($HOME/.config/sketchybar/plugins/icon_map.sh "$APP")
-if [ -n "$TITLE" ] && [ "$TITLE" != "null" ] && [ "$TITLE" != "$APP" ]; then
-  LABEL="$APP — $TITLE"
-else
-  LABEL="$APP"
-fi
-sketchybar --set $NAME label="$LABEL" icon="$ICON" icon.drawing=on
-'
+FRONT_APP_SCRIPT="$PLUGIN_DIR/front_app_update.sh"
 
 # Detect which window manager is running
 if pgrep -x "yabai" > /dev/null; then
@@ -43,6 +31,7 @@ wm_item=(
 
 front_app=(
   script="$FRONT_APP_SCRIPT"
+  updates=on
   icon.drawing=on
   icon.font="$FONT:Regular:14.0"
   icon.color=$PINK
@@ -60,4 +49,7 @@ sketchybar --add event window_focus            \
            --add item front_app center         \
            --set front_app "${front_app[@]}"   \
            --subscribe front_app front_app_switched window_focus title_change
+
+# Force initial render
+sketchybar --trigger front_app_switched
 

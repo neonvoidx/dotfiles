@@ -73,10 +73,19 @@ sketchybar --default "${defaults[@]}"
 
 # Left
 source "$ITEM_DIR/apple.sh"
-if yabai -m query --spaces > /dev/null 2>&1; then
+
+# Pick spaces implementation based on available WM
+if command -v aerospace > /dev/null 2>&1 && pgrep -x "AeroSpace" > /dev/null 2>&1; then
+  source "$ITEM_DIR/spaces.sh"
+elif command -v yabai > /dev/null 2>&1 && yabai -m query --spaces > /dev/null 2>&1; then
   source "$ITEM_DIR/spaces_yabai.sh"
 else
-  source "$ITEM_DIR/spaces.sh"
+  # Fallback to AeroSpace spaces if installed (even if not running yet)
+  if command -v aerospace > /dev/null 2>&1; then
+    source "$ITEM_DIR/spaces.sh"
+  else
+    source "$ITEM_DIR/spaces_yabai.sh"
+  fi
 fi
 
 # Center

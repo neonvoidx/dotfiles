@@ -28,8 +28,8 @@ update_focus_colors() {
   FOCUSED_APP=$(echo "$FOCUSED_JSON" | jq -r '.[0].["app-name"]' 2>/dev/null)
   FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused 2>/dev/null)
   
-  # Get all workspaces that have windows
-  WORKSPACES=$(aerospace list-workspaces --all 2>/dev/null)
+  # Get all workspaces (normalize case + dedupe)
+  WORKSPACES=$(aerospace list-workspaces --all 2>/dev/null | awk '{print tolower($0)}' | awk '!seen[$0]++')
   
   # Build a single sketchybar command with all color updates
   args=()
@@ -73,8 +73,8 @@ windows_on_spaces() {
   FOCUSED_APP=$(echo "$FOCUSED_JSON" | jq -r '.[0].["app-name"]' 2>/dev/null)
   FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused 2>/dev/null)
   
-  # Get all workspaces that have windows
-  WORKSPACES=$(aerospace list-workspaces --all 2>/dev/null)
+  # Get all workspaces (normalize case + dedupe)
+  WORKSPACES=$(aerospace list-workspaces --all 2>/dev/null | awk '{print tolower($0)}' | awk '!seen[$0]++')
 
   while IFS= read -r workspace; do
     [ -z "$workspace" ] && continue
@@ -122,6 +122,7 @@ windows_on_spaces() {
                          label.padding_right=2 \
                          icon.drawing=off \
                          background.drawing=off \
+                         associated_display=active \
                    --move $ITEM_NAME after $PREV_ITEM 2>/dev/null
         
         PREV_ITEM=$ITEM_NAME
@@ -156,6 +157,10 @@ case "$SENDER" in
   ;;
   "window_focus"|"front_app_switched"|"aerospace_workspace_change") 
     window_state
+    update_focus_colors
+  ;;
+  "aerospace_apps_updater")
+    windows_on_spaces
     update_focus_colors
   ;;
   "windows_on_spaces"|"aerospace_windows_change") windows_on_spaces
