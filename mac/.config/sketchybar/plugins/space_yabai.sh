@@ -14,7 +14,12 @@ update() {
   apps=$(yabai -m query --windows --space $SID 2>/dev/null | jq -r '.[].app' 2>/dev/null)
   if [ -n "$apps" ]; then
     while IFS= read -r app; do
-      icon_strip+="$($HOME/.config/sketchybar/plugins/icon_map.sh "$app")  "
+      app_icon="$($HOME/.config/sketchybar/plugins/icon_map.sh "$app")"
+      if [ -z "$app_icon" ]; then
+        icon_strip+="$app  "
+      else
+        icon_strip+="$app_icon  "
+      fi
     done <<< "$apps"
     if [ "$SELECTED" = "true" ]; then
       icon_color=$GREEN

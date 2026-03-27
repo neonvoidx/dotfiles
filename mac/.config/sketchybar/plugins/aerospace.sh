@@ -111,19 +111,29 @@ windows_on_spaces() {
         fi
         
         ITEM_NAME="space.${workspace_upper}.app.${app_index}"
+        item_args=(
+          --add item "$ITEM_NAME" left
+          --set "$ITEM_NAME"
+          label.color="$APP_COLOR"
+          label.padding_left=2
+          label.padding_right=2
+          icon.drawing=off
+          background.drawing=off
+          associated_display=active
+          --move "$ITEM_NAME" after "$PREV_ITEM"
+        )
+
+        if [ -z "$app_icon" ]; then
+          item_args+=(label="$app")
+        else
+          item_args+=(
+            label="$app_icon"
+            label.font="sketchybar-app-font:Regular:16.0"
+          )
+        fi
         
         # Add app icon item
-        sketchybar --add item $ITEM_NAME left \
-                   --set $ITEM_NAME \
-                         label="$app_icon" \
-                         label.font="sketchybar-app-font:Regular:16.0" \
-                         label.color=$APP_COLOR \
-                         label.padding_left=2 \
-                         label.padding_right=2 \
-                         icon.drawing=off \
-                         background.drawing=off \
-                         associated_display=active \
-                   --move $ITEM_NAME after $PREV_ITEM 2>/dev/null
+        sketchybar "${item_args[@]}" 2>/dev/null
         
         PREV_ITEM=$ITEM_NAME
         app_index=$((app_index + 1))

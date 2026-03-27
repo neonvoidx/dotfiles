@@ -42,7 +42,7 @@ if [ -z "$APP" ]; then
 fi
 
 ICON="$($HOME/.config/sketchybar/plugins/icon_map.sh "$APP")"
-if [ "$ICON" = ":default:" ]; then
+if [ -z "$ICON" ]; then
   sketchybar --set "$NAME" label="$APP" icon.drawing=off label.drawing=on
   exit 0
 fi

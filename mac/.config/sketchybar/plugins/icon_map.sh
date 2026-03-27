@@ -138,7 +138,7 @@ case $@ in
   icon_result=":numbers:"
   ;;
 "Default")
-  icon_result=":default:"
+  icon_result="󰣆"
   ;;
 "Element")
   icon_result=":element:"
@@ -387,7 +387,7 @@ case $@ in
   icon_result="󰒃"
   ;;
 *)
-  icon_result=":default:"
+  icon_result="󰣆"
   ;;
 esac
-echo $icon_result
+echo "$icon_result"
