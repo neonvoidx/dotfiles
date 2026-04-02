@@ -4,7 +4,7 @@ yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
 # global settings
-yabai -m config focus_follows_mouse off
+yabai -m config focus_follows_mouse autofocus
 yabai -m config window_shadow off
 yabai -m config window_opacity on
 yabai -m config window_opacity_duration 0.0
@@ -13,7 +13,7 @@ yabai -m config normal_window_opacity 1.0
 yabai -m config insert_feedback_color 0xff61afef
 yabai -m config split_ratio 0.50
 yabai -m config auto_balance on
-yabai -m config mouse_modifier fn
+yabai -m config mouse_modifier cmd
 yabai -m config mouse_action1 move
 yabai -m config mouse_action2 resize
 yabai -m config mouse_drop_action swap
@@ -69,9 +69,9 @@ yabai -m rule --add app=".*Proton Pass.*" manage=off
 yabai -m rule --add app=".*Chromium.*" manage=off
 yabai -m rule --add app=".*Slack.*" manage=on space=5
 # Managed
-# yabai -m rule --add app=".*Outlook.*" title=".*Reminder" manage=off sticky=on grid=10:10:8:8:2:2
+yabai -m rule --add app=".*Outlook.*" title=".*Reminders?" manage=off sticky=on layer=above border=off space=2
 yabai -m rule --add app=".*zoom.*" manage=on space=3
-yabai -m rule --add app=".*Outlook.*" manage=on space=2
+yabai -m rule --add app=".*Outlook.*" title="^(?!.*Reminders?).*" manage=on space=2
 yabai -m rule --add app=".*Obsidian.*" manage=on space=4
 # Apply Rules
 yabai -m rule --apply
@@ -88,5 +88,7 @@ sketchybar
 yabai -m signal --add event=window_created action="~/.config/yabai/refresh_window_list.sh"
 yabai -m signal --add event=window_destroyed action="~/.config/yabai/refresh_window_list.sh"
 yabai -m signal --add event=window_title_changed action="~/.config/yabai/refresh_window_list.sh"
+yabai -m signal --add event=window_created app=".*Outlook.*" title=".*Reminders?" action="yabai -m window --toggle sticky; yabai -m window --toggle sticky; ~/.config/yabai/position_outlook_reminder.sh"
+yabai -m signal --add event=window_title_changed app=".*Outlook.*" title=".*Reminders?" action="yabai -m window --toggle sticky; yabai -m window --toggle sticky; ~/.config/yabai/position_outlook_reminder.sh"
 
 YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &
