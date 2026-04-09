@@ -30,13 +30,13 @@ cursor_blink = true
 
 [plugin]
 prepend_preloaders = [
-  # Replace magick, image, video with mediainfo
-  { mime = "{audio,video,image}/*", run = "mediainfo" },
+  # Keep audio/video metadata via mediainfo, but let Yazi handle images normally.
+  { mime = "{audio,video}/*", run = "mediainfo" },
   { mime = "application/subrip", run = "mediainfo" },
   { mime = "application/postscript", run = "mediainfo" },
 ]
 prepend_previewers = [
-  { mime = "{audio,video,image}/*", run = "mediainfo" },
+  { mime = "{audio,video}/*", run = "mediainfo" },
   { mime = "application/subrip", run = "mediainfo" },
   { mime = "application/postscript", run = "mediainfo" },
 ]

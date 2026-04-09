@@ -9,11 +9,11 @@ cmd - 4 : yabai -m space --focus 4
 cmd - s : yabai -m space --focus 5
 
 # Move window to space
-cmd + shift - 1 : yabai -m window --space 1
-cmd + shift - 2 : yabai -m window --space 2 
-cmd + shift - 3 : yabai -m window --space 3 
-cmd + shift - 4 : yabai -m window --space 4 
-cmd + shift - s : yabai -m window --space 5
+cmd + shift - 1 : yabai -m window --space 1 --focus
+cmd + shift - 2 : yabai -m window --space 2 --focus
+cmd + shift - 3 : yabai -m window --space 3 --focus
+cmd + shift - 4 : yabai -m window --space 4 --focus
+cmd + shift - s : yabai -m window --space 5 --focus
 
 ## Focus windows
 cmd - l : yabai -m window --focus east
@@ -30,8 +30,8 @@ cmd - 0x29: yabai -m window --toggle split
 cmd + shift - space: yabai -m window --toggle float
 
 #resize windows
-cmd - 0x1B : yabai -m window --resize right:-20:0
-cmd - 0x18 : yabai -m window --resize right:20:0
+cmd + shift - 0x1B : yabai -m window --resize right:-20:0
+cmd + shift - 0x18 : yabai -m window --resize right:20:0
 
 # Swap windows
 cmd + shift - h : yabai -m window --swap west   # Send window to space on the left

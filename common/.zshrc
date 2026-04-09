@@ -345,6 +345,4 @@ export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 eval "$(tv init zsh)"
 eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
-
-alias scm-ssh='/Users/jrreed/.ssh/scm-script.sh'
-scm-ssh start_agent
+# scm-ssh start_agent
