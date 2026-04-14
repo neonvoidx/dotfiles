@@ -38,7 +38,7 @@ front_app=(
   icon.padding_right=6
   padding_left=5
   label.color=$PINK
-  label.background=$GREY
+  label.background.color=$GREY
   label.font="$FONT:Bold:13.0"
   label.max_chars=60
   associated_display=active
@@ -52,4 +52,3 @@ sketchybar --add event window_focus            \
 
 # Force initial render
 sketchybar --trigger front_app_switched
-

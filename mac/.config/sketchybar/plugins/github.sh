@@ -4,7 +4,10 @@ update() {
   source "$HOME/.config/sketchybar/colors.sh"
   source "$HOME/.config/sketchybar/icons.sh"
 
-  NOTIFICATIONS="$(gh api notifications)"
+  NOTIFICATIONS="$(gh api notifications 2>/dev/null || true)"
+  if [ -z "$NOTIFICATIONS" ]; then
+    NOTIFICATIONS='[]'
+  fi
   COUNT="$(echo "$NOTIFICATIONS" | jq 'length')"
   args=()
   if [ "$NOTIFICATIONS" = "[]" ]; then
@@ -35,13 +38,13 @@ update() {
       title="No new notifications"
     fi 
     case "${type}" in
-      "'Issue'") COLOR=$GREEN; ICON=$GIT_ISSUE; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
+      "'Issue'") COLOR=$GREEN; ICON=$GIT_ISSUE; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" 2>/dev/null | jq -r '.html_url // empty' 2>/dev/null)"
       ;;
       "'Discussion'") COLOR=$WHITE; ICON=$GIT_DISCUSSION; URL="https://www.github.com/notifications"
       ;;
-      "'PullRequest'") COLOR=$MAGENTA; ICON=$GIT_PULL_REQUEST; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
+      "'PullRequest'") COLOR=$MAGENTA; ICON=$GIT_PULL_REQUEST; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" 2>/dev/null | jq -r '.html_url // empty' 2>/dev/null)"
       ;;
-      "'Commit'") COLOR=$WHITE; ICON=$GIT_COMMIT; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" | jq .html_url)"
+      "'Commit'") COLOR=$WHITE; ICON=$GIT_COMMIT; URL="$(gh api "$(echo "${url}" | sed -e "s/^'//" -e "s/'$//")" 2>/dev/null | jq -r '.html_url // empty' 2>/dev/null)"
       ;;
     esac
     
