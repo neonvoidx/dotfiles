@@ -1,89 +1,80 @@
 #!/bin/bash
 
-# Get workspace ID from argument
 WORKSPACE_ID="$1"
+
+normalize_workspace_id() {
+  printf "%s" "$1" | tr '[:lower:]' '[:upper:]'
+}
+
+current_workspace() {
+  if [ -n "${FOCUSED_WORKSPACE:-}" ]; then
+    normalize_workspace_id "$FOCUSED_WORKSPACE"
+    return
+  fi
+
+  aerospace list-workspaces --focused 2>/dev/null | head -n 1 | tr '[:lower:]' '[:upper:]'
+}
+
+workspace_icons() {
+  local workspace="$1"
+  local icon_strip=" "
+  local apps app app_icon
+
+  apps=$(aerospace list-windows --workspace "$workspace" --json 2>/dev/null | jq -r '.[].["app-name"]' 2>/dev/null)
+
+  if [ -z "$apps" ]; then
+    return
+  fi
+
+  while IFS= read -r app; do
+    [ -z "$app" ] && continue
+    app_icon="$("$HOME/.config/sketchybar/plugins/icon_map.sh" "$app")"
+    if [ -z "$app_icon" ]; then
+      icon_strip+="$app  "
+    else
+      icon_strip+="$app_icon  "
+    fi
+  done <<< "$apps"
+
+  printf "%s" "$icon_strip"
+}
 
 update() {
   source "$HOME/.config/sketchybar/colors.sh"
-  
-  # Get current workspace from aerospace
-  CURRENT_WORKSPACE=$(aerospace list-workspaces --focused 2>/dev/null)
-  
-  # Get focused app
-  FOCUSED_APP=$(aerospace list-windows --focused --json 2>/dev/null | jq -r '.[0].["app-name"]' 2>/dev/null)
 
-  WIDTH="dynamic"
-  SELECTED="false"
-  
-  # For non-focused workspaces, use dimmed green for all apps
-  LABEL_COLOR=$GREEN_DIM
+  local selected="off"
+  local label_color="$MAGENTA"
+  local icons
+  local focused_workspace
 
-  if [ "$WORKSPACE_ID" = "$CURRENT_WORKSPACE" ]; then
-    SELECTED="true"
-    WIDTH="dynamic"
-    # For focused workspace, the label color will be set by aerospace.sh
-    # based on which app is focused
-    LABEL_COLOR=$GREEN
+  focused_workspace="$(current_workspace)"
+  if [ "$(normalize_workspace_id "$WORKSPACE_ID")" = "$focused_workspace" ]; then
+    selected="on"
+    label_color="$GREEN"
   fi
 
-  sketchybar --animate tanh 20 --set $NAME icon.highlight=$SELECTED label.width=$WIDTH label.color=$LABEL_COLOR
+  icons="$(workspace_icons "$WORKSPACE_ID")"
+  if [ -n "$icons" ]; then
+    sketchybar --animate tanh 20 --set "$NAME" \
+      icon.highlight="$selected" \
+      label="$icons" \
+      label.drawing=on \
+      label.color="$label_color"
+  else
+    sketchybar --animate tanh 20 --set "$NAME" \
+      icon.highlight="$selected" \
+      label="" \
+      label.drawing=off
+  fi
 }
 
 mouse_clicked() {
-  aerospace workspace "$WORKSPACE_ID"
-}
-
-show_apps() {
-  # Get list of windows in this workspace with window IDs
-  WINDOWS=$(aerospace list-windows --workspace "$WORKSPACE_ID" --format "%{window-id}|%{app-name}" 2>/dev/null | sort -t'|' -k2)
-
-  # Clear existing popup items
-  sketchybar --remove '/space\.'"$WORKSPACE_ID"'\.app\..*/'
-
-  if [ -z "$WINDOWS" ]; then
-    # No apps, show empty message
-    sketchybar --add item space."$WORKSPACE_ID".app.empty popup.space."$WORKSPACE_ID" \
-               --set space."$WORKSPACE_ID".app.empty \
-                     label="No apps" \
-                     icon.drawing=off \
-                     label.padding_left=10 \
-                     label.padding_right=10
-  else
-    # Add each window to popup
-    INDEX=0
-    while IFS='|' read -r window_id app_name; do
-      if [ -n "$window_id" ] && [ -n "$app_name" ]; then
-        # Create click script to focus this window
-        CLICK_SCRIPT="aerospace focus --window-id $window_id; sketchybar --set space.$WORKSPACE_ID popup.drawing=off"
-
-        sketchybar --add item space."$WORKSPACE_ID".app."$INDEX" popup.space."$WORKSPACE_ID" \
-                   --set space."$WORKSPACE_ID".app."$INDEX" \
-                         label="$app_name" \
-                         icon.drawing=off \
-                         label.padding_left=10 \
-                         label.padding_right=10 \
-                         click_script="$CLICK_SCRIPT" \
-                   --subscribe space."$WORKSPACE_ID".app."$INDEX" mouse.clicked
-        INDEX=$((INDEX + 1))
-      fi
-    done <<< "$WINDOWS"
-  fi
-
-  # Show popup
-  sketchybar --set space."$WORKSPACE_ID" popup.drawing=on
-}
-
-hide_apps() {
-  sketchybar --set space."$WORKSPACE_ID" popup.drawing=off
+  aerospace workspace "$WORKSPACE_ID" 2>/dev/null || true
 }
 
 case "$SENDER" in
   "mouse.clicked") mouse_clicked
   ;;
-  # "mouse.entered") show_apps
-  # ;;
-  # "mouse.exited"|"mouse.exited.global") hide_apps
-  # ;;
   *) update
   ;;
 esac
