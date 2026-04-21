@@ -17,8 +17,7 @@ compinit
 setopt promptsubst
 # Zinit Packages
 zinit wait lucid light-mode for \
-  pick"async.sh" src"pure.zsh" wait"!0" sindresorhus/pure \
-    Aloxaf/fzf-tab \
+  Aloxaf/fzf-tab \
     trystan2k/zsh-tab-title \
   atinit"zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
@@ -92,18 +91,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd $realpath'
 #                       
 # Hex color support
 zmodload zsh/nearcolor
-# Pure Prompt
-export PURE_PROMPT_SYMBOL="󰤇 "
-export PURE_CMD_MAX_EXEC_TIME=0
-zstyle :prompt:pure:git:arrow color "#f16c75"
-zstyle :prompt:pure:git:branch color "#04d1f9"
-zstyle :prompt:pure:path color "#37f499"
-zstyle :prompt:pure:prompt:error color "#f16c75"
-zstyle :prompt:pure:prompt:success color "#37f499"
-zstyle :prompt:pure:prompt:continuation color "#f7c67f"
-zstyle :prompt:pure:suspended_jobs color "#f16c75"
-zstyle :prompt:pure:user color "#a48cf2"
-zstyle :prompt:pure:user:root color "#f1fc79"
 
 
 #  _____                       _       
@@ -345,4 +332,5 @@ export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 eval "$(tv init zsh)"
 eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
+eval "$(starship init zsh)"
 # scm-ssh start_agent
