@@ -6,7 +6,7 @@ source "$HOME/.config/sketchybar/icons.sh" # Loads all defined icons
 ITEM_DIR="$HOME/.config/sketchybar/items" # Directory where the items are configured
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin scripts are stored
 
-FONT="JetBrainsMono Nerd Font" # Using installed Nerd Font for icon compatibility
+FONT="Maple Mono Normal" # Using installed Nerd Font for icon compatibility
 PADDINGS=3 # All paddings use this value (icon, label, background)
 
 # Setting up and starting the helper process for CPU monitoring
