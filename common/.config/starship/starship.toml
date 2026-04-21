@@ -1,0 +1,41 @@
+# Sets user-defined palette
+palette = "eldritch"
+
+format = """
+$username\
+$hostname\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$hg_state\
+$line_break\
+$character
+"""
+right_format="""$all"""
+
+[character]
+success_symbol = "[❯](green)"
+error_symbol = "[✖](red)"
+vimcmd_symbol = "[❮](green)"
+
+[directory]
+style = "bold purple"
+
+# palette tables should be last
+[palettes.eldritch]
+background = "#212337"
+currentline = "#323449"
+foreground = "#ebfafa"
+comment = "#7081d0"
+cyan = "#04d1f9"
+green = "#37f499"
+orange = "#f7c67f"
+pink = "#f265b5"
+purple = "#a48cf2"
+red = "#f16c75"
+yellow = "#f1fc79"
