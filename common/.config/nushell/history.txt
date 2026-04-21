@@ -1,0 +1,3 @@
+cd ~/.config/nushell
+ls
+codex

@@ -63,7 +63,7 @@ window_margin_width 0
 single_window_margin_width 1
 inactive_text_alpha 1.0
 single_window_padding_width 0
-background_opacity 0.93
+background_opacity 0.95
 hide_window_decorations titlebar-only
 confirm_os_window_close 0
 background_blur 20
@@ -76,7 +76,7 @@ tab_bar_min_tabs          1
 tab_separator             ""
 tab_title_template        "{fmt.fg._323449}{fmt.bg.default}{fmt.fg._04d1f9}{fmt.bg.default}{index}{fmt.fg._04d1f9}{fmt.bg._323449} {title} {fmt.fg._323449}{fmt.bg.default} "
 active_tab_title_template "{fmt.fg._37f499}{fmt.bg.default}{fmt.fg._212337}{fmt.bg._37f499}{fmt.fg._212337}{fmt.bg._37f499} {title} {fmt.fg._37f499}{fmt.bg.default} "
-map ctrl+shift+t kitten rename_tab.py
+map ctrl+shift+t set_tab_title
 
 # Advanced
 editor .
