@@ -1,0 +1,132 @@
+[[team]]
+name = "Migration Service"
+description = "On-call investigation config for OCM"
+
+[team.tickets]
+jira_projects = ["OCMSD", "OCB"]
+ots_projects = ["OCMSD", "OCB"]
+
+[[team.code.repositories]]
+name = "OCM Migration"
+role = "control-plane"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/OCICM/repos/ocm-migration/browse"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "OcbControlPlane"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "OcmMigration"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "console-frontend"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "horizon"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "hostmetrics"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "kiev"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "loadbalancer"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "ocb-discovery"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "ocm-inventory"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "ocm-migration"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "odo"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "splat-canary"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "splat-proxy"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "splat-store"
+
+[[team.observability.alarm_sources]]
+kind = "phonebook_project"
+phonebook = "ocm"
+project = "test-service"
+
+[[team.observability.metric_fleets]]
+name = "agent-service-control-plane-api"
+role = "control-plane"
+project = "OcbControlPlane"
+fleet = "agent-service-control-plane-api"
+
+[[team.observability.metric_fleets]]
+name = "ocb-discovery-api"
+role = "control-plane"
+project = "ocb-discovery"
+fleet = "ocb-discovery-api"
+
+[[team.observability.metric_fleets]]
+name = "ocm-inventory-api"
+role = "control-plane"
+project = "ocm-inventory"
+fleet = "ocm-inventory-api"
+
+[[team.observability.metric_fleets]]
+name = "ocm-migration-api"
+role = "control-plane"
+project = "ocm-migration"
+fleet = "ocm-migration-api"
+
+[[team.observability.metric_fleets]]
+name = "splat-proxy-overlay"
+role = "control-plane"
+project = "splat-proxy"
+fleet = "splat-proxy-overlay"
+
+[[team.observability.metric_fleets]]
+name = "canary"
+role = "canary"
+project = "test-service"
+fleet = "canary-run-results"
+
+[team.canary]
+phonebook = "ocm"
+service_project = "canary"
+
+[team.lumberjack]
+tenant_name = "ocmmig"
+phonebook = "ocm"
+project = "ocm-migration"

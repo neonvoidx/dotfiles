@@ -106,3 +106,4 @@ common/.local/share/.vivaldi_reporting_data
 common/.local/share
 linux/.config/Thunar
 linux/.config/streamcontroller/data
+/common/.config/opencode/bitbucket.log

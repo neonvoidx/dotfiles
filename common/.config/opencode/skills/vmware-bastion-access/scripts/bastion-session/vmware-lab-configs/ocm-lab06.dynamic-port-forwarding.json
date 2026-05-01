@@ -1,0 +1,16 @@
+{
+    "oci_config": {
+        "region": "us-ashburn-1",
+        "profile": "DEFAULT"
+    },
+    "bastion": {
+        "id": "ocid1.bastion.oc1.iad.amaaaaaag26i5naawzyb7y6awqfudtwlbeo4mqwquaxn73zrcduwvnvewiwq",
+        "session_type": "DYNAMIC_PORT_FORWARDING",
+        "port": "9090"
+    },
+    "user": {
+        "id": "tarahma",
+        "public_key_file": "/Users/tarahma/.ssh/id_rsa.pub",
+        "private_key_file": "/Users/tarahma/.ssh/id_rsa"        
+    }
+}

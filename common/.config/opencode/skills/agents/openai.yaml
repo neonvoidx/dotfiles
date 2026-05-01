@@ -1,0 +1,15 @@
+interface:
+  display_name: Redwood Migration Helper
+  short_description: Troubleshoot MAUI/Redwood migration issues using Oracle Central
+    Confluence (v2/v3 templates).
+  icon: wrench
+  accent_color: '#2C5CC5'
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
