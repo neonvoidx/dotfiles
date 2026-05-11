@@ -153,6 +153,12 @@ esc = ['mode main']
 # Window Rules
 [[on-window-detected]]
 check-further-callbacks = true
+if.app-id="com.mitchellh.ghostty"
+run= [
+  "layout floating",
+]
+[[on-window-detected]]
+check-further-callbacks = true
 if.app-name-regex-substring = 'Firefox'
 run = ['move-node-to-workspace 1']
 [[on-window-detected]]

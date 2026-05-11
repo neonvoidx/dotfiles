@@ -68,25 +68,12 @@
     {
       "type": "custom",
       "key": " FONT",
-      "format": "Maple Mono"
+      "format": "JetBrains Mono"
     },
     {
       "type": "uptime",
       "keyColor": "#7081d0",
       "key": "󰥔 UP"
-    },
-    {
-      "type": "memory",
-      "key": "󰍛 RAM",
-      "keyColor": "#f16c75",
-      "format": "{used} / {total} ({percentage})"
-    },
-    {
-      "type": "disk",
-      "folders": "/",
-      "key": "󰋊 SSD",
-      "keyColor": "#ebfafa",
-      "format": "{size-used} / {size-total} ({size-percentage})"
     },
     "break",
     {

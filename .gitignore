@@ -107,3 +107,4 @@ common/.local/share
 linux/.config/Thunar
 linux/.config/streamcontroller/data
 /common/.config/opencode/bitbucket.log
+/common/.config/opencode/opencode.jsonc
