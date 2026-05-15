@@ -108,3 +108,5 @@ linux/.config/Thunar
 linux/.config/streamcontroller/data
 /common/.config/opencode/bitbucket.log
 /common/.config/opencode/opencode.jsonc
+/common/.config/nushell/history.sqlite3-wal
+/common/.config/nushell/history.sqlite3-shm

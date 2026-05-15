@@ -4,9 +4,6 @@ $env.config = ($env.config | upsert history.isolation false)
 $env.config = ($env.config | upsert history.file_format "sqlite")
 $env.config = ($env.config | upsert show_banner false)
 
-alias hypr = nvim ~/.config/hypr/hyprland.conf
-alias yay = paru
-alias dev = cd ~/dev
 alias e = nvim
 
 def findsyms [search_path = "."] {

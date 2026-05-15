@@ -17,7 +17,7 @@ def --env "update-env" [] {
 }
 export-env {
   
-  'set,PATH,/Users/jrreed/.codex/tmp/arg0/codex-arg0KxpLQq:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/jrreed/.local/share/zinit/polaris/bin:/Users/jrreed/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/Library/Frameworks/Python.framework/Versions/3.8/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/pmk/env/global/bin:/Library/TeX/texbin:/Users/jrreed/.cargo/bin:/Applications/kitty.app/Contents/MacOS:/Users/jrreed/.local/bin:/opt/cuda/bin:/Users/jrreed/.yarn/bin:/Users/jrreed/.rd/bin:/Users/jrreed/dev/bin:/Users/jrreed/go/bin:/Applications/flameshot.app/
+  'set,PATH,/opt/homebrew/bin:/opt/homebrew/sbin:/Users/jrreed/.local/share/zinit/polaris/bin:/Users/jrreed/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/Users/jrreed/.cargo/bin:/Applications/kitty.app/Contents/MacOS:/usr/bin:/bin:/usr/sbin:/sbin:/opt/cuda/bin:/Users/jrreed/.yarn/bin:/Users/jrreed/.rd/bin:/Users/jrreed/dev/bin:/Users/jrreed/.local/bin:/Users/jrreed/go/bin:/Applications/flameshot.app/
 hide,MISE_SHELL,
 hide,__MISE_DIFF,
 hide,__MISE_DIFF,' | parse vars | update-env
