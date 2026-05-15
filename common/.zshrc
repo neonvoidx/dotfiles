@@ -15,6 +15,19 @@ autoload -Uz compinit
 compinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 setopt promptsubst
+# FZF (load early so widgets exist before highlighters/wrapper hooks)
+export FZF_CTRL_T_COMMAND=""
+if [ -f ~/.fzf.zsh ]; then
+  source ~/.fzf.zsh
+elif [ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]; then
+  source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+elif [ -f /usr/local/opt/fzf/shell/key-bindings.zsh ]; then
+  source /usr/local/opt/fzf/shell/key-bindings.zsh
+elif [ -f /usr/share/fzf/key-bindings.zsh ]; then
+  source /usr/share/fzf/key-bindings.zsh
+elif [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+fi
 # Zinit Packages
 zinit wait lucid light-mode for \
   Aloxaf/fzf-tab \
@@ -76,13 +89,28 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 # | |__| (_) | | | | | | |_) | |  __/ |_| | (_) | | | | | |_) | | | | | (_| \__ \
 #  \____\___/|_| |_| |_| .__/|_|\___|\__|_|\___/|_| |_| |____/|_|_| |_|\__,_|___/
 #                      |_|                                                       
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 export LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:"
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' menu no 
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'lsd $realpath'
-
+zstyle ':fzf-tab:*' fzf-command fzf
+function zvm_after_lazy_keybindings_setup() {
+  bindkey '^I' fzf-tab-complete
+}
+# zsh-vi-mode resets bindings and options when it deferred-loads;
+# restore fzf Ctrl+R and history persistence after it finishes.
+function zvm_after_init() {
+  if (( $+widgets[fzf-history-widget] )); then
+    bindkey '^R' fzf-history-widget
+    bindkey -M emacs '^R' fzf-history-widget
+    bindkey -M viins '^R' fzf-history-widget
+    bindkey -M vicmd '^R' fzf-history-widget
+  fi
+  setopt SHARE_HISTORY INC_APPEND_HISTORY HIST_REDUCE_BLANKS
+}
 #  ____                 
 # |  _ \ _   _ _ __ ___ 
 # | |_) | | | | '__/ _ \
@@ -206,10 +234,7 @@ fi
 if command -v brew &> /dev/null; then
   alias brewup="brew upgrade && cd ~/.config/brew && ./brewbackup.sh"
 fi
-# Update neovim lazy packages headless
-if command -v nvim &> /dev/null; then
-  alias eup="nvim --headless '+Lazy! sync' +qa && cd ~/.config/nvim && git add . && git commit -m 'upd' && git push"
-fi
+
 
 # Yubikey handler, use if SSH isn't accepting yubikey automatically
 reload-ssh() {
@@ -280,10 +305,7 @@ if command -v yazi &> /dev/null; then
     rm -f -- "$tmp"
   }
 fi
-# WSL Browser
-if command -v wslu &> /dev/null; then
-  export BROWSER=wslview
-fi
+
 if command -v cmake &> /dev/null && command -v ninja &> /dev/null; then
   alias cmakeninja='cmake -S . -B build -G Ninja'
 fi
@@ -299,10 +321,6 @@ eval "$(pay-respects zsh --alias)"
 # Zoxide
 export _ZO_EXCLUDE_DIRS="/Applications/**:**/node_modules"
 export _ZO_RESOLVE_SYMLINKS=0
-# FZF
-# Define fzf-file-widget just in case
-export FZF_CTRL_T_COMMAND=""
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # SSH agent start if necessary
 if [ -z $SSH_AGENT_PID ] && [ -z $SSH_TTY ]; then  # if no agent & not in ssh
