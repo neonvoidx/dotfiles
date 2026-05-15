@@ -41,12 +41,12 @@
       "keyColor": "#37f499",
       "text": "echo $(uname -r | cut -d- -f1) $(uname -m)"
     },
-    {
-      "type": "packages",
-      "key": "󰏗 PKG",
-      "keyColor": "#f1fc79",
-      "format": "{all}"
-    },
+    // {
+    //   "type": "packages",
+    //   "key": "󰏗 PKG",
+    //   "keyColor": "#f1fc79",
+    //   "format": "{all}"
+    // },
     {
       "type": "terminal",
       "key": "󰆍 TERM",

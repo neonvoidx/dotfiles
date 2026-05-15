@@ -1,0 +1,198 @@
+# Made with ♥ by Aurora (https://github.com/A-kly)
+# Colors from Eldritch theme: https://github.com/eldritch-theme/eldritch
+# Potentially includes redundancy or disfunctional sections. I will attempt to improve this over time!
+# Enjoy!
+
+## Constants
+"constant" = "Red"
+"constant.builtin" = "bright_cyan"
+"constant.builtin.boolean" = "Cyan"
+"constant.character.escape" = "Cyan"
+"constant.numeric" = "Green" 
+"constant.numeric.float" = "Pink"
+"constant.character" = "Orange"
+
+## Functions
+"function" = "Pink"
+"function.macro" = "Purple"
+"function.builtin" = "Cyan"
+"function.method" = "Purple"
+"function.special" = "dark_cyan"
+
+## Constructor
+"constructor" = "Cyan"
+
+## Keywords
+"keyword" = { fg = "dark_cyan", modifiers = [ "italics" ]}
+"keyword.function" = "Cyan"
+"keyword.operator" = "Cyan"
+"keyword.conditional" = "Purple"
+"keyword.repeat" = "Purple"
+"keyword.control.exception" = "Green"
+"keyword.control.import" = "Purple"
+"keyword.directive" = "dark_cyan"
+"keyword.storage.type" = "Cyan"
+"keyword.storage.modifier" = "Cyan"
+
+## Punctuation
+"punctuation.delimiter" = "Foreground"
+"punctuation.bracket" = "Foreground"
+
+## Strings
+"string" = "Yellow"
+"string.special" = "Cyan"
+"string.special.path" = "Cyan"
+
+## Types
+"type" = "Cyan" 
+"type.builtin" = {fg = "Cyan", modifiers = [ "italic" ] }
+"type.parameter" = "Cyan"
+
+## Variables
+"variable"  = "magenta"
+"variable.builtin" = "Green"
+"variable.other.member" = "Orange"
+"variable.parameter" = "Orange"
+
+## Diffs
+"diff.plus" = { fg = "Green", modifiers = [ "dim" ] }
+"diff.delta" = { fg = "Orange", modifiers = [ "dim" ] }
+"diff.delta.moved" = { fg = "Yellow", modifiers = [ "dim" ] }
+"diff.minus" = { fg = "Red", modifiers = [ "dim" ] }
+
+
+## Diagnostics
+"diagnostic" = { modifiers = ["underlined"] }
+"diagnostic.error" = { underline = { style = "curl", color = "Red" } }
+"diagnostic.warning" = { underline = { style = "curl", color = "Yellow" } }
+"diagnostic.info" = { underline = { style = "curl", color = "Cyan" } }
+"diagnostic.hint" = { underline = { style = "curl", color = "dark_green" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+
+
+## Markup
+"markup" = "Orange"
+"markup.list" = "Cyan"
+"markup.link.label" = "Cyan"
+"markup.bold" = { fg = "Foreground", modifiers = ["bold"] }
+"markup.italic" = { fg = "Foreground", modifiers = ["italic"] }
+"markup.heading" = { fg = "Purple", modifiers = ["bold"] }
+"markup.heading.1" = { fg = "magenta", modifiers = [ "bold" ] }
+"markup.heading.2" = { fg = "Cyan", modifiers = [ "bold" ] }
+
+"markup.raw" = "Yellow"
+"markup.link.url" = { fg = "Yellow", modifiers = [ "underlined", "italic"] }
+"markup.link" = { fg = "Orange", modifiers = [ "bold" ] }
+"markup.quote" = { fg = "Yellow", modifiers = [ "italic"] }
+
+## Tags
+"tag" = "Cyan"
+
+
+## Misc
+"attribute" = "dark_cyan"
+"comment" = { fg = "Comment", modifiers = ["italic" ] }
+"error" = "Red"
+"hint" = "Cyan"
+"info" = "Cyan"
+"label" = "Cyan"
+"module" = "Orange"
+"namespace" = "Orange"
+"operator" = "Purple"
+"special" = "Green"
+"warning" = "Yellow"
+
+#############
+# Editor UI #
+#############
+
+## Main
+"ui.background" = { bg = "Background" }
+"ui.text" = "Foreground"
+
+## Menus
+"ui.menu" = { fg = "Foreground", bg = "Gray" }
+"ui.menu.selected" = { modifiers = ["reversed"] }
+"ui.popup" = { bg = "bg_dark" }
+"ui.help" = { fg = "Cyan", bg = "black" }
+
+## Gutter
+"ui.linenr" = "fg_gutter"
+"ui.linenr.selected" = { fg = "Orange", modifiers = [ "bold" ]}
+
+## Cursor
+"ui.cursor.insert" = "Foreground"
+"ui.cursor.primary" = { fg = "Foreground", modifiers = ["reversed"] }
+"ui.cursor.match" = { fg = "Orange", modifiers = [ "bold" ] } # maybe change this
+"ui.cursor.select" = { bg = "visual"}
+"ui.selection" = { bg = "visual" }
+"ui.cursorline.primary" = { bg = "bg_highlight" }
+"ui.cursorcolumn.primary" = { bg = "bg_highlight" }
+
+## Bufferline
+"ui.bufferline" = {fg = "fg_gutter", bg = "bg_dark"}
+"ui.bufferline.active" = {fg = "black", bg = "Cyan", modifiers = ["bold"]}
+"ui.bufferline.background" = "black"
+
+## Statusline
+"ui.statusline" = { fg = "fg_dark", bg = "bg_dark" }
+"ui.statusline.inactive" = { fg = "fg_gutter", bg = "bg_dark" }
+"ui.statusline.normal" = { fg = "Background", bg = "Cyan" }
+"ui.statusline.insert" = { fg = "Background", bg = "Green" }
+"ui.statusline.select" = { fg = "Background", bg = "Purple" }
+
+"ui.text.focus" = { fg = "Green", modifiers = ["bold"] }
+
+"ui.virtual" = "Gray"
+"ui.virtual.whitespace" = { fg = "fg_gutter" } 
+"ui.virtual.indent-guide" = "Comment"
+"ui.virtual.ruler" = { bg = "Gray" }
+"ui.virtual.jump-label" = { fg = "Pink", modifiers = ["bold"] }
+
+## Debug
+"ui.debug.breakpoint" = { fg = "Cyan", modifiers = [ "dim" ] }
+"ui.debug.active" = "bg_dark"
+
+## Brackets
+
+rainbow = ["Foreground",
+          "Purple",
+          "Cyan",
+          "Pink",
+          "Green",
+          "Orange",
+          "Foreground"]
+
+
+[palette]
+# From spec
+Background = "#212337" # Sunken Depths Grey
+Gray = "#323449"# Shallow Depths Grey
+Foreground = "#ebfafa"# Lighthouse White
+Comment="#7081d0"# The Old One Purple
+Cyan = "#04d1f9" # Watery Tomb Blue
+Green = "#37f499" # Great Old One Green
+Orange="#f7c67f"# Dreaming Orange
+Pink="#f265b5"# Pustule Pink
+Purple="#a48cf2"# Lovecraft Purple
+Red="#f16c75"# R'lyeh' Red
+Yellow="#f1fc79"# Gold of Yuggoth
+
+# Supplimentary
+black = "#05060c"
+fg_dark = "#ABB4DA"
+bg_dark = "#171928"
+terminal_black = "#414868"
+fg_gutter = "#3b4261"
+bg_highlight = "#292e42"
+magenta = "#a48cf2"
+bright_red = "#f0313e"
+bright_cyan = "#39DDFD"
+dark_cyan = "#10A1BD"
+bright_purple = "#ad8cff"
+bright_green = "#00FA82"
+dark_green = "#33C57F"
+visual = "#76639e"
+
+# Git

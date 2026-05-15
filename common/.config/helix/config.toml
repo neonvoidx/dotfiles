@@ -1,0 +1,74 @@
+theme = "eldritch"
+
+[editor]
+auto-pairs=true
+middle-click-paste = false
+line-number = "relative"
+cursorline=true
+true-color=true
+undercurl=true
+bufferline="multiple"
+default-line-ending = "lf"
+trim-trailing-whitespace=true
+popup-border="all"
+end-of-line-diagnostics="error"
+
+[editor.statusline]
+left=["mode", "spinner", "file-name","file-type", "read-only-indicator", "file-modification-indicator", "version-control"]
+center = []
+right = ["workspace-diagnostics","diagnostics", "selections", "register", "position-percentage","position", "file-encoding"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "VISUAL"
+
+[editor.lsp]
+display-progress-messages = true
+
+[editor.cursor-shape]
+normal="block"
+insert="bar"
+select="block"
+
+[editor.file-picker]
+hidden=false
+git-ignore=false
+
+[editor.search]
+smart-case = true
+
+[editor.whitespace]
+space = "all"
+tab = "all"
+nbsp = "none"
+nnbsp = "none"
+newline = "none"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+nnbsp = "␣"
+tab = "→"
+newline = "⏎"
+tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+
+[editor.indent-guides]
+render = true
+character = "|" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
+#
+#
+# KEYMAPS
+#
+#
+[keys.normal]
+C-s = ":w" # Maps Ctrl-s to the typable command :w which is an alias for :write (save file)
+C-o = ":open ~/.config/helix/config.toml" # Maps Ctrl-o to opening of the helix config file
+"ret" = ["open_below", "normal_mode"] # Maps the enter key to open_below then re-enter normal mode
+
+[keys.insert]
+j = { k = "normal_mode" } # Maps `jk` to exit insert mode
+k = { j = "normal_mode" } # Maps `jk` to exit insert mode
+
+[keys.normal.c]
+a = "code_action"

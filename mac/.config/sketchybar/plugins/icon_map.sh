@@ -155,6 +155,12 @@ case $@ in
 "Firefox Developer Edition" | "Firefox Nightly")
   icon_result="󰈹"
   ;;
+"Firefox")
+  icon_result="󰈹"
+  ;;
+"Chrome")
+  icon_result=""
+  ;;
 "Trello")
   icon_result=":trello:"
   ;;
