@@ -146,6 +146,10 @@ export DISABLE_AUTO_TITLE="true"
 export ZSH_TAB_TITLE_DISABLE_AUTO_TITLE=false
 export ZSH_TAB_TITLE_ONLY_FOLDER=true
 export ZSH_TAB_TITLE_CONCAT_FOLDER_PROCESS=true
+export http_proxy=http://www-proxy-sjc.oraclecorp.com:80
+export https_proxy=http://www-proxy-sjc.oraclecorp.com:80
+export HTTP_PROXY=$http_proxy
+export HTTPS_PROXY=$https_proxy
 # FZF
 export FZF_PREVIEW_ADVANCED="bat"
 export FZF_DEFAULT_OPTS='--color=fg:#ebfafa,bg:#282a36,hl:#37f499 --color=fg+:#ebfafa,bg+:#212337,hl+:#37f499 --color=info:#f7c67f,prompt:#04d1f9,pointer:#7081d0 --color=marker:#7081d0,spinner:#f7c67f,header:#323449 --height 80% --layout reverse --border'

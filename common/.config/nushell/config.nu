@@ -19,7 +19,7 @@ def deleteall [name] {
 }
 
 def l [] {
-  ls -la
+  ls -l
 }
 
 def lt [] {
@@ -123,10 +123,6 @@ if ($nu.is-interactive) {
   if (("~/.ssh/scm-script.sh" | path expand) | path exists) {
     def scm-ssh [...rest] { ^bash ~/.ssh/scm-script.sh ...$rest }
     do -i { scm-ssh start_agent }
-  }
-
-  if (which fastfetch | length) > 0 {
-    do -i { fastfetch }
   }
 }
 

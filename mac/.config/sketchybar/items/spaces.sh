@@ -1,18 +1,21 @@
 #!/bin/bash
 
 # Aerospace workspaces - customize to match your setup
-SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z")
+SPACE_IDS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "s")
+SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "󰒱")
 
 # Add event for updating workspace visibility
 sketchybar --add event aerospace_windows_change
 
 # Create workspace items
-for i in "${!SPACE_ICONS[@]}"
+for i in "${!SPACE_IDS[@]}"
 do
-  sid="${SPACE_ICONS[i]}"
+  sid="${SPACE_IDS[i]}"
+  item_id="$(printf "%s" "$sid" | tr '[:lower:]' '[:upper:]')"
+  icon="${SPACE_ICONS[i]}"
 
   space=(
-    icon="$sid"
+    icon="$icon"
     icon.padding_left=10
     icon.padding_right=15
     padding_left=2
@@ -34,13 +37,13 @@ do
     script="$PLUGIN_DIR/space.sh $sid"
   )
 
-  sketchybar --add item space.$sid left    \
-             --set space.$sid "${space[@]}" \
-             --subscribe space.$sid mouse.clicked \
-                                    mouse.entered \
-                                    mouse.exited \
-                                    mouse.exited.global \
-                                    aerospace_workspace_change
+  sketchybar --add item space.$item_id left    \
+             --set space.$item_id "${space[@]}" \
+             --subscribe space.$item_id mouse.clicked \
+                                        mouse.entered \
+                                        mouse.exited \
+                                        mouse.exited.global \
+                                        aerospace_workspace_change
 done
 
 # Add a hidden item to update workspace visibility

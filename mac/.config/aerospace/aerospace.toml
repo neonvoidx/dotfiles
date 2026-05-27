@@ -110,7 +110,6 @@ cmd-6 = 'workspace 6'
 cmd-7 = 'workspace 7'
 cmd-8 = 'workspace 8'
 cmd-9 = 'workspace 9'
-cmd-s = 'workspace s'
 
 cmd-shift-f = 'fullscreen'
 cmd-shift-space = "layout floating tiling"
