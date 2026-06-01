@@ -25,6 +25,7 @@
           # Tools & Utilities
           bash
           direnv
+          yazi
           lazygit
           codex
           git
