@@ -1,0 +1,4 @@
+interface:
+  display_name: "CM Review"
+  short_description: "Review change tickets with release or runbook evidence"
+  default_prompt: "Use $cm-review to review a change ticket. First read only ticket intake evidence, present a concise pre-execution review plan, and wait for approval in human-driven reviews before fetching Release Check evidence, runbooks, remote commit diffs, SLAPS evidence, logs, or execution artifacts. Use Release Check for every linked Shepherd release and call out inaccessible linked releases in the final summary. Fetch/select runbooks only after approval. For manual/runbook-backed CMs, require a `Why this manual change is required?` section and request that exact section in Jira writeback when missing. Require SLAPS evidence only for application artifacts deployed to ONSR (`OC5`, `OC6`, `OC11`) or GOV (`OC2`, `OC3`, `OC4`, `OC23`) realms. Keep writeback opt-in and use the required prefix plus active CM Review skill version."

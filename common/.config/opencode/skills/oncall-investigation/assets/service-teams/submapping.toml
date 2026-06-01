@@ -1,0 +1,117 @@
+[[team]]
+name = "SubMapping"
+description = "On-call investigation config for SubMapping across primary service, config, worker, tool, splat, and canary surfaces."
+
+[team.tickets]
+jira_projects = ["SUBMAP"]
+ots_projects = ["SUBMAP"]
+
+[[team.code.repositories]]
+name = "subscription-mapping-service"
+role = "control-plane"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/SUBSCRIPTION_MAPPING_SERVICE/repos/subscription-mapping-service/browse"
+local_repo_path = "/absolute/path/to/local/subscription-mapping-service"
+
+[[team.code.repositories]]
+name = "subscription-mapping-service-config"
+role = "config"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/SUBSCRIPTION_MAPPING_SERVICE/repos/subscription-mapping-service-config/browse"
+local_repo_path = "/absolute/path/to/local/subscription-mapping-service-config"
+
+[[team.observability.alarm_sources]]
+name = "SubMapping alarms"
+kind = "phonebook_project"
+phonebook = "sub-mapping"
+project = "SubscriptionMapping"
+
+[[team.observability.metric_fleets]]
+name = "alarm-api-prod"
+role = "control-plane"
+project = "SubscriptionMapping"
+fleet = "submap.submapping-api-prod"
+
+[[team.observability.metric_fleets]]
+name = "alarm-worker-prod"
+role = "worker"
+project = "SubscriptionMapping"
+fleet = "submapping-worker-prod"
+
+[[team.observability.metric_fleets]]
+name = "service-api"
+role = "control-plane"
+project = "SubscriptionMapping"
+fleet = "subscription-mapping-service-api"
+
+[[team.observability.metric_fleets]]
+name = "service-worker"
+role = "worker"
+project = "SubscriptionMapping"
+fleet = "subscription-mapping-service-worker"
+
+[[team.observability.metric_fleets]]
+name = "service-tool"
+role = "tool"
+project = "SubscriptionMapping"
+fleet = "subscription-mapping-service-tool"
+
+[[team.observability.metric_fleets]]
+name = "splat-proxy-overlay"
+role = "splat"
+project = "splat-proxy"
+fleet = "splat-proxy-overlay"
+
+[[team.observability.metric_fleets]]
+name = "canary"
+role = "canary"
+project = "test-service"
+fleet = "canary-run-results"
+
+[team.canary]
+phonebook = "sub-mapping"
+canary_names = ["submapping_canary_fast", "order-activation-redwood-unified-canary"]
+notes = "Match fired canary metrics to the configured canary names before broad log searches."
+
+[team.lumberjack]
+phonebook = "sub-mapping"
+project = "SubscriptionMapping"
+tenant_name = "submap"
+tenant_names_by_environment = { dev = "submapdev", prod = "submap", preprod = "submappreprod", pintlab2 = "submappintlab2" }
+notes = "Use `tenant_names_by_environment` as the primary environment discriminator. SubMapping keeps API and worker application logs under the same namespace, so use separate namespace blocks with durable `log_group` filters instead of assuming namespace alone identifies the runtime component."
+
+[[team.lumberjack.namespaces]]
+name = "subscription-mapping-api"
+role = "service"
+namespace = "subscription-mapping"
+log_group = "api_application_log"
+
+[[team.lumberjack.namespaces]]
+name = "subscription-mapping-worker"
+role = "worker"
+namespace = "subscription-mapping"
+log_group = "worker_application_log"
+
+[team.splat]
+tenant_name = "splat"
+notes = "Use splat-proxy-overlay first for request tracing when the incident suggests proxy or routing involvement."
+
+[[team.splat.namespaces]]
+name = "splat-proxy-overlay"
+namespace = "splat-proxy-overlay"
+
+[[team.splat.service_operations]]
+name = "Subscription Mapping operations"
+service_operation_pattern = "submapping.*"
+downstream_target = "subscription-mapping-service"
+notes = "Matches the stable SubMapping ServiceOperationId family seen in splat request logs, including GetWorkRequest and related API traffic routed to downstream.submapping."
+
+[team.shepherd]
+phonebook = "sub-mapping"
+project = "subscription-mapping-shepherd"
+
+[[team.shepherd.flocks]]
+name = "service"
+flock = "subscription-mapping-service"
+
+[[team.shepherd.flocks]]
+name = "canary"
+flock = "subscription-mapping-service-canary"

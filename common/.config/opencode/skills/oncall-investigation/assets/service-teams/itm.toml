@@ -1,0 +1,30 @@
+[[team]]
+name = "Tenancy-creator Service"
+description = "On-call investigation config for tenancy creator service across API and operational surfaces."
+
+[team.tickets]
+jira_projects = ["ITM"]
+
+[[team.faqs]]
+name = "Tenancy Creator FAQ"
+url = "https://confluence.oraclecorp.com/confluence/display/TenancyCreator/Tenancy+Creator"
+
+[[team.code.repositories]]
+name = "tenancy-creator"
+role = "control-plane"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/TENANCYCREATOR/repos/tenancy-creator/browse"
+local_repo_path = "/absolute/path/to/local/tenancycreator/tenancy-creator/tenancy-creator-api"
+
+[[team.code.repositories]]
+name = "tenancy-creator-config"
+role = "config"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/TENANCYCREATOR/repos/tenancy-creator/browse"
+local_repo_path = "/absolute/path/to/local/tenancycreator/tenancy-creator/tenancy-creator-config"
+
+[team.shepherd]
+phonebook = "ITM"
+project = "service-registry"
+
+[[team.shepherd.flocks]]
+name = "primary"
+flock = "tenancy-creator"

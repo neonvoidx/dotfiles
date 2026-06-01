@@ -1,0 +1,135 @@
+[[team]]
+name = "Tenancy Lifecycle Service"
+description = "On-call investigation config for Tenancy Lifecycle Service (TenLS) across API, worker, and canary components."
+
+[team.tickets]
+jira_projects = ["TENLS"]
+ots_projects = ["TENLS"]
+
+[[team.code.repositories]]
+name = "tenls-service"
+role = "control-plane"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/ACC/repos/tenant-lifecycle-service/browse"
+local_repo_path = "/absolute/path/to/local/tenant-lifecycle-service"
+
+[[team.code.repositories]]
+name = "tenls-canary"
+role = "canary"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/ACC/repos/tenant-lifecycle-service/browse/tenant-lifecycle-service-canary"
+
+[[team.observability.alarm_sources]]
+name = "TENLS TenantLifecycleService alarms"
+kind = "phonebook_project"
+phonebook = "tenls"
+project = "TenantLifecycleService"
+
+[[team.observability.metric_fleets]]
+name = "api"
+role = "control-plane"
+project = "TenantLifecycleService"
+fleet = "tenant-lifecycle-service-api"
+
+[[team.observability.metric_fleets]]
+name = "worker"
+role = "worker"
+project = "TenantLifecycleService"
+fleet = "tenant-lifecycle-service-worker"
+
+[[team.observability.metric_fleets]]
+name = "canary"
+role = "canary"
+project = "test-service"
+fleet = "canary-run-results"
+
+[team.canary]
+phonebook = "tenls"
+service_project = "spm-receiver"
+
+[team.lumberjack]
+phonebook = "tenls"
+project = "TenantLifecycleService"
+tenant_name = "tenancylifecycleservice"
+tenant_names_by_environment = { prod = "tenancylifecycleservice", dev = "tenancylifecycleservicedev", alp = "tenancylifecycleservicedev" }
+notes = "R1 uses separate stable and alp namespace families. Resolve the alarm-backed environment first, then prefer the matching tenant and namespace family before broad log searches. The `dev` and `alp` environment labels both map to the same R1 dev tenant and namespace family."
+
+[[team.lumberjack.namespaces]]
+name = "api-prod"
+role = "control-plane"
+namespace = "tenancy-lifecycle-service-api"
+environment = "prod"
+region = "r1"
+
+[[team.lumberjack.namespaces]]
+name = "tool-prod"
+role = "tool"
+namespace = "tenancy-lifecycle-service-tool"
+environment = "prod"
+region = "r1"
+
+[[team.lumberjack.namespaces]]
+name = "worker-prod"
+role = "worker"
+namespace = "tenancy-lifecycle-service-worker"
+environment = "prod"
+region = "r1"
+
+[[team.lumberjack.namespaces]]
+name = "api-dev"
+role = "control-plane"
+namespace = "tenancy-lifecycle-service-api-alp"
+environment = "dev"
+region = "r1"
+
+[[team.lumberjack.namespaces]]
+name = "tool-dev"
+role = "tool"
+namespace = "tenancy-lifecycle-service-tool-alp"
+environment = "dev"
+region = "r1"
+
+[[team.lumberjack.namespaces]]
+name = "worker-dev"
+role = "worker"
+namespace = "tenancy-lifecycle-service-worker-alp"
+environment = "dev"
+region = "r1"
+
+[[team.lumberjack.namespaces]]
+name = "api-alp"
+role = "control-plane"
+namespace = "tenancy-lifecycle-service-api-alp"
+environment = "alp"
+region = "r1"
+
+[[team.lumberjack.namespaces]]
+name = "tool-alp"
+role = "tool"
+namespace = "tenancy-lifecycle-service-tool-alp"
+environment = "alp"
+region = "r1"
+
+[[team.lumberjack.namespaces]]
+name = "worker-alp"
+role = "worker"
+namespace = "tenancy-lifecycle-service-worker-alp"
+environment = "alp"
+region = "r1"
+
+[team.splat]
+tenant_name = "splat"
+
+[[team.splat.namespaces]]
+name = "splat-proxy"
+namespace = "splat-proxy"
+
+[[team.splat.namespaces]]
+name = "splat-proxy-overlay"
+namespace = "splat-proxy-overlay"
+
+[team.shepherd]
+phonebook = "tenls"
+project = "tenls"
+
+[[team.shepherd.flocks]]
+name = "primary"
+flock = "tenancy-lifecycle-service"

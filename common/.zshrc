@@ -1,6 +1,12 @@
 # Uncomment to profile
 # zmodload zsh/zprof
 
+# nix check
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ];
+then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
 #  ___(_)_ __ (_) |_ 
 # |_  / | '_ \| | __|
 #  / /| | | | | | |_ 
@@ -240,13 +246,25 @@ if command -v brew &> /dev/null; then
 fi
 
 
-# Yubikey handler, use if SSH isn't accepting yubikey automatically
+# SSH/YubiKey helpers
+_ssh_pkcs11_provider() {
+  local path
+  for path in /usr/local/lib/libykcs11.dylib /usr/lib64/opensc-pkcs11.so /usr/local/lib/opensc-pkcs11.so; do
+    [[ -e "$path" ]] && print -r -- "$path" && return 0
+  done
+  return 1
+}
+
+# Force-reload the YubiKey in the current SSH agent.
 reload-ssh() {
-  ssh-add -e /usr/local/lib/opensc-pkcs11.so >> /dev/null
-  if [ $? -gt 0 ]; then
-      echo "Failed to remove previous card"
-  fi
-  ssh-add -s /usr/local/lib/opensc-pkcs11.so
+  local provider
+  provider="$(_ssh_pkcs11_provider)" || {
+    echo "No supported PKCS#11 provider found."
+    return 1
+  }
+
+  ssh-add -e "$provider" >/dev/null 2>&1
+  ssh-add -s "$provider"
 }
 # Check ZSH plugin load times
 timezsh() {
@@ -326,15 +344,67 @@ eval "$(pay-respects zsh --alias)"
 export _ZO_EXCLUDE_DIRS="/Applications/**:**/node_modules"
 export _ZO_RESOLVE_SYMLINKS=0
 
-# SSH agent start if necessary
-if [ -z $SSH_AGENT_PID ] && [ -z $SSH_TTY ]; then  # if no agent & not in ssh
-  eval `ssh-agent -s` > /dev/null
-fi
+_ssh_agent_ready() {
+  local output
+  [[ -n "$SSH_AUTH_SOCK" && -S "$SSH_AUTH_SOCK" ]] || return 1
+  output="$(ssh-add -l 2>&1)"
+  [[ $? -eq 0 || "$output" == *"The agent has no identities"* ]]
+}
 
-if [ -f ~/.ssh/scm-script.sh ]; then
-  alias scm-ssh='bash ~/.ssh/scm-script.sh'
-  scm-ssh start_agent >/dev/null 2>&1
-fi
+_ensure_ssh_agent() {
+  [[ -n "$SSH_TTY" ]] && return 0
+  local agent_sock="$HOME/.ssh/agent.sock"
+
+  export SSH_AUTH_SOCK="$agent_sock"
+  _ssh_agent_ready && return 0
+
+  rm -f "$agent_sock"
+  export SSH_AUTH_SOCK="$agent_sock"
+  if ! _ssh_agent_ready; then
+    eval "$(ssh-agent -a "$agent_sock" -s)" >/dev/null
+  fi
+}
+
+_ssh_agent_has_key() {
+  local key="$1" pubkey="${1}.pub" fingerprint
+  [[ -r "$pubkey" ]] || return 1
+  fingerprint="$(ssh-keygen -lf "$pubkey" 2>/dev/null | awk '{print $2}')"
+  [[ -n "$fingerprint" ]] || return 1
+  ssh-add -l 2>/dev/null | grep -Fq "$fingerprint"
+}
+
+_ensure_ssh_key() {
+  local key="$HOME/.ssh/id_ed25519_jacobrreed"
+  [[ -r "$key" ]] || return 0
+  _ssh_agent_has_key "$key" && return 0
+
+  if [[ "$(uname)" == "Darwin" ]]; then
+    ssh-add --apple-use-keychain "$key" 2>/dev/null || ssh-add "$key"
+  else
+    ssh-add "$key"
+  fi
+}
+
+_ssh_agent_has_identities() {
+  local sock="$1"
+  [[ -S "$sock" ]] || return 1
+  SSH_AUTH_SOCK="$sock" ssh-add -l >/dev/null 2>&1
+}
+
+ensure-ssh() {
+  _ensure_ssh_agent
+  _ensure_ssh_key
+
+  if [[ -f "$HOME/.ssh/scm-script.sh" ]]; then
+    alias scm-ssh='bash ~/.ssh/scm-script.sh'
+    scm-ssh start_agent >/dev/null 2>&1
+    if ! _ssh_agent_has_identities "$HOME/.ssh/scm-agent.sock"; then
+      scm-ssh ssh_reset
+    fi
+  fi
+}
+
+ensure-ssh
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
@@ -351,8 +421,8 @@ fi
 export CMAKE_PREFIX_PATH="/usr/local:$CMAKE_PREFIX_PATH"
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 
-eval "$(tv init zsh)"
 eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
 eval "$(starship init zsh)"
+eval "$(direnv hook zsh)"
 # scm-ssh start_agent

@@ -216,6 +216,10 @@ if.app-name-regex-substring = 'Proton Pass'
 run = 'layout floating'
 [[on-window-detected]]
 check-further-callbacks = true
+if.app-name-regex-substring = 'Bitwarden'
+run = 'layout floating'
+[[on-window-detected]]
+check-further-callbacks = true
 if.app-name-regex-substring = 'Proton'
 run = 'layout floating'
 [[on-window-detected]]

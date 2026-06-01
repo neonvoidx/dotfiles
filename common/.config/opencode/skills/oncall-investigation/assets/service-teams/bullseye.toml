@@ -1,0 +1,117 @@
+[[team]]
+name = "Bullseye"
+description = "On-call investigation config for Bullseye across API, worker, and canary components."
+
+[team.tickets]
+jira_projects = ["BULLSEYE"]
+ots_projects = ["BULLSEYE"]
+
+[[team.code.repositories]]
+name = "tas-bullseye-service"
+role = "control-plane"
+scm_repo = "ocid1.devopsrepository.oc1.phx.amaaaaaaw4vcxbyayl7etnsq4rw5vuuvahiimzdu3obtbdi64uhs2ntbny3a"
+local_repo_path = "/absolute/path/to/local/tas-bullseye-service"
+
+[[team.code.repositories]]
+name = "tas-bullseye-dope-plugin"
+role = "management-plane"
+scm_repo = "ocid1.devopsrepository.oc1.phx.amaaaaaaw4vcxbyaunvvi3jot4npmrqdoquwafu25sj7umoupvpsmuymqyya"
+local_repo_path = "/absolute/path/to/local/tas-bullseye-dope-plugin"
+
+[[team.observability.alarm_sources]]
+name = "Bullseye alarms"
+kind = "phonebook_project"
+phonebook = "tas_bullseye_service"
+project = "TasBullseyeService"
+
+[[team.observability.metric_fleets]]
+name = "api"
+role = "control-plane"
+project = "TasBullseyeService"
+fleet = "tas-bullseye-service-api-prod"
+
+[[team.observability.metric_fleets]]
+name = "canary"
+role = "canary"
+project = "TasBullseyeService"
+fleet = "tas-bullseye-service-canary-PRODUCTION"
+
+[team.canary]
+phonebook = "tas_bullseye_service"
+service_project = "tas_bullseye_service"
+
+[[team.observability.metric_sources]]
+kind = "grafana_dashboard"
+name = "Bullseye Service Dashboard"
+dashboard_uid = "nimMZSpHk"
+dashboard_id = 435575
+
+[team.odo]
+phonebook = "tas_bullseye_service"
+notes = "Use ODO correlation for backend-capacity and host-local incidents"
+
+
+[team.lumberjack]
+phonebook = "tas_bullseye_service"
+project = "TasBullseyeService"
+tenant_name = "bullseyeprod"
+tenant_names_by_environment = { prod = "bullseyeprod", dev = "bullseyedev"}
+
+
+[[team.lumberjack.namespaces]]
+name = "api-prod"
+role = "control-plane"
+namespace = "_tas-bullseye-service-api-prod"
+environment = "prod"
+# Use the logging backend's query key here. This may differ from the public
+# region name shown in tickets or alarm UIs.
+# It seems like us-ashburn-1 maps to iad in the query key
+region = "iad"
+
+[[team.lumberjack.namespaces]]
+name = "api-unstable"
+role = "control-plane"
+namespace = "_tas-bullseye-service-api-unstable"
+environment = "dev"
+region = "iad"
+
+[[team.lumberjack.namespaces]]
+name = "api-pint"
+role = "control-plane"
+namespace = "_tas-bullseye-service-api-pintlab"
+environment = "pintlab"
+region = "iad"
+
+[[team.lumberjack.namespaces]]
+name = "api-pint2"
+role = "control-plane"
+namespace = "_tas-bullseye-service-api-pintlab2"
+environment = "pintlab2"
+region = "iad"
+
+[team.splat]
+tenant_name = "splat"
+
+[[team.splat.namespaces]]
+name = "splat-proxy"
+namespace = "splat-proxy"
+
+[[team.splat.namespaces]]
+name = "splat-proxy-overlay"
+namespace = "splat-proxy-overlay"
+
+[team.shepherd]
+phonebook = "tas_bullseye_service"
+project = "tas-bullseye-service"
+
+[[team.shepherd.flocks]]
+name = "bullseye-api-region-build"
+flock = "tas-bullseye-service-region-build"
+
+[[team.shepherd.flocks]]
+name = "bullseye-ui"
+flock = "tas-bullseye-dope-plugin"
+
+[[team.shepherd.flocks]]
+name = "bullseye-api"
+flock = "tas-bullseye-service-flock"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR Description"
+  short_description: "Generate PR descriptions from diffs"
+  default_prompt: "Use $pr-description to draft a template-compliant PR description from the current branch, with evidence-backed checklist and testing sections."

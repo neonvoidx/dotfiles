@@ -111,3 +111,5 @@ linux/.config/streamcontroller/data
 /common/.config/nushell/history.sqlite3-wal
 /common/.config/nushell/history.sqlite3-shm
 /common/.config/nushell/history.sqlite3
+/common/.config/opencode/opencode.json
+/common/.config/opencode/oh-my-opencode.json

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Module Knowledge Skills"
+  short_description: "Generate repo module knowledge skills"
+  default_prompt: "Use $create-module-knowledge-skills to discover repository modules, confirm scope, and create or update module knowledge skills plus AGENTS.md routing."

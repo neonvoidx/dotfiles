@@ -1,0 +1,171 @@
+[[team]]
+name = "OCI Cloud Signup and Activation"
+description = "On-call investigation config for OCSA backend, canary, and courier-service components."
+
+[team.tickets]
+jira_projects = ["OCSA"]
+ots_projects = ["OCSA"]
+
+[[team.code.repositories]]
+name = "account-signup-activation"
+role = "control-plane"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/ACCOUNT_SIGNUP_ACTIVATION/repos/account-signup-activation/browse"
+local_repo_path = "path_to_local_repo"
+
+[[team.code.repositories]]
+name = "account-signup-canary"
+role = "canary"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/ACCOUNT_SIGNUP_ACTIVATION/repos/account-signup-canary/browse"
+local_repo_path = "path_to_local_repo"
+
+[[team.code.repositories]]
+name = "client-courier-service"
+role = "courier-service"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/CLIENT_COURIER_SERVICE/repos/client-courier-service/browse"
+local_repo_path = "path_to_local_repo"
+
+[[team.observability.alarm_sources]]
+name = "OCSA alarms"
+kind = "phonebook_project"
+phonebook = "oci_cloud_signup_activation"
+project = "AccountSignupActivation"
+
+[[team.observability.metric_fleets]]
+name = "Signup Backend API"
+role = "control-plane"
+project = "AccountSignupActivation"
+fleet = "account-signup-activation-api"
+
+[[team.observability.metric_fleets]]
+name = "canary"
+role = "canary"
+project = "test-service"
+fleet = "canary-run-results"
+
+[team.canary]
+phonebook = "oci_cloud_signup_activation"
+service_project = "oci_cloud_signup_activation"
+
+[team.odo]
+phonebook = "oci_cloud_signup_activation"
+notes = "Use ODO correlation for backend-capacity and host-local incidents"
+
+[team.lumberjack]
+phonebook = "oci_cloud_signup_activation"
+project = "oci_cloud_signup_activation"
+tenant_name = "newaccountsignup"
+tenant_names_by_environment = { prod = "newaccountsignup", pint = "newaccountsignup", pint2 = "newaccountsignup" }
+
+[[team.lumberjack.namespaces]]
+name = "api-prod"
+role = "control-plane"
+namespace = "_account-signup-activation-api-prod"
+environment = "prod"
+region = "iad"
+
+[[team.lumberjack.namespaces]]
+name = "api-internal-prod"
+role = "control-plane"
+namespace = "_account-signup-activation-api-internal-prod"
+environment = "prod"
+region = "iad"
+
+[[team.lumberjack.namespaces]]
+name = "api-pint"
+role = "control-plane"
+namespace = "_account-signup-activation-api-pintlab"
+environment = "pint"
+region = "iad"
+
+[[team.lumberjack.namespaces]]
+name = "api-internal-pint"
+role = "control-plane"
+namespace = "_account-signup-activation-api-internal-pintlab/...xkrsywmq"
+environment = "pint"
+region = "iad"
+
+[[team.lumberjack.namespaces]]
+name = "api-pint2"
+role = "control-plane"
+namespace = "_account-signup-activation-api-pintlab2"
+environment = "pint2"
+region = "iad"
+
+[[team.lumberjack.namespaces]]
+name = "api-internal-pint2"
+role = "control-plane"
+namespace = "_account-signup-activation-api-internal-pintlab/...fpzve52q"
+environment = "pint2"
+region = "iad"
+
+[[team.lumberjack.namespaces]]
+name = "courier-service-prod"
+role = "data-plane"
+namespace = "_client-courier-service-api-prod"
+environment = "prod"
+region = "iad"
+
+[[team.lumberjack.namespaces]]
+name = "courier-service-beta"
+role = "data-plane"
+namespace = "_client-courier-service-api-beta/...4xajwyga"
+environment = "beta"
+region = "iad"
+
+[team.splat]
+tenant_name = "splat"
+
+[[team.splat.namespaces]]
+name = "splat-proxy"
+namespace = "splat-proxy"
+
+[[team.splat.namespaces]]
+name = "splat-proxy-overlay"
+namespace = "splat-proxy-overlay"
+
+[team.shepherd]
+phonebook = "oci_cloud_signup_activation"
+project = "account-signup-activation"
+
+[[team.shepherd.flocks]]
+name = "account-signup-activation"
+flock = "account-signup-activation-api"
+
+[[team.shepherd.flocks]]
+name = "account-signup-activation-canary"
+flock = "account-signup-activation-flock"
+
+[[team.shepherd.flocks]]
+name = "client-courier-service"
+flock = "client-courier-service-api"
+
+[[team]]
+name = "OCI Cloud Signup and Activation UI"
+description = "On-call investigation config for OCSA UI deployment surfaces."
+
+[team.tickets]
+jira_projects = ["OCSAUI"]
+
+[[team.code.repositories]]
+name = "signup-ui"
+role = "ui"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/UX/repos/signup-ui/browse"
+local_repo_path = "path_to_local_repo"
+
+[[team.code.repositories]]
+name = "account-signup-activation-ui"
+role = "ui"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/UX/repos/account-signup-activation-ui/browse"
+local_repo_path = "path_to_local_repo"
+
+[team.shepherd]
+phonebook = "oci_cloud_signup_activation_ui"
+project = "account-signup-activation-ui"
+
+[[team.shepherd.flocks]]
+name = "activate-ui"
+flock = "activate-ui-flock"
+
+[[team.shepherd.flocks]]
+name = "signup-ui"
+flock = "signup-ui-flock"
