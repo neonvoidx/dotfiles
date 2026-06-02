@@ -1,5 +1,7 @@
 #!/bin/bash
 
+default_icon="󰣆"
+
 case $@ in
 "Brave Browser")
   icon_result=":brave_browser:"
@@ -140,7 +142,7 @@ case $@ in
   icon_result=":numbers:"
   ;;
 "Default")
-  icon_result="󰣆"
+  icon_result="$default_icon"
   ;;
 "Element")
   icon_result=":element:"
@@ -194,7 +196,7 @@ case $@ in
   icon_result=":sequel_pro:"
   ;;
 "Bitwarden")
-  icon_result=":bit_warden:"
+  icon_result="󰌾"
   ;;
 "System Preferences" | "System Settings")
   icon_result=":gear:"
@@ -395,7 +397,12 @@ case $@ in
   icon_result="󰒃"
   ;;
 *)
-  icon_result="󰣆"
+  icon_result="$default_icon"
   ;;
 esac
+
+if [[ -z "$icon_result" ]]; then
+  icon_result="$default_icon"
+fi
+
 echo "$icon_result"

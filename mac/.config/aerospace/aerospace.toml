@@ -7,7 +7,7 @@ after-login-command = []
 after-startup-command = ['exec-and-forget sketchybar']
 
 automatically-unhide-macos-hidden-apps = true
-persistent-workspaces = ["1", "2", "3", "4", "5", "S"]
+persistent-workspaces = ["1", "2", "3", "4", "5", "s"]
 
 # Notify Sketchybar about workspace change
 exec-on-workspace-change = [
@@ -152,7 +152,8 @@ esc = ['mode main']
 # Window Rules
 [[on-window-detected]]
 check-further-callbacks = true
-if.app-name-regex-substring = 'Firefox'
+if.app-id = 'org.mozilla.firefox'
+if.window-title-regex-substring = '.*'
 run = ['move-node-to-workspace 1']
 [[on-window-detected]]
 check-further-callbacks = true

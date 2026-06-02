@@ -396,7 +396,16 @@ ensure-ssh() {
   _ensure_ssh_key
 
   if [[ -f "$HOME/.ssh/scm-script.sh" ]]; then
-    alias scm-ssh='bash ~/.ssh/scm-script.sh'
+    scm-ssh() {
+      local bash_path
+      bash_path="$(command -v bash 2>/dev/null)"
+      [[ -n "$bash_path" ]] || bash_path="/bin/bash"
+      [[ -x "$bash_path" ]] || {
+        echo "bash not found; cannot run $HOME/.ssh/scm-script.sh"
+        return 127
+      }
+      "$bash_path" "$HOME/.ssh/scm-script.sh" "$@"
+    }
     scm-ssh start_agent >/dev/null 2>&1
     if ! _ssh_agent_has_identities "$HOME/.ssh/scm-agent.sock"; then
       scm-ssh ssh_reset
