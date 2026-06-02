@@ -77,7 +77,8 @@ yabai -m rule --add app=".*Slack.*" manage=on space=5
 yabai -m rule --add app="^Microsoft Outlook$" title=".*[Rr]eminder.*" manage=off space=1
 yabai -m rule --add app="^Microsoft Outlook$" subrole!="^AXStandardWindow$" manage=off
 yabai -m rule --add app="^Microsoft Outlook$" subrole="^AXStandardWindow$" title!=".*[Rr]eminder.*" manage=on space=2
-yabai -m rule --add app=".*zoom.*" manage=on space=3
+yabai -m rule --add app=".*zoom.*" subrole!="^AXStandardWindow$" manage=off
+yabai -m rule --add app=".*zoom.*" subrole="^AXStandardWindow$" manage=on space=3
 yabai -m rule --add app=".*Firefox.*" manage=on space=1
 yabai -m rule --add app=".*kitty.*" manage=on space=1
 yabai -m rule --add app=".*Obsidian.*" manage=on space=4
@@ -87,6 +88,7 @@ yabai -m rule --apply
 # S K E T C H Y B A R  E V E N T S
 yabai -m config external_bar all:50:0
 yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
+yabai -m signal --add event=window_focused action="~/.config/yabai/toggle_focus_follows_mouse.sh"
 yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
 yabai -m signal --add event=system_woke action="sh -c 'sleep 1; sketchybar --reload'"
 killall sketchybar 2>/dev/null || true
