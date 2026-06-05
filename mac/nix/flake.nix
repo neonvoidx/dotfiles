@@ -1,12 +1,9 @@
 {
-  description = "Development shell";
+  description = "Personal Nix packages";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
     nvim-config = {
       url = "github:neonvoidx/nvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,66 +11,58 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, ... }:
+    {
+      self,
+      nixpkgs,
+      nvim-config,
+    }:
     let
-      systems = nixpkgs.lib.systems.flakeExposed;
+      systems = [
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+
       forAllSystems = nixpkgs.lib.genAttrs systems;
-      packageList =
-        system: pkgs: with pkgs; [
-          inputs.nvim-config.packages.${pkgs.stdenv.hostPlatform.system}.default
-
-          # Tools & Utilities
-          bash
-          direnv
-          yazi
-          lazygit
-          codex
-          git
-          opencode
-          pay-respects
-          nix-search
-
-          # Language Runtimes
-          cargo
-          go
-          nodejs
-          python3
-          python3Packages.pip
-          python3Packages.pyyaml
-        ];
     in
     {
       packages = forAllSystems (
         system:
         let
-          pkgs = import nixpkgs { inherit system; };
+          pkgs = nixpkgs.legacyPackages.${system};
+          nvim = nvim-config.packages.${system}.default;
         in
         {
-          default = pkgs.buildEnv {
-            name = "dev-tools";
-            paths = packageList system pkgs;
+          inherit (pkgs) comma;
+
+          inherit nvim;
+
+          default = pkgs.symlinkJoin {
+            name = "jrreed-nix-tools";
+            paths = [
+              nvim
+              pkgs.comma
+            ];
+            meta.mainProgram = "nvim";
           };
         }
       );
 
-      devShells = forAllSystems (
-        system:
-        let
-          pkgs = import nixpkgs { inherit system; };
-        in
-        {
-          default = pkgs.mkShell {
-            packages = packageList system pkgs;
-          };
-        }
-      );
+      apps = forAllSystems (system: {
+        default = self.apps.${system}.nvim;
+        nvim = {
+          type = "app";
+          program = "${self.packages.${system}.nvim}/bin/nvim";
+          meta.description = "Run Neovim from github:neonvoidx/nvim";
+        };
+      });
 
-      formatter = forAllSystems (
-        system:
-        let
-          pkgs = import nixpkgs { inherit system; };
-        in
-        pkgs.nixfmt
-      );
+      devShells = forAllSystems (system: {
+        default = nixpkgs.legacyPackages.${system}.mkShell {
+          packages = [
+            self.packages.${system}.nvim
+            self.packages.${system}.comma
+          ];
+        };
+      });
     };
 }

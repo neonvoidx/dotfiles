@@ -401,7 +401,7 @@ case $@ in
   ;;
 esac
 
-if [[ -z "$icon_result" ]]; then
+if [[ -z "$icon_result" || "$icon_result" == :*: ]]; then
   icon_result="$default_icon"
 fi
 

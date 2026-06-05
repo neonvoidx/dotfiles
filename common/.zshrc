@@ -18,7 +18,14 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 autoload -Uz _zinit
 autoload -Uz compinit
-compinit
+_zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+if [[ -s "$_zcompdump" && -n "$_zcompdump"(#qN.mh-24) ]]; then
+  compinit -C -d "$_zcompdump"
+else
+  compinit -d "$_zcompdump"
+  zcompile "$_zcompdump" >/dev/null 2>&1
+fi
+unset _zcompdump
 (( ${+_comps} )) && _comps[zinit]=_zinit
 setopt promptsubst
 # FZF (load early so widgets exist before highlighters/wrapper hooks)
@@ -186,6 +193,9 @@ fi
 alias hypr="e ~/.config/hypr/hyprland.conf"
 alias yay="paru" #replace yay with paru incase we copy paste commands from onlines sources using yay
 alias dev="cd ~/dev"
+drs() {
+  nix build "$HOME/nix#darwinConfigurations.jrreed-mac.system" && sudo ./result/activate
+}
 function findsyms() {
     local search_path="${1:-.}"
     find "$search_path" -type l -ls
@@ -406,9 +416,11 @@ ensure-ssh() {
       }
       "$bash_path" "$HOME/.ssh/scm-script.sh" "$@"
     }
-    scm-ssh start_agent >/dev/null 2>&1
     if ! _ssh_agent_has_identities "$HOME/.ssh/scm-agent.sock"; then
-      scm-ssh ssh_reset
+      scm-ssh start_agent >/dev/null 2>&1
+      if ! _ssh_agent_has_identities "$HOME/.ssh/scm-agent.sock"; then
+        scm-ssh ssh_reset
+      fi
     fi
   fi
 }
@@ -421,12 +433,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(zoxide init zsh --cmd cd --hook pwd)"
 
 # fast fetch 
-if command -v fastfetch &> /dev/null; then
-  fastfetch
-fi
+# if command -v fastfetch &> /dev/null; then
+#   fastfetch
+# fi
 
-# Uncomment to profile
-# zprof
 export CMAKE_PREFIX_PATH="/usr/local:$CMAKE_PREFIX_PATH"
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 
@@ -434,4 +444,11 @@ eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
 eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
+
 # scm-ssh start_agent
+export http_proxy=http://www-proxy.us.oracle.com:80/
+export https_proxy=http://www-proxy.us.oracle.com:80/
+export no_proxy='localhost,127.0.0.1,.oracle.com,.oracleiaas.com,.oraclecloud.com,.oraclecorp.com,.grungy.us'
+
+# Uncomment to profile
+# zprof

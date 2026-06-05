@@ -1,0 +1,13 @@
+set shell := ["zsh", "-cu"]
+
+build:
+    nix build .#
+
+check:
+    nix flake check
+
+install:
+    nix profile install .#default
+
+update:
+    nix flake update
