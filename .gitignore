@@ -114,3 +114,4 @@ linux/.config/streamcontroller/data
 /common/.config/opencode/opencode.json
 /common/.config/opencode/oh-my-opencode.json
 /common/.config/opencode/memory.md
+/mac/.aider.conf.yml
