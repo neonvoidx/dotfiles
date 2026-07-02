@@ -276,6 +276,15 @@ reload-ssh() {
   ssh-add -e "$provider" >/dev/null 2>&1
   ssh-add -s "$provider"
 }
+
+_ensure_ssh_pkcs11() {
+  [[ -n "$SSH_TTY" ]] && return 0
+  local provider
+  provider="$(_ssh_pkcs11_provider)" || return 0
+
+  _ssh_agent_has_pkcs11_key "$provider" && return 0
+  ssh-add -s "$provider" >/dev/null 2>&1 || true
+}
 # Check ZSH plugin load times
 timezsh() {
   shell=${1-$SHELL}
@@ -383,6 +392,18 @@ _ssh_agent_has_key() {
   ssh-add -l 2>/dev/null | grep -Fq "$fingerprint"
 }
 
+_ssh_agent_has_pkcs11_key() {
+  local provider="$1" identities key fingerprint
+  identities="$(ssh-add -l 2>/dev/null)" || return 1
+
+  while IFS= read -r key; do
+    fingerprint="$(ssh-keygen -lf /dev/stdin 2>/dev/null <<< "$key" | awk '{print $2}')"
+    [[ -n "$fingerprint" && "$identities" == *"$fingerprint"* ]] && return 0
+  done < <(ssh-keygen -D "$provider" 2>/dev/null)
+
+  return 1
+}
+
 _ensure_ssh_key() {
   local key="$HOME/.ssh/id_ed25519_jacobrreed"
   [[ -r "$key" ]] || return 0
@@ -404,6 +425,7 @@ _ssh_agent_has_identities() {
 ensure-ssh() {
   _ensure_ssh_agent
   _ensure_ssh_key
+  _ensure_ssh_pkcs11
 
   if [[ -f "$HOME/.ssh/scm-script.sh" ]]; then
     scm-ssh() {

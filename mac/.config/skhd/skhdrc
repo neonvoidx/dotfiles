@@ -20,7 +20,8 @@ cmd - l : yabai -m window --focus east
 cmd - h : yabai -m window --focus west
 
 # Full screen window
-cmd +shift - f: yabai -m window --toggle zoom-parent
+cmd + shift - f: yabai -m window --toggle zoom-fullscreen
+
 
 # Split toggle
 # ;

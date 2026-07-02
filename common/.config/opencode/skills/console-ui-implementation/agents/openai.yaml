@@ -1,0 +1,4 @@
+interface:
+  display_name: "Console UI Implementation Plans"
+  short_description: "Create ticket-numbered repo implementation plans."
+  default_prompt: "Create an implementation plan for this Console UI Testing Agent task."

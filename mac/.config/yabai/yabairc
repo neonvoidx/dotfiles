@@ -74,7 +74,7 @@ yabai -m rule --add app=".*Proton Pass.*" manage=off
 yabai -m rule --add app=".*Chromium.*" manage=off
 yabai -m rule --add app=".*Slack.*" manage=on space=5
 # Managed
-yabai -m rule --add app="^Microsoft Outlook$" title=".*[Rr]eminder.*" manage=off space=1
+yabai -m rule --add app="^Microsoft Outlook$" title=".*[Rr]eminders?.*" manage=off space=1
 yabai -m rule --add app="^Microsoft Outlook$" subrole!="^AXStandardWindow$" manage=off
 yabai -m rule --add app="^Microsoft Outlook$" subrole="^AXStandardWindow$" title!=".*[Rr]eminder.*" manage=on space=2
 yabai -m rule --add app=".*zoom.*" subrole!="^AXStandardWindow$" manage=off
@@ -91,6 +91,11 @@ yabai -m signal --add event=window_focused action="sketchybar -m --trigger windo
 yabai -m signal --add event=window_focused action="~/.config/yabai/toggle_focus_follows_mouse.sh"
 yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
 yabai -m signal --add event=system_woke action="sh -c 'sleep 1; sketchybar --reload'"
+
+# Outlook reminder windows can appear before their final title is set, so move
+# them on both creation and title changes instead of relying only on rules.
+yabai -m signal --add event=window_created app="^Microsoft Outlook$" title=".*[Rr]eminders?.*" action="yabai -m window \$YABAI_WINDOW_ID --space 1"
+yabai -m signal --add event=window_title_changed app="^Microsoft Outlook$" title=".*[Rr]eminders?.*" action="yabai -m window \$YABAI_WINDOW_ID --space 1"
 killall sketchybar 2>/dev/null || true
 sketchybar
 

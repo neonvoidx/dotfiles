@@ -1,106 +1,211 @@
 tap "acep/brew", "ssh://git@bitbucket.oci.oraclecorp.com:7999/acep/brew.git"
 tap "acsandmann/tap"
+tap "anomalyco/tap", "https://github.com/anomalyco/homebrew-tap.git"
 tap "asmvik/formulae"
-tap "felixkratz/formulae"
+tap "felixkratz/formulae", trusted: { formulae: ["sketchybar"] }
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "jackielii/tap"
 tap "jstkdng/programs"
-tap "koekeishiya/formulae"
+tap "koekeishiya/formulae", "https://github.com/asmvik/homebrew-formulae.git"
 tap "nikitabobko/tap"
-tap "sst/tap"
+# Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
+# C Foreign Function Interface for Python
 brew "cffi"
+# General-purpose data compression with high compression ratio
 brew "xz"
+# Zstandard is a real-time compression algorithm
 brew "zstd"
+# TIFF library and utilities
 brew "libtiff"
+# Color management engine supporting ICC profiles
 brew "little-cms2"
+# Versatile and fast Unicode/ASCII/ANSI graphics renderer
 brew "chafa"
+# Cross-platform make
 brew "cmake"
+# Command-line interface for SQLite
 brew "sqlite"
+# Defines a standard way of committing rules and communicating it
 brew "commitizen"
+# GNU File, Shell, and Text utilities
 brew "coreutils"
+# Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# Power of curl, ease of use of httpie
 brew "curlie"
+# Load/unload environment variables based on $PWD
 brew "direnv"
+# Perl lib for reading and writing EXIF metadata
 brew "exiftool"
+# Powerful, lightweight programming language
 brew "lua"
+# Like neofetch, but much faster because written mostly in C
 brew "fastfetch"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# X11 image viewer
 brew "feh"
+# Lock file during command
 brew "flock"
+# Fast and simple Node.js version manager
 brew "fnm"
+# Command-line outline and bitmap font editor/converter
 brew "fontforge"
+# Library for manipulating fonts
 brew "fonttools"
+# Command-line fuzzy finder written in Go
 brew "fzf"
+# GitHub command-line tool
 brew "gh"
+# Interpreter for PostScript and PDF
 brew "ghostscript"
+# Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# Audit git repos for secrets
 brew "gitleaks"
+# GNU implementation of the famous stream editor
 brew "gnu-sed"
+# GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Tools and libraries to manipulate images in select formats
 brew "imagemagick"
+# Calculate various network masks, etc. from a given IP address
 brew "ipcalc"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
+# Simple terminal UI for git commands
+brew "lazygit"
+# Input filter for the pager less
 brew "lesspipe"
+# Portable Foreign Function Interface library
 brew "libffi"
+# Version of the SSL/TLS protocol forked from OpenSSL
 brew "libressl"
+# Clone of ls with colorful output, file type icons, and more
 brew "lsd"
+# Tool for linting and static analysis of Lua code
 brew "luacheck"
+# Just-In-Time Compiler (JIT) for the Lua programming language
 brew "luajit"
+# Package manager for the Lua programming language
 brew "luarocks"
+# Mac App Store command-line interface
 brew "mas"
+# Unified display of technical and tag data for audio/video
 brew "media-info"
+# Oracle Cloud Infrastructure CLI
 brew "oci-cli"
+# Create, run, and share large language models (LLMs)
 brew "ollama"
+# AI coding agent, built for the terminal
+brew "opencode"
+# Development kit for the Java programming language
 brew "openjdk"
+# Tools and libraries for smart cards
 brew "opensc", link: false
+# OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
+# Friendly PIL fork (Python Imaging Library)
 brew "pillow"
+# Execute binaries from Python packages in isolated environments
 brew "pipx"
+# Package compiler and linker metadata toolkit
 brew "pkgconf"
+# Paste PNG into files
 brew "pngpaste"
+# PNG image optimizing utility
 brew "pngquant"
+# PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
+# Framework for managing multi-language pre-commit hooks
 brew "pre-commit"
+# Python version management
 brew "pyenv"
+# C library and command-line tool to generate (extended) regular expressions
 brew "rgxg"
+# Simple keystroke visualizer
 brew "showkey"
+# Cross-shell prompt for astronauts
 brew "starship"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Change macOS audio source from the command-line
 brew "switchaudio-osx"
+# Utility to modify the macOS Accessibility Database (TCC.db)
 brew "tccutil"
+# Modernized, complete, self-contained TeX/LaTeX engine
 brew "tectonic"
+# Official tldr client written in Rust
 brew "tlrc"
+# Terminal multiplexer
 brew "tmux"
+# Program that allows you to count code, quickly
 brew "tokei"
+# Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Auto-hinter for TrueType fonts
 brew "ttfautohint"
+# Command-line unarchiving tools supporting multiple formats
 brew "unar"
+# URL extractor/launcher
 brew "urlview"
+# Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Executes a program periodically, showing output fullscreen
 brew "watch"
+# Internet file retriever
 brew "wget"
+# Access X11 clipboards from the command-line
 brew "xclip"
+# Fake keyboard/mouse input and window management for X
+brew "xdotool"
+# Yet Another Dotfiles Manager
 brew "yadm"
+# JavaScript package manager
 brew "yarn"
+# Blazing fast terminal file manager written in Rust, based on async I/O
+brew "yazi"
+# Command-line tool for the YubiKey PIV application
 brew "yubico-piv-tool"
+# Shell extension to navigate your filesystem faster
 brew "zoxide"
-brew "acep/brew/ossh"
+# Simple hotkey-daemon for macOS.
+brew "asmvik/formulae/skhd", trusted: true
+# A tiling window manager for macOS based on binary space partitioning.
+brew "asmvik/formulae/yabai", args: ["HEAD"], trusted: true
+# A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
+# Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
+# Desktop password and login vault
 cask "bitwarden"
+# Utility that prevents the system from going to sleep
 cask "caffeine"
+cask "font-jetbrains-maple-mono-nf"
+# Keyboard customiser
 cask "karabiner-elements"
+# Open-source keystroke visualiser
 cask "keycastr"
+# GPU-based terminal emulator
 cask "kitty"
+# Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# Smart card libraries and utilities
 cask "opensc-app"
+# Desktop client for Proton Pass
 cask "proton-pass"
+# Kubernetes and container management on the desktop
 cask "rancher"
+# Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
 npm "cline"
 npm "corepack"
