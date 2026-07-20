@@ -4,9 +4,9 @@ source "$HOME/.config/sketchybar/colors.sh"
 
 update() {
   if [ "$SELECTED" = "true" ]; then
-    sketchybar --animate tanh 20 --set $NAME icon.highlight=on
+    sketchybar --animate tanh 5 --set $NAME icon.highlight=on
   else
-    sketchybar --animate tanh 20 --set $NAME icon.highlight=off
+    sketchybar --animate tanh 5 --set $NAME icon.highlight=off
   fi
 
   # Show app icons for this space (exclude minimized windows)

@@ -14,13 +14,14 @@ At a high level, the skill follows this flow:
 
 1. Load the team config and select the right `[[team]]` block.
 2. Validate auth before querying tickets, OCI-backed tools, logging, or DevOps surfaces.
-3. Read the incident ticket first and classify:
-   - ticket intent: `investigation required` or `informational / data-only`
-   - cut type: `human-cut`, `automation-cut`, or `unknown`
-4. Resolve the authoritative ticket source from live incident metadata and related links, including Jira-to-OTS pivots when the incident chain points to OTS.
-5. For eligible human-cut investigations, run best-effort FAQ/doc matching and historical ticket comparison.
-6. Present a pre-execution investigation plan before broad evidence collection when working with a human user.
-7. Collect evidence in a controlled order:
+3. Read the incident ticket first and classify ticket intent as `investigation required` or `informational / data-only`.
+4. Check live ticket labels for AI eligibility; if any AI-ineligible label is present, stop and warn the user before any AI triage work.
+5. Classify cut type as `human-cut`, `automation-cut`, or `unknown`.
+6. Resolve the authoritative ticket source from live incident metadata and related links, including Jira-to-OTS pivots when the incident chain points to OTS.
+7. Re-check AI eligibility if the workflow pivots to a different authoritative ticket.
+8. For eligible human-cut investigations, run best-effort FAQ/doc matching and historical ticket comparison.
+9. Present a pre-execution investigation plan before broad evidence collection when working with a human user.
+10. Collect evidence in a controlled order:
    - metrics and alarms
    - canary logs when applicable
    - Lumberjack, splat, or workflow logs
@@ -28,9 +29,9 @@ At a high level, the skill follows this flow:
    - impact analysis from ticket and runtime evidence
    - ODO and Shepherd release activity
    - local code and repository context
-8. Synthesize findings and challenge the hypothesis.
-9. For complete investigations, write the investigation back to the ticket unless the user asks not to.
-10. For blocked investigations, do not comment, label, transition status, or update companion fields by default. If the user explicitly asks for blocked writeback, post only blockers and next step, then add `ai-triage-blocked`.
+11. Synthesize findings and challenge the hypothesis.
+12. For complete investigations, show the final draft, automatically post that exact comment, and synchronize the necessary labels unless the user explicitly asks for draft-only handling.
+13. For blocked investigations, do not comment, label, transition status, or update companion fields by default. If the user explicitly asks for blocked writeback, post only blockers and next step, then add `ai-triage-blocked`.
 
 The evidence-order summary above is intentionally opinionated:
 
@@ -38,8 +39,9 @@ The evidence-order summary above is intentionally opinionated:
 - use the NOC cross-check as corroborating regional context, not as the primary source of truth for incident scope or root cause
 - record both positive NOC overlaps and negative NOC results in the investigation outcome
 - when a related NOC incident is cited as reference context in a complete final writeback, sync its exact NOC ticket id onto the incident ticket as a label when the ticket transport supports label mutation
-- after complete final writeback, sync `ai-skill-triage` and the project-scoped `ai-triaged-by-<ticket-project-key>` label when the live ticket project reconciles cleanly against the selected team config
+- after successful complete final writeback, automatically sync `ai-skill-triage` and the project-scoped `ai-triaged-by-<ticket-project-key>` label when the live ticket project reconciles cleanly against the selected team config
 - do not sync normal triage, NOC, RCA, status, or companion-field updates while an investigation is blocked
+- do not perform AI triage or mutate the ticket when an AI-ineligible label is present
 - use the workflow-defined deployment correlation window for ODO and Shepherd release searches instead of the narrower first metric or log query window
 - for request-path incidents, start the first replay in the system that emitted the strongest signal: splat for splat-backed or proxy-side signals, downstream service logs for downstream-emitted metrics or application errors, then pivot cross-system using stable request-id alignment
 
@@ -183,24 +185,29 @@ Typical inputs:
 
 For human-driven investigations, the skill should stop after ticket intake and present the pre-execution plan before it runs broad metrics, logs, release, or code analysis.
 
-After the current patch, the expected local-repo investigation sequence is:
+Expected local-repo investigation sequence:
 
 1. team config selection
 2. auth preflight
 3. ticket intake
-4. ticket intent and cut-type classification
-5. source-of-truth resolution
-6. FAQ/doc answer pass when eligible
-7. historical ticket triage when eligible
-8. pre-execution investigation plan
-9. explicit approval for human-driven investigations
-10. metrics and logs
-11. regional NOC cross-check using the workflow-defined NOC correlation window when a concrete investigation region has been derived
-12. impact analysis
-13. ODO, deployments, and releases using the workflow-defined deployment correlation window
-14. code and repo context
-15. conclusion review and synthesis
-16. ticket writeback for complete investigations only; blocked investigations do not mutate tickets by default
+4. ticket intent classification
+5. AI eligibility check from live ticket labels
+6. ticket cut-type classification
+7. source-of-truth resolution
+8. AI eligibility re-check when source-of-truth resolution pivots to a different ticket
+9. FAQ/doc answer pass when eligible
+10. historical ticket triage when eligible
+11. pre-execution investigation plan
+12. explicit approval for human-driven investigations
+13. metrics and logs
+14. regional NOC cross-check using the workflow-defined NOC correlation window when a concrete investigation region has been derived
+15. impact analysis
+16. ODO, deployments, and releases using the workflow-defined deployment correlation window
+17. code and repo context
+18. conclusion review and synthesis
+19. show and automatically post complete investigation comments with necessary label sync; blocked investigations do not mutate tickets by default
+
+AI-ineligible labels are matched case-insensitively: `MFO_GENERATED_TICKET`, `OCIONOCI`, `PHONEBOOK-QUARTERLY-VALIDATION`, `PSA`, `RB-AUTOMATION`, `RBC`, `RBC_REGION_BUILD`, `REGION_BUILD_FAILURE_RCA`, `SC_AUTOCUT`, `SECURITYCENTRAL`, `VULNERABILITYSCAN`, and `AI-TRIAGING-NOT-NEEDED`.
 
 ### Prompting Tips
 
@@ -217,14 +224,14 @@ What the skill should infer on its own:
 - validating auth before broad evidence collection
 - whether Jira or OTS is the authoritative ticket source
 - whether to check metrics, logs, canary, releases, or code first
-- whether complete writeback is part of the default workflow, and whether blocked writeback was explicitly requested
+- that complete comment and necessary-label writeback is automatic by default, and whether blocked writeback was explicitly requested
 
 What is still helpful to mention when you know it:
 
 - the team config path or team name when multiple teams could match, or when you want to force one specific config
 - a request id, workflow id, canary name, region, or time window
 - a specific area to prioritize first, such as splat or Shepherd
-- whether you want complete writeback drafted only or actually posted
+- whether you want to override the automatic complete writeback and keep the result draft-only
 - whether you explicitly want a blocked-investigation writeback when required evidence is unavailable
 
 ## Dependencies

@@ -74,9 +74,9 @@ yabai -m rule --add app=".*Proton Pass.*" manage=off
 yabai -m rule --add app=".*Chromium.*" manage=off
 yabai -m rule --add app=".*Slack.*" manage=on space=5
 # Managed
-yabai -m rule --add app="^Microsoft Outlook$" title=".*[Rr]eminders?.*" manage=off space=1
 yabai -m rule --add app="^Microsoft Outlook$" subrole!="^AXStandardWindow$" manage=off
 yabai -m rule --add app="^Microsoft Outlook$" subrole="^AXStandardWindow$" title!=".*[Rr]eminder.*" manage=on space=2
+yabai -m rule --add app="^Microsoft Outlook$" title=".*[Rr]eminders?.*" manage=off space=1
 yabai -m rule --add app=".*zoom.*" subrole!="^AXStandardWindow$" manage=off
 yabai -m rule --add app=".*zoom.*" subrole="^AXStandardWindow$" manage=on space=3
 yabai -m rule --add app=".*Firefox.*" manage=on space=1
@@ -97,7 +97,8 @@ yabai -m signal --add event=system_woke action="sh -c 'sleep 1; sketchybar --rel
 yabai -m signal --add event=window_created app="^Microsoft Outlook$" title=".*[Rr]eminders?.*" action="yabai -m window \$YABAI_WINDOW_ID --space 1"
 yabai -m signal --add event=window_title_changed app="^Microsoft Outlook$" title=".*[Rr]eminders?.*" action="yabai -m window \$YABAI_WINDOW_ID --space 1"
 killall sketchybar 2>/dev/null || true
-sketchybar
+# Keep yabairc running so the window-list signals below are registered.
+sketchybar >/dev/null 2>&1 &
 
 # Window List Caching
 yabai -m signal --add event=window_created action="~/.config/yabai/refresh_window_list.sh"

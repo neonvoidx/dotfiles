@@ -16,6 +16,9 @@ exec-on-workspace-change = [
   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE --hotload true',
 ]
 
+# Keep workspace app icons current when a window opens, closes, or gains focus.
+on-focus-changed = ['exec-and-forget sketchybar --trigger aerospace_windows_change']
+
 
 # Start AeroSpace at login
 start-at-login = true
@@ -75,7 +78,7 @@ outer.right = 5
 #                   keypadMinus, keypadMultiply, keypadPlus
 # - Arrows.         left, down, up, right
 # All possible modifiers: cmd, alt, ctrl, shift
-cmd-alt-r = "reload-config"
+cmd-shift-r = "reload-config"
 cmd-enter = 'exec-and-forget open -n /Applications/kitty.app'
 
 # Close
@@ -232,6 +235,11 @@ run = 'layout tiling'
 check-further-callbacks = false
 if.app-name-regex-substring = 'Chromium'
 run = 'layout floating'
+
+[[on-window-detected]]
+check-further-callbacks = false
+if = 'true'
+run = 'exec-and-forget sketchybar --trigger aerospace_windows_change'
 
 [workspace-to-monitor-force-assignment]
 1 = 1

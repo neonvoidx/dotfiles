@@ -93,7 +93,7 @@ scroll() {
   FLOAT="$(osascript -e 'tell application "Spotify" to get player position')"
   TIME=${FLOAT%.*}
   
-  sketchybar --animate linear 10 \
+  sketchybar --animate linear 5 \
              --set spotify.state slider.percentage="$((TIME*100/DURATION))" \
                                  icon="$(date -r $TIME +'%M:%S')" \
                                  label="$(date -r $DURATION +'%M:%S')"

@@ -2,7 +2,14 @@
 
 Use this workflow when the CM is `runbook-backed` or `hybrid`.
 
-## 1. Identify The Owning Team
+## 1. Repository Version Preflight
+
+Before reading CM evidence, use `repository-version-preflight` with `../SKILL.md` as the caller.
+
+- Do not restate or override the configured source, raw-file read method, comparison rule, or warning-only behavior here.
+- Carry the preflight status into the final review and any Jira writeback.
+
+## 2. Identify The Owning Team
 
 - Read the ticket body and structured fields.
 - Resolve the service team from:
@@ -12,7 +19,7 @@ Use this workflow when the CM is `runbook-backed` or `hybrid`.
   - referenced repos, runbooks, or known system names
 - If a team config exists, use it as the primary source of team and runbook resolution.
 
-## 2. Present The Review Plan
+## 3. Present The Review Plan
 
 - Summarize the runbook-backed evidence you plan to inspect before gathering it broadly.
 - State:
@@ -25,7 +32,7 @@ Use this workflow when the CM is `runbook-backed` or `hybrid`.
 - In human-driven reviews, stop after presenting this plan and wait for explicit user approval.
 - In unattended automation, continue without pausing.
 
-## 3. Resolve The CM Class After Approval
+## 4. Resolve The CM Class After Approval
 
 - Use `references/change-classes.md` to classify the ticket into a reusable class.
 - Common classes include:
@@ -36,7 +43,7 @@ Use this workflow when the CM is `runbook-backed` or `hybrid`.
   - `host-maintenance`
 - Record the chosen class and any ambiguity.
 
-## 4. Resolve The Runbook Source After Approval
+## 5. Resolve The Runbook Source After Approval
 
 Use the team config to decide where to look first:
 
@@ -57,7 +64,7 @@ If no existing runbook can be found for a manual CM:
 - treat the missing runbook as a review risk, not as a neutral absence
 - continue the review using the ticket text only, but state that implementation, validation, and rollback confidence are reduced
 
-## 5. Normalize The Runbook Into Review Anchors
+## 6. Normalize The Runbook Into Review Anchors
 
 Extract the runbook's expectations into a stable checklist instead of matching exact wording.
 
@@ -70,7 +77,7 @@ Record the runbook-backed source of truth for:
 - rollback or safe-restoration path
 - escalation or abort conditions
 
-## 6. Compare The CM Against The Runbook
+## 7. Compare The CM Against The Runbook
 
 Review the ticket for:
 
@@ -94,7 +101,7 @@ For data fixes, specifically check:
 - bounded mutation scope
 - after-state validation
 
-## 7. Add Hybrid Evidence When Present
+## 8. Add Hybrid Evidence When Present
 
 If the CM also links a release, repo change, or artifact version:
 
@@ -102,7 +109,7 @@ If the CM also links a release, repo change, or artifact version:
 - compare the release-backed evidence to the runbook-backed expectations
 - call out any mismatch between the operator procedure and the linked release or repo state
 
-## 8. Produce The Review
+## 9. Produce The Review
 
 Return findings first, ordered by severity.
 

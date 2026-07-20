@@ -1,13 +1,13 @@
 ---
 name: scm-pr
-description: "SCM PR Operations for OCI DevOps pull requests from a local checkout or known repository OCID. This is the canonical shared skill for PR discovery, PR creation, comment inspection, threaded replies, and review-complete freeform tagging; repo-local wrappers can layer repository-specific defaults on top."
+description: "SCM PR Operations for OCI DevOps pull requests from a local checkout or known repository OCID. This is the canonical shared skill for PR discovery, PR creation, comment inspection, threaded replies, Codex-origin freeform tagging, and review-complete freeform tagging; repo-local wrappers can layer repository-specific defaults on top."
 ---
 
 # SCM PR Operations
 
 ## Overview
 
-This is the shared `SCM PR Operations` skill for OCI DevOps pull requests. Use it when you need to validate OCI CLI auth, discover the repository and active PR, create a PR, inspect review comments, publish threaded replies, or mark a completed review with freeform tags.
+This is the shared `SCM PR Operations` skill for OCI DevOps pull requests. Use it when you need to validate OCI CLI auth, discover the repository and active PR, create a PR, inspect review comments, publish threaded replies, mark a PR with Codex-origin tags after Codex assists with repo-tracked code changes, or mark a completed review with freeform tags.
 
 Repo-local wrappers can layer repo defaults on top of this skill, such as profile name, session region, DevOps region, repository discovery file, default destination branch, or reply-prefix conventions.
 
@@ -76,9 +76,14 @@ oci devops pull-request list-pull-requests \
 - Push the branch first if it is not already available on `origin`.
 - Prepare the title and description before calling the create API.
 - Use the repo or workspace default destination branch unless the user asks for something different.
+- If Codex has first-hand workflow evidence that it assisted with repo-tracked code changes for this branch, add the Codex-origin freeform tag shown below.
+- This includes when Codex edited or generated repo-tracked files, committed or helped prepare the branch, creates the PR, or updates an existing PR after making code changes.
+- Do not add Codex-origin tags when Codex only comments, reviews, inspects, or updates PR metadata without contributing code changes.
 
 ```bash
 BRANCH=$(git branch --show-current)
+CODEX_ORIGIN_TAGS='{"codex-ai-assisted":"true"}'
+
 oci devops pull-request create \
   --profile <profile> \
   --auth security_token \
@@ -87,7 +92,8 @@ oci devops pull-request create \
   --source-branch "$BRANCH" \
   --destination-branch <target-branch> \
   --display-name "<pr title>" \
-  --description "<pr body>"
+  --description "<pr body>" \
+  --freeform-tags "$CODEX_ORIGIN_TAGS"
 ```
 
 - After creation, reuse the returned PR OCID for comment listing and replies.
@@ -180,7 +186,18 @@ Resolve `<local-machine-user-id>` with `id -un`. Merge these keys into the curre
 - When pushing back, keep the tone respectful, evidence-based, and specific about tradeoffs or observed behavior.
 - Prefer “here is why this is already safe / here is the stronger alternative” over flat contradiction.
 
-### 5. Review completion tagging
+### 5. Codex-origin code assistance tagging
+
+- When Codex has first-hand workflow evidence that it assisted with repo-tracked code changes for the OCI DevOps PR, add `{"codex-ai-assisted": "true"}` to the pull request freeform tags.
+- Valid signals include Codex editing or generating repo-tracked files, committing or helping prepare the branch, creating the PR, or updating an existing PR after making code changes.
+- Freeform tag values are strings. Do not use JSON booleans.
+- Prefer passing the Codex-origin tags directly to `oci devops pull-request create --freeform-tags`.
+- If Codex adds code changes to an existing PR, fetch the current PR first and merge the Codex-origin tag into any existing freeform tag map instead of replacing it.
+- Do not add Codex-origin tags when Codex only comments, reviews, inspects, rebases, resolves conflicts without changing code, or updates PR metadata.
+- If the PR is created before the tag is applied, fetch the current PR first and merge the Codex-origin tag into any existing freeform tag map instead of replacing it.
+- Treat these tags as best-effort usage tracking, not proof that every line of the PR was AI-authored.
+
+### 6. Review completion tagging
 
 - After completing an SCM PR review, add `{"scm-pr-reviewed": "true", "scm-pr-reviewer": "<local-machine-user-id>"}` to the pull request freeform tags.
 - Freeform tag values are strings. Do not use a JSON boolean for `scm-pr-reviewed`.
@@ -191,7 +208,7 @@ Resolve `<local-machine-user-id>` with `id -un`. Merge these keys into the curre
 - Do not add the tags for failed, partial, or ambiguous reviews.
 - `--freeform-tags` updates the whole freeform tag map. Always fetch the current PR first and merge the review tags into existing tags instead of replacing them.
 
-### 6. Repo-local wrapper behavior
+### 7. Repo-local wrapper behavior
 
 - Repo-local `AGENTS.md` files or wrapper skills may override this shared skill with workspace defaults.
 - Keep the shared `SCM PR Operations` skill generic and reusable; keep workspace-specific profile names, regions, repository lookup rules, and branch conventions in the wrapper.
@@ -223,6 +240,8 @@ oci devops pull-request list-pull-requests \
 ### PR creation
 
 ```bash
+CODEX_ORIGIN_TAGS='{"codex-ai-assisted":"true"}'
+
 oci devops pull-request create \
   --profile <profile> \
   --auth security_token \
@@ -231,7 +250,32 @@ oci devops pull-request create \
   --source-branch "<branch>" \
   --destination-branch "<target-branch>" \
   --display-name "<pr title>" \
-  --description "<pr body>"
+  --description "<pr body>" \
+  --freeform-tags "$CODEX_ORIGIN_TAGS"
+```
+
+Only include `--freeform-tags "$CODEX_ORIGIN_TAGS"` when Codex has first-hand workflow evidence that it assisted with repo-tracked code changes for the PR.
+
+### Merge-safe Codex-origin tag update
+
+Use this when Codex adds code changes to an existing PR or when a PR was created before the Codex-origin tag was applied:
+
+```bash
+PR_JSON=$(oci devops pull-request get \
+  --profile <profile> \
+  --auth security_token \
+  --region <devops-region> \
+  --pull-request-id <pr-ocid>)
+
+MERGED_TAGS=$(printf '%s' "$PR_JSON" | jq -c '.data."freeform-tags" // {} | . + {"codex-ai-assisted": "true"}')
+
+oci devops pull-request update \
+  --profile <profile> \
+  --auth security_token \
+  --region <devops-region> \
+  --pull-request-id <pr-ocid> \
+  --freeform-tags "$MERGED_TAGS" \
+  --force
 ```
 
 ### Comment listing

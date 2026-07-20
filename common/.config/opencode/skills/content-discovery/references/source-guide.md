@@ -3,7 +3,7 @@ name: content-discovery-source-guide
 description: Curated source guide for OCI starter-pack content discovery surfaces, connector catalogs, and authoritative setup references
 metadata:
   owner: platform_org
-  last_updated: 2026-05-20
+  last_updated: 2026-06-01
 ---
 
 # Content Discovery Source Guide
@@ -35,6 +35,16 @@ Use this as a curated starting map. Prefer these landing pages and catalogs over
 | ORA skills | ORA-managed skill catalog/installer surface for ORA runtimes | [Oracle Runs Agents](https://internal-docs.oraclecorp.com/iaas/internalcontent/ai/ora-landing.htm), `ora --version-cli`, `ora --help` | Verify the live ORA version exposes `ora skills`; ORA-owned installs are not AIPack profile sync |
 | AI Skills Registry | Oracle skill catalog/user guide | [AI Skills Registry User Guide](https://confluence.oraclecorp.com/confluence/pages/viewpage.action?pageId=19250903696) | Separate catalog; not automatically installed by AIPack |
 | OCI Skills Hub | OCI skill hub/reference surface | [OCI Skills Hub](https://confluence.oraclecorp.com/confluence/pages/viewpage.action?pageId=19534273766) | Verify current install path before recommending |
+
+## Catalog Model
+
+Use this model when explaining how discovery surfaces relate:
+
+- `catalog/governance`: PromptLib, Skills Hub / AI Skills Registry, Codex plugin marketplace, team registries, and owner docs.
+- `install/distribution`: native PromptLib skill installs, ORA installs, Codex/Claude plugins, app connector catalogs, MCP Gateway, and AIPack pack installs.
+- `local composition/update`: AIPack profiles, pack registries, lockfile state, `content_paths`, sync, and update checks.
+
+AIPack is not the Oracle marketplace. It is the local composition and sync layer for packs, MCP config, prompts, workflows, rules, and multi-harness profiles. Native catalogs and plugin/app surfaces remain first-class when they are the owning install path.
 
 ## Overlap And Dedupe Rules
 

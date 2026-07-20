@@ -73,6 +73,11 @@ Use the bundled template at `templates/pr_description.md` and preserve these sec
 - For the dependency section, list concrete dependent commit hashes or PRs when they exist.
 - If there is no evidence of a dependency, state none.
 - For checklist values, set `[Y]` or `[N]` from branch evidence only.
+- For `Test Results & Code Coverage`, include only validation evidence that is meaningful for the changed behavior:
+  - Prefer exact command results, generated artifacts, or deterministic script output.
+  - When using a ticket-based or workflow example, state the ticket id, the changed workflow exercised, the expected behavior, and the observed pass/fail or before/after result.
+  - Do not include unrelated ticket metadata, labels, status, region, ownership, or companion-field details unless that exact data proves the changed PR behavior.
+  - If supporting context is useful but does not prove behavior, omit it or keep it to one brief `Example used:` sentence outside the validation bullets.
 - If coverage artifacts are missing, say so plainly in the final section.
 - Keep the language concise, factual, and reviewer-friendly.
 
@@ -80,7 +85,9 @@ Use the bundled template at `templates/pr_description.md` and preserve these sec
 
 - Confirm every template heading is present and in order.
 - Confirm the commit message recommendation follows `type: summary`.
+- Confirm every validation bullet explains which changed behavior it proves.
 - Confirm testing and docs claims are supported by the diff or known artifacts.
+- Remove validation details that are true but unrelated to the changed behavior before returning or updating a PR.
 - Return Markdown only.
 
 ## Notes

@@ -3,7 +3,7 @@ name: content-discovery
 description: Use when onboarding OCI users to available packs, registry entries, PromptLib spaces, ORA skills, Skills Hub / AI Skills Registry, Codex Enterprise apps/connectors, or non-pack content sources after installing OCI starter packs.
 metadata:
   owner: platform_org
-  last_updated: 2026-05-20
+  last_updated: 2026-06-01
 ---
 
 # Content Discovery
@@ -29,12 +29,23 @@ Do not dump raw JSON in the user-facing response. Summarize source, status, owne
 - `topic-search` - search the relevant live surfaces for a user-named task, tool, team, service, or content type; run only the read commands listed in this skill unless a mutation gate is approved.
 - `deep-discovery` - refresh or inspect local catalogs after the user approves the exact mutation command; report what changed in the cache or profile.
 - `setup-gap` - map missing keys, auth/session failures, and connector visibility gaps to the owning surface; do not recommend new content until the current setup gap is named.
+- `surface-map` - classify a named content/tool area across the catalog-model lanes; report canonical owner/source, install path, local composition status, and unresolved overlap.
 
 ## References
 
 Load [references/source-guide.md](references/source-guide.md) for `/onboard` source-tour mode and when the user asks what sources exist, where to start, or why a source is not handled by AIPack.
 
 If the user asks where to get help, what to search next, how Oracle/OCI/Platform AI surfaces relate, or why setup failed, invoke `oracle-ai-orientation` and use its source map/failure map before expanding discovery.
+
+## Catalog Model
+
+When a user asks how Oracle AI content surfaces relate, classify findings into three lanes instead of presenting one merged marketplace:
+
+1. `catalog/governance` - PromptLib, Skills Hub / AI Skills Registry, Codex plugin marketplace, team registries, and owner docs answer what exists, who owns it, and what review/support posture it has.
+2. `install/distribution` - native PromptLib skill installs, ORA installs, Codex/Claude plugins, app connector catalogs, MCP Gateway, and AIPack installs answer how a user gets the content or tool surface into a runtime.
+3. `local composition/update` - AIPack profiles, pack registries, lockfile state, `content_paths`, sync, and update checks answer what is active locally, whether it overlaps with existing packs, and what needs refresh or approval.
+
+Do not call AIPack the Oracle marketplace or collapse all catalogs into an AIPack registry. Say which lane each result belongs to, then recommend the lowest-friction next action for that lane.
 
 ## Evidence To Collect Safely
 

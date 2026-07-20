@@ -237,6 +237,13 @@ def build_ticket_update_body(
     if description is not None:
         required_fields["description"] = description
 
+    assigned_to = ticket_data.get("assignedTo")
+    if assigned_to is not None:
+        if isinstance(assigned_to, dict):
+            assigned_to = assigned_to.get("email")
+        if assigned_to:
+            required_fields["assignedTo"] = assigned_to
+
     optional_ticket_fields = {
         "rootCauseDescription": (
             ticket_data.get("rootCauseDescription")

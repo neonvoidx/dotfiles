@@ -73,7 +73,7 @@ update() {
   sketchybar -m "${args[@]}" > /dev/null
 
   if [ $COUNT -gt $PREV_COUNT ] 2>/dev/null || [ "$SENDER" = "forced" ]; then
-    sketchybar --animate tanh 15 --set github.bell label.y_offset=5 label.y_offset=0
+    sketchybar --animate tanh 5 --set github.bell label.y_offset=5 label.y_offset=0
   fi
 }
 

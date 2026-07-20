@@ -26,7 +26,10 @@ AVAILABLE_SKILLS = (
     "internal-confluence-page",
     "oncall-investigation",
     "object-store",
+    "service-oke-realm-setup",
     "pr-description",
+    "repository-version-preflight",
+    "mfo-region-build-status",
     "scm-pr",
     "bitbucket-pr",
     "release-check",
@@ -43,6 +46,7 @@ AVAILABLE_MCP_SERVERS = (
     "playwright",
     "ots",
     "mcp_shepherd",
+    "lts-mcp",
 )
 DEFAULT_ENABLED_MCP_SERVERS = AVAILABLE_MCP_SERVERS
 MCP_SERVERS_USING_SHARED_HOME = (
@@ -61,7 +65,6 @@ AVAILABLE_AUTH_SHELLS = ("zsh", "bash")
 MCP_ENV_SERVER_NAMES = ("stlm-mcp", "mcp-dope")
 SHARED_MODEL_PROVIDER = ""
 SHARED_MODEL = "gpt-5.5"
-SHARED_PROFILE = "gpt-5-5"
 DEFAULT_M2_REPOSITORY = str(Path.home() / ".m2" / "repository")
 DEFAULT_BITBUCKET_BASE_URL = "https://bitbucket.example.com"
 DEFAULT_BITBUCKET_ENV_FILENAME = "bitbucket-pr.env"
@@ -101,7 +104,10 @@ AGENTS_RELATIVE_PATHS = (
     "skills/internal-confluence-page/SKILL.md",
     "skills/oncall-investigation/SKILL.md",
     "skills/object-store/SKILL.md",
+    "skills/service-oke-realm-setup/SKILL.md",
     "skills/pr-description/SKILL.md",
+    "skills/repository-version-preflight/SKILL.md",
+    "skills/mfo-region-build-status/SKILL.md",
     "skills/scm-pr/SKILL.md",
     "skills/bitbucket-pr/SKILL.md",
     "skills/release-check/SKILL.md",
@@ -123,7 +129,6 @@ PLACEHOLDER_MAP = {
 GENERIC_TEMPLATE_REPLACEMENTS = {
     "<your-provider>": "...",
     "<your-default-model>": "...",
-    "<your-default-profile>": "...",
 }
 PATH_PLACEHOLDER_RE = re.compile(r"/ABSOLUTE/PATH/TO/[A-Z0-9_./-]+")
 TEMPLATE_PLACEHOLDER_RE = re.compile(r"<your-[^>]+>")
@@ -151,7 +156,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--trusted-repo")
     parser.add_argument("--model-provider")
     parser.add_argument("--model")
-    parser.add_argument("--profile")
+    parser.add_argument("--profile", help="Deprecated; ignored. Use a separate $CODEX_HOME/<name>.config.toml profile file.")
     parser.add_argument("--agents-mode", choices=AVAILABLE_AGENTS_MODES, default="copy")
     parser.add_argument("--agents-target")
     parser.add_argument("--disable-skill", action="append", default=[])
@@ -695,7 +700,6 @@ def build_values(args: argparse.Namespace) -> dict[str, str]:
         "trusted_repo": format_path(trusted_repo),
         "model_provider": args.model_provider or "",
         "model": args.model or "",
-        "profile": args.profile or "",
         "enabled_skills": ",".join(sorted(enabled_skills)),
         "enabled_mcp": ",".join(sorted(enabled_mcp)),
     }
@@ -748,12 +752,11 @@ def prompt_for_missing(args: argparse.Namespace) -> argparse.Namespace:
             DEFAULT_M2_REPOSITORY,
             required=True,
         )
-    if not any((args.model_provider, args.model, args.profile)) and prompt_yes_no(
+    if not any((args.model_provider, args.model)) and prompt_yes_no(
         "Override the shared Enterprise ChatGPT model defaults?", default=False
     ):
         args.model_provider = prompt_text("Model provider (optional)", args.model_provider or SHARED_MODEL_PROVIDER)
         args.model = prompt_text("Default model", args.model or SHARED_MODEL)
-        args.profile = prompt_text("Profile (optional)", args.profile or SHARED_PROFILE)
     args.trusted_repo = prompt_text(
         "Trusted repo example path",
         args.trusted_repo or args.repo_root,
@@ -1486,7 +1489,6 @@ def main() -> int:
 
     rendered = replace_setting(rendered, "model_provider", values["model_provider"])
     rendered = replace_setting(rendered, "model", values["model"])
-    rendered = replace_setting(rendered, "profile", values["profile"])
     for placeholder, replacement in GENERIC_TEMPLATE_REPLACEMENTS.items():
         rendered = rendered.replace(placeholder, replacement)
 
@@ -1522,6 +1524,17 @@ def main() -> int:
         print(f"Skill {skill_name}: {skill_status} at {skill_path}")
     print(f"Enabled skills: {', '.join(sorted(enabled_skills)) or '(none)'}")
     print(f"Enabled MCP servers: {', '.join(sorted(enabled_mcp)) or '(none)'}")
+    print(
+        "Devplat MCP Gateway plugin: configured through marketplace devplat-plugins. "
+        "Bo Peep MFO tools load with `devplat_mcp_gateway__use target=mfo-bo-peep` "
+        "after local gateway setup."
+    )
+    print(
+        "Bo Peep gateway prerequisites: run `mcpgw config BoPeep`, "
+        "`mcpgw refresh-jwt`, and start Docker/Colima locally if the gateway "
+        "doctor reports missing config, auth, or runtime. Codex should not run "
+        "those credential/config mutation commands."
+    )
     if "chrome-devtools" in enabled_mcp:
         print(
             "Chrome DevTools MCP setup: the shared template uses the Canary channel "
@@ -1541,6 +1554,13 @@ def main() -> int:
         print(
             "Shepherd MCP prerequisite: mcp_shepherd reads credentials from "
             f"{Path(values['home_dir']) / '.env'}."
+        )
+    if "lts-mcp" in enabled_mcp:
+        print(
+            "LTS MCP prerequisite: lts-mcp defaults to the OC16 Load Testing "
+            "endpoint and signs with OCI_PROFILE=DEFAULT. Authenticate "
+            "that profile in us-westjordan-1, or set LTS_BEARER_TOKEN or "
+            "LTS_EXTRA_HEADERS_JSON to override OCI signing."
         )
     if "centralconfluence" in enabled_mcp:
         print(

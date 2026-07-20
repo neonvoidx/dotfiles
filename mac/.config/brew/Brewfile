@@ -2,6 +2,7 @@ tap "acep/brew", "ssh://git@bitbucket.oci.oraclecorp.com:7999/acep/brew.git"
 tap "acsandmann/tap"
 tap "anomalyco/tap", "https://github.com/anomalyco/homebrew-tap.git"
 tap "asmvik/formulae"
+tap "cloudshell/oci-ops", "ssh://git@bitbucket.oci.oraclecorp.com:7999/cloudshell/homebrew-ociops.git"
 tap "felixkratz/formulae", trusted: { formulae: ["sketchybar"] }
 tap "homebrew/bundle"
 tap "homebrew/core"
@@ -46,8 +47,6 @@ brew "curlie"
 brew "direnv"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
-# Powerful, lightweight programming language
-brew "lua"
 # Like neofetch, but much faster because written mostly in C
 brew "fastfetch"
 # Simple, fast and user-friendly alternative to find
@@ -80,10 +79,14 @@ brew "gnupg"
 brew "imagemagick"
 # Calculate various network masks, etc. from a given IP address
 brew "ipcalc"
+# Git-compatible distributed version control system
+brew "jj"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Simple terminal UI for git commands
 brew "lazygit"
+# TUI for Jujutsu/jj
+brew "lazyjj"
 # Input filter for the pager less
 brew "lesspipe"
 # Portable Foreign Function Interface library
@@ -92,6 +95,8 @@ brew "libffi"
 brew "libressl"
 # Clone of ls with colorful output, file type icons, and more
 brew "lsd"
+# Powerful, lightweight programming language
+brew "lua"
 # Tool for linting and static analysis of Lua code
 brew "luacheck"
 # Just-In-Time Compiler (JIT) for the Lua programming language
@@ -178,10 +183,14 @@ brew "yazi"
 brew "yubico-piv-tool"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# OSSH CLI for operator SSH access within OCI
+brew "acep/brew/ossh"
 # Simple hotkey-daemon for macOS.
 brew "asmvik/formulae/skhd", trusted: true
 # A tiling window manager for macOS based on binary space partitioning.
 brew "asmvik/formulae/yabai", args: ["HEAD"], trusted: true
+# Oracle Cloud Infrastructure Unified Operations Tool
+brew "cloudshell/oci-ops/oci-ops"
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
@@ -190,6 +199,8 @@ cask "basictex"
 cask "bitwarden"
 # Utility that prevents the system from going to sleep
 cask "caffeine"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
 cask "font-jetbrains-maple-mono-nf"
 # Keyboard customiser
 cask "karabiner-elements"

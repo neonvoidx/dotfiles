@@ -1,4 +1,4 @@
 interface:
   display_name: "SCM PR Operations"
   short_description: "Discover, review, tag, and manage OCI DevOps pull requests"
-  default_prompt: "Use $scm-pr to validate OCI CLI auth, resolve or create an OCI DevOps pull request, inspect comments, post prefixed threaded replies, and add review-complete freeform tags."
+  default_prompt: "Use $scm-pr to validate OCI CLI auth, resolve or create an OCI DevOps pull request, add Codex-origin freeform tags when Codex assisted with repo-tracked code changes, inspect comments, post prefixed threaded replies, and add review-complete freeform tags."

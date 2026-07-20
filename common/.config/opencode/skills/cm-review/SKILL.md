@@ -5,7 +5,10 @@ description: Review change-management tickets such as Jira CHANGE or CM requests
 
 # CM Review
 
-Current skill version: `1.5.0`.
+Current skill version: `1.6.0`.
+
+Repository version source:
+- remote_file_url: `https://bitbucket.oci.oraclecorp.com/projects/TENLS/repos/dev-starter-skills/raw/skills/cm-review/SKILL.md?at=refs/heads/master`
 
 This is the source of truth for the CM Review skill version. A change to any file under `skills/cm-review/` is incomplete unless this version is incremented in the same change. Use semantic versioning: patch for wording, minor for workflow or writeback behavior changes, and major for intentionally incompatible review-contract changes.
 
@@ -43,7 +46,7 @@ For human-driven reviews, present a concise pre-execution review plan after tick
 - For runbook-backed or hybrid changes, identify the likely service and runbook source before approval, but do not fetch or select runbooks until after approval.
 - For `release-backed` or `hybrid` CMs with release evidence plus Bitbucket/SCM diff information, commit tables, PR links, or explicit commit hashes, follow `references/workflow.md` for matrix timing and `references/commit-matrix.md` for matrix details.
 - Return findings first, ordered by severity, followed by positive verification and residual risk.
-- Keep ticket writeback opt-in. Jira writeback must use Jira wiki markup, the required `[codex-gpt-5.5]` prefix, and the active CM Review skill version.
+- Keep ticket writeback opt-in. Jira writeback must use Jira wiki markup, the required `[codex-gpt-5.5]` prefix, the active CM Review skill version, and the repo-latest version warning from `references/writeback.md` when the current run is using an older skill version than `remote_file_url` or when the repository version check could not be completed.
 
 ## Must Not Do
 
@@ -72,16 +75,17 @@ Rollback-linked release status must be interpreted by classified purpose. For ro
 
 ## Fast Path
 
-1. Read the ticket body and structured fields only.
-2. Extract only the intake evidence listed in `references/checklist.md`.
-3. Determine and state the review mode.
-4. Present the review plan with evidence sources, validation questions, rollback questions, and obvious ambiguities.
-5. For human-driven reviews, pause for approval before broad evidence gathering.
-6. After approval, run the relevant workflows:
+1. Run repository version preflight.
+2. Read the ticket body and structured fields only.
+3. Extract only the intake evidence listed in `references/checklist.md`.
+4. Determine and state the review mode.
+5. Present the review plan with evidence sources, validation questions, rollback questions, and obvious ambiguities.
+6. For human-driven reviews, pause for approval before broad evidence gathering.
+7. After approval, run the relevant workflows:
    - linked Shepherd release: `Release Check`, then fold output through `references/workflow.md`
    - runbook-backed or hybrid: `references/change-classes.md`, `references/runbook-workflow.md`, and `references/configuration.md`
    - release-backed or hybrid with release-plus-diff evidence: commit matrix timing in `references/workflow.md`, details in `references/commit-matrix.md`
-7. If the user asks to post findings back to the ticket, read `references/writeback.md` first.
+8. If the user asks to post findings back to the ticket, read `references/writeback.md` first.
 
 ## References
 

@@ -143,8 +143,17 @@ test -f "${complete_home}/mcp.env"
 ! test -e "${complete_home}/dope.env"
 ! test -L "${complete_home}/AGENTS.md"
 ! rg -n '/ABSOLUTE/PATH/TO|<your-' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'model = "gpt-5.5"' "${complete_home}/config.toml" >/dev/null
+! rg -n '^profile\s*=|^\[profiles' "${complete_home}/config.toml" >/dev/null
 ! rg -n --fixed-strings '[[skills.config]]' "${complete_home}/config.toml" >/dev/null
-for skill_name in authZ-permissions-yaml-generator bitbucket-pr cm-review codex-bootstrap create-module-knowledge-skills internal-confluence-page jira-ticket object-store oncall-investigation ots-ticket pr-description release-check scm-pr; do
+rg -n --fixed-strings '[marketplaces.devplat-plugins]' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'source = "ssh://git@bitbucket.oci.oraclecorp.com:7999/dpai/devplat-plugins.git"' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings '[plugins."mcp-gateway-plugin@devplat-plugins"]' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings '[plugins."mcp-gateway-plugin@devplat-plugins".mcp_servers.devplat_mcp_gateway.tools.devplat_mcp_gateway__use]' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'approval_mode = "approve"' "${complete_home}/config.toml" >/dev/null
+! rg -n --fixed-strings 'last_revision' "${complete_home}/config.toml" >/dev/null
+! rg -n --fixed-strings 'last_updated' "${complete_home}/config.toml" >/dev/null
+for skill_name in authZ-permissions-yaml-generator bitbucket-pr cm-review codex-bootstrap create-module-knowledge-skills internal-confluence-page jira-ticket mfo-region-build-status object-store oncall-investigation ots-ticket pr-description release-check repository-version-preflight scm-pr; do
   test -L "${complete_home}/skills/${skill_name}"
   test -f "${complete_home}/skills/${skill_name}/SKILL.md"
 done
@@ -158,12 +167,18 @@ test -f "${complete_home}/agents/software-architect.toml"
 rg -n 'agents/software-architect\.toml"' "${complete_home}/config.toml" >/dev/null
 rg -n --fixed-strings 'model = "gpt-5.5"' "${complete_home}/agents/software-architect.toml" >/dev/null
 rg -n --fixed-strings 'model_reasoning_effort = "high"' "${complete_home}/agents/software-architect.toml" >/dev/null
-for mcp_name in chrome-devtools sqlcl mcp-atlassian-jira-sd mcp-atlassian-jira-oci centralconfluence playwright ots mcp_shepherd; do
+for mcp_name in chrome-devtools sqlcl mcp-atlassian-jira-sd mcp-atlassian-jira-oci centralconfluence playwright ots mcp_shepherd lts-mcp; do
   rg -n --fixed-strings "[mcp_servers.${mcp_name}]" "${complete_home}/config.toml" >/dev/null
 done
 rg -n --fixed-strings -- '--channel=canary' "${complete_home}/config.toml" >/dev/null
 rg -n --fixed-strings "\"${complete_home_real}/home/Downloads/sqlcl/bin/sql\"" "${complete_home}/config.toml" >/dev/null
 rg -n --fixed-strings 'url = "https://emcp.oracle.com/atlassian/centralconfluence/v2"' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'https://artifactory.oci.oraclecorp.com/api/pypi/ticketing-fe-repository-dev-pypi-local/simple' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings '"mcp-atlassian"' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'READ_ONLY_MODE = "false"' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings '"https://jira-sd.mc1.oracleiaas.com"' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings '"https://jira.oci.oraclecorp.com"' "${complete_home}/config.toml" >/dev/null
+! rg -n --fixed-strings 'ghcr.io/sooperset/mcp-atlassian' "${complete_home}/config.toml" >/dev/null
 rg -n --fixed-strings "\"${complete_home_real}/home/.oci/config\"" "${complete_home}/config.toml" >/dev/null
 rg -n --fixed-strings 'OCI_CLI_AUTH = "security_token"' "${complete_home}/config.toml" >/dev/null
 rg -n --fixed-strings 'OCI_SESSION_AUTO_REFRESH = "true"' "${complete_home}/config.toml" >/dev/null
@@ -172,6 +187,12 @@ rg -n --fixed-strings 'OCI_SESSION_AUTH_REGION = "us-ashburn-1"' "${complete_hom
 rg -n --fixed-strings 'OCI_SESSION_TENANCY_NAME = "bmc_operator_access"' "${complete_home}/config.toml" >/dev/null
 rg -n --fixed-strings 'OCI_SESSION_EXPIRATION_MINUTES = "60"' "${complete_home}/config.toml" >/dev/null
 rg -n --fixed-strings 'OCI_SESSION_REFRESH_TIMEOUT_SECONDS = "600"' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'https://artifactory.oci.oraclecorp.com/api/pypi/global-release-pypi/simple/' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'lts-mcp@latest' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'LTS_ENDPOINT = "https://load-testing.us-westjordan-1.ocp.oraclecloud16.com"' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'LTS_AUTH = "oci"' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'OCI_PROFILE = "DEFAULT"' "${complete_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'OCI_SESSION_AUTH_REGION = "us-westjordan-1"' "${complete_home}/config.toml" >/dev/null
 rg -n --fixed-strings 'Generated by Codex bootstrap for mcp-dope.' "${complete_home}/mcp.env" >/dev/null
 rg -n --fixed-strings "python3 ${repo_root}/skills/codex-bootstrap/scripts/refresh_auth.py op-token --env-file <this-file>" "${complete_home}/mcp.env" >/dev/null
 ! rg -n --fixed-strings 'Generated by Codex bootstrap for stlm-mcp.' "${complete_home}/mcp.env" >/dev/null
@@ -193,6 +214,8 @@ rg -n --fixed-strings "\`${repo_root}/skills/create-module-knowledge-skills/SKIL
 rg -n --fixed-strings "\`${repo_root}/skills/internal-confluence-page/SKILL.md\`" "${complete_home}/AGENTS.md" >/dev/null
 rg -n --fixed-strings "\`${repo_root}/skills/oncall-investigation/SKILL.md\`" "${complete_home}/AGENTS.md" >/dev/null
 rg -n --fixed-strings "\`${repo_root}/skills/object-store/SKILL.md\`" "${complete_home}/AGENTS.md" >/dev/null
+rg -n --fixed-strings "\`${repo_root}/skills/repository-version-preflight/SKILL.md\`" "${complete_home}/AGENTS.md" >/dev/null
+rg -n --fixed-strings "\`${repo_root}/skills/mfo-region-build-status/SKILL.md\`" "${complete_home}/AGENTS.md" >/dev/null
 rg -n --fixed-strings "\`${repo_root}/skills/release-check/SKILL.md\`" "${complete_home}/AGENTS.md" >/dev/null
 rg -n --fixed-strings "\`${repo_root}/skills/authZ-permissions-yaml-generator/SKILL.md\`" "${complete_home}/AGENTS.md" >/dev/null
 
@@ -213,7 +236,7 @@ rg -n --fixed-strings "\`${repo_root}/skills/authZ-permissions-yaml-generator/SK
   --log-directory "${shared_home}/log" >/dev/null
 
 test -f "${shared_home}/shared.env"
-for skill_name in authZ-permissions-yaml-generator bitbucket-pr cm-review codex-bootstrap create-module-knowledge-skills internal-confluence-page jira-ticket object-store oncall-investigation ots-ticket pr-description release-check scm-pr; do
+for skill_name in authZ-permissions-yaml-generator bitbucket-pr cm-review codex-bootstrap create-module-knowledge-skills internal-confluence-page jira-ticket mfo-region-build-status object-store oncall-investigation ots-ticket pr-description release-check repository-version-preflight scm-pr; do
   test -L "${shared_home}/skills/${skill_name}"
   test -f "${shared_home}/skills/${skill_name}/SKILL.md"
 done
@@ -228,6 +251,13 @@ rg -n --fixed-strings 'OCI_SESSION_AUTH_REGION = "us-ashburn-1"' "${shared_home}
 rg -n --fixed-strings 'OCI_SESSION_TENANCY_NAME = "bmc_operator_access"' "${shared_home}/config.toml" >/dev/null
 rg -n --fixed-strings 'OCI_SESSION_EXPIRATION_MINUTES = "60"' "${shared_home}/config.toml" >/dev/null
 rg -n --fixed-strings 'OCI_SESSION_REFRESH_TIMEOUT_SECONDS = "600"' "${shared_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'LTS_ENDPOINT = "https://load-testing.us-westjordan-1.ocp.oraclecloud16.com"' "${shared_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'LTS_AUTH = "oci"' "${shared_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'OCI_PROFILE = "DEFAULT"' "${shared_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'OCI_SESSION_AUTH_REGION = "us-westjordan-1"' "${shared_home}/config.toml" >/dev/null
+rg -n --fixed-strings '[marketplaces.devplat-plugins]' "${shared_home}/config.toml" >/dev/null
+rg -n --fixed-strings '[plugins."mcp-gateway-plugin@devplat-plugins"]' "${shared_home}/config.toml" >/dev/null
+rg -n --fixed-strings 'approval_mode = "approve"' "${shared_home}/config.toml" >/dev/null
 rg -n 'LOG_DIRECTORY = ".*/log"' "${shared_home}/config.toml" >/dev/null
 rg -n --fixed-strings 'Generated by Codex bootstrap for mcp-dope.' "${shared_home}/shared.env" >/dev/null
 rg -n --fixed-strings "python3 ${repo_root}/skills/codex-bootstrap/scripts/refresh_auth.py op-token --env-file <this-file>" "${shared_home}/shared.env" >/dev/null
@@ -236,7 +266,7 @@ rg -n --fixed-strings "python3 ${repo_root}/skills/codex-bootstrap/scripts/refre
 ! rg -n --fixed-strings 'OCI_PROFILE=' "${shared_home}/shared.env" >/dev/null
 ! rg -n --fixed-strings 'OCI_CLI_AUTH=security_token' "${shared_home}/shared.env" >/dev/null
 ! rg -n '/ABSOLUTE/PATH/TO|<your-' "${shared_home}/shared.env" >/dev/null
-for mcp_name in chrome-devtools sqlcl mcp-atlassian-jira-sd mcp-atlassian-jira-oci centralconfluence playwright ots mcp_shepherd; do
+for mcp_name in chrome-devtools sqlcl mcp-atlassian-jira-sd mcp-atlassian-jira-oci centralconfluence playwright ots mcp_shepherd lts-mcp; do
   rg -n --fixed-strings "[mcp_servers.${mcp_name}]" "${shared_home}/config.toml" >/dev/null
 done
 
@@ -257,13 +287,15 @@ done
 
 test -f "${browser_home}/config.toml"
 ! rg -n --fixed-strings '[[skills.config]]' "${browser_home}/config.toml" >/dev/null
-for skill_name in authZ-permissions-yaml-generator bitbucket-pr cm-review codex-bootstrap create-module-knowledge-skills internal-confluence-page jira-ticket object-store oncall-investigation ots-ticket pr-description release-check scm-pr; do
+for skill_name in authZ-permissions-yaml-generator bitbucket-pr cm-review codex-bootstrap create-module-knowledge-skills internal-confluence-page jira-ticket mfo-region-build-status object-store oncall-investigation ots-ticket pr-description release-check repository-version-preflight scm-pr; do
   test -L "${browser_home}/skills/${skill_name}"
   test -f "${browser_home}/skills/${skill_name}/SKILL.md"
 done
 rg -n --fixed-strings '[mcp_servers.chrome-devtools]' "${browser_home}/config.toml" >/dev/null
 rg -n --fixed-strings -- '--channel=canary' "${browser_home}/config.toml" >/dev/null
-for mcp_name in sqlcl mcp-atlassian-jira-sd mcp-atlassian-jira-oci centralconfluence playwright ots mcp_shepherd; do
+rg -n --fixed-strings '[marketplaces.devplat-plugins]' "${browser_home}/config.toml" >/dev/null
+rg -n --fixed-strings '[plugins."mcp-gateway-plugin@devplat-plugins"]' "${browser_home}/config.toml" >/dev/null
+for mcp_name in sqlcl mcp-atlassian-jira-sd mcp-atlassian-jira-oci centralconfluence playwright ots mcp_shepherd lts-mcp; do
   rg -n --fixed-strings "[mcp_servers.${mcp_name}]" "${browser_home}/config.toml" >/dev/null
 done
 ! rg -n '/ABSOLUTE/PATH/TO|<your-' "${browser_home}/config.toml" >/dev/null
@@ -277,6 +309,8 @@ rg -n --fixed-strings "\`${repo_root}/skills/internal-confluence-page/SKILL.md\`
 rg -n --fixed-strings "\`${repo_root}/skills/oncall-investigation/SKILL.md\`" "${browser_home}/AGENTS.md" >/dev/null
 rg -n --fixed-strings "\`${repo_root}/skills/object-store/SKILL.md\`" "${browser_home}/AGENTS.md" >/dev/null
 rg -n --fixed-strings "\`${repo_root}/skills/pr-description/SKILL.md\`" "${browser_home}/AGENTS.md" >/dev/null
+rg -n --fixed-strings "\`${repo_root}/skills/repository-version-preflight/SKILL.md\`" "${browser_home}/AGENTS.md" >/dev/null
+rg -n --fixed-strings "\`${repo_root}/skills/mfo-region-build-status/SKILL.md\`" "${browser_home}/AGENTS.md" >/dev/null
 rg -n --fixed-strings "\`${repo_root}/skills/release-check/SKILL.md\`" "${browser_home}/AGENTS.md" >/dev/null
 rg -n --fixed-strings "\`${repo_root}/skills/authZ-permissions-yaml-generator/SKILL.md\`" "${browser_home}/AGENTS.md" >/dev/null
 
@@ -299,12 +333,12 @@ test -f "${copy_home}/AGENTS.md"
 ! test -L "${copy_home}/AGENTS.md"
 ! rg -n '/ABSOLUTE/PATH/TO' "${copy_home}/config.toml" >/dev/null
 ! rg -n --fixed-strings '[[skills.config]]' "${copy_home}/config.toml" >/dev/null
-for skill_name in authZ-permissions-yaml-generator bitbucket-pr cm-review codex-bootstrap create-module-knowledge-skills internal-confluence-page jira-ticket object-store oncall-investigation ots-ticket pr-description release-check scm-pr; do
+for skill_name in authZ-permissions-yaml-generator bitbucket-pr cm-review codex-bootstrap create-module-knowledge-skills internal-confluence-page jira-ticket mfo-region-build-status object-store oncall-investigation ots-ticket pr-description release-check repository-version-preflight scm-pr; do
   test -L "${copy_home}/skills/${skill_name}"
   test -f "${copy_home}/skills/${skill_name}/SKILL.md"
 done
 ! rg -n --fixed-strings '/.m2/repository' "${copy_home}/config.toml" >/dev/null
-for mcp_name in chrome-devtools sqlcl mcp-atlassian-jira-sd mcp-atlassian-jira-oci centralconfluence playwright ots mcp_shepherd; do
+for mcp_name in chrome-devtools sqlcl mcp-atlassian-jira-sd mcp-atlassian-jira-oci centralconfluence playwright ots mcp_shepherd lts-mcp; do
   rg -n --fixed-strings "[mcp_servers.${mcp_name}]" "${copy_home}/config.toml" >/dev/null
 done
 test -f "${copy_home}/agents/software-architect.toml"
@@ -317,6 +351,8 @@ rg -n --fixed-strings "\`${repo_root}/skills/internal-confluence-page/SKILL.md\`
 rg -n --fixed-strings "\`${repo_root}/skills/oncall-investigation/SKILL.md\`" "${copy_home}/AGENTS.md" >/dev/null
 rg -n --fixed-strings "\`${repo_root}/skills/object-store/SKILL.md\`" "${copy_home}/AGENTS.md" >/dev/null
 rg -n --fixed-strings "\`${repo_root}/skills/pr-description/SKILL.md\`" "${copy_home}/AGENTS.md" >/dev/null
+rg -n --fixed-strings "\`${repo_root}/skills/repository-version-preflight/SKILL.md\`" "${copy_home}/AGENTS.md" >/dev/null
+rg -n --fixed-strings "\`${repo_root}/skills/mfo-region-build-status/SKILL.md\`" "${copy_home}/AGENTS.md" >/dev/null
 rg -n --fixed-strings "\`${repo_root}/skills/release-check/SKILL.md\`" "${copy_home}/AGENTS.md" >/dev/null
 rg -n --fixed-strings "\`${repo_root}/skills/authZ-permissions-yaml-generator/SKILL.md\`" "${copy_home}/AGENTS.md" >/dev/null
 

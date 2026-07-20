@@ -2,9 +2,11 @@
 
 ## Auth issues
 
-- `BASE_URL` must point to the Bitbucket host.
-- `BITBUCKET_TOKEN` must be present and accepted as a Bearer token.
-- If the PR URL redirects to `/login` in an unauthenticated request, switch to the REST API with the token instead of relying on the HTML page.
+- Resolve auth from the process environment first, then repository `.env`, `$CODEX_HOME/bitbucket-pr.env` or `~/.codex/bitbucket-pr.env`, then `~/.env`.
+- As a compatibility fallback, parse exact assignment lines from shell init files such as `~/.zshenv` or `~/.zshrc`; do not source shell init files.
+- `BASE_URL` must point to the Bitbucket host. If it is absent, use `BITBUCKET_BASE_URL` as an alias.
+- `BITBUCKET_TOKEN` must be present and accepted as a Bearer token. If it is absent, use `BITBUCKET_BEARER` as an alias.
+- If the PR URL redirects to `/login` in an unauthenticated request, switch to the REST API with the token instead of relying on the HTML page. Do not open a browser or Chrome for Bitbucket PR operations unless the user explicitly asks for browser-based troubleshooting.
 
 ## Comment retrieval issues
 

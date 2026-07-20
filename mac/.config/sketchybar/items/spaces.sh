@@ -2,7 +2,7 @@
 
 # Aerospace workspaces - customize to match your setup
 SPACE_IDS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "s")
-SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "󰒱")
+SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "s")
 
 # Add event for updating workspace visibility
 sketchybar --add event aerospace_windows_change
@@ -39,11 +39,12 @@ do
 
   sketchybar --add item space.$item_id left    \
              --set space.$item_id "${space[@]}" \
-             --subscribe space.$item_id mouse.clicked \
-                                        mouse.entered \
-                                        mouse.exited \
-                                        mouse.exited.global \
-                                        aerospace_workspace_change
+              --subscribe space.$item_id mouse.clicked \
+                                         mouse.entered \
+                                         mouse.exited \
+                                         mouse.exited.global \
+                                         aerospace_workspace_change \
+                                         aerospace_windows_change
 done
 
 # Add a hidden item to update workspace visibility

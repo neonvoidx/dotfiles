@@ -10,7 +10,14 @@ Load the branch-specific references only when needed:
 - use `logging.md` for Lumberjack, DevOps, namespace, tenant, or splat work
 - use `writeback.md` before posting the final ticket comment
 
-## 1. Load and validate the team config
+## 1. Repository version preflight
+
+Before reading ticket or evidence, use `repository-version-preflight` with `../SKILL.md` as the caller.
+
+- Do not restate or override the configured source, raw-file read method, comparison rule, or warning-only behavior here.
+- Carry the preflight status into the final summary and any ticket writeback.
+
+## 2. Load and validate the team config
 
 - The config may define one or many `[[team]]` blocks.
 - If the user names a team, use that exact block.
@@ -30,7 +37,7 @@ Load the branch-specific references only when needed:
 
 For config shape, field semantics, and selection rules, read `configuration.md`.
 
-## 2. Validate auth before execution
+## 3. Validate auth before execution
 
 - Determine which auth surfaces are required for the current run before the first ticket read or evidence query.
 - Validate the ticket reader first, then validate any additional auth that the planned investigation path is likely to need:
@@ -47,11 +54,11 @@ For config shape, field semantics, and selection rules, read `configuration.md`.
 - In human-driven investigations, tell the user exactly which token or session must be refreshed, which evidence surfaces are blocked, and that the investigation cannot be completed until that evidence is collected.
 - If the user cannot fix the blocker immediately, mark the investigation status as `investigation blocked` and carry a prominent blocker warning through the user-facing summary.
 - Do not automatically write ticket comments, labels, status transitions, or companion-field updates while the investigation is blocked.
-- If the user explicitly asks to comment on the ticket while blocked, use only the compact blocked-investigation update defined in `writeback.md`, include blockers and next step, add `ai-triage-blocked`, and do not write the full investigation context.
+- If the user explicitly asks to comment on the ticket while blocked, use only the compact blocked-investigation update defined in `writeback.md`, add `ai-triage-blocked`, and do not write the full investigation context.
 - Do not add normal triage labels, transition status, or update companion fields until the blockers are fixed, evidence collection completes, and the full investigation writeback is ready.
 - In unattended automation, surface the blocker outside the ticket instead of presenting a complete RCA or mutating ticket state.
 
-## 3. Read the ticket and set scope
+## 4. Read the ticket and set scope
 
 - Use the configured ticket sources as the primary incident entry point.
 - If the config includes `ots_projects`, use the `ots-ticket` skill for OTS reads.
@@ -72,6 +79,7 @@ For config shape, field semantics, and selection rules, read `configuration.md`.
   - severity
   - summary
   - created time
+  - labels
   - title-based or alarm-linked region clues
   - tenant or customer hints
   - mitigation notes
@@ -91,25 +99,34 @@ For config shape, field semantics, and selection rules, read `configuration.md`.
   - classify as `unknown` when metadata is conflicting or insufficient
 - Apply this decision order exactly to avoid ambiguity:
   1. classify ticket intent (`investigation required` vs `informational / data-only`)
-  2. classify cut type (`human-cut` / `automation-cut` / `unknown`)
-  3. resolve source of truth (`Master OTS` => OTS, otherwise Jira)
-  4. run optional pre-triage enrichments (FAQ/docs, historical comparison) only when eligible
+  2. check AI eligibility from live ticket labels
+  3. classify cut type (`human-cut` / `automation-cut` / `unknown`)
+  4. resolve source of truth (`Master OTS` => OTS, otherwise Jira)
+  5. re-check AI eligibility if source-of-truth resolution pivots to a different ticket
+  6. run optional pre-triage enrichments (FAQ/docs, historical comparison) only when eligible
+- AI eligibility check:
+  - compare live ticket labels case-insensitively after trimming whitespace
+  - use this AI-ineligible label set: `MFO_GENERATED_TICKET`, `OCIONOCI`, `PHONEBOOK-QUARTERLY-VALIDATION`, `PSA`, `RB-AUTOMATION`, `RBC`, `RBC_REGION_BUILD`, `REGION_BUILD_FAILURE_RCA`, `SC_AUTOCUT`, `SECURITYCENTRAL`, `VULNERABILITYSCAN`, `AI-TRIAGING-NOT-NEEDED`
+  - if any label matches, stop the investigation immediately and warn the user that the ticket is not eligible for AI triage
+  - include the exact matched label or labels in the warning
+  - do not run FAQ/doc answer pass, historical triage, pre-execution planning, metrics, logs, release checks, code investigation, ticket comments, labels, status transitions, or companion-field updates for AI-ineligible tickets unless the user gives a new explicit instruction outside this skill
 - Resolve source of truth after cut-type classification:
   - if the ticket has `Master OTS` reference (field/link/id), OTS is source of truth
   - otherwise, Jira is source of truth
   - when OTS is source of truth, do not use Jira for authoritative incident fields
   - if OTS source-of-truth lookup fails due auth/session/not-found, stop and request fix
 - When OTS is source of truth and Jira is also present, use Jira as mirror/transport only (for context and comment transport where needed), not as authoritative truth.
+- If source-of-truth resolution pivots from the starting ticket to an OTS master or another canonical incident ticket, repeat the AI eligibility check using the canonical ticket labels before continuing.
 - For `human-cut` tickets, run a best-effort FAQ/doc answer pass:
   - if `[[team.faqs]]` is configured, read all configured FAQ URLs
   - compare ticket question and symptom context against FAQ/doc content
   - if FAQ/docs clearly answer the ticket question and are not contradicted by current ticket evidence:
-    - auto-post a concise `Reference FAQs (Non-RCA)` comment
+    - prepare a concise `Reference FAQs (Non-RCA)` draft
     - include answer summary, source FAQ/doc names and URLs, and explicit non-RCA wording
   - if FAQ/docs are unavailable, inaccessible, or not strongly relevant, skip this step and continue
-  - do not stop investigation after an FAQ-based comment; continue full triage flow
+  - do not stop investigation after preparing an FAQ-based draft; continue full triage flow
   - this FAQ step is non-blocking and best-effort; inability to read FAQ/docs must not block incident triage
-  - `Reference FAQs (Non-RCA)` may be posted before full evidence collection because it is informational only and explicitly non-RCA
+  - post `Reference FAQs (Non-RCA)` only with explicit user authorization or in a clearly approved unattended automation mode
 - For `automation-cut` or `unknown` tickets, skip FAQ/doc answer pass and continue investigation.
 - Run best-effort historical ticket triage only for `investigation required` and `human-cut` tickets:
   - derive queue or equivalent context from the live ticket metadata first
@@ -129,22 +146,22 @@ For config shape, field semantics, and selection rules, read `configuration.md`.
     - owner pattern
     - recurring symptom and mitigation pattern
     - confidence level and known gaps
-- If cut type is `automation-cut` or `unknown`, skip historical triage and record the skip reason in the plan and synthesis.
-- For `informational / data-only` tickets, skip both FAQ/doc auto-commenting and historical triage unless the user explicitly asks for them.
+- If cut type is `automation-cut` or `unknown`, skip historical triage. Do not add skip boilerplate to the plan or synthesis unless the omission materially affects confidence or next actions.
+- For `informational / data-only` tickets, skip both FAQ/doc drafting and historical triage unless the user explicitly asks for them.
 - Derive an initial plan that includes:
   - incident scope
   - initial time window
   - initial region set
   - first evidence sources to query
   - the leading hypotheses worth testing
-  - FAQ/doc answer pass outcome, including whether a `Reference FAQs (Non-RCA)` comment was auto-posted
+  - FAQ/doc answer pass outcome, including whether a `Reference FAQs (Non-RCA)` draft was prepared
   - historical ticket triage summary
 - Resolve the initial investigation region using the precedence rules in `metrics.md` before fixing scope.
 - If the ticket, prompt, or attached AIPack summary includes inferred RCA, region, timeline, or impacted-resource claims, treat those as secondary context. Preserve useful identifiers, but re-verify those claims against live ticket, alarm, metric, log, and release evidence before relying on them.
 
 For time-window, region, and alarm-derived scope handling, read `metrics.md`.
 
-## 4. Present the pre-execution investigation plan
+## 5. Present the pre-execution investigation plan
 
 - For human-driven investigations, present the plan before broad evidence collection and then stop.
 - Wait for an explicit user approval such as `approve`, `go ahead`, or `continue` before running metrics, logs, release, dashboard, canary, or code investigation steps.
@@ -169,19 +186,16 @@ For time-window, region, and alarm-derived scope handling, read `metrics.md`.
   - `Time Window`
     - state the exact initial time window you will investigate
     - explain how far backward and forward you will extend from the first credible incident signal
-    - state the NOC and deployment correlation windows, whose default start is incident start minus 2 hours
-    - treat incident start as the first credible incident signal or first confirmed bad metric or log signal
+    - state the NOC and deployment correlation window, whose default start is incident start minus 2 hours
+    - treat incident start as the first credible incident signal or first confirmed bad metric/log signal
     - if only the operator-visible alarm open time is known at plan time, use that as the provisional incident start, then revise the NOC and deployment windows if metric or log replay proves an earlier start
     - note any narrower windows you will use for high-signal log or metric queries
-  - `Historical Comparison`
-    - for `human-cut`: list top comparable tickets, or state explicitly that no high-confidence historical match was found
-    - for `automation-cut` or `unknown`: state that historical comparison was intentionally skipped and why
-    - summarize severity and priority, owner, and symptom-pattern signals that influenced triage when triage was executed
-    - call out confidence level and known gaps
-  - `Reference FAQs`
-    - for `human-cut`: summarize whether FAQ/docs clearly answered the ticket question
-    - for `human-cut`: state whether `Reference FAQs (Non-RCA)` was auto-posted, and cite source FAQ/doc names and URLs when available
-    - if FAQ/docs were unavailable or inaccessible, call out the gap explicitly
+  - `Historical Comparison` only when prior tickets materially influence the planned evidence, ownership, confidence, or handling
+    - list the comparable tickets and the signals that changed the plan
+    - call out confidence and relevant gaps
+  - `Reference FAQs` only when FAQ/docs materially answer the ticket question or change the plan
+    - summarize the answer and cite source names and URLs
+    - state whether a `Reference FAQs (Non-RCA)` draft was prepared
 - If the ticket is canary-backed, the plan should say explicitly that raw canary run logs come before broad service-log hunting.
 - If the ticket is alarm-backed, the plan should say explicitly that the alarm definition and reproduced metric scope come before broad log searches.
 - If the incident is request- or API-based and a concrete request id is already known, the plan should say explicitly which system owns the first replay:
@@ -189,7 +203,7 @@ For time-window, region, and alarm-derived scope handling, read `metrics.md`.
   - downstream first when the request id comes from the downstream service or a downstream-emitted metric, then splat afterward for end-to-end alignment
 - If the incident is request- or API-based, the request id is not yet known, and the alarm or metric is status-family based, the plan should say explicitly which system will mine the first candidate requests:
   - splat first when the metric is splat-backed, using the matching `#statusCode` family filter, any registered `#ServiceOperationId` hint, and an alarm-expanded time window
-  - downstream first when the metric is emitted by the service itself; the plan should point to the canonical request-id mining order in `logging.md`
+  - downstream first when the metric is emitted by the service itself; the plan should say explicitly that request-id mining will follow the request-log-first fallback order in `logging.md`
 - If the team config registers splat service operations, the plan should say explicitly that the single-request replay will map the observed `#ServiceOperationId` to the registered exact operation or matching family pattern and downstream target before widening into downstream logs.
 - If runtime evidence may identify a downstream service with its own existing `[[team]]` config, the plan should say whether a downstream config pivot is in scope and which evidence would trigger it. Do not require or invent explicit downstream mappings.
 - If the likely symptom is a splat or proxy failure, the plan should separate:
@@ -197,19 +211,20 @@ For time-window, region, and alarm-derived scope handling, read `metrics.md`.
   - splat blast-radius analysis to count and group impacted requests if the single-request replay confirms a reusable failure signature
 - If a concrete investigation region has been derived, the plan should say explicitly that a regional NOC cross-check will run after service-specific runtime evidence is collected, using the same region and the NOC correlation window defined in this workflow.
 
-## 5. Collect evidence
+## 6. Collect evidence
 
 - In human-driven investigations, begin this step only after the user explicitly approves the presented plan.
 - Collect evidence according to the current plan rather than exploring every source at once.
 - Start with the highest-signal sources for the current hypothesis.
 - Expand only when the current evidence is insufficient or contradictory.
+- Treat ticket-provided facts as intake context, not investigation evidence. Carry them forward only when the investigation independently verifies, corrects, quantifies, contradicts, or materially correlates them.
 - When the incident is alarm-backed or metric-backed, read `metrics.md` before broad log searches.
 - When the incident is canary-backed, read `canary.md` before broad service-log searches.
 - When the investigation needs Lumberjack, DevOps, or splat evidence, read `logging.md`.
 - When the incident is request- or API-based and the request id is already known, start the replay in the system that emitted the signal or supplied the id, then use cross-system request-id alignment before assuming the peer system will match the same full id string.
 - When the incident is request- or API-based, the request id is not yet known, and the metrics narrow the problem to a `2xx`, `4xx`, or `5xx` family, start in the system that emitted that status-family signal:
   - use the matching `#statusCode` range in splat, plus any registered `#ServiceOperationId` hint and the alarm-expanded time window, when the metric is splat-backed
-  - when the metric is emitted by the downstream service itself, use the canonical request-id mining order from `logging.md`
+  - when the metric is emitted by the downstream service itself, use the downstream request-id mining order from `logging.md`
 - When `team.splat.service_operations` is available, use it during the first splat replay to translate the observed `#ServiceOperationId` into the downstream service context before code or log expansion, preferring the most specific exact or pattern registration.
 - If splat confirms a reusable proxy-side failure signature, run a second splat pass for blast-radius counting and grouping before widening into downstream application logs, release history, or infrastructure checks.
 - If request- or API-scoped log searches reveal workflow instance ids, pivot immediately into full workflow replay for each relevant id and add that ordered workflow timeline to the evidence set before finalizing the conclusion.
@@ -220,17 +235,17 @@ For time-window, region, and alarm-derived scope handling, read `metrics.md`.
   - Preserve the original incident time window, region, and AD unless downstream runtime evidence proves a different scope.
   - If no existing downstream `[[team]]` config matches, more than one config matches, or downstream auth is blocked, keep the original investigation plan and carry the downstream evidence gap into synthesis and writeback.
   - If this downstream pivot expands beyond the approved human-driven plan, present the updated plan and wait for explicit approval before broad downstream collection.
-- After service-specific runtime evidence has been collected, cross-check for active or overlapping NOC incidents in the derived investigation region and NOC correlation window, starting at incident start minus 2 hours by default.
+- After service-specific runtime evidence has been collected, cross-check for active or overlapping NOC incidents in the derived investigation region and NOC correlation window, starting at incident start minus 2 hours.
 - Use the NOC cross-check as corroborating regional context, not as the primary source of truth for incident scope or root cause.
 - If a matching NOC incident exists, capture the incident id, severity, status, impacted services, and timing overlap, and use that information to test whether the observed behavior is consistent with a broader regional or platform event.
 - If a matching NOC incident is related enough to cite as reference context in the final investigation, carry its exact incident id forward into the writeback plan so post-comment label sync can add that NOC id to the ticket when supported.
 - If no matching NOC incident exists, record that the regional NOC cross-check was negative and continue the investigation conclusion without treating the absence of NOC as proof of service health.
 - If a planned evidence source becomes auth-blocked during collection, stop widening the investigation, try the supported automatic recovery path for that blocker, and ask the user to fix unresolved blockers before continuing.
 - If the blocker remains unresolved, record the blocked surface and skipped queries, carry the result forward only as `investigation blocked`, and do not automatically write to the ticket.
-- If the user explicitly asks to comment on the ticket while blocked, use only the compact blocked-investigation writeback with blockers and next step, then add `ai-triage-blocked`.
+- If the user explicitly asks to comment on the ticket while blocked, use only the compact blocked-investigation writeback, then add `ai-triage-blocked`.
 - Do not add normal triage labels, transition status, or update companion fields for blocked investigations.
 
-## 6. Perform impact analysis
+## 7. Perform impact analysis
 
 - Derive impact from the incident ticket and the strongest runtime evidence collected so far.
 - Include impacted tenancies, workflow instance ids, work request ids, and `opc-request-id` values when they are available and relevant to the incident.
@@ -244,7 +259,7 @@ For time-window, region, and alarm-derived scope handling, read `metrics.md`.
 - Preserve full identifiers for every impacted tenancy, workflow id, work request id, and `opc-request-id` cited as evidence.
 - If impact cannot be quantified because logs, metrics, ticket data, or linked resources are missing or auth-blocked, state that explicitly and carry the gap into conclusion review, synthesis, and writeback.
 
-## 7. Check ODO, releases, and code
+## 8. Check ODO, releases, and code
 
 ODO guidance:
 - Use ODO correlation when the symptom looks host-local or capacity-local, for example:
@@ -256,7 +271,7 @@ ODO guidance:
 - Derive region, AD, incident start, and incident window from the ticket and alarm evidence first. Do not require those values to be hard-coded in config.
 - Start with the smallest plausible ODO search surface:
   - incident AD
-  - deployment correlation window, starting at incident start minus 2 hours by default
+  - deployment correlation window, starting at incident start minus 2 hours
   - any known deployment id or application alias from the ticket
 - Do not rule ODO in or out by alias matching alone. Some updater or helper applications may not include the service name in their alias.
 - If the team config includes `team.odo`, treat it as optional discovery help rather than the source of truth.
@@ -270,7 +285,7 @@ ODO guidance:
 - If the available ODO tools do not provide a single direct host-to-all-applications lookup, use AD-scoped deployment inventory plus detailed deployment inspection to reconstruct the host and backend relationship before concluding.
 
 Release guidance:
-- If the team config includes Shepherd flocks, inspect releases or execution targets in the deployment correlation window, starting at incident start minus 2 hours by default.
+- If the team config includes Shepherd flocks, inspect releases or execution targets in the deployment correlation window, starting at incident start minus 2 hours.
 - If a `[[team.shepherd.flocks]]` block includes `project`, use that flock-level Shepherd project instead of the top-level `team.shepherd.project` for that flock.
 - Keep generic release correlation in this skill.
 - Look for:
@@ -300,7 +315,7 @@ Code guidance:
   - the investigation spans multiple services and not all repos are cloned locally
 - Keep code conclusions grounded in the evidence already gathered from tickets, metrics, logs, and releases.
 
-## 8. Review and challenge the conclusion
+## 9. Review and challenge the conclusion
 
 - Before finalizing the investigation, actively challenge the current explanation.
 - Ask:
@@ -313,12 +328,12 @@ Code guidance:
 - Do not treat the first plausible root cause as final until it survives this review.
 - If uncertainty remains, label the conclusion as a hypothesis and state the next best validating step.
 
-## 9. Synthesize the investigation
+## 10. Synthesize the investigation
 
 - Before writing back, assemble the investigation into a concise, decision-ready summary.
 - If any planned evidence surface remained auth-blocked, begin the synthesis with a prominent warning that the investigation is blocked because required evidence remains unavailable, list the blocked surfaces, and separate what is confirmed from what remains unknown because access was missing.
-- State that no ticket mutation should happen automatically while blocked. If the user explicitly asks for a blocked ticket comment, the writeback is a compact blocked-investigation update only: blocker information and next step, plus the `ai-triage-blocked` label. Do not include a current summary, investigation context, hypotheses, or evidence detail until the blockers are fixed and the investigation completes.
-- Build a short timeline that includes:
+- State that no ticket mutation should happen automatically while blocked. If the user explicitly asks for a blocked ticket comment, the writeback is a compact blocked-investigation update only: blocker information, simple investigation summary, and next steps, plus the `ai-triage-blocked` label. Do not include full context or evidence detail until the blockers are fixed and the investigation completes.
+- Build a short timeline only when timing materially explains cause, impact, or mitigation. When included, capture:
   - incident start
   - first alarm or metric anomaly
   - first corroborating logs
@@ -332,33 +347,30 @@ Code guidance:
   - confirmed facts
   - strong hypotheses
   - missing evidence
-- Include a brief historical comparison outcome:
-  - for `human-cut`: top comparable tickets and pattern signals when available
-  - for `human-cut`: explicit no-match statement when no high-confidence historical match was found
-  - for `automation-cut` or `unknown`: explicit skip statement with reason
-  - confidence and gaps
-- Include an FAQ/doc reference outcome for `human-cut` tickets:
-  - whether FAQ/docs clearly answered the ticket question
-  - whether `Reference FAQs (Non-RCA)` was auto-posted, with source names and URLs
-  - any FAQ/doc accessibility or relevance gaps
+- Add `Findings` only for novel conclusions beyond the ticket and core `RCA` or `Assessment`, `Impact`, and `Evidence` sections. Tie each finding to supporting evidence, label it confirmed or inferred, and state how it changes confidence, scope, ownership, or next actions.
+- Omit negative checks unless they rule out a plausible cause or materially change confidence.
+- Include a brief historical comparison outcome only when it materially influenced the conclusion, handling, or next action. State confidence and gaps when included.
+- Include an FAQ/doc reference outcome only when the docs materially answered the ticket question or a `Reference FAQs (Non-RCA)` draft was prepared. Include source names and URLs.
 - For service-request or informational tickets, present prior-ticket context as `Historical Similar Ticket Reference (Non-RCA)` unless current evidence confirms a true RCA carryover.
 - End the synthesis with the next best validating step.
 
-## 10. Write back to the ticket
+## 11. Write back to the ticket
 
-- For investigation-required tickets, write complete investigations back to the ticket unless the user explicitly asks not to.
-- Use `ots-ticket` or `jira-ticket` only to send the final comment body.
+- For investigation-required tickets, prepare the complete writeback draft and show it to the user.
 - Before posting, read `writeback.md` and validate the exact final body against its contract.
+- Use `ots-ticket` or `jira-ticket` to post the exact shown draft to the authoritative ticket.
+- Post the complete comment and synchronize the necessary labels without waiting for a second authorization step, in that order. Only after the comment posts successfully, remove `ai-triage-blocked` when present, add `ai-skill-triage`, add the project-scoped `ai-triaged-by-<ticket-project-key>` label when unambiguous, add confirmed related NOC ids, and add `ai-rca` only for a confirmed root cause.
+- Require explicit user authorization before updating companion summary fields or transitioning ticket status.
+- If comment posting fails, stop label synchronization and report the failure without implying the ticket was updated.
 - If the investigation is blocked due to auth or evidence blockers, do not post a ticket comment by default. Ask the user to fix the blockers and continue the investigation.
-- If the user explicitly asks to comment while the investigation is blocked, post only the compact blocked-investigation update from `writeback.md`: state that the investigation is blocked, list blocked evidence surfaces, and identify the next unblock step. Do not include a current summary, present the writeback as a complete RCA, or include the full investigation context.
+- If the user explicitly asks to comment while the investigation is blocked, post only the compact blocked-investigation update from `writeback.md`: state that the investigation is blocked, list blocked evidence surfaces, include a simple current summary, and identify the next unblock step. Do not present the writeback as a complete RCA or include the full investigation context.
 - For user-requested blocked-investigation comments, add `ai-triage-blocked` when label mutation is supported; if label mutation is unsupported, state that limitation in the response.
-- For complete investigations on OTS-backed tickets, and for complete investigations on Jira-backed tickets when the issue exposes editable companion fields, after the full comment is ready derive brief `Root cause description`, `Resolution description`, and `Status update` summaries and update those fields by default when the helper transport supports it.
-- If the final writeback cites one or more related NOC incidents as reference context, include those exact NOC ids in the post-comment label sync plan and add them as labels when the ticket transport supports label mutation.
+- For complete investigations, derive companion summaries only when the target exposes editable fields, and update them only after explicit authorization.
 - Skip normal triage labels, status transitions, and RCA companion-field updates when the investigation is blocked because required evidence remains unavailable.
-- After posting a complete investigation, follow the label and status sync rules in `writeback.md`, including removal of `ai-triage-blocked` when the completed investigation was previously blocked.
-- After the user fixes the blockers, resume evidence collection and, once the investigation is complete, post the full investigation comment, remove `ai-triage-blocked` when supported, and follow the normal label, status, and companion-field writeback process.
+- After a complete writeback, verify the comment and label results using the ticket transport and report unsupported mutations explicitly.
+- After the user fixes the blockers, resume evidence collection and prepare the full investigation draft. Once complete, post the comment and necessary labels automatically; keep companion fields and status separately authorized.
 
-## 11. Record durable memory if applicable
+## 12. Record durable memory if applicable
 
 - After the investigation, decide whether any learning is durable enough to record.
 - Follow the global memory protocol in `AGENTS.md`:

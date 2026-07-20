@@ -10,6 +10,22 @@ CM review writeback is Jira-only today.
 - Do not use Markdown as the source format for CM writeback comments.
 - If CM review later needs a non-Jira writeback path, define that format separately instead of reusing this Jira contract.
 
+## Repository Version Preflight
+
+Use the repository version preflight result captured at workflow start.
+
+If the workflow result is missing, use `repository-version-preflight` with `../SKILL.md` as the caller before drafting the customer-facing body.
+
+If the preflight says the active CM Review skill is stale, add a customer-visible warning immediately after the required first line and before findings:
+
+`WARNING: This writeback is not using the latest CM Review skill version. It used CM Review vX.Y.Z, but the latest repository CM Review skill version is vA.B.C. The review may not include the latest workflow checks.`
+
+If the preflight says the repository comparison could not be completed, do not claim the run used the latest version. Add a customer-visible warning in the same top-of-comment position:
+
+`WARNING: The CM Review repository version check could not be completed. This writeback used CM Review vX.Y.Z, but it could not verify whether that is the latest repository version. Blocker: <brief blocker>.`
+
+The warning is informational and must not block the writeback when the user asked for one.
+
 ## Required Prefix
 
 Prefix the first line of every posted comment with:
@@ -18,7 +34,7 @@ Prefix the first line of every posted comment with:
 
 The same first line must also mention the active CM Review skill version from `../SKILL.md`, for example:
 
-`[codex-gpt-5.5] CM Review v1.5.0 based on the ticket fields and linked release evidence.`
+`[codex-gpt-5.5] CM Review v1.6.0 based on the ticket fields and linked release evidence.`
 
 If the version in `../SKILL.md` has changed, use that current version in the comment instead of copying the example.
 
@@ -27,12 +43,14 @@ If the version in `../SKILL.md` has changed, use that current version in the com
 Use this structure:
 
 1. One opening line stating this is CM Review vX.Y.Z based on the ticket fields and linked release evidence.
-2. A flat findings list, ordered from highest to lowest severity.
-3. An optional `Positive verification:` section for confirmed alignment summaries.
+2. A stale-version warning line when the active version is older than the latest repository version, or a version-check-limited warning when repository comparison failed.
+3. A flat findings list, ordered from highest to lowest severity.
+4. An optional `Positive verification:` section for confirmed alignment summaries.
 
 In Jira wiki markup, prefer this layout:
 
 - opening line with the required prefix and active CM Review skill version
+- optional `WARNING:` line required by repository version preflight
 - `h3. Findings`
 - `*` bullets for findings
 - `h3. Positive verification`
@@ -69,6 +87,7 @@ Use a concise finding such as:
 ## Comment Rules
 
 - Keep the comment ticket-specific and concise.
+- Before posting, confirm `repository-version-preflight` ran or was attempted, and that any `stale` or `unverified` status produced the required `WARNING:` line.
 - Use Jira wiki syntax for headings and bullets, such as `h3.` and `*`.
 - When the comment mentions review identifiers that have URLs, use full Jira wiki hyperlinks instead of bare identifiers. This applies to Shepherd releases, rollback releases, plan-only releases, Bitbucket commits, SCM commits, PRs, Jira tickets, Confluence pages, dashboards, or other evidence links identified during review.
 - Prefer canonical full URLs when available. For example, use `[4045a042...|https://devops.oci.oraclecorp.com/shepherd/projects/limits/flocks/limits-dp/releases/4045a042-ce02-4496-93bd-e9fb726fef21]` for Shepherd releases and `[743b5db0446|https://bitbucket.oci.oraclecorp.com/projects/EXAMPLE/repos/example-repo/commits/743b5db0446]` for commits. If only an official short URL is available, link that full short URL instead of leaving the identifier unlinked.

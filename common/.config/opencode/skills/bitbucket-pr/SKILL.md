@@ -17,9 +17,10 @@ For PR creation and PR metadata updates, this skill owns reviewer preservation. 
 
 ## Quick Start
 
-1. Confirm the Bitbucket environment before doing anything mutating.
-   - `BASE_URL` must point at the Bitbucket host.
-   - `BITBUCKET_TOKEN` must be available for authenticated API calls.
+1. Resolve Bitbucket auth before any REST call, and especially before anything mutating.
+   - `BASE_URL` must point at the Bitbucket host. Accept `BITBUCKET_BASE_URL` as an alias when `BASE_URL` is absent.
+   - `BITBUCKET_TOKEN` must be available for authenticated API calls. Accept `BITBUCKET_BEARER` as an alias when `BITBUCKET_TOKEN` is absent.
+   - Load the values from the resolution order below before declaring auth unavailable.
 2. For PR creation or metadata updates, load default reviewers and preserve existing reviewers before sending a create or update payload.
 3. Parse the PR URL into `PROJECT_KEY`, `REPO_SLUG`, and `PR_ID`.
 4. Fetch PR metadata first so you confirm the title, source branch, target branch, version, and reviewers.
@@ -36,7 +37,29 @@ For read-only compare or commit-diff work:
 
 ## Workflow
 
-### 1. Resolve the PR or Branch Pair
+### 1. Resolve Bitbucket Auth
+
+Before running `curl`, a script, or any Bitbucket REST operation, resolve auth without printing secret values.
+
+Use this order:
+
+1. Current process environment.
+2. Repository-local `.env` in the current working directory, if present.
+3. Codex Bootstrap helper file: `$CODEX_HOME/bitbucket-pr.env`, or `~/.codex/bitbucket-pr.env` when `CODEX_HOME` is not set.
+4. User shared env file: `~/.env`.
+5. Compatibility fallback only: parse exact assignment lines from `~/.zshenv`, `~/.zshrc`, `~/.bash_profile`, or `~/.bashrc`. Do not source shell init files.
+
+For env files and compatibility parsing:
+
+- Accept `export KEY=value` and `KEY=value` forms.
+- Normalize `BITBUCKET_BASE_URL` to `BASE_URL` when `BASE_URL` is absent.
+- Normalize `BITBUCKET_BEARER` to `BITBUCKET_TOKEN` when `BITBUCKET_TOKEN` is absent.
+- Stop before the REST call if either `BASE_URL` or `BITBUCKET_TOKEN` is still missing. Report which name is missing, but never print the token value.
+- Do not open Bitbucket in a browser, launch Chrome, or use HTML login pages as an auth fallback unless the user explicitly asks for browser-based troubleshooting.
+
+Bootstrap note: `codex-bootstrap` may create `~/.codex/bitbucket-pr.env` and print shell sourcing guidance, but this skill must not assume the active Codex process inherited that file. Check the helper file directly when the process environment is missing Bitbucket auth.
+
+### 2. Resolve the PR or Branch Pair
 
 - Prefer a full PR URL when the user provides one.
 - Extract:
@@ -59,7 +82,7 @@ For creation, resolve:
 - source branch ref, for example `refs/heads/<source-branch>`
 - target branch ref, for example `refs/heads/<target-branch>`
 
-### 2. Load Default Reviewers
+### 3. Load Default Reviewers
 
 Always load default reviewers before creating or updating a PR. Query both repository-level and project-level default-reviewer conditions because either scope may be configured:
 
@@ -80,7 +103,7 @@ curl -sS \
 - Normalize reviewers by stable user identity, preferring the exact returned `user` object shape when available; otherwise use `user.name` or `user.slug`.
 - Deduplicate project-level, repository-level, and existing reviewers by user slug/name.
 
-### 3. Create a PR With Default Reviewers
+### 4. Create a PR With Default Reviewers
 
 When creating a PR, include the default reviewers in the create payload. Do not rely on Bitbucket auto-applying defaults, because some Bitbucket setups do not do so for API-created PRs.
 
@@ -110,7 +133,7 @@ When creating a PR, include the default reviewers in the create payload. Do not 
 - If the created PR readback is missing matching default reviewers, do not leave the PR empty. Immediately use the update workflow below to merge existing reviewers with the matching defaults, then fetch the PR again and verify the reviewer list.
 - Bitbucket may omit the PR author from the final reviewer list even when that user appears in a default-reviewer condition. Treat that as expected if all non-author default reviewers are present, and mention it in the handoff.
 
-### 4. Update a PR With Existing and Default Reviewers
+### 5. Update a PR With Existing and Default Reviewers
 
 When updating a PR title, description, branch metadata, or any other PR field, fetch both reviewer sources before the update:
 
@@ -121,7 +144,7 @@ Required update sequence:
 
 1. `GET` the current PR.
 2. Extract the current `version` and existing `reviewers`.
-3. Load default reviewers using step 2, evaluated against the PR source and target refs.
+3. Load default reviewers using step 3, evaluated against the PR source and target refs.
 4. Build the update payload from the current PR object, modifying only the intended fields.
 5. Set `reviewers` to the union of existing reviewers already on the PR and matching default reviewers.
 6. `PUT` the update.
@@ -131,7 +154,7 @@ Never send a PR update payload that omits `reviewers`, sends `reviewers: []`, re
 
 If either reviewer source cannot be loaded, stop before mutating unless the user explicitly approves continuing with the partial reviewer set.
 
-### 5. Read comments from the activities feed
+### 6. Read comments from the activities feed
 
 - Do not assume the dedicated `/comments` listing endpoint will work for PR discussion threads.
 - In many Bitbucket environments, the reliable source of PR discussion comments is the PR activities API.
@@ -155,7 +178,7 @@ curl -sS \
   - line
   - comment text
 
-### 6. Summarize and analyze the thread
+### 7. Summarize and analyze the thread
 
 - Distinguish between:
   - general PR comments
@@ -167,7 +190,7 @@ curl -sS \
 - If the thread asks for a code, docs, or test change, identify the requested change and whether the current PR evidence appears to address it, but do not implement the change or turn it into a full code-review findings pass from this skill alone.
 - Call out when a thread points at a real PR-discussion concern but proposes a weak or incorrect reply or operational next step.
 
-### 7. Read compare commits and commit diffs
+### 8. Read compare commits and commit diffs
 
 Use this path for CM review or release validation when the evidence source is a Bitbucket compare URL or commit table. Prefer Bitbucket REST readback over local repository lookup.
 
@@ -224,7 +247,7 @@ Normalize compare readback into:
 
 If the CM also contains artifact versions that imply a narrower range than the compare URL, report both ranges and let the CM reviewer decide which one is authoritative. Do not silently replace remote compare evidence with a local checkout.
 
-### 8. Draft replies before posting
+### 9. Draft replies before posting
 
 - Default to drafting first unless the user clearly asks you to post.
 - Keep the reply tightly scoped to the discussion thread.
@@ -242,7 +265,7 @@ If the CM also contains artifact versions that imply a narrower range than the c
 - When a PR-discussion question does not match the Bitbucket evidence, push back politely with specific evidence.
 - When a thread appears to require code, docs, or tests to change, state the requested change and avoid claiming it is addressed until the implementation exists.
 
-### 9. Post a reply
+### 10. Post a reply
 
 - Post replies through the PR comments endpoint.
 - Prefix AI-authored text with the agreed label. Do not guess from general config defaults if the actual runtime identity is unclear.
@@ -261,7 +284,7 @@ curl -sS \
 - Bitbucket may flatten replies under the root comment’s `comments` array rather than preserving a deeper nesting shape.
 - Always verify placement by re-fetching the activities feed after posting.
 
-### 10. Verify the posted reply
+### 11. Verify the posted reply
 
 - Re-read the activities feed and confirm:
   - the new comment id exists

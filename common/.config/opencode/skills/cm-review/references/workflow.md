@@ -2,7 +2,14 @@
 
 Use this workflow when the CM is `release-backed` or `hybrid`.
 
-## 1. Intake The Ticket
+## 1. Repository Version Preflight
+
+Before reading CM evidence, use `repository-version-preflight` with `../SKILL.md` as the caller.
+
+- Do not restate or override the configured source, raw-file read method, comparison rule, or warning-only behavior here.
+- Carry the preflight status into the final review and any Jira writeback.
+
+## 2. Intake The Ticket
 
 - Read the ticket body and structured fields.
 - Ignore comments unless the user explicitly asks to include them.
@@ -11,7 +18,7 @@ Use this workflow when the CM is `release-backed` or `hybrid`.
 - Discover release links across all ticket-owned surfaces. First sweep structured, named, custom, and Implementation-tab fields whose names contain release, plan, rollback, test, validation, implementation, or deployment; record each field name even when the value is empty or unresolved. Then inspect the deployment or implementation plan, ticket description, validation or test results, HERDS/non-prod evidence, and rollback plan. Preserve source field or section and nearby labels for classification.
 - Do not fetch remote Shepherd release details, remote commit diffs, runbooks, SLAPS results, logs, or execution artifacts before the human approval pause unless the user explicitly asks for unattended automation.
 
-## 1.5 Classify Release Links
+## 3. Classify Release Links
 
 Classify every discovered Shepherd release link before deciding which links define CM execution scope.
 
@@ -32,7 +39,7 @@ Classify every discovered Shepherd release link before deciding which links defi
 
 If a release link's section context, CM prose, and Shepherd metadata conflict, report the conflict instead of silently reclassifying it. Example: a `Rollback release Link` with `RollBack` metadata may be rollback-test evidence, actual rollback execution, or both; choose the classification only when the CM context supports it, otherwise carry it as ambiguous.
 
-## 2. Present The Review Plan
+## 4. Present The Review Plan
 
 - Summarize the release-backed evidence you plan to inspect before gathering it broadly.
 - State:
@@ -51,7 +58,7 @@ If a release link's section context, CM prose, and Shepherd metadata conflict, r
 - In human-driven reviews, stop after presenting this plan and wait for explicit user approval.
 - In unattended automation, continue without pausing.
 
-## 3. Collect Commit Candidates
+## 5. Collect Commit Candidates
 
 Use this step for `release-backed` or `hybrid` CMs when release evidence plus Bitbucket compare links, SCM links, PR links, commit tables, explicit commit hashes, or artifact-version evidence point to code changes.
 
@@ -72,7 +79,7 @@ Before Release Check output is available, collect candidate commit evidence only
    - if remote evidence is unavailable and a local checkout is used as fallback, label the fallback and do not present it as Bitbucket or SCM readback
 3. When useful for later classification, fetch candidate changed files or patch summaries from the remote source, but keep them as candidate evidence until Release Check establishes the release delta.
 
-## 4. Correlate The Linked Releases
+## 6. Correlate The Linked Releases
 
 For each linked Shepherd release:
 
@@ -99,7 +106,7 @@ Before producing findings, enumerate every linked release and verify it has a Re
 
 If ONSR or GOV application artifacts are in scope, apply the SLAPS acceptance gate in `checklist.md` after release correlation identifies the exact artifact versions.
 
-## 5. Fold Release Check Output Into CM Risk
+## 7. Fold Release Check Output Into CM Risk
 
 - Use Release Check's common-diff, outlier, blocker, validation-gap, and decision-label output instead of rebuilding those calculations inside CM Review.
 - For shared releases, fold risk back to the CM-authorized target slice. Extra targets in the same release are not drift by themselves when they are outside this CM's stated locations and remain under review, pre-start, or separately gated by other CM records.
@@ -111,7 +118,7 @@ If ONSR or GOV application artifacts are in scope, apply the SLAPS acceptance ga
 - Explain why each relevant Release Check risk matters for the CM's implementation, validation, rollback, or approval decision.
 - If Release Check evidence is blocked, carry the exact blocker into the CM review rather than silently downgrading the review to ticket-only evidence.
 
-## 6. Build The Commit-Diff Validation Matrix
+## 8. Build The Commit-Diff Validation Matrix
 
 Build the matrix after linked release correlation so the current CM release delta can be derived from Release Check evidence plus ticket scope. Follow the canonical commit-diff validation matrix rule from `SKILL.md`.
 
@@ -122,7 +129,7 @@ Build the matrix after linked release correlation so the current CM release delt
 5. Use `checklist.md` for the matrix fields, validation relevance classes, required evidence, outcome labels, excluded-commit notes, and finding criteria.
 6. If both broad compare evidence and narrower release evidence are present, report the mismatch and explain which evidence defines the CM release delta.
 
-## 7. Review Rollback Against The Real Change
+## 9. Review Rollback Against The Real Change
 
 - For application releases, verify rollback artifact versions correspond to the currently deployed versions that would need restoration.
 - For infrastructure releases, confirm the rollback path identifies the prior known-good config, release, or state for the affected phase or region.
@@ -133,7 +140,7 @@ Build the matrix after linked release correlation so the current CM release delt
 - Use the `Accepted Shepherd Status For CM Review` section in `../SKILL.md` before turning rollback release state into a finding.
 - Challenge rollback plans that only say to "roll forward with caution" unless they also identify the exact safe restoration target.
 
-## 8. Produce The Review
+## 10. Produce The Review
 
 Return findings first, ordered by severity.
 

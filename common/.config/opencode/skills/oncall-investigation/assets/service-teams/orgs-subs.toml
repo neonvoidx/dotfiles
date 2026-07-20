@@ -24,6 +24,36 @@ role = "canary"
 bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/ACT/repos/tenant-manager-canary/browse"
 local_repo_path = "/absolute/path/to/local/tenant-manager-canary"
 
+[[team.code.repositories]]
+name = "governance-rules-control-plane"
+role = "governance-rules-control-plane"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/ACT/repos/governance-rules-control-plane/browse"
+local_repo_path = "/absolute/path/to/local/governance-rules-control-plane"
+
+[[team.code.repositories]]
+name = "governance-rules-canary"
+role = "governance-rules-canary"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/ACT/repos/governance-rules-canary/browse"
+local_repo_path = "/absolute/path/to/local/governance-rules-canary"
+
+[[team.code.repositories]]
+name = "org-tenancy-plugin-maui"
+role = "org-tenancy-plugin-maui"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/ACT/repos/org-tenancy-plugin-maui/browse"
+local_repo_path = "/absolute/path/to/local/org-tenancy-plugin-maui"
+
+[[team.code.repositories]]
+name = "maui-order-activation-vnext"
+role = "maui-order-activation-vnext"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/ACT/repos/maui-order-activation-vnext/browse"
+local_repo_path = "/absolute/path/to/local/maui-order-activation-vnext"
+
+[[team.code.repositories]]
+name = "tenant-manager-data-plane-canary"
+role = "tenant-manager-data-plane-canary"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/ACT/repos/tenant-manager-data-plane-canary/browse"
+local_repo_path = "/absolute/path/to/local/tenant-manager-data-plane-canary"
+
 [[team.observability.alarm_sources]]
 name = "ORGMGMT TenantManager alarms"
 kind = "phonebook_project"

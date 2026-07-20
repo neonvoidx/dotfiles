@@ -55,13 +55,13 @@ update() {
 
   icons="$(workspace_icons "$WORKSPACE_ID")"
   if [ -n "$icons" ]; then
-    sketchybar --animate tanh 20 --set "$NAME" \
+    sketchybar --animate tanh 5 --set "$NAME" \
       icon.highlight="$selected" \
       label="$icons" \
       label.drawing=on \
       label.color="$label_color"
   else
-    sketchybar --animate tanh 20 --set "$NAME" \
+    sketchybar --animate tanh 5 --set "$NAME" \
       icon.highlight="$selected" \
       label="" \
       label.drawing=off

@@ -23,12 +23,13 @@ Setup model:
    - output config path
    - workspace parent
    - whether they want to add the local Maven repository to writable roots for sandboxed builds, defaulting the path to `~/.m2/repository`
-   - whether they want to override the shared Enterprise ChatGPT model defaults, and only then the optional provider, model, and optional profile
+   - whether they want to override the shared Enterprise ChatGPT model defaults, and only then the optional provider and model
    - whether to install the rendered global `AGENTS.md` entrypoint in Codex home
-   - whether they want to opt out of the default-enabled `stlm-mcp`, `mcp-dope`, `chrome-devtools`, `sqlcl`, `mcp-atlassian-jira-sd`, `mcp-atlassian-jira-oci`, `centralconfluence`, `playwright`, `ots`, and `mcp_shepherd` integrations
+   - whether they want to opt out of the default-enabled `stlm-mcp`, `mcp-dope`, `chrome-devtools`, `sqlcl`, `mcp-atlassian-jira-sd`, `mcp-atlassian-jira-oci`, `centralconfluence`, `playwright`, `ots`, `mcp_shepherd`, and `lts-mcp` integrations
+   - tell them the Devplat MCP Gateway plugin is configured by default through the `devplat-plugins` marketplace; Bo Peep tools load with `devplat_mcp_gateway__use target=mfo-bo-peep` after local gateway setup
    - for enabled `sqlcl`, ask whether bootstrap should use SQLcl connection metadata from an `On-Call Investigation` team config and, if yes, collect the team-config path and optional team name
    - whether they already have one shared `.env` file for enabled helper-backed MCP servers; if not, collect the desired path, offer starter generation there, and collect the shared `HOME` override and log directory when they want to change the defaults
-   - whether they want to opt out of the default-enabled `codex-bootstrap`, `ots-ticket`, `jira-ticket`, `cm-review`, `create-module-knowledge-skills`, `internal-confluence-page`, `oncall-investigation`, `object-store`, `pr-description`, `scm-pr`, `bitbucket-pr`, `release-check`, and `authZ-permissions-yaml-generator` skills
+   - whether they want to opt out of the default-enabled `codex-bootstrap`, `ots-ticket`, `jira-ticket`, `cm-review`, `create-module-knowledge-skills`, `internal-confluence-page`, `oncall-investigation`, `object-store`, `pr-description`, `repository-version-preflight`, `scm-pr`, `bitbucket-pr`, `release-check`, and `authZ-permissions-yaml-generator` skills
    - when `bitbucket-pr` stays enabled, ask whether the engineer uses `zsh` or `bash`, then collect the shell init file path to use for sourcing that helper
    - for enabled `bitbucket-pr`, whether `BASE_URL` and `BITBUCKET_TOKEN` are already set up; if not, collect the Bitbucket host and create a local helper env file
    - for enabled `jira-ticket`, whether `JIRA_URL` and `JIRA_PERSONAL_TOKEN` are already set up in both Jira MCP env files (`~/.env` and `~/.env.jira-oci`); if not, collect the Jira OCI host and offer to create the Jira OCI MCP env helper
@@ -63,7 +64,7 @@ Notes:
 - If the target config already exists, back it up before overwriting.
 - If a skill target already exists in `$CODEX_HOME/skills`, back it up under `$CODEX_HOME/skill-backups` before replacing it with the repo symlink.
 - In undo mode, remove only the generated local files and repo-backed skill symlinks; do not auto-restore backups.
-- Default `stlm-mcp`, `mcp-dope`, `chrome-devtools`, `sqlcl`, `mcp-atlassian-jira-sd`, `mcp-atlassian-jira-oci`, `centralconfluence`, `playwright`, `ots`, `mcp_shepherd`, `codex-bootstrap`, `ots-ticket`, `jira-ticket`, `cm-review`, `create-module-knowledge-skills`, `internal-confluence-page`, `oncall-investigation`, `object-store`, `pr-description`, `scm-pr`, `bitbucket-pr`, `release-check`, and `authZ-permissions-yaml-generator` to enabled unless the engineer explicitly opts out.
+- Default `stlm-mcp`, `mcp-dope`, `chrome-devtools`, `sqlcl`, `mcp-atlassian-jira-sd`, `mcp-atlassian-jira-oci`, `centralconfluence`, `playwright`, `ots`, `mcp_shepherd`, `lts-mcp`, `codex-bootstrap`, `ots-ticket`, `jira-ticket`, `cm-review`, `create-module-knowledge-skills`, `internal-confluence-page`, `oncall-investigation`, `object-store`, `pr-description`, `repository-version-preflight`, `scm-pr`, `bitbucket-pr`, `release-check`, and `authZ-permissions-yaml-generator` to enabled unless the engineer explicitly opts out.
 - When `stlm-mcp` or `mcp-dope` stays enabled, collect one shared `.env` path for both MCPs and offer the shared `HOME` override and log directory when the engineer wants to change the defaults.
 - Ask whether the engineer already has a shared env file for enabled helper-backed MCPs before offering generation.
 - For `stlm-mcp`, make sure the generated helper or existing dotenv contains `OCI_CONFIG_FILE` and `OCI_PROFILE`.
@@ -74,6 +75,7 @@ Notes:
 - Jira Ticket reads the shared Jira MCP dotenv files directly and does not need shell startup sourcing.
 - If `bitbucket-pr` or `jira-ticket` stays enabled, require configured auth before bootstrap succeeds. A starter helper file alone is not enough; the engineer must populate it or otherwise export the required variables, then rerun bootstrap.
 - Prefer the shared `skills/codex-bootstrap/scripts/refresh_auth.py` helper for `OP_TOKEN` refreshes and OCI session validation/repair so shared docs and skills stay aligned.
+- Do not run Devplat MCP Gateway credential refresh or configuration mutation from bootstrap. For Bo Peep, tell the engineer to run `mcpgw config BoPeep`, `mcpgw refresh-jwt`, and start Docker/Colima locally when the gateway doctor reports those prerequisites.
 
 ## Workflow
 
@@ -86,13 +88,14 @@ Ask one short question at a time until you have:
 - workspace parent
 - whether the engineer wants the local Maven repository writable root for sandboxed builds
 - whether the engineer wants to override the shared Enterprise ChatGPT defaults
-- provider, model, and optional profile only when they opt into an override
+- provider and model only when they opt into an override
 - whether to install the rendered global `AGENTS.md` entrypoint
 - enabled skills, defaulting to all shared skills on
 - whether `bitbucket-pr` auth is already set up and, if not, the Bitbucket host plus helper env path
 - whether `jira-ticket` auth is already set up and, if not, the Jira OCI host plus whether to generate the Jira OCI MCP env helper
 - whether the engineer uses `zsh` or `bash` for shell startup and which init file should source the Bitbucket auth helper when Bitbucket stays enabled
-- enabled MCP servers, defaulting to the full packaged set of `stlm-mcp`, `mcp-dope`, `chrome-devtools`, `sqlcl`, `mcp-atlassian-jira-sd`, `mcp-atlassian-jira-oci`, `centralconfluence`, `playwright`, `ots`, and `mcp_shepherd`
+- enabled MCP servers, defaulting to the full packaged set of `stlm-mcp`, `mcp-dope`, `chrome-devtools`, `sqlcl`, `mcp-atlassian-jira-sd`, `mcp-atlassian-jira-oci`, `centralconfluence`, `playwright`, `ots`, `mcp_shepherd`, and `lts-mcp`
+- Devplat MCP Gateway plugin wiring, which is configured through the plugin marketplace rather than the packaged MCP server list; Bo Peep uses `devplat_mcp_gateway__use target=mfo-bo-peep`
 - whether the engineer already has one shared `.env` file for enabled helper-backed MCPs; if not, the desired path, whether to generate a starter env helper there, plus the shared `HOME` override and log directory when they want to change the defaults
 - when SQLcl connection metadata should come from an On-Call Investigation team config, the config path and, if needed, the specific team name whose `team.sqlcl` block should be used
 
@@ -117,7 +120,6 @@ Good defaults are:
 - README-derived starter keys for the shared `mcp-dope` template helper used by both `stlm-mcp` and `mcp-dope`: `OP_TOKEN` and `SSH_AUTH_SOCK`
 - model provider: blank by default
 - provider default model: `gpt-5.5`
-- default profile: `gpt-5-5`
 
 ### 2. Generate the config
 
@@ -153,7 +155,6 @@ python3 skills/codex-bootstrap/scripts/bootstrap_codex.py \
   --m2-repository "<path-to-your-m2-repository>" \
   --model-provider "<provider>" \
   --model "<model>" \
-  --profile "<profile>" \
   --agents-mode copy \
   --bitbucket-auth-state needs-setup \
   --bitbucket-base-url "<bitbucket-host>" \
@@ -179,6 +180,7 @@ python3 skills/codex-bootstrap/scripts/bootstrap_codex.py \
   --disable-mcp sqlcl \
   --disable-mcp mcp-atlassian-jira-sd \
   --disable-mcp mcp-atlassian-jira-oci \
+  --disable-mcp lts-mcp \
   --disable-mcp mcp_shepherd \
   --disable-skill bitbucket-pr
 ```
@@ -197,6 +199,7 @@ python3 skills/codex-bootstrap/scripts/bootstrap_codex.py \
   --disable-mcp centralconfluence \
   --disable-mcp playwright \
   --disable-mcp ots \
+  --disable-mcp lts-mcp \
   --disable-mcp mcp_shepherd
 ```
 
@@ -224,7 +227,8 @@ Report:
 - enabled skills
 - shared skill links installed under `$CODEX_HOME/skills`
 - enabled MCP servers
-- any prerequisite notes for `chrome-devtools`, `sqlcl`, `mcp-atlassian-jira-sd`, `mcp-atlassian-jira-oci`, `centralconfluence`, `ots`, or `mcp_shepherd`
+- Devplat MCP Gateway plugin status and Bo Peep local prerequisites
+- any prerequisite notes for `chrome-devtools`, `sqlcl`, `mcp-atlassian-jira-sd`, `mcp-atlassian-jira-oci`, `centralconfluence`, `ots`, `mcp_shepherd`, or `lts-mcp`
 - any SQLcl saved connection that bootstrap configured from team metadata
 - any generated Bitbucket PR helper files
 - any generated Jira OCI MCP env helper files

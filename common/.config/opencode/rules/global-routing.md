@@ -73,6 +73,7 @@ This file is the global entry point. Use it to route to workflow-specific prefer
 - When changing shared guidance or packaged skill content, edit the source-of-truth files first and then verify the pack layout still exposes the same content correctly.
 - For `skills/*`, remember `pack/dev-starter/skills/*/` uses real pack directories with individually tracked symlinks back to the source skill files. New files added under a source skill directory are not automatically available in the pack.
 - When a change touches any shared skill, workflow, agent, or routed guidance that should ship through AIPack, validate before finishing:
+  - bump `pack/dev-starter/pack.json` to the next appropriate version whenever the shipped AIPack content changes, including `AGENTS.md`, `workflows/`, `agents/`, `skills/`, `pack/dev-starter/mcp/`, `pack/dev-starter/profiles/`, `pack/dev-starter/configs/`, or packaged metadata
   - check the relevant source and pack file sets for the touched area and confirm there are no unintended missing pack files
   - verify the corresponding pack symlinks resolve to the intended source files
   - if shared Codex settings changed in `config.example.toml`, review `pack/dev-starter/configs/codex/config.toml` and update the committed AIPack settings file when those shared defaults should also ship through the pack
@@ -162,6 +163,11 @@ Reuse hint: <when to apply this in future>
 
 - Route Oracle Object Storage discovery, namespace lookup, bucket and object access, and object-backed log retrieval requests to `skills/object-store/SKILL.md`.
 
+### Service OKE Realm Setup
+
+- Route service OKE access setup, reactivation, kubeconfig switching, Kubernetes `kubectl` verification, service JIT/session/tunnel handoff commands, service SSH host entries, OKE/database tunnel setup, and per-realm kubeconfig backup requests to `skills/service-oke-realm-setup/SKILL.md`.
+- Use it when the user asks for `kubectl ... on ocNN`, OKE setup for a realm, or service-specific OKE access for AAT, Phonebook, or another named service.
+
 ### OTS Ticket
 
 - Route Oracle Ticketing Platform ticket lookups, project reads, comment and activity-history inspection, TQL searches, dashboard or subquery listing, linked-ticket reads, and attachment fetch requests to `skills/ots-ticket/SKILL.md`.
@@ -179,9 +185,20 @@ Reuse hint: <when to apply this in future>
 
 - Route repository module discovery, module-specific Codex skill creation, repo `AGENTS.md` skill routing, and drift-maintained module knowledge packs to `skills/create-module-knowledge-skills/SKILL.md`.
 
+### Repository Version Preflight
+
+- Use `skills/repository-version-preflight/SKILL.md` as a support skill when another skill declares a `Repository version source` and must warn whether the active local skill is stale or unverifiable.
+
 ### On-Call Investigation
 
 - Route incident triage and multi-signal on-call investigation requests to `skills/oncall-investigation/SKILL.md`.
+
+### Existing PR Review Requests
+
+- When the user asks to review an existing pull request URL or says "review this PR", treat the primary intent as a full code-change review, not as provider API operations.
+- Prefer a dedicated PR review skill or workflow when one is available in the current environment, even if that capability is supplied by another repo, pack, plugin, or local installation.
+- Use provider PR operation skills only as supporting API tooling for metadata, diffs, comments, replies, or review markers unless the user explicitly asks only for those API operations.
+- If no dedicated PR review capability is available, combine the generic `review` workflow with the relevant provider PR operation skill to gather evidence and produce findings.
 
 ### PR Description
 
@@ -193,17 +210,22 @@ Reuse hint: <when to apply this in future>
 ### SCM PR Operations
 
 - Route OCI DevOps SCM pull request API operations, including PR lookup, metadata reads, PR creation, comment retrieval, and threaded reply posting, to `skills/scm-pr/SKILL.md`.
-- Use this as SCM PR API tooling only. Do not treat it as the skill for analyzing a PR diff or performing code review; use the review workflow for review analysis.
+- Use this as SCM PR API tooling only. Do not select it as the primary workflow for analyzing a PR diff or performing code review when a dedicated PR review capability is available.
 
 ### Bitbucket PR Operations
 
 - Route Bitbucket pull request API operations, including PR lookup, metadata reads, comment retrieval, and prefixed reply posting, to `skills/bitbucket-pr/SKILL.md`.
-- Use this as Bitbucket PR tooling only. Do not treat it as the skill for analyzing a PR diff or performing code review; use the review workflow for review analysis.
+- Use this as Bitbucket PR tooling only. Do not select it as the primary workflow for analyzing a PR diff or performing code review when a dedicated PR review capability is available.
 
 ### Release Check
 
 - Route Shepherd release-link audits and rollout investigations to `skills/release-check/SKILL.md`.
 - Use it when the task is to inspect a Shepherd release URL or identifiers for scope, phase or target status, per-region diffs, execution errors, target logs, validations, timelines, or rollout recommendations.
+
+### MFO Region Build Status
+
+- Route DevOps MFO or region-build flock dependency investigations to `skills/mfo-region-build-status/SKILL.md`.
+- Use it when the task is to inspect a region-build flock page, summarize satisfied, unsatisfied, and optional capability dependencies across phases, trace capability producers recursively, or explain which upstream project or flock is blocking publication.
 
 ### AuthZ Permissions YAML Generator
 
@@ -221,13 +243,16 @@ Reuse hint: <when to apply this in future>
 | Shared Codex onboarding, config generation, placeholder replacement, or skill-path setup | Codex Bootstrap | `codex-bootstrap` | `skills/codex-bootstrap/` |
 | Internal Confluence extraction, markdown conversion, summary, or analysis | Internal Confluence Page | `internal-confluence-page` | `skills/internal-confluence-page/` |
 | Object Storage namespace, bucket, object, or object-backed log access | Object Store | `object-store` | `skills/object-store/` |
+| Service OKE access setup, JIT/session/tunnel handoff, kubeconfig switching, or `kubectl` verification for a realm | Service OKE Realm Setup | `service-oke-realm-setup` | `skills/service-oke-realm-setup/` |
 | Oracle Ticketing Platform tickets, TQL, comments, activity, linked tickets, or attachments | OTS Ticket | `ots-ticket` | `skills/ots-ticket/` |
 | Jira search, issue reads, comments, activity, labels, or status changes | Jira Ticket | `jira-ticket` | `skills/jira-ticket/` |
 | CHANGE or CM ticket review against implementation, validation, rollback, Shepherd scope, runbooks, or artifacts | CM Review | `cm-review` | `skills/cm-review/` |
 | Repository module discovery, module-specific skills, repo AGENTS routing, or drift-maintained module packs | Create Module Knowledge Skills | `create-module-knowledge-skills` | `skills/create-module-knowledge-skills/` |
+| Skill repository version warning for skills with a declared remote source | Repository Version Preflight | `repository-version-preflight` | `skills/repository-version-preflight/` |
 | Incident triage or multi-signal production investigation | On-Call Investigation | `oncall-investigation` | `skills/oncall-investigation/` |
 | Pull request body drafting or template-compliant PR summaries | PR Description | `pr-description` | `skills/pr-description/` |
 | OCI DevOps SCM PR API operations: lookup, metadata, creation, comments, or reply posting | SCM PR Operations | `scm-pr` | `skills/scm-pr/` |
 | Bitbucket PR API operations: lookup, metadata, comments, or reply posting | Bitbucket PR Operations | `bitbucket-pr` | `skills/bitbucket-pr/` |
 | Shepherd release-link audits or rollout investigations | Release Check | `release-check` | `skills/release-check/` |
+| DevOps MFO or region-build flock dependency status, capability tracing, or upstream producer blocking analysis | MFO Region Build Status | `mfo-region-build-status` | `skills/mfo-region-build-status/` |
 | Identity AuthZ Enablement `ID-*.yaml` resourceOperations generation | AuthZ Permissions YAML Generator | `permissions-yaml-generator` | `skills/authZ-permissions-yaml-generator/` |

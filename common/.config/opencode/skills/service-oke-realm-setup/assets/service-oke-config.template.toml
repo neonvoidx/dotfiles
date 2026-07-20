@@ -1,0 +1,88 @@
+version = 1
+
+# Service OKE config template
+#
+# Minimum for a new service:
+# - Fill in the Required service/profile/path fields below.
+# - Add one [realms.<realm>] block with at least region and profile.
+#
+# Minimum for each new realm:
+#
+# [realms.ocNN]
+# region = "<oci-region>"
+# profile = "ocNN-<service_key>"
+#
+# The generic helper may auto-populate these safe optional realm fields after
+# discovery, so users usually do not need to provide them up front:
+# - alias: region key used in SSH host names, such as iad, jsk, or ifp
+# - compartment_id: service compartment for OKE/extra-forward discovery
+# - bastion_compartment_id: only when different from compartment_id
+# - realm_domain: only when OSSH metadata cannot derive it
+#
+# Use --no-update-config for a read-only run that does not write learned
+# values back into this file.
+
+[service]
+# Required.
+key = "example"
+display_name = "Example Service"
+permissions_slug = "example-service"
+tenancy_name = "example_service"
+
+# Optional but recommended.
+aliases = ["example-service"]
+tenancy_source = "Explicit service OKE config"
+# Optional. Defaults to "<service_key>-service"; host entries become
+# <host_prefix>-<alias>-0-oke, <host_prefix>-<alias>-jump, etc.
+host_prefix = "example-service"
+
+[profile]
+# Required unless every realm defines `profile`.
+template = "{realm}-{service_key}"
+
+[paths]
+# Required.
+ssh_config = "$HOME/.ssh/example-service/ssh_config"
+kubeconfig_backup_template = "$HOME/.kube/config.{service_key}.{realm}.bkp"
+
+[jit]
+# Optional.
+role = "prod-admin"
+# Optional but recommended when the service has a safe metadata-only
+# propagation target. Codex checks this before kubectl and reports only
+# non-secret metadata; never store secret values here.
+# propagation_url = "https://devops.oci.oraclecorp.com/secret-service/<region>/namespace/<namespace>/secret/<secret>"
+# propagation_secret_name = "<secret>"
+# propagation_path = "/secret/<namespace>/<secret>/latest"
+
+[tunnel]
+# Optional. Defaults to 6443 -> 6443.
+local_oke_port = 6443
+remote_oke_port = 6443
+
+# Add extra forwards only when the service needs them.
+#
+# [[tunnel.extra_forwards]]
+# name = "database"
+# local_port = 1522
+# remote_port = 1522
+# resource_type = "autonomous_database"
+# display_name = "EXAMPLEADB"
+# required = false
+
+[discovery]
+mode = "live_oci"
+notes = "Use live OCI for cluster, endpoint, bastion, and node IP discovery."
+
+# Add per-realm overrides when region/profile/path conventions differ.
+#
+# [realms.oc1]
+# Required per realm.
+# region = "us-ashburn-1"
+# profile = "oc1-example"
+#
+# Optional. The helper can often infer and populate these.
+# alias = "iad"
+# compartment_id = "ocid1.compartment..."
+# bastion_compartment_id = "ocid1.compartment..."
+# realm_domain = "oracleiaas.com"
