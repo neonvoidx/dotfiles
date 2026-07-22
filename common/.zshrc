@@ -465,6 +465,27 @@ export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
 eval "$(starship init zsh)"
+# Pure prompt (provided by the Nix pure-prompt package).
+export PURE_CMD_MAX_EXEC_TIME="0"
+export PURE_GIT_DOWN_ARROW=""
+export PURE_GIT_UP_ARROW=""
+export PURE_SUSPENDED_JOBS_SYMBOL="󰒲"
+export PURE_PROMPT_VICMD_SYMBOL=""
+export PURE_PROMPT_SYMBOL="❯"
+
+autoload -Uz promptinit
+promptinit
+prompt pure
+
+zstyle ':prompt:pure:git:stash' show no
+zstyle ':prompt:pure:environment:node_version' show yes
+zstyle ':prompt:pure:git:dirty' detailed no
+zstyle ':prompt:pure:path:separator' dim yes
+
+if [[ -n $AI_AGENT$CLAUDECODE$CURSOR_AGENT$GEMINI_CLI$OPENCODE ]]; then
+  zstyle ':prompt:pure:git' show no
+fi
+
 eval "$(direnv hook zsh)"
 
 # scm-ssh start_agent
