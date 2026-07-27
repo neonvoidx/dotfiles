@@ -133,14 +133,14 @@ brew "pngquant"
 brew "poppler"
 # Framework for managing multi-language pre-commit hooks
 brew "pre-commit"
+# Pretty, minimal and fast ZSH prompt
+brew "pure"
 # Python version management
 brew "pyenv"
 # C library and command-line tool to generate (extended) regular expressions
 brew "rgxg"
 # Simple keystroke visualizer
 brew "showkey"
-# Cross-shell prompt for astronauts
-brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Change macOS audio source from the command-line
@@ -185,14 +185,12 @@ brew "yubico-piv-tool"
 brew "zoxide"
 # OSSH CLI for operator SSH access within OCI
 brew "acep/brew/ossh"
-# Simple hotkey-daemon for macOS.
-brew "asmvik/formulae/skhd", trusted: true
-# A tiling window manager for macOS based on binary space partitioning.
-brew "asmvik/formulae/yabai", args: ["HEAD"], trusted: true
 # Oracle Cloud Infrastructure Unified Operations Tool
 brew "cloudshell/oci-ops/oci-ops"
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "nikitabobko/tap/aerospace", trusted: true
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
 # Desktop password and login vault
