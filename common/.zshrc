@@ -374,6 +374,10 @@ _ensure_ssh_agent() {
   [[ -n "$SSH_TTY" ]] && return 0
   local agent_sock="$HOME/.ssh/agent.sock"
 
+  # Terminal apps commonly provide a persistent launchd-managed agent.
+  # Replacing it creates a fresh agent and needlessly re-prompts for the YubiKey PIN.
+  _ssh_agent_ready && return 0
+
   export SSH_AUTH_SOCK="$agent_sock"
   _ssh_agent_ready && return 0
 
