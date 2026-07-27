@@ -252,7 +252,7 @@ if command -v btop &> /dev/null; then
 fi
 # Update Brew packages and backup to brew folder
 if command -v brew &> /dev/null; then
-  alias brewup="brew upgrade && cd ~/.config/brew && ./brewbackup.sh"
+  alias brewup="brew upgrade -y && cd ~/.config/brew && ./brewbackup.sh"
 fi
 
 
@@ -464,6 +464,7 @@ export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 
 eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
+export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml"
 eval "$(starship init zsh)"
 # Pure prompt (provided by the Nix pure-prompt package).
 export PURE_CMD_MAX_EXEC_TIME="0"
@@ -475,7 +476,7 @@ export PURE_PROMPT_SYMBOL="❯"
 
 autoload -Uz promptinit
 promptinit
-prompt pure
+# prompt pure
 
 zstyle ':prompt:pure:git:stash' show no
 zstyle ':prompt:pure:environment:node_version' show yes

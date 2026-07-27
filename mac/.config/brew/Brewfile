@@ -1,7 +1,7 @@
 tap "acep/brew", "ssh://git@bitbucket.oci.oraclecorp.com:7999/acep/brew.git"
 tap "acsandmann/tap"
 tap "anomalyco/tap", "https://github.com/anomalyco/homebrew-tap.git"
-tap "asmvik/formulae"
+tap "asmvik/formulae", trusted: { formulae: ["skhd", "yabai"] }
 tap "cloudshell/oci-ops", "ssh://git@bitbucket.oci.oraclecorp.com:7999/cloudshell/homebrew-ociops.git"
 tap "felixkratz/formulae", trusted: { formulae: ["sketchybar"] }
 tap "homebrew/bundle"
@@ -10,7 +10,7 @@ tap "homebrew/services"
 tap "jackielii/tap"
 tap "jstkdng/programs"
 tap "koekeishiya/formulae", "https://github.com/asmvik/homebrew-formulae.git"
-tap "nikitabobko/tap"
+tap "nikitabobko/tap", trusted: { casks: ["aerospace"] }
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Cryptography and SSL/TLS Toolkit
@@ -133,14 +133,14 @@ brew "pngquant"
 brew "poppler"
 # Framework for managing multi-language pre-commit hooks
 brew "pre-commit"
-# Pretty, minimal and fast ZSH prompt
-brew "pure"
 # Python version management
 brew "pyenv"
 # C library and command-line tool to generate (extended) regular expressions
 brew "rgxg"
 # Simple keystroke visualizer
 brew "showkey"
+# Cross-shell prompt for astronauts
+brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Change macOS audio source from the command-line
@@ -189,8 +189,10 @@ brew "acep/brew/ossh"
 brew "cloudshell/oci-ops/oci-ops"
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
-# AeroSpace is an i3-like tiling window manager for macOS
-cask "nikitabobko/tap/aerospace", trusted: true
+# Simple hotkey-daemon for macOS.
+brew "koekeishiya/formulae/skhd"
+# A tiling window manager for macOS based on binary space partitioning.
+brew "koekeishiya/formulae/yabai"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
 # Desktop password and login vault
