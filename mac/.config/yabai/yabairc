@@ -77,8 +77,8 @@ yabai -m rule --add app=".*Slack.*" manage=on space=5
 yabai -m rule --add app="^Microsoft Outlook$" subrole!="^AXStandardWindow$" manage=off
 yabai -m rule --add app="^Microsoft Outlook$" subrole="^AXStandardWindow$" title!=".*[Rr]eminder.*" manage=on space=2
 yabai -m rule --add app="^Microsoft Outlook$" title=".*[Rr]eminders?.*" manage=off space=1
-yabai -m rule --add app=".*zoom.*" subrole!="^AXStandardWindow$" manage=off
-yabai -m rule --add app=".*zoom.*" subrole="^AXStandardWindow$" manage=on space=3
+yabai -m rule --add app=".*[Zz]oom.*" subrole!="^AXStandardWindow$" manage=off
+yabai -m rule --add app=".*[Zz]oom.*" subrole="^AXStandardWindow$" manage=on space=3
 yabai -m rule --add app=".*Firefox.*" manage=on space=1
 yabai -m rule --add app=".*kitty.*" manage=on space=1
 yabai -m rule --add app=".*Obsidian.*" manage=on space=4

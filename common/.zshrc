@@ -375,8 +375,10 @@ _ensure_ssh_agent() {
   local agent_sock="$HOME/.ssh/agent.sock"
 
   # Terminal apps commonly provide a persistent launchd-managed agent.
-  # Replacing it creates a fresh agent and needlessly re-prompts for the YubiKey PIN.
-  _ssh_agent_ready && return 0
+  # Preserve one that already has identities, but do not adopt an empty SCM agent.
+  if _ssh_agent_ready && ssh-add -l >/dev/null 2>&1; then
+    return 0
+  fi
 
   export SSH_AUTH_SOCK="$agent_sock"
   _ssh_agent_ready && return 0
@@ -444,9 +446,6 @@ ensure-ssh() {
     }
     if ! _ssh_agent_has_identities "$HOME/.ssh/scm-agent.sock"; then
       scm-ssh start_agent >/dev/null 2>&1
-      if ! _ssh_agent_has_identities "$HOME/.ssh/scm-agent.sock"; then
-        scm-ssh ssh_reset
-      fi
     fi
   fi
 }
