@@ -1,16 +1,17 @@
 tap "acep/brew", "ssh://git@bitbucket.oci.oraclecorp.com:7999/acep/brew.git"
 tap "acsandmann/tap"
 tap "anomalyco/tap", "https://github.com/anomalyco/homebrew-tap.git"
-tap "asmvik/formulae", trusted: { formulae: ["skhd", "yabai"] }
+tap "asmvik/formulae"
 tap "cloudshell/oci-ops", "ssh://git@bitbucket.oci.oraclecorp.com:7999/cloudshell/homebrew-ociops.git"
 tap "felixkratz/formulae", trusted: { formulae: ["sketchybar"] }
+tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "jackielii/tap"
 tap "jstkdng/programs"
 tap "koekeishiya/formulae", "https://github.com/asmvik/homebrew-formulae.git"
-tap "nikitabobko/tap", trusted: { casks: ["aerospace"] }
+tap "nikitabobko/tap"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Cryptography and SSL/TLS Toolkit
@@ -75,6 +76,8 @@ brew "gitleaks"
 brew "gnu-sed"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Agent multiplexer that lives in your terminal
+brew "herdr"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # Calculate various network masks, etc. from a given IP address
@@ -189,10 +192,10 @@ brew "acep/brew/ossh"
 brew "cloudshell/oci-ops/oci-ops"
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
-# Simple hotkey-daemon for macOS.
-brew "koekeishiya/formulae/skhd"
-# A tiling window manager for macOS based on binary space partitioning.
-brew "koekeishiya/formulae/yabai"
+# Terraform
+brew "hashicorp/tap/terraform", trusted: true
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "nikitabobko/tap/aerospace", trusted: true
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
 # Desktop password and login vault

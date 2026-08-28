@@ -1,0 +1,36 @@
+[[team]]
+name = "Example Service"
+description = "Replace with the service team or domain name"
+
+[team.match]
+# CM tickets often live in shared change projects, so keep multiple match hints.
+jira_projects = ["CHANGE"]
+# Preferred when the CM ticket has a stable "service owner" field.
+service_owner_values = ["Example Service"]
+service_names = ["Example Service"]
+ticket_labels = ["example-service"]
+keywords = ["example", "example api", "example control plane"]
+
+[team.runbooks]
+bitbucket_repo = "https://bitbucket.example/projects/EXAMPLE/repos/runbooks/browse"
+local_repo_path = "/absolute/path/to/local/runbooks"
+preferred_source = "local_repo"
+
+# Optional: add one or more preferred runbooks only when repo search is too noisy.
+#
+# [[team.runbooks.documents]]
+# name = "data-fix-procedure"
+# relative_path = "Example_Data_Fix.md"
+# search_terms = ["data fix", "manual remediation", "record repair"]
+#
+# Optional: add class-specific review anchors only when the defaults are not enough.
+#
+# [[team.change_classes]]
+# kind = "data-fix"
+# summary_keywords = ["data fix", "manual update", "backfill", "adhoc"]
+# runbook_documents = ["data-fix-procedure"]
+# required_ticket_fields = ["implementation", "validation", "rollback"]
+# required_targets = ["resource-id"]
+# required_validation = ["before-after-state", "post-change-read"]
+# required_rollback = ["restore-prior-state", "containment-path"]
+# disallow_generic_rollback = true

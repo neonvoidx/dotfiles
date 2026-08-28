@@ -1,0 +1,114 @@
+[[team]]
+name = "Spm-Receiver"
+description = "On-call investigation config for Spm-Receiver (SPMR) across API, worker, and canary components."
+
+[team.tickets]
+jira_projects = ["SPMR"]
+ots_projects = ["SPMR"]
+
+[[team.code.repositories]]
+name = "spm-receiver"
+role = "control-plane"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/SPMR/repos/spm-receiver/browse"
+local_repo_path = "/absolute/path/to/local/spm-receiver"
+
+[[team.code.repositories]]
+name = "spmr-canary"
+role = "canary"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/SPMR/repos/spm-receiver/browse/spm-receiver-canary"
+
+[[team.observability.alarm_sources]]
+name = "SPMR alarms"
+kind = "phonebook_project"
+phonebook = "spmr"
+project = "SPMR"
+
+[[team.observability.metric_fleets]]
+name = "api"
+role = "control-plane"
+project = "SpmReceiver"
+fleet = "spm-receiver-api"
+
+[[team.observability.metric_fleets]]
+name = "worker"
+role = "worker"
+project = "SpmReceiver"
+fleet = "spm-receiver-worker"
+
+[[team.observability.metric_fleets]]
+name = "canary"
+role = "canary"
+project = "test-service"
+fleet = "canary-run-results"
+
+[team.canary]
+phonebook = "spmr"
+service_project = "spm-receiver"
+
+[team.lumberjack]
+phonebook = "spmr"
+project = "spmr"
+tenant_name = "tenancylifecycle"
+tenant_names_by_environment = { prod = "tenancylifecycle", dev = "spmrpreprod", alp = "spmrdev" }
+notes = "Resolve the alarm-backed environment first, then prefer the matching tenant and namespace family before broad log searches."
+
+[[team.lumberjack.namespaces]]
+name = "api-prod"
+role = "control-plane"
+namespace = "spm-receiver-api-production"
+environment = "prod"
+region = "us-ashburn-1"
+
+[[team.lumberjack.namespaces]]
+name = "worker-prod"
+role = "worker"
+namespace = "spm-receiver-worker-production"
+environment = "prod"
+region = "us-ashburn-1"
+
+[[team.lumberjack.namespaces]]
+name = "api-dev"
+role = "control-plane"
+namespace = "spmrdev-api"
+environment = "dev"
+region = "us-ashburn-1"
+
+[[team.lumberjack.namespaces]]
+name = "worker-dev"
+role = "worker"
+namespace = "spmrdev-worker"
+environment = "dev"
+region = "us-ashburn-1"
+
+[[team.lumberjack.namespaces]]
+name = "api-alp"
+role = "control-plane"
+namespace = "spmralpha-api"
+environment = "alp"
+region = "us-ashburn-1"
+
+[[team.lumberjack.namespaces]]
+name = "worker-alp"
+role = "worker"
+namespace = "spmralpha-worker"
+environment = "alp"
+region = "us-ashburn-1"
+
+[team.splat]
+tenant_name = "splat"
+
+[[team.splat.namespaces]]
+name = "splat-proxy"
+namespace = "splat-proxy"
+
+[[team.splat.namespaces]]
+name = "splat-proxy-overlay"
+namespace = "splat-proxy-overlay"
+
+[team.shepherd]
+phonebook = "spmr"
+project = "spmr"
+
+[[team.shepherd.flocks]]
+name = "primary"
+flock = "spm-receiver"

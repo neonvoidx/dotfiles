@@ -1,0 +1,139 @@
+[[team]]
+name = "Arke Service"
+description = "On-call investigation config for Arke service across control-plane, data-plane, and canary."
+
+[team.tickets]
+jira_projects = ["ARKE"]
+ots_projects = ["ARKE"]
+
+[[team.code.repositories]]
+name = "arke"
+role = "control-plane"
+scm_repo = "ocid1.devopsrepository.oc1.phx.amaaaaaaw4vcxbyaibiyb3mxr4woasgm43pfjkm2aj74fjabc2eycq3vwdqa"
+local_repo_path = "/absolute/path/to/local/arke"
+
+[[team.code.repositories]]
+name = "arke"
+role = "canary"
+scm_repo = "ocid1.devopsrepository.oc1.phx.amaaaaaaw4vcxbyaibiyb3mxr4woasgm43pfjkm2aj74fjabc2eycq3vwdqa"
+local_repo_path = "/absolute/path/to/local/arke"
+
+[[team.code.repositories]]
+name = "arke"
+role = "data-plane"
+scm_repo = "ocid1.devopsrepository.oc1.phx.amaaaaaaw4vcxbyaibiyb3mxr4woasgm43pfjkm2aj74fjabc2eycq3vwdqa"
+local_repo_path = "/absolute/path/to/local/arke"
+
+[[team.code.repositories]]
+name = "arke-terraform"
+role = "config"
+scm_repo = "ocid1.devopsrepository.oc1.phx.amaaaaaaw4vcxbyaxqxfhkbre2uppb5bf35dg45zbipkfxbexfmvjhpf62ca"
+local_repo_path = "/absolute/path/to/local/arke-terraform"
+
+[[team.observability.alarm_sources]]
+name = "ARKE qen accounts alarms"
+kind = "phonebook_project"
+phonebook = "arke"
+project = "arke-qen-accounts"
+
+[[team.observability.metric_fleets]]
+name = "arke-qen-accounts"
+role = "data-plane"
+project = "arke-qen-accounts"
+fleet = "arke-qen-api"
+
+# This team.observability.metric_fleets and team.canary is for accounts dp canary. Once arke-qen has its own canary then need to replace this part
+[[team.observability.metric_fleets]]
+name = "arke-qen-accounts-canary"
+role = "canary"
+project = "Accounts"
+fleet = "accounts-dp-canary"
+
+# Optional: include this block when the team has a real canary service whose
+# raw run logs should be fetched after matching the fired metric to a canary.
+[team.canary]
+phonebook = "accounts"
+service_project = "Accounts"
+# Optional: list known runtime canary names when they are stable and should be
+# preferred before broader canary discovery.
+canary_names = ["accounts-dp-apis"]
+
+[[team.observability.host_metric_fleets]]
+name = "arke-qen-accounts-overlay-hosts"
+role = "host"
+project = "hostmetrics"
+fleet = "arke-qen-accounts.arke-app-overlay"
+
+[[team.observability.metric_sources]]
+kind = "arke qen grafana_dashboard"
+name = "arke qen hostmetrics dashboard"
+dashboard_uid = "hfgAC3Ovk"
+dashboard_id = 630532
+
+# Optional: include this block when the service is ODO-managed and backend or
+# host-local incidents may require deployment correlation. Region, AD, and time
+# should still be derived from the ticket and live evidence.
+[team.odo]
+phonebook = "arke"
+notes = "Use ODO correlation for backend-capacity and host-local incidents"
+
+[[team.odo.hints]]
+name = "data-plane"
+role = "data-plane"
+application_aliases = ["arke-qen-accounts-core-instances-pool"]
+# Optional: use a pattern only when helper or updater aliases are misleading.
+# application_alias_patterns = ["poes-updater-*"]
+
+[team.object_store]
+default_compartment_name = "Resource"
+default_tenancy_name = "arke-qen-accounts"
+# Optional: override the default tenancy name for realms that use a different
+# tenancy name.
+tenancy_names_by_realm = { r1 = "arke-qen-accounts", oc1 = "arke-qen-accounts" }
+
+[team.lumberjack]
+tenant_name = "arke-qen-accounts"
+# Optional: map environment labels to known Lumberjack tenants when they differ
+# across prod and pre-production environments.
+tenant_names_by_environment = { prod = "arke-qen-accounts", dev = "arke-qen-accounts-dev" }
+# Optional: if the same region has multiple environment-specific namespace
+# families, keep all candidate namespaces here and annotate them so the
+# investigation can filter by the alarm-backed environment first.
+# Or use discovery-hint mode instead of explicit namespaces:
+phonebook = "arke"
+project = "arke-qen-accounts"
+
+[[team.lumberjack.namespaces]]
+name = "arke-qen-accounts-data-plane-prod"
+role = "data-plane"
+namespace = "arke-qen-accounts"
+environment = "prod"
+# Use the logging backend's query key here. This may differ from the public
+# region name shown in tickets or alarm UIs.
+region = "r1"
+
+[[team.lumberjack.namespaces]]
+name = "arke-qen-accounts-data-plane-dev"
+role = "data-plane"
+namespace = "arke-qen-accounts-dev"
+environment = "dev"
+region = "r1"
+
+[team.splat]
+tenant_name = "splat"
+
+[[team.splat.namespaces]]
+name = "splat-proxy"
+namespace = "splat-proxy"
+
+[[team.splat.namespaces]]
+name = "splat-proxy-overlay"
+namespace = "splat-proxy-overlay"
+
+[team.shepherd]
+phonebook = "arke"
+project = "arke-shepherd-config"
+
+[[team.shepherd.flocks]]
+name = "data-plane"
+flock = "arke-qen"

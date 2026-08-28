@@ -1,0 +1,65 @@
+interface:
+  display_name: "Service OKE Realm Setup"
+  short_description: "Set up or reactivate service JIT, propagation checks, OKE SSH tunnels, session handoff commands, and per-realm kubeconfig cache."
+  default_prompt: >-
+    Use $service-oke-realm-setup to set up or verify OKE access for the supplied service and realm.
+    Do not hardcode a workstation username or home directory; resolve user-owned paths from $HOME or ~.
+    If service is omitted, default to Account Admin Tool only when the prompt or local AAT cache clearly matches.
+    Discover service config in this order: explicit config path, current repo .agents/service-oke/<service_key>.toml,
+    current repo .agents/service-oke/<service_slug>.toml, shared skill assets/service-teams/<service_key>.toml,
+    shared skill assets/service-teams/<service_slug>.toml, then local kubeconfig/SSH evidence. Normalize service name
+    into service_key, permissions_slug, tenancy_name, ssh_config_path, kubeconfig backup path, and profile convention.
+    When running the full live-OCI setup from a service OKE TOML config, use the generic helper
+    skills/service-oke-realm-setup/scripts/setup_service_oke_realm.py.
+    For AAT use service_key=aat, permissions_slug=account-admin-tool, tenancy_name=account_admin_tool,
+    ssh_config_path=$HOME/.ssh/account-admin-tool-dev-tools/ssh_configs/config_aat, and kubeconfig backup
+    $HOME/.kube/config.<realm>.bkp. For non-AAT services, derive obvious local kubeconfig and SSH config paths first,
+    then ask only for missing service-specific paths or tenancy names. Treat tenancy_name as derived evidence:
+    before asking for auth, state which tenancy name will be used when it is not an explicit known mapping; if OCI auth,
+    validation, or local evidence suggests it is wrong, report the service, realm, profile, attempted tenancy name, and
+    exact error/conflict instead of silently trying alternates. Derive region from the service/realm kubeconfig backup
+    and matching service SSH config before asking me for it. Choose the profile name from the realm and service, normally
+    <realm>-<service_key>, unless a documented local convention clearly requires a different name. If a cached kubeconfig
+    uses a non-service/realm-derived profile such as DEFAULT or an airport-code alias, update the backup to the derived
+    profile and make sure the matching OCI profile exists before asking me to authenticate it. For shorthand requests
+    like "kubectl pods on oc16" or "run kubectl on oc1", do not jump straight to kubectl: first give the service
+    prod-admin JIT reminder plus exact oci session authenticate/validate and ssh -N tunnel commands, then run kubectl
+    only after I confirm they are ready or I explicitly ask you to run those setup commands. For plan or dry-run prompts,
+    use read-only checks only and end with "Kubectl readiness: yes", "Kubectl readiness: yes with warnings", or
+    "Kubectl readiness: no". Check service config, kubeconfig backup path/server/profile, service JIT activation and
+    propagation, OCI profile validity, local tunnel listeners, required extra forwards, and optionally a read-only
+    kubectl probe such as kubectl --kubeconfig <backup> get --raw /version --request-timeout=10s. Include the exact
+    kubectl command when ready, or the shortest missing prerequisite when not ready. Before kubectl verification,
+    make sure service prod-admin JIT is active in Permissions Portal and check service-owned JIT propagation via
+    [jit].propagation_url when present; if it is not configured, ask me whether I have a service-specific propagation
+    URL and expected visible metadata for my service, and use a provided URL for the current run without saving it unless
+    I explicitly ask. If I handle JIT externally, ask me to confirm it is active, then still run the configured or
+    user-provided read-only propagation check before kubectl when possible. Prefer external Google Chrome if the built-in
+    browser blocks the Secret Service OC1 login popup. Never click View Secret or expose secret values, callback URLs,
+    id tokens, cookies, or session material; report only non-secret metadata such as latest version/name/state/created
+    timestamp. If propagation is pending, blocked, or not configured, inform me clearly before continuing and include
+    the propagation URL or missing-config note; do not stop solely because propagation is not confirmed. Let me complete external-browser OCI auth for the service tenancy when needed, and when I offer to set things
+    up externally, give me the exact oci session authenticate command and ssh -N tunnel command after the JIT reminder.
+    For kubectl verification, follow the fast path for files under $HOME/.kube: keep the service/realm kubeconfig backup
+    as the per-realm source of truth, snapshot $HOME/.kube/config, copy the selected *.bkp into $HOME/.kube/config, and
+    run kubectl from the active config. Use a temporary kubeconfig only when I explicitly ask not to touch the active
+    config or an alternate local port must be tested without changing the durable backup. The SSH config is not cached
+    blindly: always query live OCI for active OKE node/private IPs before providing or running a tunnel command, even in
+    cached/fast-path kubectl runs; compare those IPs to the service SSH config realm block and update HostName
+    <bastion_ocid>-<node_private_ip> entries in place if they drifted. Do not force Full Setup Path just to refresh
+    config_aat when the ~/.kube backup is valid. For any requested realm, use live OKE node/private IPs to refresh
+    the service SSH config before tunnel attempts. If live OCI is blocked,
+    clearly state that node-IP freshness is unverified before giving a tunnel command. Query live OCI for the service
+    compartment, overlay bastion, OKE cluster endpoint, active node IPs, and service database/private endpoint IP when
+    refreshing persistent setup. If live OCI is blocked and I explicitly ask for Shepherd state history, use it only as
+    an unverified tunnel-command hint until kubectl or a tunnel probe succeeds. If the bastion is not in the service
+    compartment, check sibling service compartments and use that bastion compartment for SSH ProxyCommand. If the service
+    SSH config already has a realm block, still refresh it from live OCI during full setup so stale instance IPs are
+    replaced. Before starting a new tunnel, check port 6443 and any configured database port. Keep only one service OKE
+    tunnel active by default: if 6443 is already owned by an ssh tunnel from another realm, report the owning process,
+    kill only that ssh PID, verify the port is clear, and reuse 6443 for the current realm. Do the same for configured
+    database ports such as 1522 when they are needed by the current realm. Never broad-kill ssh, and stop before killing
+    any non-ssh process. Use an alternate local OKE port such as 6444 only when I explicitly ask to preserve the existing
+    tunnel or ask for a temporary/non-mutating check. Update the service SSH config with the realm SSH block and tunnel
+    comment during full setup, create or reuse the service/realm kubeconfig backup, copy it into $HOME/.kube/config,
+    verify lsof shows the chosen local port before kubectl, and verify with kubectl get pods.

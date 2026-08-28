@@ -1,0 +1,4 @@
+interface:
+  display_name: "CM Review"
+  short_description: "Review change tickets with release or runbook evidence"
+  default_prompt: "Use $cm-review to review a change ticket. Follow the skill's Fast Path and referenced workflows for repository version preflight, intake-only planning, approval-gated evidence collection, Release Check delegation, runbook review, findings order, and opt-in Jira writeback."

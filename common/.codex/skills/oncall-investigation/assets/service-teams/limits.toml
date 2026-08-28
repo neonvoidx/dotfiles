@@ -1,0 +1,261 @@
+[[team]]
+name = "Limits"
+description = "On-call investigation config for Limits across control-plane, data-plane, tool, canary, and deployment surfaces."
+
+[team.tickets]
+jira_projects = ["LIM", "LIMDP"]
+
+[[team.code.repositories]]
+name = "limits-and-counts"
+role = "control-plane"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/LIM/repos/limits-and-counts/browse"
+local_repo_path = "path_to_local_repo"
+
+[[team.code.repositories]]
+name = "limits-and-counts"
+role = "data-plane"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/LIM/repos/limits-and-counts/browse"
+local_repo_path = "path_to_local_repo"
+
+[[team.code.repositories]]
+name = "limits-and-counts"
+role = "tool"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/LIM/repos/limits-and-counts/browse"
+local_repo_path = "path_to_local_repo"
+
+[[team.code.repositories]]
+name = "limits-cp-terraform"
+role = "control-plane-infra"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/LIM/repos/limits-cp-terraform/browse"
+local_repo_path = "path_to_local_repo"
+
+[[team.code.repositories]]
+name = "limits-dp-terraform"
+role = "data-plane-infra"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/LIM/repos/limits-dp-terraform/browse"
+local_repo_path = "path_to_local_repo"
+
+[[team.code.repositories]]
+name = "limits-tool-terraform"
+role = "tool-infra"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/LIM/repos/limits-tool-terraform/browse"
+local_repo_path = "path_to_local_repo "
+
+[[team.code.repositories]]
+name = "cost-estimator"
+role = "cost-estimator"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/LIM/repos/cost-estimator/browse"
+local_repo_path = "path_to_local_repo"
+
+[[team.code.repositories]]
+name = "cost-estimator-terraform"
+role = "cost-estimator-infra"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/LIM/repos/cost-estimator-terraform/browse"
+local_repo_path = "path_to_local_repo"
+
+[[team.code.repositories]]
+name = "limits-canary"
+role = "canary"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/LIM/repos/limits-canary/browse"
+local_repo_path = "path_to_local_repo"
+
+[[team.code.repositories]]
+name = "limits-canary-terraform"
+role = "canary-infra"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/LIM/repos/limits-canary-terraform/browse"
+local_repo_path = "path_to_local_repo"
+
+[[team.observability.alarm_sources]]
+name = "Limits control-plane alarms"
+kind = "phonebook_project"
+phonebook = "limits"
+project = "property-store-cp"
+
+[[team.observability.alarm_sources]]
+name = "Limits data-plane alarms"
+kind = "phonebook_project"
+phonebook = "limits"
+project = "property-store"
+
+[[team.observability.alarm_sources]]
+name = "Limits tool alarms"
+kind = "phonebook_project"
+phonebook = "limits"
+project = "LimitsTool"
+
+[[team.observability.alarm_sources]]
+name = "Limits canary alarms"
+kind = "phonebook_project"
+phonebook = "limits"
+project = "limitsCanary"
+
+[[team.observability.alarm_sources]]
+name = "Limits cost-estimator alarms"
+kind = "phonebook_project"
+phonebook = "limits"
+project = "limits-cost-estimator"
+
+[[team.observability.metric_fleets]]
+name = "control-plane"
+role = "control-plane"
+project = "property-store-cp"
+fleet = "property-store-cp"
+
+[[team.observability.metric_fleets]]
+name = "data-plane"
+role = "data-plane"
+project = "property-store"
+fleet = "property-store"
+
+[[team.observability.metric_fleets]]
+name = "tool"
+role = "tool"
+project = "LimitsTool"
+fleet = "LimitsTool"
+
+[[team.observability.metric_fleets]]
+name = "canary"
+role = "canary"
+project = "test-service"
+fleet = "limits-canary"
+
+[[team.observability.host_metric_fleets]]
+name = "control-plane-hosts"
+role = "host-control-plane"
+project = "hostmetrics"
+fleet = "limits-cp"
+
+
+[[team.observability.host_metric_fleets]]
+name = "data-plane-hosts"
+role = "host-data-plane"
+project = "hostmetrics"
+fleet = "limits-dp"
+
+
+[[team.observability.host_metric_fleets]]
+name = "tool-hosts"
+role = "host-tool"
+project = "hostmetrics"
+fleet = "limits-tool"
+
+[team.canary]
+phonebook = "limits"
+service_project = "limits-canary"
+notes = "Use limits-canary for canary-backed tickets and region-build incidents that reference the limits canary flock."
+
+[team.odo]
+phonebook = "limits"
+notes = "Use ODO correlation for region-build, host-local, load-balancer, and metrics-watcher incidents."
+
+[[team.odo.hints]]
+name = "limits-cp"
+role = "control-plane"
+application_aliases = ["limits-cp", "limits-cp-os-updater"]
+
+[[team.odo.hints]]
+name = "limits-dp"
+role = "data-plane"
+application_aliases = ["limits-dp", "limits-dp-os-updater"]
+
+[[team.odo.hints]]
+name = "limits-tool"
+role = "tool"
+application_aliases = ["limits-tool", "limits-tool-os-updater"]
+
+[[team.odo.hints]]
+name = "limits-canary"
+role = "canary"
+application_aliases = ["limits-canary"]
+
+[[team.odo.hints]]
+name = "limits-cost-estimator"
+role = "cost-estimator"
+application_aliases = ["limits-cost-estimator"]
+
+[team.lumberjack]
+phonebook = "limits"
+tenant_name = "bmc_limits"
+tenant_names_by_environment = { herds = "limitsherdsfra" }
+notes = "Primary service logs use bmc_limits; herds environments emit under limitsherdsfra."
+
+[[team.lumberjack.namespaces]]
+name = "control-plane"
+role = "control-plane"
+namespace = "_limits-cp-service"
+
+[[team.lumberjack.namespaces]]
+name = "data-plane"
+role = "data-plane"
+namespace = "_limits-service"
+
+[[team.lumberjack.namespaces]]
+name = "tool"
+role = "tool"
+namespace = "_limits-tool"
+
+[[team.lumberjack.namespaces]]
+name = "data-plane-lb"
+role = "data plane load balancer metrioc"
+namespace = "_limits-dp-flamingo"
+
+[[team.lumberjack.namespaces]]
+name = "limits-canary"
+role = "limits canary"
+namespace = "_limits-canary"
+
+[team.splat]
+tenant_name = "splat"
+notes = "Use splat-proxy, splat-registrar, and splat-store when tracing Limits control-plane and data-plane request flow."
+
+[[team.splat.namespaces]]
+name = "splat-proxy"
+namespace = "splat-proxy"
+
+[[team.splat.namespaces]]
+name = "splat-proxy-overlay"
+namespace = "splat-proxy-overlay"
+
+[[team.splat.namespaces]]
+name = "splat-registrar"
+namespace = "splat-registrar"
+
+[[team.splat.namespaces]]
+name = "splat-store"
+namespace = "splat-store"
+
+[team.shepherd]
+phonebook = "limits"
+project = "limits"
+
+[team.shepherd]
+phonebook = "limits"
+project = "limits-dp"
+
+[[team.shepherd.flocks]]
+name = "control-plane"
+flock = "limits-cp"
+
+[[team.shepherd.flocks]]
+name = "data-plane"
+flock = "limits-dp"
+
+[[team.shepherd.flocks]]
+name = "tool"
+flock = "limits-tool"
+
+[[team.shepherd.flocks]]
+name = "canary"
+flock = "limits-canary"
+
+[[team.shepherd.flocks]]
+name = "management"
+flock = "limits-management"
+
+[[team.shepherd.flocks]]
+name = "limits-dp-metric"
+flock = "limits-dp-metric-watcher"
+
+[[team.shepherd.flocks]]
+name = "limits-overrides-flock-for-region-build"
+flock = "limits-overrides-flock-for-region-build"

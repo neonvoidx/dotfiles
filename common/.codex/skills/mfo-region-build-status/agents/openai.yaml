@@ -1,0 +1,4 @@
+interface:
+  display_name: "MFO Region Build Status"
+  short_description: "Trace region-build capability blockers."
+  default_prompt: "Use $mfo-region-build-status to inspect this DevOps region-build flock, summarize phase capability state, and recursively trace any unsatisfied capability to the blocking producer chain."

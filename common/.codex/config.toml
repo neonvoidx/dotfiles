@@ -1,0 +1,154 @@
+model = 'gpt-5.5'
+model_reasoning_effort = 'high'
+sandbox_mode = 'workspace-write'
+approval_policy = 'never'
+web_search_request = true
+
+[agents]
+max_depth = 1
+max_threads = 8
+
+[agents.code-researcher]
+config_file = '/Users/jrreed/.codex/agents/code-researcher.toml'
+description = 'Use code history and architectural context to recommend sustainable technical direction.'
+
+[agents.code-tester]
+config_file = '/Users/jrreed/.codex/agents/code-tester.toml'
+description = 'Maximize test confidence with deterministic coverage, low flakiness, and clear validation output.'
+
+[agents.code-writer]
+config_file = '/Users/jrreed/.codex/agents/code-writer.toml'
+description = 'Implement high-quality production code aligned with project rules and the smallest safe change.'
+
+[agents.explorer]
+config_file = '/Users/jrreed/.codex/agents/explorer.toml'
+description = 'Explore a codebase deeply before implementation, mapping entry points, structure, and risks.'
+
+[agents.reviewer]
+config_file = '/Users/jrreed/.codex/agents/reviewer.toml'
+description = 'Perform findings-first code review focused on correctness, regressions, security, and missing tests.'
+
+[agents.software-architect]
+config_file = '/Users/jrreed/.codex/agents/software-architect.toml'
+description = 'Shared software architect guidance for producing implementation-ready proposals, ADRs, and migration plans.'
+
+[features]
+multi_agent = true
+
+[marketplaces]
+[marketplaces.assurance-remediation]
+last_revision = '98a7e25c26b3e41ee41dc41efa500948394095c6'
+last_updated = '2026-07-14T14:15:55Z'
+source = 'ssh://git@bitbucket.oci.oraclecorp.com:7999/seccen/assurance-remediation-plugin.git'
+source_type = 'git'
+
+[marketplaces.devplat-plugins]
+last_revision = 'be1508f43827741968798991712db0117be94e83'
+last_updated = '2026-07-14T16:19:03Z'
+source = 'ssh://git@bitbucket.oci.oraclecorp.com:7999/dpai/devplat-plugins.git'
+source_type = 'git'
+
+[marketplaces.oracle-security]
+last_updated = "2026-08-21T16:25:48Z"
+source_type = "git"
+source = "ssh://git@bitbucket.oci.oraclecorp.com:7999/csis/oracle-security-ai.git"
+ref = "master"
+
+[mcp_servers]
+[otel]
+environment = 'dev'
+log_user_prompt = false
+trace_exporter = 'none'
+
+[otel.exporter]
+[otel.exporter.otlp-http]
+endpoint = 'https://dsostore.oraclecorp.com/ords/DASHBOARD/telemetry/v1/logs'
+protocol = 'json'
+
+[otel.exporter.otlp-http.headers]
+x-codex-user = 'jacob.reed'
+
+[otel.metrics_exporter]
+[otel.metrics_exporter.otlp-http]
+endpoint = 'http://127.0.0.1:4318/v1/metrics'
+protocol = 'json'
+
+[plugins]
+[plugins.'assurance-remediation@assurance-remediation']
+enabled = true
+
+[plugins.'mcp-gateway-plugin@devplat-plugins']
+enabled = true
+
+[plugins.'mcp-gateway-plugin@devplat-plugins'.mcp_servers]
+[plugins.'mcp-gateway-plugin@devplat-plugins'.mcp_servers.devplat_mcp_gateway]
+[plugins.'mcp-gateway-plugin@devplat-plugins'.mcp_servers.devplat_mcp_gateway.tools]
+[plugins.'mcp-gateway-plugin@devplat-plugins'.mcp_servers.devplat_mcp_gateway.tools.devplat_mcp_gateway__use]
+approval_mode = 'auto'
+
+[plugins."security-central-assist@oracle-security"]
+enabled = true
+
+[projects]
+[projects.'/Users/jrreed']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/.ssh']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/csi']
+trust_level = 'trusted'
+
+[projects."/Users/jrreed/dev/personalization-service"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/dev/dashboard-service-runbooks"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/dev/console-dashboard-service-canary"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/dev/console-ui-testing-agent"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/.codex"]
+trust_level = "trusted"
+
+[sandbox_workspace_write]
+network_access = true
+writable_roots = ['/Users/jrreed/.codex', '/Users/jrreed/.oci', '/Users/jrreed/oracle', '/Users/jrreed/.m2/repository', '/Users/jrreed/.cache/uv', '/Users/jrreed/Library/Application Support/Chromium', '/Users/jrreed/Library/Application Support/Google/Chrome']
+
+[tui]
+theme = "ansi"
+status_line = ["model-with-reasoning", "current-dir", "project-name", "git-branch"]
+status_line_use_colors = true
+pet = "null-signal"
+[tui.model_availability_nux]
+'gpt-5.6-sol' = 4
+
+[mcp_servers.mcp_gateway]
+url = "http://localhost:8000/mcp"
+
+[mcp_servers.mcp_gateway.tools.devops__get_security_findings_for_team]
+approval_mode = "auto"
+
+[mcp_servers.mcp_gateway.tools.jira__jira_get_issue_comments]
+approval_mode = "auto"
+
+[mcp_servers.mcp_gateway.tools.jirasd__jira_get_issue_comments]
+approval_mode = "auto"
+
+[mcp_servers.mcp_gateway.tools.jira__jira_get_issue]
+approval_mode = "auto"
+
+[mcp_servers.mcp_gateway.tools.jira__jira_get_issue_dates]
+approval_mode = "auto"
+
+[mcp_servers.mcp_gateway.tools.jirasd__jira_get_issue_dates]
+approval_mode = "auto"
+
+[mcp_servers.mcp_gateway.tools.jirasd__jira_get_issue]
+approval_mode = "auto"
+
+[mcp_servers.mcp_gateway.tools.jira__jira_get_issue_development_info]
+approval_mode = "auto"

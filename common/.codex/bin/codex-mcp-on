@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+exec codex \
+  -c mcp_servers.bitbucket.enabled=true \
+  -c mcp_servers.centralconfluence.enabled=true \
+  -c mcp_servers.chrome-devtools.enabled=true \
+  -c mcp_servers.confluence.enabled=true \
+  -c mcp_servers.dope.enabled=true \
+  -c mcp_servers.jira.enabled=true \
+  -c mcp_servers.jira-sd.enabled=true \
+  -c mcp_servers.mcp-atlassian-jira-oci.enabled=true \
+  -c mcp_servers.mcp_shepherd.enabled=true \
+  -c mcp_servers.oci-kb.enabled=true \
+  -c mcp_servers.oci-mcp.enabled=true \
+  -c mcp_servers.oci-ops.enabled=true \
+  -c mcp_servers.ots.enabled=true \
+  -c mcp_servers.playwright.enabled=true \
+  -c mcp_servers.stlm-mcp.enabled=true \
+  -c mcp_servers.tartan.enabled=true \
+  "$@"

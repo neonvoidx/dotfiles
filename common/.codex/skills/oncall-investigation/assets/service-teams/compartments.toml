@@ -1,0 +1,86 @@
+[[team]]
+name = "Compartments Service"
+description = "On-call investigation config for Compartments Service across API, worker, and canary components."
+
+[team.tickets]
+jira_projects = ["COMP"]
+ots_projects = ["COMP"]
+
+[[team.code.repositories]]
+name = "compartments-service"
+role = "control-plane"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/COM/repos/compartments-service/browse"
+local_repo_path = "/absolute/path/to/local/compartments-service"
+
+[[team.code.repositories]]
+name = "compartments-canary"
+role = "canary"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/COM/repos/compartments-canary/browse"
+local_repo_path = "/absolute/path/to/local/compartments-canary"
+
+[[team.code.repositories]]
+name = "compartments-worker"
+role = "worker"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/COM/repos/compartments-worker/browse"
+local_repo_path = "/absolute/path/to/local/compartments-worker"
+
+[[team.observability.alarm_sources]]
+name = "Compartments service alarms"
+kind = "phonebook_project"
+phonebook = "compartments"
+project = "Compartments"
+
+[[team.observability.metric_fleets]]
+name = "api"
+role = "control-plane"
+project = "Compartments"
+fleet = "compartments-control-plane"
+
+[[team.observability.metric_fleets]]
+name = "worker"
+role = "worker"
+project = "Compartments"
+fleet = "compartments-workflow-worker"
+
+[team.canary]
+phonebook = "compartments"
+service_project = "compartments"
+
+[team.lumberjack]
+phonebook = "compartments"
+project = "Compartments"
+tenant_name = "compartments_control_plane"
+
+[[team.lumberjack.namespaces]]
+name = "api"
+role = "control-plane"
+namespace = "compartments-control-plane"
+
+[[team.lumberjack.namespaces]]
+name = "tool"
+role = "tool"
+namespace = "compartments-tool"
+
+[[team.lumberjack.namespaces]]
+name = "worker"
+role = "worker"
+namespace = "compartments-workflow-worker"
+
+[team.splat]
+tenant_name = "splat"
+
+[[team.splat.namespaces]]
+name = "splat-proxy"
+namespace = "splat-proxy"
+
+[[team.splat.namespaces]]
+name = "splat-proxy-overlay"
+namespace = "splat-proxy-overlay"
+
+[team.shepherd]
+phonebook = "Compartments"
+project = "Compartments"
+
+[[team.shepherd.flocks]]
+name = "primary"
+flock = "compartments-control-plane"

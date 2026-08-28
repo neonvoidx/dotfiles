@@ -1,0 +1,185 @@
+[[team]]
+name = "Example Service"
+description = "Replace with the service team name and scope"
+
+[team.tickets]
+jira_projects = ["EXAMPLE"]
+ots_projects = ["EXAMPLE"]
+
+[[team.faqs]]
+name = "Login FAQ"
+url = "https://confluence.example/display/EXAMPLE/Login+FAQ"
+
+[[team.faqs]]
+name = "Internal troubleshooting guide"
+url = "https://internal.example/docs/example-login-troubleshooting"
+
+[[team.code.repositories]]
+name = "example-service"
+role = "control-plane"
+bitbucket_repo = "https://bitbucket.example/projects/EXAMPLE/repos/example-service"
+scm_repo = "ocid1.devopsrepository.oc1..replace_me"
+local_repo_path = "/absolute/path/to/local/example-service"
+
+[[team.observability.alarm_sources]]
+kind = "alarm"
+name = "Primary alarm"
+region = "us-ashburn-1"
+alarm_id = "ocid1.alarm.oc1..replace_me"
+
+[[team.observability.metric_fleets]]
+name = "example-api"
+role = "control-plane"
+project = "ExampleProject"
+fleet = "example-api"
+
+[[team.observability.metric_fleets]]
+name = "example-canary"
+role = "canary"
+project = "test-service"
+fleet = "canary-run-results"
+
+# Optional: include this block when the team has a real canary service whose
+# raw run logs should be fetched after matching the fired metric to a canary.
+[team.canary]
+phonebook = "exampleteam"
+service_project = "CanaryServiceProject"
+# Optional: list known runtime canary names when they are stable and should be
+# preferred before broader canary discovery.
+# canary_names = ["example-canary-fast", "example-redwood-unified-canary"]
+
+[[team.observability.host_metric_fleets]]
+name = "example-overlay-hosts"
+role = "host"
+project = "hostmetrics"
+fleet = "example.overlay"
+
+[[team.observability.metric_sources]]
+kind = "grafana_dashboard"
+name = "Primary dashboard"
+dashboard_uid = "replace_me"
+dashboard_id = 12345
+
+# Optional: include this block when the service is ODO-managed and backend or
+# host-local incidents may require deployment correlation. Region, AD, and time
+# should still be derived from the ticket and live evidence.
+[team.odo]
+phonebook = "exampleteam"
+notes = "Use ODO correlation for backend-capacity and host-local incidents"
+
+[[team.odo.hints]]
+name = "control-plane"
+role = "control-plane"
+application_aliases = ["example-control-plane"]
+# Optional: use a pattern only when helper or updater aliases are misleading.
+# application_alias_patterns = ["poes-updater-*"]
+
+[team.object_store]
+default_compartment_name = "example-compartment"
+default_tenancy_name = "example-team"
+# Optional: override the default tenancy name for realms that use a different
+# tenancy name.
+tenancy_names_by_realm = { r1 = "example-team-r1", oc1 = "example-team-oc1" }
+
+# Optional: include this block when the team regularly queries a database
+# through SQLcl and wants to document a local saved connection alias. Add the
+# bootstrap fields below only when Codex bootstrap should create or refresh
+# that saved connection for the engineer.
+[team.sqlcl]
+connection_name = "Example-phx-sqlcl"
+# Optional bootstrap fields:
+# connect_string = "//localhost:10803/s_example_service.r2"
+# username = "exampleRO[Readonlyuser]"
+# password_env_var = "EXAMPLE_SQLCL_PASSWORD"
+# Optional: defaults to ~/.env when omitted. Relative paths resolve from the
+# team-config file location during bootstrap.
+# password_env_file = "~/.env"
+# Optional: document the local tunnel/helper command engineers should run
+# before SQLcl connects.
+# tunnel_command = "ssh -L 10803:service-host:1521 bastion.example.com"
+# notes = "Wait for the local listener to register the service before retrying."
+
+[team.lumberjack]
+tenant_name = "exampletenant"
+# Optional: map environment labels to known Lumberjack tenants when they differ
+# across prod and pre-production environments.
+# tenant_names_by_environment = { prod = "exampletenant", preprod = "examplepreprod" }
+# Optional: if the same region has multiple environment-specific namespace
+# families, keep all candidate namespaces here and annotate them so the
+# investigation can filter by the alarm-backed environment first.
+# Or use discovery-hint mode instead of explicit namespaces:
+# phonebook = "exampleteam"
+# project = "ExampleProject"
+
+[[team.lumberjack.namespaces]]
+name = "control-plane-prod"
+role = "control-plane"
+namespace = "exampletenant/service"
+environment = "prod"
+# Use the logging backend's query key here. This may differ from the public
+# region name shown in tickets or alarm UIs.
+region = "r1"
+
+[[team.lumberjack.namespaces]]
+name = "control-plane-dev"
+role = "control-plane"
+namespace = "exampletenant/service-dev"
+environment = "dev"
+region = "r1"
+
+# Optional: if API and worker logs share one namespace, split them with
+# separate namespace blocks and durable logGroup filters.
+# [[team.lumberjack.namespaces]]
+# name = "service-api-prod"
+# role = "service"
+# namespace = "exampletenant/service"
+# environment = "prod"
+# region = "r1"
+# log_group = "api_application_log"
+#
+# [[team.lumberjack.namespaces]]
+# name = "service-worker-prod"
+# role = "worker"
+# namespace = "exampletenant/service"
+# environment = "prod"
+# region = "r1"
+# log_group = "worker_application_log"
+
+[team.splat]
+tenant_name = "splat"
+# Optional: map environment labels to SPLAT tenants when request tracing differs
+# across prod and pre-production environments.
+# tenant_names_by_environment = { prod = "splat", preprod = "splat-preprod" }
+
+[[team.splat.namespaces]]
+name = "splat-proxy"
+namespace = "splat-proxy-overlay"
+# Optional: annotate namespaces when SPLAT families differ by environment/region.
+# environment = "prod"
+# region = "us-ashburn-1"
+
+# Optional: register known Service Operations when the team repeatedly traces the
+# same downstream routes through SPLAT and wants investigations to map operation
+# ids back to service meaning without rediscovery.
+#
+# [[team.splat.service_operations]]
+# name = "GetSubscriptionMapping"
+# service_operation_id = "subscription-mapping.get"
+# downstream_target = "subscription-mapping-service"
+# notes = "Expected for read-path requests from public API traffic."
+#
+# Or register a stable service-operation family when the service owns a whole
+# prefix in SPLAT, for example:
+# [[team.splat.service_operations]]
+# name = "Accounts operations"
+# service_operation_pattern = "accounts.*"
+# downstream_target = "account-service"
+# notes = "Matches the Accounts-owned ServiceOperationId family."
+
+[team.shepherd]
+phonebook = "exampleteam"
+project = "example-project"
+
+[[team.shepherd.flocks]]
+name = "prod-main"
+flock = "prod-main"

@@ -94,8 +94,10 @@ yabai -m signal --add event=system_woke action="sh -c 'sleep 1; sketchybar --rel
 
 # Outlook reminder windows can appear before their final title is set, so move
 # them on both creation and title changes instead of relying only on rules.
-yabai -m signal --add event=window_created app="^Microsoft Outlook$" title=".*[Rr]eminders?.*" action="yabai -m window \$YABAI_WINDOW_ID --space 1"
-yabai -m signal --add event=window_title_changed app="^Microsoft Outlook$" title=".*[Rr]eminders?.*" action="yabai -m window \$YABAI_WINDOW_ID --space 1"
+yabai -m signal --remove outlook_reminder_created 2>/dev/null || true
+yabai -m signal --remove outlook_reminder_title_changed 2>/dev/null || true
+yabai -m signal --add label=outlook_reminder_created event=window_created app="^Microsoft Outlook$" title=".*[Rr]eminders?.*" action="yabai -m window \$YABAI_WINDOW_ID --space dev"
+yabai -m signal --add label=outlook_reminder_title_changed event=window_title_changed app="^Microsoft Outlook$" title=".*[Rr]eminders?.*" action="yabai -m window \$YABAI_WINDOW_ID --space dev"
 killall sketchybar 2>/dev/null || true
 # Keep yabairc running so the window-list signals below are registered.
 sketchybar >/dev/null 2>&1 &

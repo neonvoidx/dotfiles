@@ -1,0 +1,4 @@
+interface:
+  display_name: "AuthZ Permissions YAML Generator"
+  short_description: "Generate Identity permissions YAML from SPLAT specs and authZ permissions confluence page"
+  default_prompt: "Use $permissions-yaml-generator to ask the AuthZ Enablement ticket ID, SPLAT spec path, permissions documentation source, and plural alias preference in order, map SPLAT permissions against confluence guidance, present and confirm the mapping table, then emit the `<ticket-id>.yaml` Identity authZ file."

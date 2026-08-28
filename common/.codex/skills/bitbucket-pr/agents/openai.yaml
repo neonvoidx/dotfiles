@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bitbucket PR Operations"
+  short_description: "Create, update, read, and reply to Bitbucket PRs"
+  default_prompt: "Use $bitbucket-pr to create or update a Bitbucket pull request with default reviewers preserved, inspect PR evidence, read comment threads, and post prefixed replies safely."

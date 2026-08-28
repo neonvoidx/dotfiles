@@ -1,0 +1,117 @@
+[[team]]
+name = "Account Admin Tool"
+description = "On-call investigation config for the Account Admin Tool (AAT) service across API and worker components."
+
+[team.tickets]
+jira_projects = ["AAT"]
+ots_projects = ["AAT"]
+
+[[team.faqs]]
+name = "How to Baseline /Update Account Metadata"
+url = "https://confluence.oraclecorp.com/confluence/display/ACCADM/How+to+update+account+metadata"
+
+[[team.faqs]]
+name = "Terminate a tenancy"
+url = "https://internal-docs.oraclecorp.com/en-us/iaas/internalcontent/capten/terminating-oci-accounts-and-tenancies.htm"
+
+[[team.faqs]]
+name = "Disassociate a wrongly assigned phonebook"
+url = "https://confluence.oraclecorp.com/confluence/x/8XgDhAM"
+
+[[team.faqs]]
+name = "Change my admin email/password for Internal Tenancy"
+url = "https://confluence.oraclecorp.com/confluence/display/ACCADM/AAT+FAQ#AATFAQ-AsanAdministrator%2ChowdoIchangemyadminemail%3F"
+
+[[team.faqs]]
+name = "How to access AAT data from OCI DW"
+url = "https://confluence.oraclecorp.com/confluence/x/sclUOQQ"
+
+[[team.faqs]]
+name = "AAT/ITM data feeds in OCIDW"
+url = "https://confluence.oraclecorp.com/confluence/x/b8hUOQQ"
+
+[[team.faqs]]
+name = "AAT FAQ"
+url = "https://confluence.oraclecorp.com/confluence/x/cgW8hAM"
+
+[[team.code.repositories]]
+name = "aat-api"
+role = "control-plane"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/AAT/repos/account-admin-tool-api/browse"
+local_repo_path = "/absolute/path/to/local/account-admin-tool/account-admin-tool-api"
+
+[[team.code.repositories]]
+name = "aat-worker"
+role = "worker"
+bitbucket_repo = "https://bitbucket.oci.oraclecorp.com/projects/AAT/repos/account-admin-tool-worker/browse"
+local_repo_path = "/absolute/path/to/local/account-admin-tool/account-admin-tool-worker" #Configure your local repo path
+
+[[team.observability.alarm_sources]]
+name = "AAT AccountAdminTool alarms"
+kind = "phonebook_project"
+phonebook = "aat"
+project = "AccountAdminTool"
+
+[[team.observability.metric_fleets]]
+name = "api"
+role = "control-plane"
+project = "AccountAdminTool"
+fleet = "account-admin-tool-api"
+
+[[team.observability.metric_fleets]]
+name = "worker"
+role = "worker"
+project = "AccountAdminTool"
+fleet = "account-admin-tool-worker"
+
+[[team.observability.metric_fleets]]
+name = "canary"
+role = "canary"
+project = "test-service"
+fleet = "canary-run-results"
+
+[team.canary]
+phonebook = "account-admin-tool"
+service_project = "account-admin-tool"
+
+[team.lumberjack]
+phonebook = "aat"
+project = "AccountAdminTool"
+tenant_name = "account_admin_tool"
+tenant_names_by_environment = { prod = "account_admin_tool" }
+notes = "Single known production namespace family. If alarm evidence points to another environment, use phonebook-backed namespace discovery before broad log searches."
+
+[[team.lumberjack.namespaces]]
+name = "api-prod"
+role = "control-plane"
+namespace = "account-admin-tool-api-production-oke"
+environment = "prod"
+
+[[team.lumberjack.namespaces]]
+name = "worker-prod"
+role = "worker"
+namespace = "account-admin-tool-worker-production-oke"
+environment = "prod"
+
+[team.splat]
+tenant_name = "splat"
+
+[[team.splat.namespaces]]
+name = "splat-proxy"
+namespace = "splat-proxy"
+
+[[team.splat.namespaces]]
+name = "splat-proxy-overlay"
+namespace = "splat-proxy-overlay"
+
+[team.shepherd]
+phonebook = "aat"
+project = "account-admin-tool"
+
+[[team.shepherd.flocks]]
+name = "primary"
+flock = "aat_service"
+
+[[team.runbooks]]
+name = "Primary on-call runbook"
+path = "/absolute/path/to/account-admin-tool-runbooks"

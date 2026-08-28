@@ -143,11 +143,15 @@ zmodload zsh/nearcolor
 export ZVM_SYSTEM_CLIPBOARD_ENABLED=true
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion match_prev_cmd)
 export ZSH_DISABLE_COMPFIX="true"
+export M3_HOME="/opt/homebrew/Cellar/maven/3.9.16"
+export M3="$M3_HOME/bin"
+export PATH="$M3:$PATH"
 # NodeJS memory limit
 export NODE_OPTIONS=--max-old-space-size=8192
 # PATH exports
 export PATH=$PATH:/opt/cuda/bin
 export PATH=$PATH:$HOME/.yarn/bin #yarn
+export PATH=$PATH:$HOME/.rd/bin #rancher
 export PATH=$PATH:$HOME/.cargo/bin # Rust
 export PATH=$PATH:$HOME/.rd/bin # Rancher
 export PATH=$PATH:$HOME/dev/bin
@@ -190,7 +194,8 @@ fi
 #  / ___ \| | | (_| \__ \ | (_>  < |  _|| |_| | | | | (__| |_| | (_) | | | \__ \
 # /_/   \_\_|_|\__,_|___/  \___/\/ |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
 #                                                                               
-alias hypr="e ~/.config/hypr/hyprland.conf"
+#
+alias mcpgw="~/dev/mcpgw-cli/mcpgw"
 alias yay="paru" #replace yay with paru incase we copy paste commands from onlines sources using yay
 alias dev="cd ~/dev"
 drs() {
@@ -226,7 +231,7 @@ function y() {
 if [[ "$TERM" == "xterm-kitty" ]]; then
   alias s="kitten ssh"
   alias icat="kitten icat"
-  alias ssh="kitten ssh"
+  # alias ssh="kitten ssh"
   alias d="kitten diff"
   function kk() {
     kitten @ send-text --match-tab state:focused $1 && kitten @ send-key --match-tab state:focused Enter
@@ -456,11 +461,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
 eval "$(zoxide init zsh --cmd cd --hook pwd)"
-
-# fast fetch 
-# if command -v fastfetch &> /dev/null; then
-#   fastfetch
-# fi
 
 export CMAKE_PREFIX_PATH="/usr/local:$CMAKE_PREFIX_PATH"
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
