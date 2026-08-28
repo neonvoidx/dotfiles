@@ -114,6 +114,9 @@ trust_level = "trusted"
 [projects."/Users/jrreed/.codex"]
 trust_level = "trusted"
 
+[projects."/Users/jrreed/dotfiles"]
+trust_level = "trusted"
+
 [sandbox_workspace_write]
 network_access = true
 writable_roots = ['/Users/jrreed/.codex', '/Users/jrreed/.oci', '/Users/jrreed/oracle', '/Users/jrreed/.m2/repository', '/Users/jrreed/.cache/uv', '/Users/jrreed/Library/Application Support/Chromium', '/Users/jrreed/Library/Application Support/Google/Chrome']
