@@ -158,3 +158,5 @@ prefix_rule(pattern=["printf", "%s\\n", "-- available secret scanners --"], deci
 prefix_rule(pattern=["gitleaks", "git", "--help"], decision="allow")
 prefix_rule(pattern=["printf", "%s\\n", "-- vault changes --"], decision="allow")
 prefix_rule(pattern=["/usr/bin/git", "add", "-A"], decision="allow")
+prefix_rule(pattern=["/usr/bin/git", "-C", "common/vault", "commit", "-m", "chore: sync vault notes"], decision="allow")
+prefix_rule(pattern=["printf", "%s\\n", "-- final pending diff --"], decision="allow")
