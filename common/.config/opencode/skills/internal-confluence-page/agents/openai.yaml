@@ -1,4 +1,0 @@
-interface:
-  display_name: "Internal Confluence Page"
-  short_description: "Extract and summarize internal Confluence pages"
-  default_prompt: "Use $internal-confluence-page to extract an internal Confluence page into Markdown and summarize it."

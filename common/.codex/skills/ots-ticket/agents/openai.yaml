@@ -1,4 +1,0 @@
-interface:
-  display_name: "OTS Ticket"
-  short_description: "Inspect Oracle tickets and post comments"
-  default_prompt: "Use $ots-ticket to inspect an Oracle ticket, read comments and activity history, run TQL searches, fetch related ticket resources safely, and post explicit ticket comments when asked."

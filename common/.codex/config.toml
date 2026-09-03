@@ -1,7 +1,10 @@
+# Run routine work without interactive approval prompts. The workspace-write sandbox
+# remains enabled, so access outside configured writable roots stays protected.
+approval_policy = 'never'
 model = 'gpt-5.5'
 model_reasoning_effort = 'high'
+notify = ['/Users/jrreed/dotfiles/common/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient', 'turn-ended']
 sandbox_mode = 'workspace-write'
-approval_policy = 'never'
 web_search_request = true
 
 [agents]
@@ -32,13 +35,67 @@ description = 'Perform findings-first code review focused on correctness, regres
 config_file = '/Users/jrreed/.codex/agents/software-architect.toml'
 description = 'Shared software architect guidance for producing implementation-ready proposals, ADRs, and migration plans.'
 
+[desktop]
+ambient-suggestions-enabled = true
+appearanceDarkCodeThemeId = 'catppuccin'
+appearanceDiffMarkerStyle = 'color'
+appearanceLightCodeThemeId = 'catppuccin'
+codeFontSize = 14
+conversationDetailMode = 'STEPS_COMMANDS'
+dock-icon-preference = 'codex-system'
+followUpQueueMode = 'queue'
+preventSleepWhileRunning = true
+sansFontSize = 15
+selected-avatar-id = 'null-signal'
+usePointerCursors = true
+
+[desktop.appearanceDarkChromeTheme]
+accent = '#37f499'
+accentSource = 'custom'
+contrast = 60
+ink = '#ebfafa'
+opaqueWindows = false
+surface = '#212337'
+
+[desktop.appearanceDarkChromeTheme.fonts]
+code = '"NeonMono"'
+ui = '"Roboto"'
+
+[desktop.appearanceDarkChromeTheme.semanticColors]
+diffAdded = '#a6e3a1'
+diffRemoved = '#f38ba8'
+skill = '#cba6f7'
+
+[desktop.appearanceLightChromeTheme]
+accent = '#37f499'
+accentSource = 'custom'
+contrast = 45
+ink = '#ebfafa'
+opaqueWindows = false
+surface = '#212337'
+
+[desktop.appearanceLightChromeTheme.fonts]
+code = '"NeonMono"'
+ui = '"Roboto"'
+
+[desktop.appearanceLightChromeTheme.semanticColors]
+diffAdded = '#40a02b'
+diffRemoved = '#d20f39'
+skill = '#8839ef'
+
+[desktop.open-in-target-preferences]
+global = "kitty"
+
+[desktop.open-in-target-preferences.perPath]
+"/Users/jrreed/dev/customer-feedback-service" = "kitty"
+
 [features]
 multi_agent = true
 
 [marketplaces]
 [marketplaces.assurance-remediation]
-last_revision = '98a7e25c26b3e41ee41dc41efa500948394095c6'
-last_updated = '2026-07-14T14:15:55Z'
+last_revision = '7beb72f9cd18e3f326174333b598566a6ffab95e'
+last_updated = '2026-08-28T17:33:18Z'
 source = 'ssh://git@bitbucket.oci.oraclecorp.com:7999/seccen/assurance-remediation-plugin.git'
 source_type = 'git'
 
@@ -48,13 +105,41 @@ last_updated = '2026-07-14T16:19:03Z'
 source = 'ssh://git@bitbucket.oci.oraclecorp.com:7999/dpai/devplat-plugins.git'
 source_type = 'git'
 
+[marketplaces.openai-primary-runtime]
+source = '/Users/jrreed/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime'
+source_type = 'local'
+
 [marketplaces.oracle-security]
-last_updated = "2026-08-21T16:25:48Z"
-source_type = "git"
-source = "ssh://git@bitbucket.oci.oraclecorp.com:7999/csis/oracle-security-ai.git"
-ref = "master"
+last_updated = '2026-08-21T16:25:48Z'
+ref = 'master'
+source = 'ssh://git@bitbucket.oci.oraclecorp.com:7999/csis/oracle-security-ai.git'
+source_type = 'git'
 
 [mcp_servers]
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/jrreed/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/jrreed/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.901.20858"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/jrreed/.codex/plugins/cache/openai-bundled/browser/26.901.20858/scripts/browser-service.mjs"}'
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+
+[mcp_servers.cua_repl]
+command = "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
+enabled = false
 [otel]
 environment = 'dev'
 log_user_prompt = false
@@ -74,7 +159,8 @@ endpoint = 'http://127.0.0.1:4318/v1/metrics'
 protocol = 'json'
 
 [plugins]
-[plugins.'assurance-remediation@assurance-remediation']
+
+[plugins.'documents@openai-primary-runtime']
 enabled = true
 
 [plugins.'mcp-gateway-plugin@devplat-plugins']
@@ -86,35 +172,86 @@ enabled = true
 [plugins.'mcp-gateway-plugin@devplat-plugins'.mcp_servers.devplat_mcp_gateway.tools.devplat_mcp_gateway__use]
 approval_mode = 'auto'
 
-[plugins."security-central-assist@oracle-security"]
+[plugins.'pdf@openai-primary-runtime']
+enabled = true
+
+[plugins.'presentations@openai-primary-runtime']
+enabled = true
+
+[plugins.'security-central-assist@oracle-security']
+enabled = true
+
+[plugins.'spreadsheets@openai-primary-runtime']
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
 enabled = true
 
 [projects]
 [projects.'/Users/jrreed']
 trust_level = 'trusted'
 
+[projects.'/Users/jrreed/.codex']
+trust_level = 'trusted'
+
 [projects.'/Users/jrreed/.ssh']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/Documents/Codex/2026-08-28/https-jira-oci-oraclecorp-com-browse']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/Documents/Codex/2026-08-31/is-x20']
 trust_level = 'trusted'
 
 [projects.'/Users/jrreed/csi']
 trust_level = 'trusted'
 
-[projects."/Users/jrreed/dev/personalization-service"]
+[projects.'/Users/jrreed/dev/console-dashboard-service-canary']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/dev/console-ui-testing-agent']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/dev/dashboard-service']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/dev/dashboard-service-runbooks']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/dev/personalization-service']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/dotfiles']
+trust_level = 'trusted'
+
+[projects."/Users/jrreed/Documents/Codex/2026-08-31/ca"]
 trust_level = "trusted"
 
-[projects."/Users/jrreed/dev/dashboard-service-runbooks"]
+[projects."/Users/jrreed/dev/csi-seeks-cm"]
 trust_level = "trusted"
 
-[projects."/Users/jrreed/dev/console-dashboard-service-canary"]
+[projects."/Users/jrreed/Documents/Codex/2026-09-01/i-wa"]
 trust_level = "trusted"
 
-[projects."/Users/jrreed/dev/console-ui-testing-agent"]
+[projects."/Users/jrreed/Documents/ChatGPT/CFS"]
 trust_level = "trusted"
 
-[projects."/Users/jrreed/.codex"]
+[projects."/Users/jrreed/Documents/Codex/2026-09-01/i-w"]
 trust_level = "trusted"
 
-[projects."/Users/jrreed/dotfiles"]
+[projects."/Users/jrreed/dev/customer-feedback-service"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-02/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-02/i-wa"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-02/sl"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-03/is-t"]
 trust_level = "trusted"
 
 [sandbox_workspace_write]
@@ -122,36 +259,41 @@ network_access = true
 writable_roots = ['/Users/jrreed/.codex', '/Users/jrreed/.oci', '/Users/jrreed/oracle', '/Users/jrreed/.m2/repository', '/Users/jrreed/.cache/uv', '/Users/jrreed/Library/Application Support/Chromium', '/Users/jrreed/Library/Application Support/Google/Chrome']
 
 [tui]
-theme = "ansi"
-status_line = ["model-with-reasoning", "current-dir", "project-name", "git-branch"]
+pet = "disabled"
+status_line = ['model-with-reasoning', 'current-dir', 'project-name', 'git-branch']
 status_line_use_colors = true
-pet = "null-signal"
+theme = 'ansi'
+
 [tui.model_availability_nux]
 'gpt-5.6-sol' = 4
 
-[mcp_servers.mcp_gateway]
-url = "http://localhost:8000/mcp"
+[hooks.state]
 
-[mcp_servers.mcp_gateway.tools.devops__get_security_findings_for_team]
-approval_mode = "auto"
+[hooks.state."/Users/jrreed/.codex/config.toml:permission_request:0:0"]
+trusted_hash = "sha256:33c02b0d464f4febee2666374eb7d2b9e57fe869cbe5ee52fe035c69c08e687a"
 
-[mcp_servers.mcp_gateway.tools.jira__jira_get_issue_comments]
-approval_mode = "auto"
+[hooks.state."/Users/jrreed/.codex/config.toml:pre_compact:0:0"]
+trusted_hash = "sha256:6a988cefe3970535d787fe2126051a760f846af8c39ec30aa31c6f2d222ac1a6"
 
-[mcp_servers.mcp_gateway.tools.jirasd__jira_get_issue_comments]
-approval_mode = "auto"
+[hooks.state."/Users/jrreed/.codex/config.toml:session_start:0:0"]
+trusted_hash = "sha256:44be601e16c359238a6c3d14c4d141ed8642098d76c82fef90362027b6f7a0e1"
 
-[mcp_servers.mcp_gateway.tools.jira__jira_get_issue]
-approval_mode = "auto"
+[hooks.state."/Users/jrreed/.codex/config.toml:user_prompt_submit:0:0"]
+trusted_hash = "sha256:5e0026eb3b32da5b5b00a48cba44239b41b4cb7c551d4d6b3dfc9c29e51ea892"
 
-[mcp_servers.mcp_gateway.tools.jira__jira_get_issue_dates]
-approval_mode = "auto"
+[hooks.state."/Users/jrreed/.codex/config.toml:subagent_start:0:0"]
+trusted_hash = "sha256:366ea6bcfacccc86b11c317ac78a44984c46685e86234d1bd4df9f51c5628da7"
 
-[mcp_servers.mcp_gateway.tools.jirasd__jira_get_issue_dates]
-approval_mode = "auto"
+[hooks.state."/Users/jrreed/.codex/config.toml:subagent_stop:0:0"]
+trusted_hash = "sha256:d7ba499fdb79d1167f829a481889729387cf2e891115ae6141ec036b07f6a598"
 
-[mcp_servers.mcp_gateway.tools.jirasd__jira_get_issue]
-approval_mode = "auto"
+[hooks.state."/Users/jrreed/.codex/config.toml:stop:0:0"]
+trusted_hash = "sha256:7d4e5ee681d4c53a450ecbfaf49ba5158d21199414790f3f7a8a0008007f2230"
 
-[mcp_servers.mcp_gateway.tools.jira__jira_get_issue_development_info]
-approval_mode = "auto"
+# peon-ping Codex completion hook
+[[hooks.Stop]]
+
+[[hooks.Stop.hooks]]
+type = "command"
+command = "if [ -f /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh ]; then CLAUDE_PEON_DIR=/Users/jrreed/.claude/hooks/peon-ping bash /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh >/dev/null 2>&1 || true; fi"
+timeout = 30

@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/runkids/skillshare/main/schemas/config.schema.json
+sources:
+  skills: /Users/jrreed/.config/skillshare/skills
+  agents: /Users/jrreed/.config/skillshare/agents
+mode: symlink
+targets:
+  codex:
+    skills:
+      path: /Users/jrreed/.codex/skills
+      mode: copy
+  opencode:
+    skills:
+      path: /Users/jrreed/.config/opencode/skills
+ignore:
+  - .DS_Store
+  - .git/
+  - __pycache__/
+audit:
+  block_threshold: CRITICAL

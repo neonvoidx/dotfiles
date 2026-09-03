@@ -1,4 +1,0 @@
-interface:
-  display_name: "Release Check"
-  short_description: "Review Shepherd rollout scope or investigate target failures."
-  default_prompt: "Use $release-check to inspect this Shepherd release link, resolve release and target identifiers, review expected and observed diffs across targets or regions, report CM alignment when relevant, investigate anomalous logs when needed, build a timeline, and summarize findings, risks, and recommendations."

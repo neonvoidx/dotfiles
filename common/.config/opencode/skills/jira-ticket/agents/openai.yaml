@@ -1,4 +1,0 @@
-interface:
-  display_name: "Jira Ticket"
-  short_description: "Build JQL, inspect Jira tickets, and mutate ticket state intentionally"
-  default_prompt: "Use $jira-ticket to build Jira JQL from structured filters, search Jira-SD or Jira OCI issues using the shared Atlassian MCP env files, read issue details with custom fields, inspect comments and activity history, post explicit ticket comments or reply-style comments when asked, and perform explicit Jira status or label mutations when the workflow requires them."

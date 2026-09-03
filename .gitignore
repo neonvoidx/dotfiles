@@ -156,3 +156,18 @@ linux/.config/streamcontroller/data
 /common/.codex/thread_history_1.sqlite-wal
 /common/.codex/tmp
 /common/.codex/version.json
+/common/.codex/.codex-global-state.json
+/common/.codex/.codex-global-state.json.bak
+/common/.codex/attachments
+/common/.codex/computer-use
+/common/.codex/skills/.system
+/common/.codex/sqlite
+/common/.codex/transcription-history.jsonl
+/common/.codex/vendor_imports
+
+# Skillshare-managed runtime content
+common/.codex/skills/
+common/.config/opencode/skills
+common/.config/skillshare/skills/
+common/.codex/.personality_migration
+common/.codex/.sandbox_migration

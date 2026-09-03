@@ -1,0 +1,26 @@
+{
+  "active_pack": "peon",
+  "volume": 0.5,
+  "enabled": true,
+  "categories": {
+    "session.start": true,
+    "session.end": true,
+    "task.acknowledge": false,
+    "task.complete": true,
+    "task.error": true,
+    "task.progress": true,
+    "input.required": true,
+    "resource.limit": true,
+    "user.spam": true
+  },
+  "spam_threshold": 3,
+  "spam_window_seconds": 10,
+  "pack_rotation": [],
+  "debounce_ms": 500,
+  "default_pack": "peon",
+  "desktop_notifications": true,
+  "pack_rotation_mode": "random",
+  "path_rules": [],
+  "exclude_dirs": [],
+  "ide_rules": []
+}

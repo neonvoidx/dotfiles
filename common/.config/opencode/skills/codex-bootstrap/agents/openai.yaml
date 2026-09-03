@@ -1,4 +1,0 @@
-interface:
-  display_name: "Codex Bootstrap"
-  short_description: "Generate a local Codex config from the shared starter"
-  default_prompt: "Use $codex-bootstrap to bootstrap or repair my local Codex setup from this shared starter. Collect repo/config paths, workspace parent, optional Maven cache, optional Enterprise ChatGPT model override, enabled MCPs/skills with opt-outs, SQLcl team-config metadata when needed, helper-backed MCP env files or starter generation, Bitbucket shell/auth setup, and dual Jira Ticket auth setup. Generate the local config, link shared skills, install the global AGENTS.md entrypoint, require Bitbucket/Jira auth when those skills stay enabled, and verify all shared path placeholders are resolved."
