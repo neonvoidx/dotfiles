@@ -1,6 +1,6 @@
-# Run routine work without interactive approval prompts. The workspace-write sandbox
-# remains enabled, so access outside configured writable roots stays protected.
-approval_policy = 'never'
+# Allow commands without approval in trusted contexts; enterprise policy requires approval elsewhere.
+# The workspace-write sandbox remains enabled, protecting access outside configured writable roots.
+approval_policy = 'unless-trusted'
 model = 'gpt-5.5'
 model_reasoning_effort = 'high'
 notify = ['/Users/jrreed/dotfiles/common/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient', 'turn-ended']
@@ -189,6 +189,9 @@ enabled = true
 
 [projects]
 [projects.'/Users/jrreed']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/dev']
 trust_level = 'trusted'
 
 [projects.'/Users/jrreed/.codex']
