@@ -132,8 +132,8 @@ BROWSER_USE_TINYSKY_ENABLED = "1"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.901.20858"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/jrreed/.codex/plugins/cache/openai-bundled/browser/26.901.20858/scripts/browser-service.mjs"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.901.31953"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/jrreed/.codex/plugins/cache/openai-bundled/browser/26.901.31953/scripts/browser-service.mjs"}'
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
 [mcp_servers.cua_repl]
@@ -260,6 +260,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/jrreed/dev/telemetry-console-plugin-maui-plugin"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-08/ou"]
 trust_level = "trusted"
 
 [sandbox_workspace_write]

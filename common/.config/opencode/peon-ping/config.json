@@ -3,24 +3,36 @@
   "volume": 0.5,
   "enabled": true,
   "categories": {
-    "session.start": true,
-    "session.end": true,
+    "session.start": false,
+    "session.end": false,
     "task.acknowledge": false,
     "task.complete": true,
-    "task.error": true,
-    "task.progress": true,
-    "input.required": true,
-    "resource.limit": true,
-    "user.spam": true
+    "task.error": false,
+    "task.progress": false,
+    "input.required": false,
+    "resource.limit": false,
+    "user.spam": false
   },
   "spam_threshold": 3,
   "spam_window_seconds": 10,
   "pack_rotation": [],
   "debounce_ms": 500,
   "default_pack": "peon",
-  "desktop_notifications": true,
+  "desktop_notifications": false,
   "pack_rotation_mode": "random",
   "path_rules": [],
   "exclude_dirs": [],
-  "ide_rules": []
+  "ide_rules": [],
+  "disabled_sounds": {
+    "peon": {
+      "task.complete": [
+        "PeonReady1.wav",
+        "PeonWhat4.wav",
+        "PeonYes1.wav",
+        "PeonYes2.wav",
+        "PeonYesAttack1.wav",
+        "PeonYesAttack3.wav"
+      ]
+    }
+  }
 }
