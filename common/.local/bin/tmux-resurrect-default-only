@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Resurrect saves every tmux session in one snapshot. Keep only the default
+# session so Continuum's automatic restore cannot recreate old project sessions.
+snapshot=$1
+filtered="${snapshot}.default-only.$$"
+
+while IFS= read -r line || [ -n "$line" ]; do
+  session=$(printf '%s\n' "$line" | cut -f2)
+  if [ "$session" = "default" ]; then
+    printf '%s\n' "$line" >> "$filtered"
+  fi
+done < "$snapshot"
+
+if [ -s "$filtered" ]; then
+  mv "$filtered" "$snapshot"
+else
+  rm -f "$filtered"
+fi

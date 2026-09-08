@@ -239,7 +239,7 @@ fi
 
 # Sesh opens or switches tmux sessions.
 if command -v sesh &> /dev/null; then
-  alias s="sesh connect"
+  alias s='sesh connect "$(sesh list --icons | fzf --ansi)"'
 fi
 # if lsd, replace ls
 if command -v lsd &> /dev/null; then
