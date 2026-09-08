@@ -1,6 +1,5 @@
-# Allow commands without approval in trusted contexts; enterprise policy requires approval elsewhere.
-# The workspace-write sandbox remains enabled, protecting access outside configured writable roots.
-approval_policy = 'unless-trusted'
+# Enterprise-managed policy requires on-request approval.
+approval_policy = 'on-request'
 model = 'gpt-5.5'
 model_reasoning_effort = 'high'
 notify = ['/Users/jrreed/dotfiles/common/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient', 'turn-ended']
@@ -106,8 +105,8 @@ source = 'ssh://git@bitbucket.oci.oraclecorp.com:7999/dpai/devplat-plugins.git'
 source_type = 'git'
 
 [marketplaces.openai-primary-runtime]
-source = '/Users/jrreed/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime'
-source_type = 'local'
+source_type = "local"
+source = "/Users/jrreed/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [marketplaces.oracle-security]
 last_updated = '2026-08-21T16:25:48Z'
@@ -187,6 +186,9 @@ enabled = true
 [plugins."computer-use@openai-bundled"]
 enabled = true
 
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
 [projects]
 [projects.'/Users/jrreed']
 trust_level = 'trusted'
@@ -257,6 +259,9 @@ trust_level = "trusted"
 [projects."/Users/jrreed/Documents/Codex/2026-09-03/is-t"]
 trust_level = "trusted"
 
+[projects."/Users/jrreed/dev/telemetry-console-plugin-maui-plugin"]
+trust_level = "trusted"
+
 [sandbox_workspace_write]
 network_access = true
 writable_roots = ['/Users/jrreed/.codex', '/Users/jrreed/.oci', '/Users/jrreed/oracle', '/Users/jrreed/.m2/repository', '/Users/jrreed/.cache/uv', '/Users/jrreed/Library/Application Support/Chromium', '/Users/jrreed/Library/Application Support/Google/Chrome']
@@ -300,3 +305,6 @@ trusted_hash = "sha256:7d4e5ee681d4c53a450ecbfaf49ba5158d21199414790f3f7a8a00080
 type = "command"
 command = "if [ -f /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh ]; then CLAUDE_PEON_DIR=/Users/jrreed/.claude/hooks/peon-ping bash /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh >/dev/null 2>&1 || true; fi"
 timeout = 30
+
+[apps.connector_68df038e0ba48191908c8434991bbac2.tools."figma.use_figma"]
+approval_mode = "approve"

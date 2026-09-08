@@ -148,6 +148,8 @@ brew "starship"
 brew "stow"
 # Change macOS audio source from the command-line
 brew "switchaudio-osx"
+# Smart session manager for the terminal
+brew "sesh"
 # Utility to modify the macOS Accessibility Database (TCC.db)
 brew "tccutil"
 # Modernized, complete, self-contained TeX/LaTeX engine

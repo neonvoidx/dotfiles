@@ -229,13 +229,17 @@ function y() {
 }
 # Kitty & Kitten aliases
 if [[ "$TERM" == "xterm-kitty" ]]; then
-  alias s="kitten ssh"
   alias icat="kitten icat"
   # alias ssh="kitten ssh"
   alias d="kitten diff"
   function kk() {
     kitten @ send-text --match-tab state:focused $1 && kitten @ send-key --match-tab state:focused Enter
   }
+fi
+
+# Sesh opens or switches tmux sessions.
+if command -v sesh &> /dev/null; then
+  alias s="sesh connect"
 fi
 # if lsd, replace ls
 if command -v lsd &> /dev/null; then
@@ -466,6 +470,11 @@ export CMAKE_PREFIX_PATH="/usr/local:$CMAKE_PREFIX_PATH"
 export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 
 eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
+
+# Sheepy uses the mise-managed Python 3.8 environment in this workspace.
+sheepy() {
+  "$HOME/.local/bin/mise" exec -C "/Users/jrreed/Documents/Codex/2026-09-01/i-wa" -- sheepy "$@"
+}
 
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml"
 eval "$(starship init zsh)"

@@ -4,6 +4,7 @@ common/.local/share/fonts/.uuid
 .aider.tags*
 .aider.chat*
 .aider.input*
+common/.config/tmux/plugins/
 linux/.config/Thunar/accels.scm
 linux/.config/easyeffects/db/easyeffectsrc
 linux/.config/scopebuddy/scopebuddy.log
