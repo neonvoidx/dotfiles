@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Ported from ~/dev/nix/modules/shell/tmux.nix; commands resolve via PATH.
+set -eu
+
+sesh=sesh
+fzf=fzf
+fzfTmux=fzf-tmux
+
+if [ -n "${TMUX:-}" ] && [ -z "${SESH_IN_POPUP:-}" ]; then
+  selection="$($sesh window list | $fzfTmux -p 60%,50% --prompt '🪟  ')"
+else
+  selection="$($sesh window list | $fzf --ansi --border-label ' windows ' --prompt '🪟  ')"
+fi
+[ -n "$selection" ] && $sesh window connect "$selection"

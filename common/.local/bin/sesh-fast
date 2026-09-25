@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# Ported from ~/dev/nix/modules/shell/tmux.nix; commands resolve via PATH.
+set -eu
+
+sesh=sesh
+fzf=fzf
+fzfTmux=fzf-tmux
+
+# fzf-tmux opens its own popup and needs a real tty, which run-shell
+# does not provide. Inside a real tmux pane use it for a nested popup;
+# in the prefix+o display-popup fzf already has a tty (do not nest).
+if [ -n "${TMUX:-}" ] && [ -z "${SESH_IN_POPUP:-}" ]; then
+  selection="$($sesh list --icons | $fzfTmux -p 80%,70% \
+    --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
+    --header '  ^a all ^t tmux ^g configs ^x zoxide ^f find' \
+    --bind 'tab:down,btab:up' \
+    --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
+    --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
+    --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
+    --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
+    --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+    --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
+    --preview-window 'right:55%' \
+    --preview 'sesh preview {}')"
+else
+  selection="$($sesh list --icons | $fzf --ansi \
+    --no-sort --border-label ' sesh ' --prompt '⚡  ' \
+    --header '  ^a all ^t tmux ^g configs ^x zoxide ^f find' \
+    --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)' \
+    --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t --icons)' \
+    --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c --icons)' \
+    --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z --icons)' \
+    --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+    --bind 'ctrl-d:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list --icons)' \
+    --preview-window 'right:55%' \
+    --preview 'sesh preview {}')"
+fi
+
+# sesh connect re-resolves the target live. In a tmux pane ($TMUX set)
+# sesh switches the client itself; a display-popup has no $TMUX, so it
+# must be told to switch explicitly, otherwise it would try to attach.
+if [ -n "$selection" ]; then
+  if [ -n "${SESH_IN_POPUP:-}" ]; then
+    $sesh connect --switch "$selection"
+  else
+    $sesh connect "$selection"
+  fi
+fi

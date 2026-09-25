@@ -39,12 +39,7 @@ do
 
   sketchybar --add item space.$item_id left    \
              --set space.$item_id "${space[@]}" \
-              --subscribe space.$item_id mouse.clicked \
-                                         mouse.entered \
-                                         mouse.exited \
-                                         mouse.exited.global \
-                                         aerospace_workspace_change \
-                                         aerospace_windows_change
+              --subscribe space.$item_id mouse.clicked
 done
 
 # Add a hidden item to update workspace visibility
@@ -53,8 +48,9 @@ sketchybar --add item space_visibility_updater left \
                  icon.drawing=off \
                  label.drawing=off \
                  width=0 \
+                 updates=on \
                  script="$PLUGIN_DIR/aerospace_spaces_update.sh" \
-           --subscribe space_visibility_updater aerospace_workspace_change aerospace_windows_change
+           --subscribe space_visibility_updater aerospace_workspace_change aerospace_windows_change system_woke
 
 spaces=(
   background.color=$BACKGROUND_1
@@ -66,5 +62,4 @@ spaces=(
 sketchybar --add bracket spaces '/space\..*/' \
            --set spaces "${spaces[@]}"
 
-# Initial update of workspace visibility
-$PLUGIN_DIR/aerospace_spaces_update.sh
+# The final sketchybarrc --update initializes workspace state.

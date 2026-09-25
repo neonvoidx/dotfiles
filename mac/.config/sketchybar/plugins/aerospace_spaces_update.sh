@@ -1,37 +1,50 @@
 #!/bin/bash
 
-# Get all non-empty workspaces
-NON_EMPTY_WORKSPACES=$(aerospace list-workspaces --monitor all --empty no 2>/dev/null | tr '[:upper:]' '[:lower:]')
+set -o pipefail
+source "$HOME/.config/sketchybar/colors.sh"
 
-# Get currently focused workspace
-# Use environment variable if available (passed by aerospace), otherwise query
-if [ -n "$FOCUSED_WORKSPACE" ]; then
-  FOCUSED_WORKSPACE="$(printf "%s" "$FOCUSED_WORKSPACE" | tr '[:upper:]' '[:lower:]')"
-else
-  FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused 2>/dev/null | tr '[:upper:]' '[:lower:]')
+# Query current state rather than using a possibly stale callback payload.
+# A failed query must leave the last successful render intact.
+focused=$(aerospace list-workspaces --focused) || exit 1
+[ -n "$focused" ] || exit 1
+focused=$(printf '%s' "$focused" | tr '[:upper:]' '[:lower:]')
+windows=$(aerospace list-windows --all --format '%{workspace}%{app-name}' --json) || exit 1
+if ! printf '%s' "$windows" | jq -e 'type == "array" and all(.[]; (.workspace | type == "string") and (."app-name" | type == "string"))' >/dev/null; then
+  echo 'Invalid AeroSpace window snapshot; keeping existing workspace state' >&2
+  exit 1
 fi
 
-# All possible workspaces we created
-ALL_WORKSPACES=("1" "2" "3" "4" "5" "6" "7" "8" "9" "s")
+args=()
+for workspace in 1 2 3 4 5 6 7 8 9 s; do
+  item_id=$(printf '%s' "$workspace" | tr '[:lower:]' '[:upper:]')
+  apps=$(printf '%s' "$windows" | jq -r --arg workspace "$workspace" \
+    '.[] | select((.workspace | ascii_downcase) == $workspace) | ."app-name"' | LC_ALL=C sort) || exit 1
+  icons=""
+  while IFS= read -r app; do
+    [ -n "$app" ] || continue
+    app_icon=$("$HOME/.config/sketchybar/plugins/icon_map.sh" "$app")
+    icons+="${app_icon:-$app}  "
+  done <<< "$apps"
 
-# Update visibility and highlight for each workspace
-for workspace in "${ALL_WORKSPACES[@]}"; do
-  # Convert workspace to lowercase for comparison with aerospace output
-  workspace_lower=$(echo "$workspace" | tr '[:upper:]' '[:lower:]')
-  item_id=$(echo "$workspace" | tr '[:lower:]' '[:upper:]')
-  
-  if echo "$NON_EMPTY_WORKSPACES" | grep -q "^${workspace_lower}$" || [ "$workspace_lower" = "$FOCUSED_WORKSPACE" ]; then
-    # Workspace has windows OR is currently focused, show it
-    sketchybar --set space.$item_id drawing=on
-
-    # Update highlight state directly
-    if [ "$workspace_lower" = "$FOCUSED_WORKSPACE" ]; then
-      sketchybar --set space.$item_id icon.highlight=on
-    else
-      sketchybar --set space.$item_id icon.highlight=off
-    fi
-  else
-    # Workspace is empty and not focused, hide it
-    sketchybar --set space.$item_id drawing=off icon.highlight=off
+  selected=off
+  color=$MAGENTA
+  drawing=off
+  label_drawing=off
+  if [ "$workspace" = "$focused" ]; then
+    selected=on
+    color=$GREEN
+    drawing=on
   fi
+  if [ -n "$icons" ]; then
+    drawing=on
+    label_drawing=on
+    icons=" $icons"
+  fi
+
+  args+=(--set "space.$item_id" "drawing=$drawing"
+    "icon.highlight=$selected" "label=$icons"
+    "label.drawing=$label_drawing" "label.color=$color")
 done
+
+# Commit all workspace properties together, without competing animations.
+sketchybar "${args[@]}"

@@ -149,6 +149,7 @@ export PATH="$M3:$PATH"
 # NodeJS memory limit
 export NODE_OPTIONS=--max-old-space-size=8192
 # PATH exports
+export PATH="$HOME/dev/seeks/venv/bin:$PATH" # seeks CLI
 export PATH=$PATH:/opt/cuda/bin
 export PATH=$PATH:$HOME/.yarn/bin #yarn
 export PATH=$PATH:$HOME/.rd/bin #rancher
@@ -157,6 +158,7 @@ export PATH=$PATH:$HOME/.rd/bin # Rancher
 export PATH=$PATH:$HOME/dev/bin
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/go/bin
+export PATH="$HOME/omni-curl-1.0.102/bin:$PATH" # omni-curl
 export PATH=$PATH:/Applications/flameshot.app/
 # ZSH Tab title for kitty stuff
 export DISABLE_AUTO_TITLE="true"
@@ -237,9 +239,9 @@ if [[ "$TERM" == "xterm-kitty" ]]; then
   }
 fi
 
-# Sesh opens or switches tmux sessions.
-if command -v sesh &> /dev/null; then
-  alias s='sesh connect "$(sesh list --icons | fzf --ansi)"'
+# Use the same session picker as tmux's prefix+o binding.
+if command -v sesh &> /dev/null && [[ -x "$HOME/.local/bin/sesh-fast" ]]; then
+  alias s='"$HOME/.local/bin/sesh-fast"'
 fi
 # if lsd, replace ls
 if command -v lsd &> /dev/null; then
@@ -471,9 +473,10 @@ export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 
 eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
 
-# Sheepy uses the mise-managed Python 3.8 environment in this workspace.
+# Sheepy must retain the caller's directory because legacy templates resolve
+# sibling files relative to it.
 sheepy() {
-  "$HOME/.local/bin/mise" exec -C "/Users/jrreed/Documents/Codex/2026-09-01/i-wa" -- sheepy "$@"
+  "/Users/jrreed/Documents/Codex/2026-09-01/i-wa/.venv/bin/sheepy" "$@"
 }
 
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml"
@@ -508,3 +511,11 @@ export no_proxy='localhost,127.0.0.1,.oracle.com,.oracleiaas.com,.oraclecloud.co
 
 # Uncomment to profile
 # zprof
+
+# Offer the session picker after shell setup, only in a terminal outside tmux.
+# Inside tmux, prefix+o and `s` already cover it; popups must not launch it again.
+if [[ -o interactive && -t 0 && -t 1 && -z ${TMUX:-} && -z ${TMUX_PANE:-} &&
+      -z ${SESH_IN_POPUP:-} && -x "$HOME/.local/bin/sesh-fast" ]] &&
+   (( $+commands[sesh] && $+commands[fzf] && $+commands[tmux] )); then
+  "$HOME/.local/bin/sesh-fast" || true
+fi

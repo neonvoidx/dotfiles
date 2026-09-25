@@ -2,7 +2,6 @@ tap "acep/brew", "ssh://git@bitbucket.oci.oraclecorp.com:7999/acep/brew.git"
 tap "acsandmann/tap"
 tap "anomalyco/tap", "https://github.com/anomalyco/homebrew-tap.git"
 tap "asmvik/formulae"
-tap "cloudshell/oci-ops", "ssh://git@bitbucket.oci.oraclecorp.com:7999/cloudshell/homebrew-ociops.git"
 tap "felixkratz/formulae", trusted: { formulae: ["sketchybar"] }
 tap "hashicorp/tap"
 tap "homebrew/bundle"
@@ -12,6 +11,8 @@ tap "jackielii/tap"
 tap "jstkdng/programs"
 tap "koekeishiya/formulae", "https://github.com/asmvik/homebrew-formulae.git"
 tap "nikitabobko/tap"
+tap "peonping/tap", "https://github.com/PeonPing/homebrew-tap"
+tap "uot/oci-ops", "ssh://oci.private.devops.scmservice.us-phoenix-1.oci.oracleiaas.com/namespaces/axuxirvibvvo/projects/UOT/repositories/homebrew-ociops"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Cryptography and SSL/TLS Toolkit
@@ -108,6 +109,10 @@ brew "luajit"
 brew "luarocks"
 # Mac App Store command-line interface
 brew "mas"
+# Development kit for the Java programming language
+brew "openjdk"
+# Java-based project management
+brew "maven"
 # Unified display of technical and tag data for audio/video
 brew "media-info"
 # Oracle Cloud Infrastructure CLI
@@ -117,7 +122,7 @@ brew "ollama"
 # AI coding agent, built for the terminal
 brew "opencode"
 # Development kit for the Java programming language
-brew "openjdk"
+brew "openjdk@25"
 # Tools and libraries for smart cards
 brew "opensc", link: false
 # OpenBSD freely-licensed SSH connectivity tools
@@ -140,16 +145,18 @@ brew "pre-commit"
 brew "pyenv"
 # C library and command-line tool to generate (extended) regular expressions
 brew "rgxg"
+# Smart session manager for the terminal
+brew "sesh"
 # Simple keystroke visualizer
 brew "showkey"
+# Sync skills across AI CLI tools
+brew "skillshare"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Change macOS audio source from the command-line
 brew "switchaudio-osx"
-# Smart session manager for the terminal
-brew "sesh"
 # Utility to modify the macOS Accessibility Database (TCC.db)
 brew "tccutil"
 # Modernized, complete, self-contained TeX/LaTeX engine
@@ -190,12 +197,14 @@ brew "yubico-piv-tool"
 brew "zoxide"
 # OSSH CLI for operator SSH access within OCI
 brew "acep/brew/ossh"
-# Oracle Cloud Infrastructure Unified Operations Tool
-brew "cloudshell/oci-ops/oci-ops"
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
 # Terraform
 brew "hashicorp/tap/terraform", trusted: true
+# Sound effects and desktop notifications for AI coding agents
+brew "peonping/tap/peon-ping", trusted: true
+# Oracle Cloud Infrastructure Unified Operations Tool
+brew "uot/oci-ops/oci-ops"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace", trusted: true
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
@@ -223,5 +232,7 @@ cask "proton-pass"
 cask "rancher"
 # Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
+npm "@fission-ai/openspec"
 npm "cline"
+npm "codex-session-browser"
 npm "corepack"

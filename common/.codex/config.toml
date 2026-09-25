@@ -1,10 +1,16 @@
-# Enterprise-managed policy requires on-request approval.
 approval_policy = 'on-request'
-model = 'gpt-5.5'
-model_reasoning_effort = 'high'
+MCP_PROJECT_DEFAULT = ''
+MCP_PROJECT_LIST = ''
+
+approval_mode = 'auto'
+model = "gpt-6-astra"
+model_reasoning_effort = "high"
+
 notify = ['/Users/jrreed/dotfiles/common/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient', 'turn-ended']
 sandbox_mode = 'workspace-write'
 web_search_request = true
+allow_symlinked_codex_home = true
+
 
 [agents]
 max_depth = 1
@@ -34,6 +40,12 @@ description = 'Perform findings-first code review focused on correctness, regres
 config_file = '/Users/jrreed/.codex/agents/software-architect.toml'
 description = 'Shared software architect guidance for producing implementation-ready proposals, ADRs, and migration plans.'
 
+[apps]
+[apps.connector_68df038e0ba48191908c8434991bbac2]
+[apps.connector_68df038e0ba48191908c8434991bbac2.tools]
+[apps.connector_68df038e0ba48191908c8434991bbac2.tools.'figma.use_figma']
+approval_mode = 'approve'
+
 [desktop]
 ambient-suggestions-enabled = true
 appearanceDarkCodeThemeId = 'catppuccin'
@@ -47,6 +59,8 @@ preventSleepWhileRunning = true
 sansFontSize = 15
 selected-avatar-id = 'null-signal'
 usePointerCursors = true
+toys-confetti-enabled = true
+toys-audio-visualizer-enabled = true
 
 [desktop.appearanceDarkChromeTheme]
 accent = '#37f499'
@@ -83,13 +97,42 @@ diffRemoved = '#d20f39'
 skill = '#8839ef'
 
 [desktop.open-in-target-preferences]
-global = "kitty"
+global = 'kitty'
 
 [desktop.open-in-target-preferences.perPath]
-"/Users/jrreed/dev/customer-feedback-service" = "kitty"
+'/Users/jrreed/dev/customer-feedback-service' = 'kitty'
 
 [features]
 multi_agent = true
+
+[hooks]
+[[hooks.Stop]]
+[[hooks.Stop.hooks]]
+command = 'if [ -f /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh ]; then CLAUDE_PEON_DIR=/Users/jrreed/.claude/hooks/peon-ping bash /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh >/dev/null 2>&1 || true; fi'
+timeout = 30
+type = 'command'
+
+[hooks.state]
+[hooks.state.'/Users/jrreed/.codex/config.toml:permission_request:0:0']
+trusted_hash = 'sha256:33c02b0d464f4febee2666374eb7d2b9e57fe869cbe5ee52fe035c69c08e687a'
+
+[hooks.state.'/Users/jrreed/.codex/config.toml:pre_compact:0:0']
+trusted_hash = 'sha256:6a988cefe3970535d787fe2126051a760f846af8c39ec30aa31c6f2d222ac1a6'
+
+[hooks.state.'/Users/jrreed/.codex/config.toml:session_start:0:0']
+trusted_hash = 'sha256:44be601e16c359238a6c3d14c4d141ed8642098d76c82fef90362027b6f7a0e1'
+
+[hooks.state.'/Users/jrreed/.codex/config.toml:stop:0:0']
+trusted_hash = 'sha256:7d4e5ee681d4c53a450ecbfaf49ba5158d21199414790f3f7a8a0008007f2230'
+
+[hooks.state.'/Users/jrreed/.codex/config.toml:subagent_start:0:0']
+trusted_hash = 'sha256:366ea6bcfacccc86b11c317ac78a44984c46685e86234d1bd4df9f51c5628da7'
+
+[hooks.state.'/Users/jrreed/.codex/config.toml:subagent_stop:0:0']
+trusted_hash = 'sha256:d7ba499fdb79d1167f829a481889729387cf2e891115ae6141ec036b07f6a598'
+
+[hooks.state.'/Users/jrreed/.codex/config.toml:user_prompt_submit:0:0']
+trusted_hash = 'sha256:5e0026eb3b32da5b5b00a48cba44239b41b4cb7c551d4d6b3dfc9c29e51ea892'
 
 [marketplaces]
 [marketplaces.assurance-remediation]
@@ -114,7 +157,10 @@ ref = 'master'
 source = 'ssh://git@bitbucket.oci.oraclecorp.com:7999/csis/oracle-security-ai.git'
 source_type = 'git'
 
-[mcp_servers]
+[mcp_servers.mcpgw]
+enabled = true
+type = 'streamable-http'
+url = 'http://localhost:8000/mcp'
 
 [mcp_servers.node_repl]
 args = []
@@ -132,13 +178,14 @@ BROWSER_USE_TINYSKY_ENABLED = "1"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.901.31953"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/jrreed/.codex/plugins/cache/openai-bundled/browser/26.901.31953/scripts/browser-service.mjs"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.917.71314"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/jrreed/.codex/plugins/cache/openai-bundled/browser/26.917.71314/scripts/browser-service.mjs"}'
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
 [mcp_servers.cua_repl]
 command = "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
 enabled = false
+
 [otel]
 environment = 'dev'
 log_user_prompt = false
@@ -158,18 +205,12 @@ endpoint = 'http://127.0.0.1:4318/v1/metrics'
 protocol = 'json'
 
 [plugins]
+[plugins.'computer-use@openai-bundled']
+enabled = true
 
 [plugins.'documents@openai-primary-runtime']
 enabled = true
 
-[plugins.'mcp-gateway-plugin@devplat-plugins']
-enabled = true
-
-[plugins.'mcp-gateway-plugin@devplat-plugins'.mcp_servers]
-[plugins.'mcp-gateway-plugin@devplat-plugins'.mcp_servers.devplat_mcp_gateway]
-[plugins.'mcp-gateway-plugin@devplat-plugins'.mcp_servers.devplat_mcp_gateway.tools]
-[plugins.'mcp-gateway-plugin@devplat-plugins'.mcp_servers.devplat_mcp_gateway.tools.devplat_mcp_gateway__use]
-approval_mode = 'auto'
 
 [plugins.'pdf@openai-primary-runtime']
 enabled = true
@@ -183,17 +224,11 @@ enabled = true
 [plugins.'spreadsheets@openai-primary-runtime']
 enabled = true
 
-[plugins."computer-use@openai-bundled"]
-enabled = true
-
-[plugins."template-creator@openai-primary-runtime"]
+[plugins.'template-creator@openai-primary-runtime']
 enabled = true
 
 [projects]
 [projects.'/Users/jrreed']
-trust_level = 'trusted'
-
-[projects.'/Users/jrreed/dev']
 trust_level = 'trusted'
 
 [projects.'/Users/jrreed/.codex']
@@ -202,19 +237,55 @@ trust_level = 'trusted'
 [projects.'/Users/jrreed/.ssh']
 trust_level = 'trusted'
 
+[projects.'/Users/jrreed/Documents/ChatGPT/CFS']
+trust_level = 'trusted'
+
 [projects.'/Users/jrreed/Documents/Codex/2026-08-28/https-jira-oci-oraclecorp-com-browse']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/Documents/Codex/2026-08-31/ca']
 trust_level = 'trusted'
 
 [projects.'/Users/jrreed/Documents/Codex/2026-08-31/is-x20']
 trust_level = 'trusted'
 
+[projects.'/Users/jrreed/Documents/Codex/2026-09-01/i-w']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/Documents/Codex/2026-09-01/i-wa']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/Documents/Codex/2026-09-02/i-wa']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/Documents/Codex/2026-09-02/realtime-voice-chat']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/Documents/Codex/2026-09-02/sl']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/Documents/Codex/2026-09-03/is-t']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/Documents/Codex/2026-09-08/ou']
+trust_level = 'trusted'
+
 [projects.'/Users/jrreed/csi']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/dev']
 trust_level = 'trusted'
 
 [projects.'/Users/jrreed/dev/console-dashboard-service-canary']
 trust_level = 'trusted'
 
 [projects.'/Users/jrreed/dev/console-ui-testing-agent']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/dev/csi-seeks-cm']
+trust_level = 'trusted'
+
+[projects.'/Users/jrreed/dev/customer-feedback-service']
 trust_level = 'trusted'
 
 [projects.'/Users/jrreed/dev/dashboard-service']
@@ -226,43 +297,37 @@ trust_level = 'trusted'
 [projects.'/Users/jrreed/dev/personalization-service']
 trust_level = 'trusted'
 
+[projects.'/Users/jrreed/dev/telemetry-console-plugin-maui-plugin']
+trust_level = 'trusted'
+
 [projects.'/Users/jrreed/dotfiles']
 trust_level = 'trusted'
 
-[projects."/Users/jrreed/Documents/Codex/2026-08-31/ca"]
+[projects."/Users/jrreed/dev/cfs/customer-feedback-service-tools"]
 trust_level = "trusted"
 
-[projects."/Users/jrreed/dev/csi-seeks-cm"]
+[projects."/Users/jrreed/dev/cfs/customer-feedback-service"]
 trust_level = "trusted"
 
-[projects."/Users/jrreed/Documents/Codex/2026-09-01/i-wa"]
+[projects."/Users/jrreed/dev/cfs"]
 trust_level = "trusted"
 
-[projects."/Users/jrreed/Documents/ChatGPT/CFS"]
+[projects."/Users/jrreed/Documents/Codex/2026-09-10/how"]
 trust_level = "trusted"
 
-[projects."/Users/jrreed/Documents/Codex/2026-09-01/i-w"]
+[projects."/Users/jrreed/Documents/Codex/2026-09-15/i-ha"]
 trust_level = "trusted"
 
-[projects."/Users/jrreed/dev/customer-feedback-service"]
+[projects."/Users/jrreed/Documents/Codex/2026-09-15/tel"]
 trust_level = "trusted"
 
-[projects."/Users/jrreed/Documents/Codex/2026-09-02/realtime-voice-chat"]
+[projects."/Users/jrreed/dev/origin"]
 trust_level = "trusted"
 
-[projects."/Users/jrreed/Documents/Codex/2026-09-02/i-wa"]
+[projects."/Users/jrreed/dev/nix"]
 trust_level = "trusted"
 
-[projects."/Users/jrreed/Documents/Codex/2026-09-02/sl"]
-trust_level = "trusted"
-
-[projects."/Users/jrreed/Documents/Codex/2026-09-03/is-t"]
-trust_level = "trusted"
-
-[projects."/Users/jrreed/dev/telemetry-console-plugin-maui-plugin"]
-trust_level = "trusted"
-
-[projects."/Users/jrreed/Documents/Codex/2026-09-08/ou"]
+[projects."/Users/jrreed/dotfiles/common/vault"]
 trust_level = "trusted"
 
 [sandbox_workspace_write]
@@ -270,44 +335,11 @@ network_access = true
 writable_roots = ['/Users/jrreed/.codex', '/Users/jrreed/.oci', '/Users/jrreed/oracle', '/Users/jrreed/.m2/repository', '/Users/jrreed/.cache/uv', '/Users/jrreed/Library/Application Support/Chromium', '/Users/jrreed/Library/Application Support/Google/Chrome']
 
 [tui]
-pet = "disabled"
+pet = 'disabled'
 status_line = ['model-with-reasoning', 'current-dir', 'project-name', 'git-branch']
 status_line_use_colors = true
 theme = 'ansi'
 
 [tui.model_availability_nux]
-'gpt-5.6-sol' = 4
-
-[hooks.state]
-
-[hooks.state."/Users/jrreed/.codex/config.toml:permission_request:0:0"]
-trusted_hash = "sha256:33c02b0d464f4febee2666374eb7d2b9e57fe869cbe5ee52fe035c69c08e687a"
-
-[hooks.state."/Users/jrreed/.codex/config.toml:pre_compact:0:0"]
-trusted_hash = "sha256:6a988cefe3970535d787fe2126051a760f846af8c39ec30aa31c6f2d222ac1a6"
-
-[hooks.state."/Users/jrreed/.codex/config.toml:session_start:0:0"]
-trusted_hash = "sha256:44be601e16c359238a6c3d14c4d141ed8642098d76c82fef90362027b6f7a0e1"
-
-[hooks.state."/Users/jrreed/.codex/config.toml:user_prompt_submit:0:0"]
-trusted_hash = "sha256:5e0026eb3b32da5b5b00a48cba44239b41b4cb7c551d4d6b3dfc9c29e51ea892"
-
-[hooks.state."/Users/jrreed/.codex/config.toml:subagent_start:0:0"]
-trusted_hash = "sha256:366ea6bcfacccc86b11c317ac78a44984c46685e86234d1bd4df9f51c5628da7"
-
-[hooks.state."/Users/jrreed/.codex/config.toml:subagent_stop:0:0"]
-trusted_hash = "sha256:d7ba499fdb79d1167f829a481889729387cf2e891115ae6141ec036b07f6a598"
-
-[hooks.state."/Users/jrreed/.codex/config.toml:stop:0:0"]
-trusted_hash = "sha256:7d4e5ee681d4c53a450ecbfaf49ba5158d21199414790f3f7a8a0008007f2230"
-
-# peon-ping Codex completion hook
-[[hooks.Stop]]
-
-[[hooks.Stop.hooks]]
-type = "command"
-command = "if [ -f /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh ]; then CLAUDE_PEON_DIR=/Users/jrreed/.claude/hooks/peon-ping bash /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh >/dev/null 2>&1 || true; fi"
-timeout = 30
-
-[apps.connector_68df038e0ba48191908c8434991bbac2.tools."figma.use_figma"]
-approval_mode = "approve"
+"gpt-5.6-sol" = 4
+gpt-6-astra = 4
