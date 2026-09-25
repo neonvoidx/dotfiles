@@ -173,3 +173,6 @@ common/.config/skillshare/skills/
 common/.codex/.personality_migration
 common/.codex/.sandbox_migration
 /.ots
+/common/.codex/backups
+/common/.codex/rules
+/memory.md
