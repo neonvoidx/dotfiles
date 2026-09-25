@@ -29,8 +29,8 @@ kitty_mod ctrl+shift
 cursor_shape block
 cursor_blink_interval 1
 
-#Shaders
-custom_shaders = "cursor-trail-blaze"
+# Shaders
+custom_shaders cursor-trail-blaze
 
 # Scrollback
 scrollback_lines 10000
