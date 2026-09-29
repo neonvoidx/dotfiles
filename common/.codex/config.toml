@@ -4,7 +4,7 @@ MCP_PROJECT_LIST = ''
 
 approval_mode = 'auto'
 model = "gpt-6-astra"
-model_reasoning_effort = "high"
+model_reasoning_effort = "medium"
 
 notify = ['/Users/jrreed/dotfiles/common/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient', 'turn-ended']
 sandbox_mode = 'workspace-write'
@@ -178,9 +178,9 @@ BROWSER_USE_TINYSKY_ENABLED = "1"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.917.71314"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/jrreed/.codex/plugins/cache/openai-bundled/browser/26.917.71314/scripts/browser-service.mjs"}'
-CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+BROWSER_USE_CODEX_APP_VERSION = "26.924.22138"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/jrreed/.codex/plugins/cache/openai-bundled/browser/26.924.22138/scripts/browser-service.mjs"}'
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
 
 [mcp_servers.cua_repl]
 command = "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
@@ -330,6 +330,9 @@ trust_level = "trusted"
 [projects."/Users/jrreed/dotfiles/common/vault"]
 trust_level = "trusted"
 
+[projects."/Users/jrreed/Documents/ChatGPT/CPS"]
+trust_level = "trusted"
+
 [sandbox_workspace_write]
 network_access = true
 writable_roots = ['/Users/jrreed/.codex', '/Users/jrreed/.oci', '/Users/jrreed/oracle', '/Users/jrreed/.m2/repository', '/Users/jrreed/.cache/uv', '/Users/jrreed/Library/Application Support/Chromium', '/Users/jrreed/Library/Application Support/Google/Chrome']
@@ -343,3 +346,37 @@ theme = 'ansi'
 [tui.model_availability_nux]
 "gpt-5.6-sol" = 4
 gpt-6-astra = 4
+
+# Grafana MCP: local read-only investigation tools; credentials supplied separately.
+[mcp_servers.grafana]
+command = "/opt/homebrew/bin/uvx"
+args = ["--system-certs", "mcp-grafana==1.6.1", "-t", "stdio", "--disable-write", "--enabled-tools=search,dashboard,datasource,runpanelquery,navigation", "--usage-stats=disabled"]
+env_vars = ["GRAFANA_SERVICE_ACCOUNT_TOKEN", "GRAFANA_SERVICE_ACCOUNT_TOKEN_FILE", "GRAFANA_EXTRA_HEADERS"]
+startup_timeout_sec = 60
+tool_timeout_sec = 60
+enabled = false
+
+[mcp_servers.grafana.env]
+GRAFANA_URL = "https://grafana.oci.oraclecorp.com"
+GRAFANA_ORG_ID = "1"
+UV_TOOL_DIR = "/Users/jrreed/.cache/uv/tools"
+
+# Oracle BOAT proxy; enable after installing the authenticated registry tarball.
+[mcp_servers.grafana-octo]
+command = "/Users/jrreed/.oci/mcp-grafana/bin/mcp-grafana-proxy"
+args = ["--", "--disable-write", "--enabled-tools", "search,datasource,prometheus,loki,alerting,dashboard", "--usage-stats=disabled", "--grafana-timeout=45s"]
+enabled = true
+startup_timeout_sec = 120
+tool_timeout_sec = 180
+
+[mcp_servers.grafana-octo.env]
+GRAFANA_AUTH_MODE = "boat"
+GRAFANA_BOAT_BASE_URL = "https://oc1.octo.oraclecloud.com/grafana-api"
+GRAFANA_BOAT_ORG_ID = "1"
+GRAFANA_BOAT_ALLOW_AUTH_REFRESH = "true"
+PATH = "/Users/jrreed/.oci/mcp-grafana/bin:/Users/jrreed/.local/share/mise/installs/node/24.12.0/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+GRAFANA_BOAT_PROFILE = "oc1"
+GRAFANA_BOAT_OCI_COMMAND = "/opt/homebrew/bin/oci"
+GRAFANA_BOAT_REFRESH_COMMAND = "/opt/homebrew/bin/oci session authenticate --region us-ashburn-1 --tenancy-name bmc_operator_access --identity-provider-name ocna-saml --profile-name oc1 --session-expiration-in-minutes 60"
+MCP_GRAFANA_PROXY_UPSTREAM_COMMAND = "/Users/jrreed/.oci/mcp-grafana/bin/mcp-grafana"
+MCP_GRAFANA_PROXY_LOG_DIR = "/Users/jrreed/.oci/mcp-grafana/logs"
