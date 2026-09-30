@@ -19,3 +19,5 @@ BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
 source "${BASH_IT?}/bash_it.sh"
 
 eval "$(zoxide init --cmd cd bash)"
+
+export PATH="$PATH:~/.rd/bin"

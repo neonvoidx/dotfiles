@@ -1,19 +1,14 @@
 approval_policy = 'on-request'
-MCP_PROJECT_DEFAULT = ''
-MCP_PROJECT_LIST = ''
 
-approval_mode = 'auto'
 model = "gpt-6-astra"
 model_reasoning_effort = "medium"
 
 notify = ['/Users/jrreed/dotfiles/common/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient', 'turn-ended']
 sandbox_mode = 'workspace-write'
-web_search_request = true
+web_search = "cached"
 allow_symlinked_codex_home = true
 
-
 [agents]
-max_depth = 1
 max_threads = 8
 
 [agents.code-researcher]
@@ -51,16 +46,21 @@ ambient-suggestions-enabled = true
 appearanceDarkCodeThemeId = 'catppuccin'
 appearanceDiffMarkerStyle = 'color'
 appearanceLightCodeThemeId = 'catppuccin'
-codeFontSize = 14
+codeFontSize = 15
 conversationDetailMode = 'STEPS_COMMANDS'
 dock-icon-preference = 'codex-system'
 followUpQueueMode = 'queue'
 preventSleepWhileRunning = true
-sansFontSize = 15
+sansFontSize = 16
 selected-avatar-id = 'null-signal'
 usePointerCursors = true
 toys-confetti-enabled = true
 toys-audio-visualizer-enabled = true
+external-agent-import-sync-enabled = true
+notifications-turn-mode = "off"
+notifications-permissions-enabled = false
+notifications-questions-enabled = false
+appearanceTheme = "dark"
 
 [desktop.appearanceDarkChromeTheme]
 accent = '#37f499'
@@ -159,7 +159,6 @@ source_type = 'git'
 
 [mcp_servers.mcpgw]
 enabled = true
-type = 'streamable-http'
 url = 'http://localhost:8000/mcp'
 
 [mcp_servers.node_repl]
@@ -178,9 +177,9 @@ BROWSER_USE_TINYSKY_ENABLED = "1"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.924.22138"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/jrreed/.codex/plugins/cache/openai-bundled/browser/26.924.22138/scripts/browser-service.mjs"}'
-CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
+BROWSER_USE_CODEX_APP_VERSION = "26.915.31945"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/jrreed/.codex/plugins/cache/openai-bundled/browser/26.915.31945/scripts/browser-service.mjs"}'
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
 [mcp_servers.cua_repl]
 command = "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
@@ -333,6 +332,27 @@ trust_level = "trusted"
 [projects."/Users/jrreed/Documents/ChatGPT/CPS"]
 trust_level = "trusted"
 
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/whats-a-bash-command-that-can"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/codex-is-ignoring-5-unrecognized-configuration"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/https-confluence-oraclecorp-com-confluence-display"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/https-internal-docs-oraclecorp-com-en"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/https-internal-docs-oraclecorp-com-en-2"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/how"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/new-chat"]
+trust_level = "trusted"
+
 [sandbox_workspace_write]
 network_access = true
 writable_roots = ['/Users/jrreed/.codex', '/Users/jrreed/.oci', '/Users/jrreed/oracle', '/Users/jrreed/.m2/repository', '/Users/jrreed/.cache/uv', '/Users/jrreed/Library/Application Support/Chromium', '/Users/jrreed/Library/Application Support/Google/Chrome']
@@ -380,3 +400,11 @@ GRAFANA_BOAT_OCI_COMMAND = "/opt/homebrew/bin/oci"
 GRAFANA_BOAT_REFRESH_COMMAND = "/opt/homebrew/bin/oci session authenticate --region us-ashburn-1 --tenancy-name bmc_operator_access --identity-provider-name ocna-saml --profile-name oc1 --session-expiration-in-minutes 60"
 MCP_GRAFANA_PROXY_UPSTREAM_COMMAND = "/Users/jrreed/.oci/mcp-grafana/bin/mcp-grafana"
 MCP_GRAFANA_PROXY_LOG_DIR = "/Users/jrreed/.oci/mcp-grafana/logs"
+
+[mcp_servers.mcp_gateway]
+url = "http://localhost:8000/mcp"
+
+
+[models.new_thread]
+model = "gpt-6-astra"
+model_reasoning_effort = "medium"

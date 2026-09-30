@@ -4,9 +4,6 @@ tap "anomalyco/tap", "https://github.com/anomalyco/homebrew-tap.git"
 tap "asmvik/formulae"
 tap "felixkratz/formulae", trusted: { formulae: ["sketchybar"] }
 tap "hashicorp/tap"
-tap "homebrew/bundle"
-tap "homebrew/core"
-tap "homebrew/services"
 tap "jackielii/tap"
 tap "jstkdng/programs"
 tap "koekeishiya/formulae", "https://github.com/asmvik/homebrew-formulae.git"
@@ -199,6 +196,8 @@ brew "zoxide"
 brew "acep/brew/ossh"
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
+# Status bar used by AeroSpace
+brew "felixkratz/formulae/sketchybar", trusted: true
 # Terraform
 brew "hashicorp/tap/terraform", trusted: true
 # Sound effects and desktop notifications for AI coding agents
@@ -236,3 +235,8 @@ npm "@fission-ai/openspec"
 npm "cline"
 npm "codex-session-browser"
 npm "corepack"
+
+# Shell startup dependencies
+brew "zinit"
+tap "timescam/tap", "https://github.com/timescam/homebrew-tap"
+brew "timescam/tap/pay-respects", trusted: true

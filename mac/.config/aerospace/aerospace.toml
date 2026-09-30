@@ -4,7 +4,10 @@ config-version = 2
 after-login-command = []
 
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = ['exec-and-forget sketchybar']
+after-startup-command = [
+  'exec-and-forget sketchybar',
+  'exec-and-forget borders',
+]
 
 automatically-unhide-macos-hidden-apps = true
 persistent-workspaces = ["1", "2", "3", "4", "5", "s"]

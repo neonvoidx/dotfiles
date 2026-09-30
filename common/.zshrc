@@ -12,11 +12,112 @@ fi
 #  / /| | | | | | |_ 
 # /___|_|_| |_|_|\__|
 #                    
+# Public GitHub plugins use SSH; load the agent and key before Zinit.
+_ssh_agent_ready() {
+  local output
+  [[ -n "$SSH_AUTH_SOCK" && -S "$SSH_AUTH_SOCK" ]] || return 1
+  output="$(ssh-add -l 2>&1)"
+  [[ $? -eq 0 || "$output" == *"The agent has no identities"* ]]
+}
+
+_ensure_ssh_agent() {
+  [[ -n "$SSH_TTY" ]] && return 0
+  local agent_sock="$HOME/.ssh/agent.sock"
+
+  # Terminal apps commonly provide a persistent launchd-managed agent.
+  # Preserve one that already has identities, but do not adopt an empty SCM agent.
+  if _ssh_agent_ready && ssh-add -l >/dev/null 2>&1; then
+    return 0
+  fi
+
+  export SSH_AUTH_SOCK="$agent_sock"
+  _ssh_agent_ready && return 0
+
+  rm -f "$agent_sock"
+  export SSH_AUTH_SOCK="$agent_sock"
+  if ! _ssh_agent_ready; then
+    eval "$(ssh-agent -a "$agent_sock" -s)" >/dev/null
+  fi
+}
+
+_ssh_agent_has_key() {
+  local key="$1" pubkey="${1}.pub" fingerprint
+  [[ -r "$pubkey" ]] || return 1
+  fingerprint="$(ssh-keygen -lf "$pubkey" 2>/dev/null | awk '{print $2}')"
+  [[ -n "$fingerprint" ]] || return 1
+  ssh-add -l 2>/dev/null | grep -Fq "$fingerprint"
+}
+
+_ssh_agent_has_pkcs11_key() {
+  local provider="$1" identities key fingerprint
+  identities="$(ssh-add -l 2>/dev/null)" || return 1
+
+  while IFS= read -r key; do
+    fingerprint="$(ssh-keygen -lf /dev/stdin 2>/dev/null <<< "$key" | awk '{print $2}')"
+    [[ -n "$fingerprint" && "$identities" == *"$fingerprint"* ]] && return 0
+  done < <(ssh-keygen -D "$provider" 2>/dev/null)
+
+  return 1
+}
+
+_ensure_ssh_key() {
+  local key="${1:-$HOME/.ssh/id_ed25519_jacobrreed}"
+  [[ -r "$key" ]] || return 0
+  _ssh_agent_has_key "$key" && return 0
+
+  if [[ "$(uname)" == "Darwin" ]]; then
+    /usr/bin/ssh-add --apple-use-keychain "$key" 2>/dev/null || ssh-add "$key"
+  else
+    ssh-add "$key"
+  fi
+}
+
+_ssh_agent_has_identities() {
+  local sock="$1"
+  [[ -S "$sock" ]] || return 1
+  SSH_AUTH_SOCK="$sock" ssh-add -l >/dev/null 2>&1
+}
+
+ensure-ssh() {
+  _ensure_ssh_agent
+  _ensure_ssh_key
+  _ensure_ssh_pkcs11
+
+  if [[ -f "$HOME/.ssh/scm-script.sh" ]]; then
+    scm-ssh() {
+      local bash_path
+      bash_path="$(command -v bash 2>/dev/null)"
+      [[ -n "$bash_path" ]] || bash_path="/bin/bash"
+      [[ -x "$bash_path" ]] || {
+        echo "bash not found; cannot run $HOME/.ssh/scm-script.sh"
+        return 127
+      }
+      "$bash_path" "$HOME/.ssh/scm-script.sh" "$@"
+    }
+    if ! _ssh_agent_has_identities "$HOME/.ssh/scm-agent.sock"; then
+      scm-ssh start_agent >/dev/null 2>&1
+    fi
+  fi
+}
+
+
+_ensure_ssh_agent
+_ensure_ssh_key "$HOME/.ssh/id_ed25519"
+
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
-autoload -Uz _zinit
+# Prefer Homebrew; retain the Git bootstrap for hosts without its package.
+if [[ -r "${HOMEBREW_PREFIX:-/opt/homebrew}/opt/zinit/zinit.zsh" ]]; then
+  source "${HOMEBREW_PREFIX:-/opt/homebrew}/opt/zinit/zinit.zsh"
+elif [[ -r /usr/local/opt/zinit/zinit.zsh ]]; then
+  source /usr/local/opt/zinit/zinit.zsh
+else
+  if [[ ! -r "$ZINIT_HOME/zinit.zsh" ]]; then
+    mkdir -p "${ZINIT_HOME:h}"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+  fi
+  [[ -r "$ZINIT_HOME/zinit.zsh" ]] && source "$ZINIT_HOME/zinit.zsh"
+fi
+(( $+functions[zinit] )) && autoload -Uz _zinit
 autoload -Uz compinit
 _zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
 if [[ -s "$_zcompdump" && -n "$_zcompdump"(#qN.mh-24) ]]; then
@@ -26,7 +127,7 @@ else
   zcompile "$_zcompdump" >/dev/null 2>&1
 fi
 unset _zcompdump
-(( ${+_comps} )) && _comps[zinit]=_zinit
+(( ${+_comps} && $+functions[zinit] )) && _comps[zinit]=_zinit
 setopt promptsubst
 # FZF (load early so widgets exist before highlighters/wrapper hooks)
 export FZF_CTRL_T_COMMAND=""
@@ -42,20 +143,22 @@ elif [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then
   source /usr/share/doc/fzf/examples/key-bindings.zsh
 fi
 # Zinit Packages
-zinit wait lucid light-mode for \
-  Aloxaf/fzf-tab \
-    trystan2k/zsh-tab-title \
-  atinit"zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
-    OMZP::colored-man-pages \
-    OMZP::fancy-ctrl-z \
-  atload"_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions \
-  blockf atpull'zinit creinstall -q .' \
-    zsh-users/zsh-completions
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
-zinit ice wait lucid light-mode
+if (( $+functions[zinit] )); then
+  zinit wait lucid light-mode for \
+    Aloxaf/fzf-tab \
+      trystan2k/zsh-tab-title \
+    atinit"zicompinit; zicdreplay" \
+      zdharma-continuum/fast-syntax-highlighting \
+      OMZP::colored-man-pages \
+      OMZP::fancy-ctrl-z \
+    atload"_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+    blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions
+  zinit ice depth=1
+  zinit light jeffreytse/zsh-vi-mode
+  zinit ice wait lucid light-mode
+fi
 
 #  _                          _                       
 # | |__   ___  _ __ ___   ___| |__  _ __ _____      __
@@ -197,7 +300,7 @@ fi
 # /_/   \_\_|_|\__,_|___/  \___/\/ |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
 #                                                                               
 #
-alias mcpgw="~/dev/mcpgw-cli/mcpgw"
+alias mcpgw="~/dev/ops/mcpgw"
 alias yay="paru" #replace yay with paru incase we copy paste commands from onlines sources using yay
 alias dev="cd ~/dev"
 drs() {
@@ -368,98 +471,14 @@ fi
 # | |___ \ V / (_| | | | (_>  <  ___) | (_) | |_| | | | (_|  __/
 # |_____| \_/ \__,_|_|  \___/\/ |____/ \___/ \__,_|_|  \___\___|
 #                                                               
-eval "$(pay-respects zsh --alias)"
+if command -v pay-respects >/dev/null 2>&1; then
+  eval "$(pay-respects zsh --alias)"
+fi
 
 # Zoxide
 export _ZO_EXCLUDE_DIRS="/Applications/**:**/node_modules"
 export _ZO_RESOLVE_SYMLINKS=0
 
-_ssh_agent_ready() {
-  local output
-  [[ -n "$SSH_AUTH_SOCK" && -S "$SSH_AUTH_SOCK" ]] || return 1
-  output="$(ssh-add -l 2>&1)"
-  [[ $? -eq 0 || "$output" == *"The agent has no identities"* ]]
-}
-
-_ensure_ssh_agent() {
-  [[ -n "$SSH_TTY" ]] && return 0
-  local agent_sock="$HOME/.ssh/agent.sock"
-
-  # Terminal apps commonly provide a persistent launchd-managed agent.
-  # Preserve one that already has identities, but do not adopt an empty SCM agent.
-  if _ssh_agent_ready && ssh-add -l >/dev/null 2>&1; then
-    return 0
-  fi
-
-  export SSH_AUTH_SOCK="$agent_sock"
-  _ssh_agent_ready && return 0
-
-  rm -f "$agent_sock"
-  export SSH_AUTH_SOCK="$agent_sock"
-  if ! _ssh_agent_ready; then
-    eval "$(ssh-agent -a "$agent_sock" -s)" >/dev/null
-  fi
-}
-
-_ssh_agent_has_key() {
-  local key="$1" pubkey="${1}.pub" fingerprint
-  [[ -r "$pubkey" ]] || return 1
-  fingerprint="$(ssh-keygen -lf "$pubkey" 2>/dev/null | awk '{print $2}')"
-  [[ -n "$fingerprint" ]] || return 1
-  ssh-add -l 2>/dev/null | grep -Fq "$fingerprint"
-}
-
-_ssh_agent_has_pkcs11_key() {
-  local provider="$1" identities key fingerprint
-  identities="$(ssh-add -l 2>/dev/null)" || return 1
-
-  while IFS= read -r key; do
-    fingerprint="$(ssh-keygen -lf /dev/stdin 2>/dev/null <<< "$key" | awk '{print $2}')"
-    [[ -n "$fingerprint" && "$identities" == *"$fingerprint"* ]] && return 0
-  done < <(ssh-keygen -D "$provider" 2>/dev/null)
-
-  return 1
-}
-
-_ensure_ssh_key() {
-  local key="$HOME/.ssh/id_ed25519_jacobrreed"
-  [[ -r "$key" ]] || return 0
-  _ssh_agent_has_key "$key" && return 0
-
-  if [[ "$(uname)" == "Darwin" ]]; then
-    ssh-add --apple-use-keychain "$key" 2>/dev/null || ssh-add "$key"
-  else
-    ssh-add "$key"
-  fi
-}
-
-_ssh_agent_has_identities() {
-  local sock="$1"
-  [[ -S "$sock" ]] || return 1
-  SSH_AUTH_SOCK="$sock" ssh-add -l >/dev/null 2>&1
-}
-
-ensure-ssh() {
-  _ensure_ssh_agent
-  _ensure_ssh_key
-  _ensure_ssh_pkcs11
-
-  if [[ -f "$HOME/.ssh/scm-script.sh" ]]; then
-    scm-ssh() {
-      local bash_path
-      bash_path="$(command -v bash 2>/dev/null)"
-      [[ -n "$bash_path" ]] || bash_path="/bin/bash"
-      [[ -x "$bash_path" ]] || {
-        echo "bash not found; cannot run $HOME/.ssh/scm-script.sh"
-        return 127
-      }
-      "$bash_path" "$HOME/.ssh/scm-script.sh" "$@"
-    }
-    if ! _ssh_agent_has_identities "$HOME/.ssh/scm-agent.sock"; then
-      scm-ssh start_agent >/dev/null 2>&1
-    fi
-  fi
-}
 
 ensure-ssh
 
@@ -519,3 +538,15 @@ if [[ -o interactive && -t 0 && -t 1 && -z ${TMUX:-} && -z ${TMUX_PANE:-} &&
    (( $+commands[sesh] && $+commands[fzf] && $+commands[tmux] )); then
   "$HOME/.local/bin/sesh-fast" || true
 fi
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+if (( $+functions[zinit] )); then
+  zinit light-mode for \
+      zdharma-continuum/zinit-annex-as-monitor \
+      zdharma-continuum/zinit-annex-bin-gem-node \
+      zdharma-continuum/zinit-annex-patch-dl \
+      zdharma-continuum/zinit-annex-rust
+fi
+
+### End of Zinit's installer chunk
