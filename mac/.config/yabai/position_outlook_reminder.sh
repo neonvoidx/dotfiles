@@ -1,7 +1,7 @@
 #!/bin/bash
 
 margin_right=24
-margin_bottom=24
+margin_top=24
 
 window_id=${YABAI_WINDOW_ID:-}
 
@@ -40,6 +40,6 @@ display_w=$(printf '%s' "$display_json" | jq -r '.frame.w | floor')
 display_h=$(printf '%s' "$display_json" | jq -r '.frame.h | floor')
 
 target_x=$((display_x + display_w - window_w - margin_right))
-target_y=$((display_y + display_h - window_h - margin_bottom))
+target_y=$((display_y + margin_top))
 
 yabai -m window "$window_id" --move abs:"$target_x":"$target_y"

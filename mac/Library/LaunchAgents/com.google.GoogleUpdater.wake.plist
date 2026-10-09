@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AbandonProcessGroup</key>
+	<true/>
+	<key>AssociatedBundleIdentifiers</key>
+	<array>
+		<string>com.google.GoogleUpdater</string>
+	</array>
+	<key>Label</key>
+	<string>com.google.GoogleUpdater.wake</string>
+	<key>LimitLoadToSessionType</key>
+	<string>Aqua</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/jrreed/Library/Application Support/Google/GoogleUpdater/Current/GoogleUpdater.app/Contents/MacOS/GoogleUpdater</string>
+		<string>--wake-all</string>
+		<string>--enable-logging</string>
+		<string>--vmodule=*/components/update_client/*=2,*/chrome/enterprise_companion/*=2,*/chrome/updater/*=2</string>
+	</array>
+	<key>StartInterval</key>
+	<integer>3600</integer>
+</dict>
+</plist>

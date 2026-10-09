@@ -114,6 +114,7 @@ sketchybar --add item gap.r2 right \
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/system_stats.sh"
+source "$ITEM_DIR/peon_sound.sh"
 
 # Creating dynamic islands by grouping items with backgrounds
 # Left island: Apple menu + spaces + front app
@@ -139,7 +140,7 @@ sketchybar --add item gap.main left \
                           label.drawing=off
 
 # Right main island: Contains all right side items with internal gaps
-sketchybar --add bracket right_island calendar gap.r1 brew github.bell gap.r2 battery volume_icon stats.cpu stats.ram \
+sketchybar --add bracket right_island calendar gap.r1 brew github.bell gap.r2 battery volume_icon peon_sound stats.cpu stats.ram \
            --set right_island background.color=0xff24273a \
                               background.corner_radius=9 \
                               background.height=30 \

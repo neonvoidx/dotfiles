@@ -3,3 +3,7 @@ idiomatic_version_file_enable_tools = ["node"]
 not_found_auto_install=true
 env_file=".env"
 color_theme="dracula"
+
+[tools]
+java = "zulu-17.68.203.0"
+maven = "3.9.16"

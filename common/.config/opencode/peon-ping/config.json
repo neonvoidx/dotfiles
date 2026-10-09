@@ -7,9 +7,9 @@
     "session.end": false,
     "task.acknowledge": false,
     "task.complete": true,
-    "task.error": false,
+    "task.error": true,
     "task.progress": false,
-    "input.required": false,
+    "input.required": true,
     "resource.limit": false,
     "user.spam": false
   },
@@ -22,7 +22,12 @@
   "pack_rotation_mode": "random",
   "path_rules": [],
   "exclude_dirs": [],
-  "ide_rules": [],
+  "ide_rules": [
+    {
+      "ide": "codex",
+      "pack": "sc2_abathur"
+    }
+  ],
   "disabled_sounds": {
     "peon": {
       "task.complete": [

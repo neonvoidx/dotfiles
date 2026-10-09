@@ -181,7 +181,11 @@ run = ['move-node-to-workspace 3']
 check-further-callbacks = true
 if.app-name-regex-substring = 'Microsoft Outlook'
 if.window-title-regex-substring = 'Reminder'          # Outlook reminders
-run = ['layout floating', 'move-node-to-workspace 1']
+run = [
+  'layout floating',
+  'move-node-to-workspace 1',
+  "exec-and-forget /bin/zsh -c '/usr/bin/osascript -l JavaScript ~/.config/aerospace/position-outlook-reminder.js'",
+]
 [[on-window-detected]]
 check-further-callbacks = true
 if.app-name-regex-substring = 'Finder'
@@ -224,6 +228,12 @@ run = 'layout floating'
 [[on-window-detected]]
 check-further-callbacks = true
 if.app-name-regex-substring = 'Bitwarden'
+run = 'layout floating'
+[[on-window-detected]]
+# Native file panels are owned by ChatGPT but must not join its tiled window tree.
+check-further-callbacks = true
+if.app-id = 'com.openai.codex'
+if.window-title-regex-substring = '^(Open|Save)$'
 run = 'layout floating'
 [[on-window-detected]]
 check-further-callbacks = true

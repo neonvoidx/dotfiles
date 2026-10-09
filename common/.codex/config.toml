@@ -1,7 +1,7 @@
 approval_policy = 'on-request'
 
-model = "gpt-6-astra"
-model_reasoning_effort = "medium"
+model = "gpt-6.1-sol"
+model_reasoning_effort = "high"
 
 notify = ['/Users/jrreed/dotfiles/common/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient', 'turn-ended']
 sandbox_mode = 'workspace-write'
@@ -61,6 +61,7 @@ notifications-turn-mode = "off"
 notifications-permissions-enabled = false
 notifications-questions-enabled = false
 appearanceTheme = "dark"
+open-link-in-target-preference = "external-browser"
 
 [desktop.appearanceDarkChromeTheme]
 accent = '#37f499'
@@ -106,33 +107,12 @@ global = 'kitty'
 multi_agent = true
 
 [hooks]
-[[hooks.Stop]]
-[[hooks.Stop.hooks]]
-command = 'if [ -f /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh ]; then CLAUDE_PEON_DIR=/Users/jrreed/.claude/hooks/peon-ping bash /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh >/dev/null 2>&1 || true; fi'
-timeout = 30
-type = 'command'
-
 [hooks.state]
 [hooks.state.'/Users/jrreed/.codex/config.toml:permission_request:0:0']
 trusted_hash = 'sha256:33c02b0d464f4febee2666374eb7d2b9e57fe869cbe5ee52fe035c69c08e687a'
 
-[hooks.state.'/Users/jrreed/.codex/config.toml:pre_compact:0:0']
-trusted_hash = 'sha256:6a988cefe3970535d787fe2126051a760f846af8c39ec30aa31c6f2d222ac1a6'
-
-[hooks.state.'/Users/jrreed/.codex/config.toml:session_start:0:0']
-trusted_hash = 'sha256:44be601e16c359238a6c3d14c4d141ed8642098d76c82fef90362027b6f7a0e1'
-
 [hooks.state.'/Users/jrreed/.codex/config.toml:stop:0:0']
 trusted_hash = 'sha256:7d4e5ee681d4c53a450ecbfaf49ba5158d21199414790f3f7a8a0008007f2230'
-
-[hooks.state.'/Users/jrreed/.codex/config.toml:subagent_start:0:0']
-trusted_hash = 'sha256:366ea6bcfacccc86b11c317ac78a44984c46685e86234d1bd4df9f51c5628da7'
-
-[hooks.state.'/Users/jrreed/.codex/config.toml:subagent_stop:0:0']
-trusted_hash = 'sha256:d7ba499fdb79d1167f829a481889729387cf2e891115ae6141ec036b07f6a598'
-
-[hooks.state.'/Users/jrreed/.codex/config.toml:user_prompt_submit:0:0']
-trusted_hash = 'sha256:5e0026eb3b32da5b5b00a48cba44239b41b4cb7c551d4d6b3dfc9c29e51ea892'
 
 [marketplaces]
 [marketplaces.assurance-remediation]
@@ -157,9 +137,12 @@ ref = 'master'
 source = 'ssh://git@bitbucket.oci.oraclecorp.com:7999/csis/oracle-security-ai.git'
 source_type = 'git'
 
+[marketplaces.Shepherd]
+source_type = "git"
+source = "ssh://git@bitbucket.oci.oraclecorp.com:7999/shep/shepherd-plugin.git"
+
 [mcp_servers.mcpgw]
-enabled = true
-url = 'http://localhost:8000/mcp'
+url = "http://localhost:8000/mcp"
 
 [mcp_servers.node_repl]
 args = []
@@ -172,18 +155,56 @@ NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_n
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
 NODE_REPL_TRUSTED_CODE_PATHS = "/Users/jrreed/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 CODEX_HOME = "/Users/jrreed/.codex"
-BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab,mcpapps"
 BROWSER_USE_TINYSKY_ENABLED = "1"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.915.31945"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/jrreed/.codex/plugins/cache/openai-bundled/browser/26.915.31945/scripts/browser-service.mjs"}'
-CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+BROWSER_USE_CODEX_APP_VERSION = "26.928.31416"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/jrreed/.codex/plugins/cache/openai-bundled/browser/26.928.31416/scripts/browser-service.mjs"}'
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
 
 [mcp_servers.cua_repl]
 command = "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT"
 enabled = false
+
+[mcp_servers.grafana]
+command = "/opt/homebrew/bin/uvx"
+args = ["--python", "/opt/homebrew/bin/python3.14", "--system-certs", "mcp-grafana==1.6.1", "-t", "stdio", "--disable-write", "--enabled-tools=search,dashboard,datasource,runpanelquery,navigation", "--usage-stats=disabled"]
+env_vars = ["GRAFANA_SERVICE_ACCOUNT_TOKEN", "GRAFANA_SERVICE_ACCOUNT_TOKEN_FILE", "GRAFANA_EXTRA_HEADERS"]
+enabled = false
+startup_timeout_sec = 60.0
+tool_timeout_sec = 60.0
+
+[mcp_servers.grafana.env]
+GRAFANA_ORG_ID = "1"
+GRAFANA_URL = "https://grafana.oci.oraclecorp.com"
+UV_TOOL_DIR = "/Users/jrreed/.cache/uv/tools"
+
+[mcp_servers.grafana-octo]
+command = "/Users/jrreed/.oci/mcp-grafana/bin/mcp-grafana-proxy"
+args = ["--", "--disable-write", "--enabled-tools", "search,datasource,prometheus,loki,alerting,dashboard", "--usage-stats=disabled", "--grafana-timeout=45s"]
+enabled = false
+startup_timeout_sec = 120.0
+tool_timeout_sec = 180.0
+
+[mcp_servers.grafana-octo.env]
+GRAFANA_AUTH_MODE = "boat"
+GRAFANA_BOAT_ALLOW_AUTH_REFRESH = "true"
+GRAFANA_BOAT_BASE_URL = "https://oc1.octo.oraclecloud.com/grafana-api"
+GRAFANA_BOAT_OCI_COMMAND = "/opt/homebrew/bin/oci"
+GRAFANA_BOAT_ORG_ID = "1"
+GRAFANA_BOAT_PROFILE = "oc1"
+GRAFANA_BOAT_REFRESH_COMMAND = "/opt/homebrew/bin/oci session authenticate --region us-ashburn-1 --tenancy-name bmc_operator_access --identity-provider-name ocna-saml --profile-name oc1 --session-expiration-in-minutes 60"
+MCP_GRAFANA_PROXY_LOG_DIR = "/Users/jrreed/.oci/mcp-grafana/logs"
+MCP_GRAFANA_PROXY_UPSTREAM_COMMAND = "/Users/jrreed/.oci/mcp-grafana/bin/mcp-grafana"
+PATH = "/Users/jrreed/.oci/mcp-grafana/bin:/Users/jrreed/.local/share/mise/installs/node/24.12.0/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+[mcp_servers.mcp_gateway]
+url = "http://localhost:8000/mcp"
+
+[mcp_servers.apeiron]
+url = "https://apeiron.us-ashburn-1.oci.oraclecorp.com/mcp"
 
 [otel]
 environment = 'dev'
@@ -224,6 +245,21 @@ enabled = true
 enabled = true
 
 [plugins.'template-creator@openai-primary-runtime']
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."shepherd@Shepherd"]
+enabled = true
+
+[plugins."assurance-remediation@assurance-remediation"]
+enabled = true
+
+[plugins."oncall-assist-plugin@devplat-plugins"]
+enabled = true
+
+[plugins."mcp-gateway-plugin@devplat-plugins"]
 enabled = true
 
 [projects]
@@ -353,6 +389,63 @@ trust_level = "trusted"
 [projects."/Users/jrreed/Documents/Codex/2026-09-30/new-chat"]
 trust_level = "trusted"
 
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/https-confluence-oraclecorp-com-confluence-display-2"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/dev/cdss"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/the-local-sandbox-has-a-configuration"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/setup-https-www-peonping-com-packs"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/ho"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/https-confluence-oraclecorp-com-confluence-display-3"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/dev/cps"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/https-devops-oci-oraclecorp-com-security"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/i-m"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-09-30/https-devops-oci-oraclecorp-com-security-2"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-10-01/check-if-mcpgw-has-access-to"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/ChatGPT/OnCall"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-10-01/files-mentioned-by-the-user-codex"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-10-01/a"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-10-01/https-jira-sd-mc1-oracleiaas-com"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-10-01/https-devops-oci-oraclecorp-com-security"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-10-02/let-s-set-up-a-scheduled"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-10-02/new-chat"]
+trust_level = "trusted"
+
+[projects."/Users/jrreed/Documents/Codex/2026-10-02/new-chat-2"]
+trust_level = "trusted"
+
 [sandbox_workspace_write]
 network_access = true
 writable_roots = ['/Users/jrreed/.codex', '/Users/jrreed/.oci', '/Users/jrreed/oracle', '/Users/jrreed/.m2/repository', '/Users/jrreed/.cache/uv', '/Users/jrreed/Library/Application Support/Chromium', '/Users/jrreed/Library/Application Support/Google/Chrome']
@@ -367,44 +460,20 @@ theme = 'ansi'
 "gpt-5.6-sol" = 4
 gpt-6-astra = 4
 
-# Grafana MCP: local read-only investigation tools; credentials supplied separately.
-[mcp_servers.grafana]
-command = "/opt/homebrew/bin/uvx"
-args = ["--system-certs", "mcp-grafana==1.6.1", "-t", "stdio", "--disable-write", "--enabled-tools=search,dashboard,datasource,runpanelquery,navigation", "--usage-stats=disabled"]
-env_vars = ["GRAFANA_SERVICE_ACCOUNT_TOKEN", "GRAFANA_SERVICE_ACCOUNT_TOKEN_FILE", "GRAFANA_EXTRA_HEADERS"]
-startup_timeout_sec = 60
-tool_timeout_sec = 60
-enabled = false
+# peon-ping Codex hooks begin
+# install_dir = /Users/jrreed/.claude/hooks/peon-ping
+[[hooks.PermissionRequest]]
 
-[mcp_servers.grafana.env]
-GRAFANA_URL = "https://grafana.oci.oraclecorp.com"
-GRAFANA_ORG_ID = "1"
-UV_TOOL_DIR = "/Users/jrreed/.cache/uv/tools"
+[[hooks.PermissionRequest.hooks]]
+type = "command"
+command = "if [ -f /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh ]; then CLAUDE_PEON_DIR=/Users/jrreed/.claude/hooks/peon-ping bash /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh >/dev/null 2>&1 || true; fi"
+timeout = 30
 
-# Oracle BOAT proxy; enable after installing the authenticated registry tarball.
-[mcp_servers.grafana-octo]
-command = "/Users/jrreed/.oci/mcp-grafana/bin/mcp-grafana-proxy"
-args = ["--", "--disable-write", "--enabled-tools", "search,datasource,prometheus,loki,alerting,dashboard", "--usage-stats=disabled", "--grafana-timeout=45s"]
-enabled = true
-startup_timeout_sec = 120
-tool_timeout_sec = 180
+[[hooks.Stop]]
 
-[mcp_servers.grafana-octo.env]
-GRAFANA_AUTH_MODE = "boat"
-GRAFANA_BOAT_BASE_URL = "https://oc1.octo.oraclecloud.com/grafana-api"
-GRAFANA_BOAT_ORG_ID = "1"
-GRAFANA_BOAT_ALLOW_AUTH_REFRESH = "true"
-PATH = "/Users/jrreed/.oci/mcp-grafana/bin:/Users/jrreed/.local/share/mise/installs/node/24.12.0/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-GRAFANA_BOAT_PROFILE = "oc1"
-GRAFANA_BOAT_OCI_COMMAND = "/opt/homebrew/bin/oci"
-GRAFANA_BOAT_REFRESH_COMMAND = "/opt/homebrew/bin/oci session authenticate --region us-ashburn-1 --tenancy-name bmc_operator_access --identity-provider-name ocna-saml --profile-name oc1 --session-expiration-in-minutes 60"
-MCP_GRAFANA_PROXY_UPSTREAM_COMMAND = "/Users/jrreed/.oci/mcp-grafana/bin/mcp-grafana"
-MCP_GRAFANA_PROXY_LOG_DIR = "/Users/jrreed/.oci/mcp-grafana/logs"
+[[hooks.Stop.hooks]]
+type = "command"
+command = "if [ -f /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh ]; then CLAUDE_PEON_DIR=/Users/jrreed/.claude/hooks/peon-ping bash /Users/jrreed/.claude/hooks/peon-ping/adapters/codex.sh >/dev/null 2>&1 || true; fi"
+timeout = 30
 
-[mcp_servers.mcp_gateway]
-url = "http://localhost:8000/mcp"
-
-
-[models.new_thread]
-model = "gpt-6-astra"
-model_reasoning_effort = "medium"
+# peon-ping Codex hooks end

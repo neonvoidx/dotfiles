@@ -1,15 +1,17 @@
-tap "acep/brew", "ssh://git@bitbucket.oci.oraclecorp.com:7999/acep/brew.git"
-tap "acsandmann/tap"
-tap "anomalyco/tap", "https://github.com/anomalyco/homebrew-tap.git"
-tap "asmvik/formulae"
-tap "felixkratz/formulae", trusted: { formulae: ["sketchybar"] }
-tap "hashicorp/tap"
-tap "jackielii/tap"
-tap "jstkdng/programs"
-tap "koekeishiya/formulae", "https://github.com/asmvik/homebrew-formulae.git"
-tap "nikitabobko/tap"
-tap "peonping/tap", "https://github.com/PeonPing/homebrew-tap"
-tap "uot/oci-ops", "ssh://oci.private.devops.scmservice.us-phoenix-1.oci.oracleiaas.com/namespaces/axuxirvibvvo/projects/UOT/repositories/homebrew-ociops"
+tap "acep/brew", "ssh://oci.private.devops.scmservice.us-phoenix-1.oci.oracleiaas.com/namespaces/axuxirvibvvo/projects/ACEP/repositories/brew"
+tap "acsandmann/tap", "https://github.com:443/acsandmann/homebrew-tap"
+tap "alienxp03/tap"
+tap "anomalyco/tap", "https://github.com:443/anomalyco/homebrew-tap.git"
+tap "asmvik/formulae", "https://github.com:443/asmvik/homebrew-formulae"
+tap "cloudshell/oci-ops", "ssh://git@bitbucket.oci.oraclecorp.com:7999/cloudshell/homebrew-ociops.git", trusted: { formulae: ["oci-ops"] }
+tap "felixkratz/formulae", "https://github.com:443/felixkratz/homebrew-formulae"
+tap "hashicorp/tap", "https://github.com:443/hashicorp/homebrew-tap"
+tap "jackielii/tap", "https://github.com:443/jackielii/homebrew-tap"
+tap "jstkdng/programs", "https://github.com:443/jstkdng/homebrew-programs"
+tap "koekeishiya/formulae", "https://github.com:443/asmvik/homebrew-formulae.git"
+tap "nikitabobko/tap", "https://github.com:443/nikitabobko/homebrew-tap"
+tap "peonping/tap", "https://github.com:443/PeonPing/homebrew-tap"
+tap "timescam/tap", "https://github.com:443/timescam/homebrew-tap"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Cryptography and SSL/TLS Toolkit
@@ -112,6 +114,8 @@ brew "openjdk"
 brew "maven"
 # Unified display of technical and tag data for audio/video
 brew "media-info"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
 # Oracle Cloud Infrastructure CLI
 brew "oci-cli"
 # Create, run, and share large language models (LLMs)
@@ -190,20 +194,24 @@ brew "yarn"
 brew "yazi"
 # Command-line tool for the YubiKey PIV application
 brew "yubico-piv-tool"
+# Flexible and fast Zsh plugin manager
+brew "zinit"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # OSSH CLI for operator SSH access within OCI
 brew "acep/brew/ossh"
+# Keyboard-driven Kitty workspace manager
+brew "alienxp03/tap/kesh", trusted: true
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
-# Status bar used by AeroSpace
+# Custom macOS statusbar with shell plugin, interaction and graph support
 brew "felixkratz/formulae/sketchybar", trusted: true
 # Terraform
 brew "hashicorp/tap/terraform", trusted: true
 # Sound effects and desktop notifications for AI coding agents
 brew "peonping/tap/peon-ping", trusted: true
-# Oracle Cloud Infrastructure Unified Operations Tool
-brew "uot/oci-ops/oci-ops"
+# CLI tool to pay respects
+brew "timescam/tap/pay-respects", trusted: true
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace", trusted: true
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
@@ -225,18 +233,16 @@ cask "kitty"
 cask "obsidian"
 # Smart card libraries and utilities
 cask "opensc-app"
-# Desktop client for Proton Pass
-cask "proton-pass"
 # Kubernetes and container management on the desktop
 cask "rancher"
 # Tool that provides consistent, highly configurable symbols for apps
 cask "sf-symbols"
+# Screenshot measurement and annotation tool
+cask "shottr"
+mas "Keynote", id: 361285480
+mas "Numbers", id: 361304891
+mas "Pages", id: 361309726
 npm "@fission-ai/openspec"
 npm "cline"
 npm "codex-session-browser"
 npm "corepack"
-
-# Shell startup dependencies
-brew "zinit"
-tap "timescam/tap", "https://github.com/timescam/homebrew-tap"
-brew "timescam/tap/pay-respects", trusted: true

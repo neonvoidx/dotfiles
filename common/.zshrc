@@ -1,4 +1,4 @@
-# Uncomment to profile
+#ncomment to profile
 # zmodload zsh/zprof
 
 # nix check
@@ -342,10 +342,6 @@ if [[ "$TERM" == "xterm-kitty" ]]; then
   }
 fi
 
-# Use the same session picker as tmux's prefix+o binding.
-if command -v sesh &> /dev/null && [[ -x "$HOME/.local/bin/sesh-fast" ]]; then
-  alias s='"$HOME/.local/bin/sesh-fast"'
-fi
 # if lsd, replace ls
 if command -v lsd &> /dev/null; then
   alias ls="lsd"
@@ -531,14 +527,6 @@ export no_proxy='localhost,127.0.0.1,.oracle.com,.oracleiaas.com,.oraclecloud.co
 # Uncomment to profile
 # zprof
 
-# Offer the session picker after shell setup, only in a terminal outside tmux.
-# Inside tmux, prefix+o and `s` already cover it; popups must not launch it again.
-if [[ -o interactive && -t 0 && -t 1 && -z ${TMUX:-} && -z ${TMUX_PANE:-} &&
-      -z ${SESH_IN_POPUP:-} && -x "$HOME/.local/bin/sesh-fast" ]] &&
-   (( $+commands[sesh] && $+commands[fzf] && $+commands[tmux] )); then
-  "$HOME/.local/bin/sesh-fast" || true
-fi
-
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 if (( $+functions[zinit] )); then
@@ -550,3 +538,4 @@ if (( $+functions[zinit] )); then
 fi
 
 ### End of Zinit's installer chunk
+alias oci-ops='/Users/jrreed/dev/ops/oci-ops-cli/.venv/bin/oci-ops'
