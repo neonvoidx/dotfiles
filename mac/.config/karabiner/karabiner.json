@@ -8,6 +8,27 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Launch a new Kitty instance with Cmd+Enter",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "return_or_enter",
+                                    "modifiers": {
+                                        "mandatory": ["command"],
+                                        "optional": ["caps_lock"]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "/usr/bin/open -n /Applications/kitty.app",
+                                        "repeat": false
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         "description": "Remap CMD+Q to HYPER+Q",
                         "enabled": false,
                         "manipulators": [

@@ -56,23 +56,23 @@ splitWidthMultiplier = 1.0
 useGlobalGaps = true
 
 [focus]
-crossesMonitorAtEdge = false
+crossesMonitorAtEdge = true
 followsMouse = true
-followsWindowToMonitor = false
+followsWindowToMonitor = true
 lockModifier = "leftControl"
 moveCrossesMonitorAtEdge = false
 moveMouseToFocusedWindow = false
 raiseOnMouseFocus = false
 
 [gaps]
-fullscreenUsesOuterGaps = false
+fullscreenUsesOuterGaps = true
 size = 16.0
 
 [gaps.outer]
 bottom = 0.0
 left = 10.0
 right = 10.0
-top = 33.0
+top = 0.0
 
 [general]
 animationSpeed = 1.0
@@ -80,7 +80,7 @@ animationsEnabled = true
 defaultLayoutType = "niri"
 hotkeysEnabled = true
 hyperKeyModifiers = "Control+Option+Shift+Command"
-ipcEnabled = false
+ipcEnabled = true
 preventSleepEnabled = false
 systemHyperTrigger = "None"
 updateChecksEnabled = true
@@ -208,7 +208,7 @@ deduplicateAppIcons = false
 enabled = true
 excludedBundleIDs = []
 height = 38.0
-hideEmptyWorkspaces = true
+hideEmptyWorkspaces = false
 hideInNativeFullscreen = false
 hoverPreviewsEnabled = true
 notchActiveZoneWidth = 180.0
@@ -216,21 +216,33 @@ notchMode = "moveBelowMenuBar"
 notificationBadgeRefreshIntervalSeconds = 5.0
 notificationBadges = "dot"
 position = "overlappingMenuBar"
-reserveLayoutSpace = false
+reserveLayoutSpace = true
 revealHoldMilliseconds = 200.0
 revealModifier = "off"
 showAccentHighlights = true
-showFloatingWindows = false
+showFloatingWindows = true
 showItemBackgrounds = true
 showLabels = true
 solidBlackBackground = false
-systemStatsButton = false
-transparentBackground = false
+systemStatsButton = true
+transparentBackground = true
 windowLevel = "popup"
 xOffset = 0.0
 yOffset = 0.0
 
+[workspaceBar.accentColor]
+alpha = 1.0
+blue = 0.6
+green = 0.9568627450980391
+red = 0.21568627450980393
+
 [workspaceBar.iconOverrides]
+
+[workspaceBar.textColor]
+alpha = 1.0
+blue = 0.9490196078431372
+green = 0.5490196078431373
+red = 0.6431372549019607
 
 [[appRules]]
 bundleId = "com.openai.codex"
@@ -269,6 +281,7 @@ minHeight = 495.0
 minWidth = 500.0
 
 [[appRules]]
+assignToWorkspace = "1"
 bundleId = "org.mozilla.firefox"
 id = "005C00D3-F665-47F8-BDAE-D80790E9E46B"
 minHeight = 120.0
@@ -299,6 +312,7 @@ minHeight = 48.0
 minWidth = 90.0
 
 [[appRules]]
+assignToWorkspace = "3"
 bundleId = "com.microsoft.Outlook"
 id = "8ECAB78B-BCDD-4245-BC25-1609A49B1C86"
 minHeight = 650.0
@@ -309,6 +323,115 @@ bundleId = "com.apple.MobileSMS"
 id = "552FB77D-BF0E-4737-90A6-B5BC6986C579"
 minHeight = 320.0
 minWidth = 660.0
+
+[[appRules]]
+appNameSubstring = "kitty"
+assignToWorkspace = "1"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000001"
+
+[[appRules]]
+appNameSubstring = "Slack"
+assignToWorkspace = "9"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000002"
+
+[[appRules]]
+appNameSubstring = "Obsidian"
+assignToWorkspace = "4"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000003"
+
+[[appRules]]
+assignToWorkspace = "1"
+bundleId = "com.microsoft.Outlook"
+id = "B8A15724-473B-4CC9-A6AB-000000000004"
+layout = "float"
+titleRegex = "Reminder"
+
+[[appRules]]
+appNameSubstring = "Finder"
+assignToWorkspace = "1"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000005"
+layout = "float"
+
+[[appRules]]
+appNameSubstring = "Zoom"
+assignToWorkspace = "2"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000006"
+
+[[appRules]]
+appNameSubstring = "Zoom"
+assignToWorkspace = "2"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000007"
+layout = "float"
+titleRegex = "zoom share statusbar window"
+
+[[appRules]]
+appNameSubstring = "Zoom"
+assignToWorkspace = "2"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000008"
+layout = "float"
+titleRegex = "zoom share toolbar window"
+
+[[appRules]]
+appNameSubstring = "settings"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000009"
+layout = "float"
+
+[[appRules]]
+appNameSubstring = "Cisco"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000010"
+layout = "float"
+
+[[appRules]]
+appNameSubstring = "Authenticator"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000011"
+layout = "float"
+
+[[appRules]]
+appNameSubstring = "Proton Pass"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000012"
+layout = "float"
+
+[[appRules]]
+appNameSubstring = "Bitwarden"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000013"
+layout = "float"
+
+[[appRules]]
+bundleId = "com.openai.codex"
+id = "B8A15724-473B-4CC9-A6AB-000000000014"
+layout = "float"
+titleRegex = "^(Open|Save)$"
+
+[[appRules]]
+appNameSubstring = "Proton"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000015"
+layout = "float"
+
+[[appRules]]
+appNameSubstring = "Chromium"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000016"
+layout = "tile"
+titleRegex = "Playwright"
+
+[[appRules]]
+appNameSubstring = "Chromium"
+bundleId = ""
+id = "B8A15724-473B-4CC9-A6AB-000000000017"
+layout = "float"
 
 [[hotkeys]]
 binding = "Unassigned"
@@ -551,11 +674,11 @@ binding = "Command+H"
 id = "focus.left"
 
 [[hotkeys]]
-binding = "Command+J"
+binding = "Unassigned"
 id = "focus.down"
 
 [[hotkeys]]
-binding = "Command+K"
+binding = "Unassigned"
 id = "focus.up"
 
 [[hotkeys]]
@@ -591,11 +714,11 @@ binding = "Unassigned"
 id = "focusWindowUpOrBottom"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Command+J"
 id = "focusWindowOrWorkspaceDown"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Command+K"
 id = "focusWindowOrWorkspaceUp"
 
 [[hotkeys]]
@@ -607,11 +730,11 @@ binding = "Unassigned"
 id = "centerVisibleColumns"
 
 [[hotkeys]]
-binding = "Shift+Command+Up Arrow"
+binding = "Shift+Command+K"
 id = "moveWindowToWorkspaceUp"
 
 [[hotkeys]]
-binding = "Shift+Command+Down Arrow"
+binding = "Shift+Command+J"
 id = "moveWindowToWorkspaceDown"
 
 [[hotkeys]]
@@ -751,11 +874,11 @@ binding = "Unassigned"
 id = "toggleNativeFullscreen"
 
 [[hotkeys]]
-binding = "Control+Option+Shift+Left Arrow"
+binding = "Shift+Command+H"
 id = "moveColumn.left"
 
 [[hotkeys]]
-binding = "Control+Option+Shift+Right Arrow"
+binding = "Shift+Command+L"
 id = "moveColumn.right"
 
 [[hotkeys]]
@@ -779,11 +902,11 @@ binding = "Option+T"
 id = "toggleColumnTabbed"
 
 [[hotkeys]]
-binding = "Command+Delete"
+binding = "Unassigned"
 id = "focusColumnFirst"
 
 [[hotkeys]]
-binding = "Command+A"
+binding = "Unassigned"
 id = "focusColumnLast"
 
 [[hotkeys]]
@@ -1075,7 +1198,6 @@ binding = "Unassigned"
 id = "toggleSystemStats"
 
 [[workspaces]]
-displayName = "Dev"
 id = "AD36F001-C57E-41A5-AC1D-DF5249D007F0"
 layoutType = "niri"
 name = "1"
@@ -1084,7 +1206,6 @@ name = "1"
 type = "main"
 
 [[workspaces]]
-displayName = "Zoom"
 id = "454CECD4-5E9D-4ED1-95D7-979D48817F5F"
 layoutType = "niri"
 name = "2"
@@ -1093,7 +1214,6 @@ name = "2"
 type = "main"
 
 [[workspaces]]
-displayName = "Outlook"
 id = "BEB842B5-E894-4791-9FD1-397C3CDD3538"
 layoutType = "niri"
 name = "3"
@@ -1102,7 +1222,6 @@ name = "3"
 type = "main"
 
 [[workspaces]]
-displayName = "Obsidian"
 id = "248AA883-2261-4D45-943C-79C0E46A232B"
 layoutType = "niri"
 name = "4"
@@ -1119,7 +1238,6 @@ name = "5"
 type = "main"
 
 [[workspaces]]
-displayName = "❤️"
 id = "5953F2BF-A378-4266-91B2-287174C4FA4D"
 layoutType = "niri"
 name = "6"
@@ -1128,7 +1246,6 @@ name = "6"
 type = "main"
 
 [[workspaces]]
-displayName = "🚀"
 id = "A7D5E104-6985-4516-8ED5-07F144F2A33D"
 layoutType = "niri"
 name = "7"

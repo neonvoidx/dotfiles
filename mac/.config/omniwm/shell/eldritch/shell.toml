@@ -1,0 +1,31 @@
+# Custom profile; inherits bundled widgets from default/.
+theme = "eldritch"
+leading = ["apple-menu", "app-menu", "omniwm", "workspaces", "scratchpads"]
+center = ["dual-clock"]
+trailing = ["stats"]
+hiddenBarWidget = "hidden-bar"
+systemStatsWidget = "stats"
+
+[workspaceBar]
+fullWidth = true
+fullWidthNotchMode = "rightOfNotch"
+height = 38
+position = "belowMenuBar"
+reserveLayoutSpace = true
+autoHide = false
+revealModifier = "off"
+transparentBackground = false
+backgroundOpacity = 1.0
+solidBlackBackground = false
+showItemBackgrounds = true
+showAccentHighlights = true
+showLabels = true
+systemStatsButton = false
+xOffset = 0
+yOffset = 0
+barFill = "background"
+barBorder = "border"
+
+[widgets.stats]
+variant = "graph"
+interval = 2
