@@ -96,6 +96,7 @@ linux_display_server wayland
 
 # Keyboard shortcuts
 map cmd+enter no_op
+map cmd+w no_op
 map ctrl+tab no_op
 map cmd+` no_op
 ## Copy/Paste

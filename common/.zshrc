@@ -539,3 +539,39 @@ fi
 
 ### End of Zinit's installer chunk
 alias oci-ops='/Users/jrreed/dev/ops/oci-ops-cli/.venv/bin/oci-ops'
+
+ops-generate() {
+  if [[ $# -ne 2 || -z "$1" || -z "$2" ]]; then
+    print -u2 'Usage: ops-generate <region> <tenancy-id>'
+    return 2
+  fi
+  oci-ops ssh generate-config --region "$1" --tenancy "$2"
+}
+
+ops-connect() {
+  if [[ $# -ne 3 || -z "$1" || -z "$2" || -z "$3" ]]; then
+    print -u2 'Usage: ops-connect <region> <tenancy-id> <host-name>'
+    return 2
+  fi
+  oci-ops ssh generate-config --region "$1" --tenancy "$2" --host "$3"
+}
+
+ops-gethostname() {
+  if [[ $# -ne 3 || -z "$1" || -z "$2" || -z "$3" ]]; then
+    print -u2 'Usage: ops-gethostname <region> <tenancy-id> <instance-id>'
+    return 2
+  fi
+
+  local instance_hostname
+  # Let list-vnics resolve the instance's compartment rather than assuming the tenancy root.
+  instance_hostname="$(OCI_CLI_TENANCY="$2" oci compute instance list-vnics \
+    --region "$1" --instance-id "$3" --all \
+    --query 'data[?"is-primary" == `true`]."hostname-label" | [0]' \
+    --raw-output)" || return $?
+
+  if [[ -z "$instance_hostname" || "$instance_hostname" == null ]]; then
+    print -u2 "No primary VNIC hostname found for instance: $3"
+    return 1
+  fi
+  print -r -- "$instance_hostname"
+}

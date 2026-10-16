@@ -193,3 +193,7 @@ common/.codex/.sandbox_migration
 /common/.codex/generated_images/01a10d8c-93ff-7ec0-8d1e-ae20c201cb0e
 /common/.codex/realtime-voice-continuity.json
 /common/.codex/visualizations/2026/10/07/01a11735-5738-76c1-b0cb-af258d1c539b
+/common/.codex/.sqlite-maintenance.lock
+/common/.codex/node_repl
+/common/.codex/plugins
+/common/.codex/visualizations
