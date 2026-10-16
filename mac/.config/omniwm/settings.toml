@@ -11,7 +11,7 @@ tabRailAppIcons = false
 
 [borders]
 enabled = true
-width = 5.0
+width = 3.0
 
 [borders.color]
 alpha = 1.0
@@ -41,7 +41,7 @@ green = 0.8196078431372549
 red = 0.01568627450980392
 
 [clipboard]
-historyEnabled = false
+historyEnabled = true
 ignoredTypes = []
 maxItemBytes = 8388608
 maxItems = 200
@@ -722,7 +722,7 @@ binding = "Command+K"
 id = "focusWindowOrWorkspaceUp"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Shift+Command+C"
 id = "centerColumn"
 
 [[hotkeys]]
@@ -782,7 +782,7 @@ binding = "Unassigned"
 id = "moveColumnToWorkspace.8"
 
 [[hotkeys]]
-binding = "Option+Shift+Left Arrow"
+binding = "Shift+Command+H"
 id = "move.left"
 
 [[hotkeys]]
@@ -794,7 +794,7 @@ binding = "Option+Shift+Up Arrow"
 id = "move.up"
 
 [[hotkeys]]
-binding = "Option+Shift+Right Arrow"
+binding = "Shift+Command+L"
 id = "move.right"
 
 [[hotkeys]]
@@ -874,11 +874,11 @@ binding = "Unassigned"
 id = "toggleNativeFullscreen"
 
 [[hotkeys]]
-binding = "Shift+Command+H"
+binding = "Control+Option+Shift+Left Arrow"
 id = "moveColumn.left"
 
 [[hotkeys]]
-binding = "Shift+Command+L"
+binding = "Control+Option+Shift+Right Arrow"
 id = "moveColumn.right"
 
 [[hotkeys]]
@@ -1146,7 +1146,7 @@ binding = "Option+Shift+R"
 id = "raiseAllFloatingWindows"
 
 [[hotkeys]]
-binding = "Shift+Command+Space"
+binding = "Unassigned"
 id = "toggleFloatingFocus"
 
 [[hotkeys]]
@@ -1154,7 +1154,7 @@ binding = "Unassigned"
 id = "rescueOffscreenWindows"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Shift+Command+Space"
 id = "toggleFocusedWindowFloating"
 
 [[hotkeys]]
