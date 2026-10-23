@@ -4,12 +4,12 @@ tap "alienxp03/tap"
 tap "anomalyco/tap", "https://github.com:443/anomalyco/homebrew-tap.git"
 tap "asmvik/formulae", "https://github.com:443/asmvik/homebrew-formulae"
 tap "cloudshell/oci-ops", "ssh://git@bitbucket.oci.oraclecorp.com:7999/cloudshell/homebrew-ociops.git", trusted: { formulae: ["oci-ops"] }
-tap "felixkratz/formulae", "https://github.com:443/felixkratz/homebrew-formulae"
+tap "felixkratz/formulae", "https://github.com:443/felixkratz/homebrew-formulae", trusted: { formulae: ["sketchybar"] }
 tap "hashicorp/tap", "https://github.com:443/hashicorp/homebrew-tap"
 tap "jackielii/tap", "https://github.com:443/jackielii/homebrew-tap"
 tap "jstkdng/programs", "https://github.com:443/jstkdng/homebrew-programs"
 tap "koekeishiya/formulae", "https://github.com:443/asmvik/homebrew-formulae.git"
-tap "nikitabobko/tap", "https://github.com:443/nikitabobko/homebrew-tap"
+tap "nikitabobko/tap", "https://github.com:443/nikitabobko/homebrew-tap", trusted: { casks: ["aerospace"] }
 tap "peonping/tap", "https://github.com:443/PeonPing/homebrew-tap"
 tap "timescam/tap", "https://github.com:443/timescam/homebrew-tap"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -194,6 +194,8 @@ brew "yarn"
 brew "yazi"
 # Command-line tool for the YubiKey PIV application
 brew "yubico-piv-tool"
+# Pluggable terminal workspace, with terminal multiplexer as the base feature
+brew "zellij"
 # Flexible and fast Zsh plugin manager
 brew "zinit"
 # Shell extension to navigate your filesystem faster
@@ -204,16 +206,12 @@ brew "acep/brew/ossh"
 brew "alienxp03/tap/kesh", trusted: true
 # A window border system for macOS
 brew "felixkratz/formulae/borders", trusted: true
-# Custom macOS statusbar with shell plugin, interaction and graph support
-brew "felixkratz/formulae/sketchybar", trusted: true
 # Terraform
 brew "hashicorp/tap/terraform", trusted: true
 # Sound effects and desktop notifications for AI coding agents
 brew "peonping/tap/peon-ping", trusted: true
 # CLI tool to pay respects
 brew "timescam/tap/pay-respects", trusted: true
-# AeroSpace is an i3-like tiling window manager for macOS
-cask "nikitabobko/tap/aerospace", trusted: true
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
 # Desktop password and login vault
@@ -231,6 +229,8 @@ cask "keycastr"
 cask "kitty"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# Tiling window manager
+cask "omniwm"
 # Smart card libraries and utilities
 cask "opensc-app"
 # Kubernetes and container management on the desktop

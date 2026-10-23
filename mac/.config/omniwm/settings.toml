@@ -88,7 +88,7 @@ updateChecksEnabled = true
 [gestures]
 fingerCount = 3
 invertDirection = true
-mouseMoveModifierKey = "command"
+mouseMoveModifierKey = "controlCommand"
 mouseResizeModifierKey = "command"
 overviewGestureEnabled = false
 overviewGestureFingerCount = 4
@@ -208,7 +208,7 @@ deduplicateAppIcons = false
 enabled = true
 excludedBundleIDs = []
 height = 38.0
-hideEmptyWorkspaces = false
+hideEmptyWorkspaces = true
 hideInNativeFullscreen = false
 hoverPreviewsEnabled = true
 notchActiveZoneWidth = 180.0
@@ -361,6 +361,15 @@ appNameSubstring = "Zoom"
 assignToWorkspace = "2"
 bundleId = ""
 id = "B8A15724-473B-4CC9-A6AB-000000000006"
+
+[[appRules]]
+appNameSubstring = "Zoom"
+assignToWorkspace = "2"
+bundleId = ""
+id = "F834BFA1-CB0B-45AA-BD0C-44C4D7F60D36"
+titleRegex = "(?i)^Zoom (Meeting|Webinar)$"
+layout = "tile"
+initialContainerPrimarySpan = 1.0
 
 [[appRules]]
 appNameSubstring = "Zoom"
@@ -1042,7 +1051,7 @@ binding = "Unassigned"
 id = "cycleWindowSecondarySpanBackward"
 
 [[hotkeys]]
-binding = "Option+Shift+F"
+binding = "Shift+Command+F"
 id = "toggleContainerFullPrimarySpan"
 
 [[hotkeys]]
@@ -1054,11 +1063,11 @@ binding = "Control+Option+R"
 id = "resetWindowSecondarySpan"
 
 [[hotkeys]]
-binding = "Option+Minus"
+binding = "Shift+Command+Minus"
 id = "setContainerPrimarySpan.decrease10Percent"
 
 [[hotkeys]]
-binding = "Option+Equal"
+binding = "Shift+Command+Equal"
 id = "setContainerPrimarySpan.increase10Percent"
 
 [[hotkeys]]

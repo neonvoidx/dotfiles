@@ -15,6 +15,12 @@ This contains my dotfiles for Linux and Mac. Uses GNU stow.
       - vault (obsidian vault, *private* will only pull for me)
     - It will then run `stow common` followed by detecting OS and running appropriate `stow mac` or `stow linux`
   
+For Zellij, install the pinned Zellij plugins after stowing:
+
+```sh
+~/.config/zellij/install-plugins.sh
+```
+
 ### For full system setup, check `ansible folder`
 
 

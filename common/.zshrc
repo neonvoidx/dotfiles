@@ -185,6 +185,7 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
 HISTDUPE=erase
+setopt IGNORE_EOF                # Keep Ctrl+d from exiting an empty shell prompt.
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
 setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
@@ -575,3 +576,16 @@ ops-gethostname() {
   fi
   print -r -- "$instance_hostname"
 }
+
+# Zellij owns panes and tabs; its built-in manager replaces the Kitty picker.
+s() {
+  if [[ -n "${ZELLIJ:-}" ]]; then
+    command zellij action launch-or-focus-plugin zellij:session-manager --floating
+  else
+    command zellij attach --create home
+  fi
+}
+
+if [[ -o interactive && -t 0 && -t 1 && -z "${ZELLIJ:-}" && -z "${TMUX:-}" && -z "${DEVENV_ROOT:-}" && -z "${SSH_CONNECTION:-}" ]] && (( $+commands[zellij] )); then
+  command zellij attach --create home
+fi

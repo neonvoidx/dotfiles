@@ -1,0 +1,35 @@
+layout {
+  default_tab_template {
+    children
+    pane size=1 borderless=true {
+      plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
+        format_left "{mode}#[fg=#04d1f9,bg=#212337,bold] {session} {tabs}"
+        format_right "{pipe_zjstatus_hints} "
+        pipe_zjstatus_hints_format "{output}"
+        format_space "#[bg=#212337]"
+        format_hide_on_overlength "true"
+        format_precedence "lrc"
+
+        mode_normal "#[fg=#212337,bg=#04d1f9,bold] NORMAL "
+        mode_locked "#[fg=#212337,bg=#37f499,bold] APP "
+        mode_pane "#[fg=#212337,bg=#a48cf2,bold] PANE "
+        mode_move "#[fg=#212337,bg=#a48cf2,bold] MOVE "
+        mode_tab "#[fg=#212337,bg=#a48cf2,bold] TAB "
+        mode_resize "#[fg=#212337,bg=#f1fc79,bold] RESIZE "
+        mode_rename_tab "#[fg=#212337,bg=#a48cf2,bold] RENAME "
+        mode_scroll "#[fg=#212337,bg=#a48cf2,bold] SCROLL "
+        mode_enter_search "#[fg=#212337,bg=#a48cf2,bold] SEARCH "
+        mode_search "#[fg=#212337,bg=#a48cf2,bold] SEARCH "
+        mode_default_to_mode "normal"
+
+        tab_normal "#[fg=#a1abe0,bg=#212337] {index} {name} "
+        tab_active "#[fg=#212337,bg=#37f499,bold] {index} {name} "
+        tab_separator " "
+        border_enabled "false"
+        hide_frame_for_single_pane "false"
+      }
+    }
+  }
+  tab name="home" focus=true { pane cwd="~"; }
+  tab name="nix" { pane cwd="~/dev/nix"; }
+}
